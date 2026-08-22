@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -80,6 +80,7 @@ tr:last-child td { border-bottom: none; }
   a { color: inherit; border-bottom: none; }
 }
 @media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
 </style>
 </head>
 <body>
@@ -200,9 +201,9 @@ tr:last-child td { border-bottom: none; }
     [
       { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
     ]
-    </script>
+    <\/script>
   </div>
-  <script src="../assets/quiz.js"></script>
+  <script src="../assets/quiz.js"><\/script>
 - answer 是正确选项的下标（从 0 开始）。
 - 选项建议等长，不给用户格式线索。
 - 每个 .quiz 容器独立计分。
@@ -273,6 +274,7 @@ tr:last-child td { border-bottom: none; }
   var quizzes = document.querySelectorAll(".quiz");
   for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
 })();
+
 </script>
 </body>
 </html>

@@ -460,8 +460,8 @@ dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-sof
    quiz.js — 可复用测验组件（即时反馈 · 检索练习）
    用法：
      <div class="quiz" data-questions="quiz-1"></div>
-     <script type="application/json" id="quiz-1">[ …题目… ]</script>
-     <script src="../assets/quiz.js"></script>
+     <script type="application/json" id="quiz-1">[ …题目… ]<\/script>
+     <script src="../assets/quiz.js"><\/script>
    题目 JSON 结构：
      [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
    选项建议等长（字数一致），避免通过格式泄露答案。

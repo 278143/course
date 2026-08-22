@@ -9,7 +9,7 @@
 
 ### 方式 A：托管后发链接（体验最佳）
 1. 把整个 export/ 目录上传到任意静态托管（GitHub Pages、Gitee Pages、Vercel、Netlify 等）。
-2. 得到网址后（如 https://yourname.github.io/psychology/），把链接发到飞书群即可。
+2. 得到网址后（如 https://278143.github.io/course/psychology/），把链接发到飞书群即可。
 3. 群里消息由 `10_Projects/课程推送/` 的脚本自动发"摘要 + 链接"。
 
 ### 方式 B：直接把 HTML 文件传到飞书群（无需托管）
