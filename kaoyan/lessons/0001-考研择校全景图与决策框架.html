@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0001 · 考研择校全景图与决策框架</title>
+<style>
+/* ============================================================
+   Kaoyan Teaching Course — shared stylesheet
+   Tufte-inspired: generous margins, serif body, restrained color.
+   Print-friendly. Chinese typography optimized.
+   ============================================================ */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fdfcf8;
+  --rule: #d8d4c8;
+  --accent: #8b3a3a;      /* muted brick red — 考研红 */
+  --accent-soft: #f3e8e2;
+  --teal: #2f5d62;
+  --teal-soft: #e7f0ef;
+  --gold: #9a7b2f;
+  --gold-soft: #f6efdd;
+  --gray: #5f5f5f;
+  --code-bg: #f2efe9;
+  --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --measure: 68ch;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0;
+  padding: 0 0 4rem 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- header / hero ---------- */
+header.lesson-head {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+header.lesson-head .kicker {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+header.lesson-head h1 {
+  font-size: 2.1rem;
+  line-height: 1.3;
+  margin: 0 0 0.8rem;
+  font-weight: 700;
+}
+header.lesson-head .subtitle {
+  font-size: 1.02rem;
+  color: var(--gray);
+  margin: 0;
+}
+header.lesson-head .meta {
+  margin-top: 1.2rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* ---------- layout ---------- */
+main {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+section { margin: 0 0 2.8rem; }
+section > h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.4rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--rule);
+}
+section > h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 1.8rem 0 0.6rem;
+  color: var(--ink);
+}
+p { margin: 0.7rem 0; max-width: var(--measure); }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+a:hover { border-bottom-style: solid; }
+
+/* ---------- lists ---------- */
+ul, ol { max-width: var(--measure); }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- tables ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.92rem;
+  font-family: var(--sans);
+}
+th {
+  text-align: left;
+  background: var(--accent-soft);
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 2px solid var(--accent);
+  vertical-align: top;
+}
+td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+tr:hover td { background: #f7f4ec; }
+
+/* ---------- callouts ---------- */
+.callout {
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.9rem 1.1rem;
+  margin: 1.3rem 0;
+  border-radius: 0 6px 6px 0;
+  max-width: var(--measure);
+}
+.callout.teal { border-color: var(--teal); background: var(--teal-soft); }
+.callout.gold { border-color: var(--gold); background: var(--gold-soft); }
+.callout .callout-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+.callout p { margin: 0.4rem 0; }
+
+/* ---------- quiz ---------- */
+.quiz { margin: 1.6rem 0; max-width: var(--measure); }
+.quiz-question { font-weight: 700; margin-bottom: 0.6rem; }
+.quiz-options { list-style: none; padding: 0; margin: 0 0 0.8rem; }
+.quiz-options li {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  margin: 0.45rem 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: border-color 0.15s, background 0.15s;
+}
+.quiz-options li:hover { border-color: var(--teal); background: var(--teal-soft); }
+.quiz-options li.correct {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  font-weight: 700;
+}
+.quiz-options li.wrong {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.quiz-feedback { display: none; font-size: 0.95rem; padding: 0.6rem 0.9rem; border-radius: 6px; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.ok { background: var(--teal-soft); }
+.quiz-feedback.no { background: var(--accent-soft); }
+.quiz button {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+}
+.quiz button:hover { background: var(--accent); }
+
+/* ---------- code ---------- */
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  max-width: calc(var(--measure) + 4rem);
+}
+pre code { background: none; padding: 0; }
+
+/* ---------- sidenote (Tufte flavor, simplified) ---------- */
+.sidenote {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-family: var(--sans);
+  border-top: 1px dashed var(--rule);
+  padding-top: 0.4rem;
+  margin-top: 0.8rem;
+  max-width: var(--measure);
+}
+
+/* ---------- footer ---------- */
+footer {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 3rem auto 0;
+  padding: 1.5rem 2rem 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* ---------- print ---------- */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  header.lesson-head, main, footer { max-width: 100%; padding-left: 0.5in; padding-right: 0.5in; }
+  .quiz-options li { cursor: default; }
+  a { color: var(--ink); border-bottom: none; }
+  section { page-break-inside: avoid; }
+  table { font-size: 8.5pt; }
+}
+
+</style>
+</head>
+<body>
+<header class="lesson-head">
+  <p class="kicker">Lesson 0001 · 28考研调研课程</p>
+  <h1>考研择校全景图与决策框架</h1>
+  <p class="subtitle">第一课：看清整个考研选择系统，并把"你的情况"翻译成"择校原则"。约 20 分钟，做完末尾练习即完成。</p>
+  <p class="meta">2026-08 · 基于研招网等官方信息源 · 数据调研进行中</p>
+</header>
+<main>
+
+<section id="start">
+<h2>你的起点</h2>
+<p>先把你的情况摆在桌面上——不是打击你，而是为了让你**基于事实决策**，而不是基于情绪。择校第一步永远不是"我想上哪所"，而是"我的牌是什么"。</p>
+
+<table>
+<thead><tr><th>你的牌</th><th>对择校意味着什么</th></tr></thead>
+<tbody>
+<tr><td>民办本科（烟台理工学院）</td><td>复试中部分院校/导师会看本科出身 → 必须筛选"不歧视民办本科"的院校（后面教你怎么查）</td></tr>
+<tr><td>AI 专业（人工智能学院）</td><td>对口方向多：计算机学硕/专硕、软件工程、电子信息（含 085410 人工智能专硕）、控制工程——有选择空间</td></tr>
+<tr><td>数学基础一般</td><td>数学一（范围最广、最难）是最大风险 → 优先找考数学二/自命题数学难度可控的院校；同时数学必须最早开始复习</td></tr>
+<tr><td>英语四级未过</td><td>英语一是硬仗（难度≈六级）→ 优先英语二（专硕）；复试/调剂中部分院校有四六级硬性要求 → 必须逐校核实；12 月前冲过四级是加分项</td></tr>
+<tr><td>目标是江浙沪/南方</td><td>全国竞争最激烈的考研地区之一 → 定位必须务实，双非一本 + 本地就业优势是合理主战场</td></tr>
+<tr><td>还剩约 16 个月</td><td>2026.08 → 2027.12。时间中等充裕：来得及系统复习，但择校必须 2026 年内定稿</td></tr>
+<tr><td>就业导向（非学术）</td><td>专硕优先：学制短、重实践、考数学二英语二更友好，就业市场认可度与学硕相当</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<span class="callout-title">先说结论，再讲道理</span>
+<p>你的最优路径大概率是：<strong>江浙沪的双非一本/省重点院校的电子信息类专硕（数学二 + 英语二 + 408或自命题）</strong>，辅以 1~2 所冲刺的 211 和 2~3 所保底。为什么，往下看。</p>
+</div>
+</section>
+
+<section id="system">
+<h2>一、考研选择系统：三个旋钮</h2>
+<p>择校本质上是同时转动三个旋钮，任何决定都是三个旋钮的组合。我们一个一个拆开。</p>
+
+<h3>旋钮 1：考试科目组合</h3>
+<p>初试四门：政治（100）+ 英语（100）+ 数学（150）+ 专业课（150）。真正决定"难度天花板"的是后两门：</p>
+<ul>
+<li><strong>英语一 vs 英语二</strong>：英一 ≈ 六级难度，英二约低一档。学硕基本考英一，多数专硕考英二。</li>
+<li><strong>数学一 vs 数学二</strong>：数一考高数+线代+概率论，范围最广最难；数二传统上不含概率论、难度低于数一。<span class="sidenote">关于考纲的核实结论（2026-08 调研）：2026 年数学大纲（2025.9 发布）知识点无实质变化；"数二增加概率论"是发布前的预测性传言，未获官方来源支持——数二历来只考高数+线代（不含概率论），数三才含概率论。你的考试（2027.12）以 2027 年 9 月发布的当年大纲为准。</span></li>
+<li><strong>专业课：408 统考 vs 自命题</strong>：408 是全国统一命题（数据结构+计组+操作系统+网络四门），复习量大但公平、无信息差、方便调剂；自命题由各校出题，真题和信息差是决胜因素。</li>
+</ul>
+<div class="callout teal">
+<span class="callout-title">对你（数学一般 + 四级未过）的影响</span>
+<p>考"数学二+英语二"的专硕，总难度显著低于考"数学一+英语一"的学硕。这就是为什么就业导向的你把<strong>专硕</strong>作为主战场——不是退而求其次，是理性选择。</p>
+</div>
+
+<h3>旋钮 2：专业方向</h3>
+<p>AI 专业考生常见的选择，按"就业导向"排序：</p>
+<table>
+<thead><tr><th>专业</th><th>代码</th><th>类型</th><th>就业指向</th><th>典型考试</th></tr></thead>
+<tbody>
+<tr><td>电子信息（含人工智能方向）</td><td>0854（人工智能 085410）</td><td>专硕</td><td>算法/开发/嵌入式/数据，面最广</td><td>数二+英二 或 数一+英一（各校不同）</td></tr>
+<tr><td>计算机技术</td><td>085404</td><td>专硕</td><td>开发/算法岗</td><td>多为数二+英二+408/自命题</td></tr>
+<tr><td>软件工程</td><td>085405 专硕 / 083500 学硕</td><td>专硕/学硕</td><td>软件开发/架构</td><td>专硕多为数二+英二</td></tr>
+<tr><td>计算机科学与技术</td><td>081200</td><td>学硕</td><td>偏科研/算法/深造</td><td>几乎全是数一+英一</td></tr>
+<tr><td>人工智能</td><td>0812J1 等（学硕，少数校设）</td><td>学硕</td><td>偏科研</td><td>数一+英一</td></tr>
+<tr><td>控制工程</td><td>085406</td><td>专硕</td><td>自动化/机器人/嵌入式</td><td>多为数二+英二</td></tr>
+</tbody>
+</table>
+<p class="sidenote">同一学校同一专业代码，不同院系可能考不同科目（如有的校 0854 考数一）。一切以该校当年《招生专业目录》为准——这也是本课要教你的核心技能。</p>
+
+<h3>旋钮 3：院校 × 地域</h3>
+<p>三个层次要分清（见<a href="../reference/考研术语表.html">术语表</a>）：</p>
+<ul>
+<li><strong>国家线</strong>：教育部划的"最低门槛"，A 区工学近年约 260~273 分。注意：国家线低≠好学校好考，热门院校复试线常年 330~380。</li>
+<li><strong>院校复试线</strong>：各校自划，热门校远高于国家线——这是你真正要看的数字。</li>
+<li><strong>34 所自划线</strong>：985 名校自主划线，对民办本科考生基本不是主战场（除非冲刺）。</li>
+</ul>
+<p>江浙沪的现实：上海、南京、杭州是中国考研竞争最惨烈的地区之一。南京邮电、杭州电子科技等"强双非"热度甚至超过部分 211；同层次的江苏大学、浙江理工、上海理工等是更现实的主力目标。具体院校数据见下文第三节。</p>
+</section>
+
+<section id="framework">
+<h2>二、你的决策框架：五条原则</h2>
+<p>把第一节的三旋钮套进你的画像，得到五条可执行的择校原则。以后每看一所学校，都用这五条过一遍。</p>
+
+<ol>
+<li><strong>就业导向 → 专硕优先</strong>：目标专业锁定 0854 电子信息（人工智能方向）、085404 计算机技术、085405 软件工程；学硕只作少数冲刺选项。</li>
+<li><strong>数学一般 → 数学二优先</strong>：优先选初试考数二的院校；若某校专硕考数一，仅当该校性价比极高（如就业极好）才考虑。</li>
+<li><strong>四级未过 → 英语二 + 核实四六级要求</strong>：优先考英二的院校；逐校查《复试细则》是否要求四六级证书（部分院校调剂/录取有硬性要求，详见<a href="#action">行动清单</a>）。同时 2026 年 12 月过四级，2027 年 6 月冲六级。</li>
+<li><strong>民办本科 → 保护一志愿 + 不歧视</strong>：选复试以初试成绩为主、公开录取细则、保护一志愿的院校；避开"压分收调剂"、复试占比畸高、有歧视口碑的院校（后文教三步核实法）。</li>
+<li><strong>江浙沪 → 务实分层</strong>：主战场放在双非省重点（上海理工、江苏大学、浙江理工这一档）；冲 1~2 所 211/强双非；保底 2~3 所过线即录的院校。</li>
+</ol>
+
+<div class="callout gold">
+<span class="callout-title">一个提醒：避开"名校情结陷阱"</span>
+<p>你"没概念"其实是个优势——很多人第一年死磕 985 失败后调剂无门。以你的牌（民办本科+数学一般+四级未过），第一年目标应该是<strong>"上岸且不亏"</strong>：一所复试公平、就业认可度够用的硕士，胜过二战一年。先上岸，再图发展。</p>
+</div>
+</section>
+
+<section id="tiers">
+<h2>三、分层模型：冲刺 / 稳妥 / 保底</h2>
+<p>择校永远不是选一所，而是选一组（建议 8~12 所），分三档，最后报名时从中挑 1 个一志愿 + 备好调剂预案：</p>
+
+<table>
+<thead><tr><th>档位</th><th>定位</th><th>数量</th><th>筛选标准</th></tr></thead>
+<tbody>
+<tr><td><strong>冲刺</strong></td><td>跳一跳够得着</td><td>1~2 所</td><td>211 或强双非（如杭电档），考数二英二或可接受的数一英一；复试口碑好</td></tr>
+<tr><td><strong>稳妥</strong></td><td>主战场</td><td>3~5 所</td><td>双非省重点/一本，考数二英二为主，复试线落在你实力区间（初试目标 330~360）</td></tr>
+<tr><td><strong>保底</strong></td><td>兜底</td><td>2~3 所</td><td>过国家线即有望录取、保护一志愿、常年一志愿不满的院校（这类院校要认真找，不能只看名气）</td></tr>
+</tbody>
+</table>
+
+<h3>江浙沪候选院校数据（调研中，下节课交付完整版）</h3>
+<p>以下数据由后台调研代理采集自各校官网与公开信息，<strong>表将在数据核实后更新为完整版</strong>。先给你一版方向性名单：</p>
+<div class="callout">
+<span class="callout-title">方向性名单（非最终数据）</span>
+<p><strong>上海</strong>：上海理工大学、上海海事大学、上海电力大学、上海师范大学、上海应用技术大学、上海工程技术大学、上海第二工业大学<br>
+<strong>江苏</strong>：江苏大学、南京工业大学、南京信息工程大学（双一流）、南京邮电大学（双一流，竞争激烈）、苏州科技大学、南通大学、扬州大学、江苏师范大学、常州大学、盐城工学院<br>
+<strong>浙江</strong>：浙江工业大学、浙江理工大学、杭州电子科技大学（热门双非）、浙江工商大学、中国计量大学、浙江师范大学、宁波大学（双一流）、浙江科技大学<br>
+<span class="sidenote">同名学校不同院系招生科目差异大，最终以研招网专业目录为准。完整数据表（考试科目、复试线、口碑、分层建议）见课程 0002。</span></p>
+</div>
+</section>
+
+<section id="action">
+<h2>四、本周行动：用官方工具做第一次实操</h2>
+<p>择校不是"想"，是"查"。本周（2026 年 8 月最后一周）完成以下 4 步，全部用官方信源，不依赖任何人的二手结论：</p>
+
+<ol>
+<li><strong>研招网专业目录实操</strong>：打开 <a href="https://yz.chsi.com.cn">研招网</a> → 硕士目录 → 按"省市=上海/江苏/浙江 + 专业=电子信息/计算机技术/软件工程/人工智能"查询，把每所学校的<strong>考试科目</strong>抄进表格（重点看：数学几？英语几？408 还是自命题？）。</li>
+<li><strong>核实四六级要求</strong>：对每所候选校，打开其研究生院官网 → 找到上一年《复试录取工作办法/复试细则》→ 搜索"四级/六级/英语水平"，看是否有硬性要求。</li>
+<li><strong>三步核实"是否歧视"</strong>：①查该校复试细则（初试占比、复试流程是否公开透明）；②查上一年《拟录取名单》里是否有"双非/三本"录取者（看录取者本科院校，民办院校占比如何）；③去知乎/贴吧搜"该校 + 三本/民办/歧视"，看口碑。</li>
+<li><strong>建一张自己的择校表</strong>：Excel/表格，列 = 学校 | 城市 | 专业 | 数学几 | 英语几 | 专业课 | 是否408 | 复试线(近2年) | 四六级要求 | 歧视口碑 | 档位。这张表就是你的择校数据库，课程 0002 会给你填充好的基准版。</li>
+</ol>
+
+<div class="callout teal">
+<span class="callout-title">英文证书提醒（务实路线）</span>
+<p>四级未过不影响考研报名（全国不设四六级门槛），但：①部分院校复试/调剂有要求（必须逐校查）；②英语二考试本身需要基础，备考 = 补基础。建议目标：2026.12 过四级、2027.06 冲六级——既满足潜在要求，也让复试简历更好看。</p>
+</div>
+</section>
+
+<section id="practice">
+<h2>五、练习：检验你是否真的懂了</h2>
+
+<div class="quiz" data-answer="2">
+<p class="quiz-question">Q1 · 你是就业导向、数学一般、四级未过的考生。以下哪种组合最符合你的理性选择？</p>
+<ul class="quiz-options">
+<li>985 学硕，数学一 + 英语一 + 408</li>
+<li>双非专硕，数学二 + 英语二 + 自命题专业课</li>
+<li>211 学硕，数学一 + 英语二 + 408</li>
+<li>34 所自划线院校，数学一 + 英语一</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。就业导向 → 专硕优先；数学一般 → 数二；四级未过 → 英二。这是原则 1+2+3 的组合结果。答案选第 2 项。</div>
+</div>
+
+<div class="quiz" data-answer="0">
+<p class="quiz-question">Q2 · "国家线 260 分"意味着什么？</p>
+<ul class="quiz-options">
+<li>国家线是进入复试或调剂的最低门槛，热门院校复试线远高于它</li>
+<li>过了国家线就能被任何学校录取</li>
+<li>国家线每年相同，不用关注</li>
+<li>国家线只对 34 所自划线院校有意义</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。国家线只是"最低门槛"，真正决定录取的是院校复试线。答案选第 1 项。</div>
+</div>
+
+<div class="quiz" data-answer="3">
+<p class="quiz-question">Q3 · 判断一所学校是否歧视民办本科，最可靠的核实顺序是？</p>
+<ul class="quiz-options">
+<li>只看学校排名，排名高就不歧视</li>
+<li>只看网上的考研机构推荐</li>
+<li>只看招生简章里的宣传语</li>
+<li>复试细则 → 拟录取名单生源 → 社区口碑，三重交叉验证</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。歧视与否看证据：复试细则（初试占比/流程透明度）→ 拟录取名单（录取者本科分布）→ 社区口碑（过来人经验）。答案选第 4 项。</div>
+</div>
+
+<h3>本周作业（交付物）</h3>
+<p>完成<a href="#action">行动清单</a>第 1、2 步，把至少 <strong>6 所学校</strong>（上海 2 + 江苏 2 + 浙江 2）的考试科目和四六级要求抄进你的择校表，截图/复制到对话里发给我。我会逐校帮你核对，并给出初版分层建议。</p>
+</section>
+
+<section id="next">
+<h2>下一步</h2>
+<ul>
+<li>复习<a href="../reference/考研术语表.html">考研术语表</a>（约 5 分钟，里面是本课所有黑话的规范定义）</li>
+<li>任何不清楚的地方，直接问你的教学代理（我）。尤其：学硕专硕怎么选、408 到底值不值得碰、某所学校口碑如何——问就对了。</li>
+<li>下一课（0002）：江浙沪院校数据库精讲——基于后台调研的完整数据表 + 分层推荐。</li>
+</ul>
+</section>
+
+</main>
+<footer>
+<p>28考研 · 院校与专业调研课程 — Lesson 0001 · 有任何疑问随时问教学代理 · 数据来源见 <a href="../RESOURCES.md">RESOURCES.md</a></p>
+</footer>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(quiz) {
+  var btn = quiz.querySelector('button');
+  var opts = quiz.querySelectorAll('.quiz-options li');
+  var fb = quiz.querySelector('.quiz-feedback');
+  var answer = parseInt(quiz.dataset.answer, 10);
+  var answered = false;
+  opts.forEach(function(li, i) {
+    li.addEventListener('click', function() {
+      if (answered) return;
+      answered = true;
+      if (i === answer) { li.classList.add('correct'); fb.classList.add('show','ok'); }
+      else { li.classList.add('wrong'); opts[answer].classList.add('correct'); fb.classList.add('show','no'); }
+    });
+  });
+  btn.addEventListener('click', function() {
+    if (!answered) { opts[answer].classList.add('correct'); fb.classList.add('show','ok'); answered = true; }
+  });
+});
+</script>
+</body>
+</html>

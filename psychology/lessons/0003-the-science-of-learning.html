@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 3 课：学习的科学——行为如何被塑造与改变</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0003 · Learning</p>
+  <h1>学习的科学——行为如何被塑造与改变</h1>
+  <p class="lesson-meta">预计 20 分钟 · 承接第 2 课 · 你正在记的 3 天日记就是本课的实验数据</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>你已经学会<strong>分析</strong>行为（第 2 课）、掌握<strong>强化与惩罚</strong>的定义（上轮答疑）。本课给你第三件工具：<strong>改变行为的原理</strong>。习惯为什么形成？为什么"戒了又犯"？怎么科学地改？学完本课，你将有能力基于自己的日记设计一套行为改变方案——这是"应对自己心理困扰"目标里最可操作的一步。</p>
+</div>
+
+<h2>两种学习形式</h2>
+<h3>经典条件反射：被动联想</h3>
+<p>巴甫洛夫的狗：铃声与食物反复配对后，光响铃就流口水。要点是<strong>刺激与刺激之间的自动联想</strong>——不涉及意志，被动发生。</p>
+<p>日常例子：听到手机消息提示音就心跳加快（提示音本是中性刺激，与"可能有新消息"反复配对后，单独出现也能引发反应）。</p>
+<h3>操作性条件反射：主动操作</h3>
+<p>斯金纳的箱子：行为由<strong>后果</strong>塑造。要点是<strong>行为 → 后果 → 行为改变</strong>。<a href="https://www.simplypsychology.org/operant-conditioning.html">[Simply Psychology: Operant Conditioning]</a></p>
+<table>
+  <thead><tr><th>概念</th><th>机制</th><th>日常例子</th></tr></thead>
+  <tbody>
+    <tr><td>正强化</td><td>行为后给予愉快刺激 → 行为增加</td><td>发朋友圈有人点赞 → 更爱发</td></tr>
+    <tr><td>负强化</td><td>行为后移除厌恶刺激 → 行为增加</td><td>手机静音后不被打扰 → 继续静音</td></tr>
+    <tr><td>正惩罚</td><td>行为后给予厌恶刺激 → 行为减少</td><td>超速被罚款 → 减少超速</td></tr>
+    <tr><td>负惩罚</td><td>行为后移除愉快事物 → 行为减少</td><td>玩游戏被没收手机 → 减少玩</td></tr>
+  </tbody>
+</table>
+
+<h2>为什么"戒了又犯"：消退与自发性恢复</h2>
+<ol>
+  <li><strong>消退（extinction）</strong>：后果不再出现，行为逐渐减少。撕嘴皮如果再也"没有感觉"，行为会慢慢消退。</li>
+  <li><strong>自发性恢复（spontaneous recovery）</strong>：消退一段时间后，行为会突然冒出来——<strong>这是正常过程，不是失败</strong>。行为改变几乎必然经历"反复"。</li>
+  <li><strong>部分强化效应</strong>：时灵时不灵的强化最难消退（老虎机原理）。撕嘴皮如果"偶尔特别爽、偶尔没感觉"，反而比每次都爽更难戒——因为你永远在期待"这次可能有"。</li>
+</ol>
+
+<h2>为什么"惩罚自己"常常没用</h2>
+<ul>
+  <li>惩罚只能<strong>暂时压制</strong>，不教任何新行为——被压制的东西换个时机又会出现。</li>
+  <li><strong>延迟惩罚几乎无效</strong>：惩罚必须紧跟行为才有效，而"事后悔恨"是延迟的、弱的。</li>
+  <li>惩罚会引发<strong>回避与隐瞒</strong>：逃避被惩罚的场景，而不是改变行为。</li>
+  <li>对习惯类行为，自我批评甚至可能变成<strong>负强化循环</strong>：先撕→自责（压力）→再撕来缓解压力→更自责……</li>
+</ul>
+
+<h2>用原理设计行为改变（本课的硬核工具）</h2>
+<p>把行为拆成三段：<strong>前因（cue）→ 行为（behavior）→ 后果（consequence）</strong>。改变行为有四个杠杆：</p>
+<ol>
+  <li><strong>削弱强化</strong>：改变后果，让撕的即时满足变小。例如剪短指甲、嘴唇涂润唇膏改变感官反馈——这不是惩罚，是削弱正强化。</li>
+  <li><strong>替代反应</strong>（习惯逆转训练 HRT 的核心）：在同样的情境里插入一个不伤身的竞争行为（握拳、捏压力球）。同一情境，新的强化路径。<a href="https://pubmed.ncbi.nlm.nih.gov/33880943/">[HRT 有随机对照试验支持]</a></li>
+  <li><strong>环境设计</strong>：控制前因。减少触发情境（比如把注意力相关的小动作换成桌面摆件），让"想撕"的时刻更容易被察觉。</li>
+  <li><strong>自我监控</strong>：你正在做的 3 天日记就是自我监控——仅仅记录行为本身就能减少它（有研究支持），而且记录会告诉你正强化还是负强化主导。</li>
+</ol>
+<p class="small">预期管理：改变会有反复（自发性恢复）。把"又撕了"看成<strong>数据点</strong>，不是失败——科学家不会因为一次异常数据就推翻模型。</p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "听到手机消息提示音就心跳加快，这最可能是：",
+    "options": ["经典条件反射形成的自动联想", "操作条件反射塑造的主动行为", "人与生俱来的本能性反射行为", "通过观察模仿他人习得的行为"],
+    "answer": 0,
+    "explain": "提示音本属中性，与「期待新消息」反复配对后自动引发心跳——被动联想（经典条件反射）。操作性条件反射靠行为后果，模仿属于观察学习。"
+  },
+  {
+    "q": "为什么「时灵时不灵」的强化反而让行为最难消退？",
+    "options": ["因为偶尔强化让人始终抱有期待", "因为连续强化让人产生强烈依赖", "因为惩罚的作用使行为反复出现", "因为时断时续强化令人无法预测"],
+    "answer": 0,
+    "explain": "部分强化（偶尔中奖）最难消退——行为「有时会有回报」，让人一直期待（老虎机原理）。连续强化一旦停止奖励，行为反而消退得快。"
+  },
+  {
+    "q": "想减少撕嘴皮，下列哪个做法最符合操作性条件反射原理？",
+    "options": ["找到替代反应并改变强化后果", "反复警告自己不可以再撕嘴皮", "等撕完再事后反思自己的错误", "用惩罚自己来杜绝撕嘴皮行为"],
+    "answer": 0,
+    "explain": "关键是改变「行为-后果」联结：替代反应抢占同一情境，同时削弱撕的即时强化。自我告诫与事后反思都太延迟太弱；惩罚会暂时压制但不教新行为。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务：设计你自己的行为改变方案</p>
+  <p>等你 3 天日记记完后，完成下面的方案设计（写下来，发给我）：</p>
+  <ol>
+    <li><strong>诊断</strong>：根据日记，你的撕嘴皮主要是正强化（寻求感官满足/打发无聊）还是负强化（缓解焦虑）主导？</li>
+    <li><strong>前因</strong>：触发它的最常见情境是什么？</li>
+    <li><strong>替代反应</strong>：你打算用哪个不伤身的动作替换它？</li>
+    <li><strong>削弱强化</strong>：你能做哪个小改变让撕的即时满足变小？</li>
+    <li><strong>预期</strong>：如果出现反复（几乎必然），你打算怎么对待它？</li>
+  </ol>
+  <p>我们会在第 4 课一起评估和迭代这个方案。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong>津巴多《心理学与生活》第 6 章「学习」；或 <a href="https://openstax.org/books/psychology-2e/pages/6-introduction">OpenStax Psychology 2e 第 6 章</a>（免费）。</p>
+  <p><strong>延伸：</strong><a href="https://www.simplypsychology.org/operant-conditioning.html">Simply Psychology 操作性条件反射详解</a>；HRT 的<a href="https://pubmed.ncbi.nlm.nih.gov/33880943/">随机对照试验</a>。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："我的日记数据该怎么解读？""正强化和负强化能同时存在吗？""替代反应选什么好？"——直接问我，直到你真正会用为止。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="0002-psychology-of-a-behavior.html">第 2 课：用科学解剖一个行为</a></li>
+  <li><a href="../reference/learning-and-behavior.html">参考：学习与行为改变速查（本课新增）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    </script>
+  </div>
+  <script src="../assets/quiz.js"></script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+</script>
+</body>
+</html>

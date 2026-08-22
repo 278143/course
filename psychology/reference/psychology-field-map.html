@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心理学分支地图与方法速查 · 参考文档</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Reference · 参考文档</p>
+  <h1>心理学分支地图 &amp; 研究方法速查</h1>
+  <p class="lesson-meta">配套课程：<a href="../lessons/0001-psychology-as-science.html">第 1 课</a> · 打印后可贴在书桌前</p>
+</header>
+
+<h2>心理学的定义</h2>
+<p>心理学（psychology）是对<strong>心理</strong>（mind：思维、情绪、记忆等内在过程）与<strong>行为</strong>（behavior：可观察的动作与反应）的<strong>科学研究</strong>。<a href="https://dictionary.apa.org/psychology">[APA Dictionary]</a></p>
+
+<h2>四大目标</h2>
+<ol>
+  <li><strong>描述</strong>（describe）——行为是什么样子的？</li>
+  <li><strong>解释</strong>（explain）——为什么会这样？</li>
+  <li><strong>预测</strong>（predict）——在什么条件下会再次发生？</li>
+  <li><strong>影响/改变</strong>（change）——如何改善、预防、干预？</li>
+</ol>
+
+<h2>分支地图</h2>
+<table>
+  <thead><tr><th>分支</th><th>研究什么</th><th>典型问题</th></tr></thead>
+  <tbody>
+    <tr><td>认知心理学</td><td>知觉、注意、记忆、语言、决策、思维</td><td>为什么我们记得开头和结尾，却忘了中间？</td></tr>
+    <tr><td>发展心理学</td><td>从受孕到老年的心理变化</td><td>幼儿何时开始理解"别人和我想的不一样"？</td></tr>
+    <tr><td>社会心理学</td><td>个体如何受他人（真实或想象）影响</td><td>为什么好人也会对群体中的恶行沉默？</td></tr>
+    <tr><td>人格心理学</td><td>稳定的个体差异、特质、动机</td><td>性格可以被改变吗？</td></tr>
+    <tr><td>临床心理学</td><td>心理障碍的识别、成因与治疗</td><td>抑郁和普通的难过，区别在哪里？</td></tr>
+    <tr><td>生物心理学</td><td>神经、激素、遗传与行为的关系</td><td>睡眠不足如何影响情绪？</td></tr>
+    <tr><td>学习心理学</td><td>经验如何改变行为</td><td>为什么成瘾行为如此难以戒除？</td></tr>
+    <tr><td>情绪心理学</td><td>情绪的产生、功能与调节</td><td>情绪是"坏东西"吗？</td></tr>
+    <tr><td>积极心理学</td><td>幸福、优势、心理韧性</td><td>什么让人生值得过？</td></tr>
+    <tr><td>工业与组织心理学</td><td>职场中的人与组织</td><td>什么样的激励真的能提升投入？</td></tr>
+    <tr><td>心理测量学</td><td>测量与测验的科学</td><td>一份可信的测验要满足什么条件？</td></tr>
+    <tr><td>健康心理学</td><td>心理与身体健康的关系</td><td>慢性压力如何影响免疫系统？</td></tr>
+  </tbody>
+</table>
+<p class="small">说明：分支的划分在不同教材中略有出入（如知觉常并入认知，生理/生物心理学叫法不一），不用纠结边界——它们是理解同一对象的不同镜头。</p>
+
+<h2>三大研究方法</h2>
+<table>
+  <thead><tr><th>方法</th><th>回答的问题</th><th>能否确立因果</th></tr></thead>
+  <tbody>
+    <tr><td>描述研究（观察/问卷/个案）</td><td>"是什么"——描述行为</td><td>否</td></tr>
+    <tr><td>相关研究</td><td>"是否一起变化"——变量间的关系</td><td>否（<strong>相关 ≠ 因果</strong>）</td></tr>
+    <tr><td>实验研究</td><td>"操纵 X 是否导致 Y"</td><td><strong>是</strong>（唯一能确立因果的方法）</td></tr>
+  </tbody>
+</table>
+<p class="small">实验的关键特征：操纵自变量、随机分组、控制无关变量。</p>
+
+<h2>科学 vs 伪科学：五连问</h2>
+<ol>
+  <li><strong>可证伪吗？</strong>能不能想象一个会推翻它的结果？</li>
+  <li><strong>证据是数据还是轶事？</strong>结论来自可复现的研究，还是个别故事？</li>
+  <li><strong>有对照吗？</strong>有没有排除其他解释？</li>
+  <li><strong>依据是什么？</strong>同行评审的研究，还是名气与权威？</li>
+  <li><strong>是不是"万能理论"？</strong>越是解释一切、永远无法被推翻，越可疑。</li>
+</ol>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="glossary.html">术语表 glossary.html</a>——随课程扩充的中文术语定义</li>
+  <li><a href="../lessons/0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学</a></li>
+  <li><a href="../MISSION.md">MISSION.md（学习使命）</a></li>
+</ul>
+
+</div>
+</body>
+</html>

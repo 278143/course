@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>财商术语表 · GLOSSARY</title>
+<style>
+/* ============================================================
+   lesson.css — 财商课程共享样式表（Tufte 风格）
+   所有课程共用：保证整套课程外观一致、可打印。
+   ============================================================ */
+
+:root {
+  --ink: #1c1a17;
+  --paper: #fffef9;
+  --accent: #8b5e3c;      /* 暖棕：主强调色 */
+  --accent-soft: #f0e6d8;
+  --teal: #2e6e5e;        /* 辅助强调色 */
+  --muted: #75706a;
+  --rule: #ddd6c9;
+  --card: #faf6ee;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --code-bg: #f4f1ea;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 2.25rem 1.4rem 4rem;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 头部 ---------- */
+
+.lesson-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.lesson-kicker {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.lesson-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.lesson-meta {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- 正文排版 ---------- */
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.4rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+
+h3 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; }
+
+p { margin: 0.7rem 0; }
+
+strong { font-weight: 700; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0.7rem 0; padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: normal;
+  color: var(--ink);
+}
+
+blockquote p { margin: 0.25rem 0; }
+
+code, .num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ---------- 关键公式框 ---------- */
+
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.12rem;
+}
+
+.formula .tag {
+  display: block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 练习卡片 ---------- */
+
+.exercise {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.exercise h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 小标签 ---------- */
+
+.pill {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---------- 测验 ---------- */
+
+.quiz { margin: 1.6rem 0; }
+
+.quiz-question {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.quiz-qtext {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.quiz-option.correct { background: #e8f3e9; border-color: var(--good); color: var(--good); }
+.quiz-option.wrong { background: #fbeae8; border-color: var(--bad); color: var(--bad); }
+
+.quiz-feedback { margin-top: 0.6rem; font-size: 0.9rem; min-height: 1.3em; }
+.quiz-feedback.ok { color: var(--good); }
+.quiz-feedback.no { color: var(--bad); }
+
+.quiz-score {
+  margin-top: 1rem;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.quiz-reset {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+}
+.quiz-reset:hover { background: var(--accent-soft); }
+
+/* ---------- 互动计算器（networth 组件） ---------- */
+
+.networth-widget {
+  margin: 1.4rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nw-group {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.nw-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.nw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.nw-row label { flex: 1; color: var(--ink); }
+
+.nw-row input {
+  width: 9rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: right;
+  color: var(--ink);
+}
+
+.nw-row input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+.nw-result {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  text-align: center;
+}
+
+.nw-big {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.nw-big.pos { color: var(--good); }
+.nw-big.neg { color: var(--bad); }
+
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.nw-cell { font-size: 0.85rem; color: var(--muted); }
+.nw-cell b { display: block; font-size: 1.02rem; color: var(--ink); }
+
+.nw-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+/* ---------- 课程地图 ---------- */
+
+.course-map { font-size: 0.95rem; }
+.course-map li { margin: 0.45rem 0; }
+.course-map .now { color: var(--accent); font-weight: 700; }
+.course-map .later { color: var(--muted); }
+
+/* ---------- 术语表 ---------- */
+
+.glossary { margin: 0.5rem 0; }
+.glossary dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+.glossary dt .en {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.glossary dd {
+  margin: 0.2rem 0 0 0;
+  color: var(--ink);
+}
+.glossary .later {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- 页脚 ---------- */
+
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 打印 ---------- */
+
+@media print {
+  html { font-size: 12pt; }
+  body { max-width: none; padding: 0; }
+  .quiz-option { border: 1px solid #999; }
+  .quiz-option:disabled { opacity: 1; }
+  .quiz-reset, .nw-hint { display: none; }
+  section, .exercise, .quiz-question { break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="lesson-header">
+  <p class="lesson-kicker">参考文档 · 随课程持续更新</p>
+  <h1>财商术语表</h1>
+  <p class="lesson-meta">所有课程里出现的术语，都可以在这里查。遇到看不懂的词，先查这里，再问我。</p>
+</header>
+
+<main>
+  <dl class="glossary">
+
+    <dt>资产 <span class="en">Asset</span></dt>
+    <dd>你拥有的、值钱的东西：现金、存款、基金股票市值、别人欠你的钱。第 1 课。</dd>
+
+    <dt>负债 <span class="en">Liability</span></dt>
+    <dd>你欠别人的钱：信用卡欠款、消费贷、助学贷款、你负责的家庭债务。第 1 课。</dd>
+
+    <dt>净资产 <span class="en">Net Worth</span></dt>
+    <dd>资产 − 负债。这才是你真正的身家，是你财务上的"起点坐标"。第 1 课。</dd>
+
+    <dt>收入 <span class="en">Income</span></dt>
+    <dd>一段时间内进来的钱：生活费、奖学金、兼职、工资。第 1 课。</dd>
+
+    <dt>支出 <span class="en">Expense</span></dt>
+    <dd>一段时间内花出去的钱：餐饮、住宿、交通、学习、娱乐。第 1 课。</dd>
+
+    <dt>结余 <span class="en">Surplus</span></dt>
+    <dd>收入 − 支出。为正说明你在积累，为负说明你在消耗。第 1 课。</dd>
+
+    <dt>结余率 <span class="en">Savings Rate</span></dt>
+    <dd>结余 ÷ 收入。衡量你"变富引擎"的转速。你的第 1 课数据是 38%。第 1 课。</dd>
+
+    <dt>资产负债表 <span class="en">Balance Sheet</span></dt>
+    <dd>某个时刻的"快照"：记录你此刻拥有什么（资产）、欠着什么（负债）。恒等式：资产 = 负债 + 净资产。第 1 课。</dd>
+
+    <dt>现金流 <span class="en">Cash Flow</span></dt>
+    <dd>一段时间内的"录像"：钱怎么进来（收入）、怎么出去（支出）。第 1 课。</dd>
+
+    <dt>应急金 <span class="en">Emergency Fund</span></dt>
+    <dd>3–6 个月基本支出的现金，放在货币基金里随时能取，用来应对意外，保护你的现金流不被高息借贷打断。第 2 课。</dd>
+
+    <dt>货币基金 <span class="en">Money Market Fund</span></dt>
+    <dd>把大家的钱汇集起来，投资于短期、高安全性的品种（如银行存款、短期国债）。风险极低、随取随用，目前年化收益约 1% 上下。余额宝、零钱通都是它。注意：货基不是存款，不受存款保险保障，但历史上极少出现亏损。第 2 课、第 5 课展开。</dd>
+
+    <dt>存款保险 <span class="en">Deposit Insurance</span></dt>
+    <dd>国家设立的存款保障制度：银行万一倒闭，存款保险基金赔付你的存款，同一家银行<strong>本息合计 50 万元以内全额赔付</strong>。保费由银行缴纳，不用你花钱。注意：货币基金不是存款，不受它保障。第 2、5 课。</dd>
+
+    <dt>国债 <span class="en">Government Bond</span></dt>
+    <dd>你借钱给国家（财政部发行），国家承诺到期还本付息。国家信用背书，几乎零风险，利率通常比同期限银行定期存款略高。个人可买"储蓄国债"（3 年、5 年期，银行柜台/网银购买）。它是"债券"这一档的核心代表，第 5 课展开。</dd>
+
+    <dt>好债 / 坏债 <span class="en">Good Debt / Bad Debt</span></dt>
+    <dd>好债：利率极低、或在投资自己（如助学贷款，在校期间财政贴息 ≈ 0 成本）。坏债：高利率的消费（信用卡分期、消费贷，年化常 12%–18%）。还债顺序：先坏债、后好债。第 2–3 课。</dd>
+
+    <dt>利率 <span class="en">Interest Rate</span></dt>
+    <dd>借钱的"价格"。年利率 3% 意味着借 1 万元一年要付 300 元利息。第 2–3 课。</dd>
+
+    <dt>年化收益率 <span class="en">Annualized Return</span></dt>
+    <dd>把收益换算成"一年"的口径，方便比较不同投资品。例如货币基金年化 1%，指按当前水平存一年大约赚 1%。第 2–5 课。</dd>
+
+    <dt>LPR <span class="en">Loan Prime Rate</span></dt>
+    <dd>贷款市场报价利率，由央行授权发布，是银行贷款定价的"基准价"，每月公布一次。目前 1 年期约 3.0%、5 年期约 3.5%（2025 年 12 月）。注意：<strong>两个都是年利率</strong>——1 年期档给短期贷款（消费贷、助学贷款等）定价，5 年期档给长期贷款（房贷等）定价。助学贷款利率 = LPR − 30 个基点，随它浮动。第 2–3 课。</dd>
+
+    <dt>基点 <span class="en">Basis Point (bp)</span></dt>
+    <dd>利率的最小单位：1 基点 = 0.01 个百分点。所以"LPR − 30 基点" = LPR − 0.30%。LPR 3.0% 时，你的助学贷款利率 ≈ 2.7%。第 2 课。</dd>
+
+    <dt>主动收入 / 被动收入 <span class="en">Active / Passive Income</span></dt>
+    <dd>主动收入：靠时间和劳动换的钱（工资、兼职）。被动收入：不需要持续劳动也能进来的钱（存款利息、股息、租金、版权）。财务自由的核心变量。第 1、7 课。</dd>
+
+    <dt>财务自由 <span class="en">Financial Freedom / FIRE</span></dt>
+    <dd>被动收入 ≥ 每月支出。不是"不用工作"，而是"工作变成了选择"。第 1、7 课。</dd>
+
+    <dt>存钱率 <span class="en">Savings Rate（同"结余率"）</span></dt>
+    <dd>存钱率越高，离财务自由越近：存 10% 要工作约 50 年，存 50% 约 17 年，存 70% 约 8 年（需结合收益率估算）。第 7 课展开。</dd>
+
+    <dt>基金 <span class="en">Fund</span></dt>
+    <dd>把很多人的钱汇集起来，交给专业基金经理统一投资。货基、债基、指数基金、股票基金都是基金。第 5 课展开。</dd>
+
+    <dt>指数基金 <span class="en">Index Fund</span></dt>
+    <dd>跟踪某个指数（如沪深 300）的基金，买入一篮子股票，分散风险、费率低，是普通人长期投资的主流工具。第 5–6 课展开。</dd>
+
+    <dt>股票 <span class="en">Stock</span></dt>
+    <dd>一家公司的所有权份额。买股票 = 当小股东，收益和风险都高。第 5 课展开。</dd>
+
+    <dt>债券 <span class="en">Bond</span></dt>
+    <dd>借钱给政府或企业的凭证，约定利息和到期还本。政府发的债券就是国债（几乎零风险），企业发的债券风险高一些。风险整体低于股票。第 5 课展开。</dd>
+
+    <dt>定投 <span class="en">Dollar-Cost Averaging</span></dt>
+    <dd>定期、定额买入同一投资品（如每月固定 500 元买指数基金）。摊平成本、强制储蓄，适合新手。第 6 课展开。</dd>
+
+    <dt>复利 <span class="en">Compound Interest</span></dt>
+    <dd>"利滚利"：利息继续产生利息。复利是长期财富增长的核心，时间越长威力越大。第 6–7 课展开。</dd>
+
+    <dt>通货膨胀 <span class="en">Inflation</span></dt>
+    <dd>物价上涨，钱的购买力下降。现金放着不动，每年都在悄悄贬值。这是"钱必须学会投资"的根本原因。第 6–7 课展开。</dd>
+
+    <dt>记账 / 预算 <span class="en">Tracking / Budgeting</span></dt>
+    <dd>记账：记录每一笔收支，看清钱的流向。预算：给每类支出设上限，主动分配钱。第 2 课。</dd>
+
+  </dl>
+</main>
+
+<footer class="lesson-footer">
+  <p>本表会随着课程推进持续补充。某个词看不懂？先查这里，再问我。<br>返回：<a href="../lessons/0001-financial-map.html">第 1 课</a> · <a href="../lessons/0002-budget-and-emergency-fund.html">第 2 课</a></p>
+</footer>
+
+</body>
+</html>

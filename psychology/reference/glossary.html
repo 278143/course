@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>心理学术语表 · 参考文档</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Reference · 参考文档</p>
+  <h1>心理学术语表</h1>
+  <p class="lesson-meta">随课程持续扩充 · 所有课程统一使用这里的定义 · 英文权威定义见 <a href="https://dictionary.apa.org/">APA Dictionary of Psychology</a></p>
+</header>
+
+<h2>第 1 课术语</h2>
+<table>
+  <thead><tr><th>术语</th><th>定义</th></tr></thead>
+  <tbody>
+    <tr><td>心理学</td><td>对心理与行为的科学研究。</td></tr>
+    <tr><td>行为</td><td>可观察的动作与反应。</td></tr>
+    <tr><td>心理过程</td><td>思维、情绪、记忆等内在活动。</td></tr>
+    <tr><td>事后偏差（hindsight bias）</td><td>结果已知后，觉得"我早就知道会这样"。</td></tr>
+    <tr><td>确认偏差（confirmation bias）</td><td>只注意并采信支持自己已有看法的信息。</td></tr>
+    <tr><td>可证伪性（falsifiability）</td><td>一个理论能被检验并可能被推翻的性质——科学的标志。</td></tr>
+    <tr><td>描述研究</td><td>观察并记录行为，回答"是什么"；不能确立因果。</td></tr>
+    <tr><td>相关研究</td><td>考察变量是否一起变化；<strong>相关 ≠ 因果</strong>。</td></tr>
+    <tr><td>实验</td><td>操纵自变量、随机分组、控制无关变量；唯一能确立因果的方法。</td></tr>
+    <tr><td>自变量 / 因变量</td><td>被操纵的变量 / 被测量的结果。</td></tr>
+    <tr><td>样本 / 总体</td><td>参与研究的个体集合 / 想推广到的全部个体。</td></tr>
+  </tbody>
+</table>
+
+<h2>第 2 课术语</h2>
+<table>
+  <thead><tr><th>术语</th><th>定义</th></tr></thead>
+  <tbody>
+    <tr><td>层面分析（levels of analysis）</td><td>从生物、心理/学习、社会文化等多个层面解释同一行为；各层面互补而非互斥。</td></tr>
+    <tr><td>操作性条件反射（operant conditioning）</td><td>行为因其后果而改变：带来好结果的行为被强化、增加。</td></tr>
+    <tr><td>强化（reinforcement）</td><td>增加行为将来发生可能性的后果（如撕完的短暂放松感）。</td></tr>
+    <tr><td>随机对照试验（RCT）</td><td>随机分组 + 对照组的实验设计；干预研究证据的金标准。</td></tr>
+    <tr><td>身体聚焦重复行为（BFRB）</td><td>反复撕、抠、咬自身组织的行为类别（抠皮、咬指甲、拔毛等）；造成显著痛苦或损伤时属于心理障碍。</td></tr>
+    <tr><td>习惯逆转训练（HRT）</td><td>对 BFRB 有随机对照试验支持的干预：觉察训练 + 替代反应 + 社会支持。</td></tr>
+  </tbody>
+</table>
+
+<h2>随答疑补充术语</h2>
+<table>
+  <thead><tr><th>术语</th><th>定义</th></tr></thead>
+  <tbody>
+    <tr><td>经典条件反射（classical conditioning）</td><td>巴甫洛夫式学习：中性刺激与重要刺激反复配对后，单独呈现也能引发反应（如铃声→分泌唾液）。</td></tr>
+    <tr><td>正强化（positive reinforcement）</td><td>行为后给予愉快刺激，使行为增加（如撕完的满足感）。</td></tr>
+    <tr><td>负强化（negative reinforcement）</td><td>行为后移除厌恶刺激，使行为增加（如撕完焦虑暂时减轻）。注意：负强化增加行为，惩罚减少行为。</td></tr>
+    <tr><td>惩罚（punishment）</td><td>行为后施加厌恶后果或移除愉快事物，使行为减少。</td></tr>
+    <tr><td>知情同意（informed consent）</td><td>被试在充分了解研究内容、风险与权利后自愿参加，可随时退出。</td></tr>
+    <tr><td>伦理审查（IRB / 伦理委员会）</td><td>研究开始前对风险-收益、知情同意、被试保护进行审查的制度，源于历史上的研究伤害案例。</td></tr>
+  </tbody>
+</table>
+
+<h2>第 3 课术语</h2>
+<table>
+  <thead><tr><th>术语</th><th>定义</th></tr></thead>
+  <tbody>
+    <tr><td>消退（extinction）</td><td>行为的强化后果不再出现，行为逐渐减少。</td></tr>
+    <tr><td>自发性恢复（spontaneous recovery）</td><td>消退后行为突然重现；行为改变中的正常现象，不是失败。</td></tr>
+    <tr><td>部分强化效应</td><td>偶尔的强化最难消退（老虎机原理），因为行为"有时会有回报"。</td></tr>
+    <tr><td>观察学习</td><td>通过观察他人及其后果习得行为（班杜拉），无需亲身经历强化。</td></tr>
+    <tr><td>自我监控（self-monitoring）</td><td>记录自身行为的过程；本身有减少行为的效果，并可诊断强化类型。</td></tr>
+    <tr><td>替代反应</td><td>习惯逆转训练的核心：用不伤身的竞争行为替换目标行为。</td></tr>
+  </tbody>
+</table>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="psychology-field-map.html">心理学分支地图与研究方法速查</a></li>
+  <li><a href="../lessons/0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学</a></li>
+</ul>
+
+</div>
+</body>
+</html>

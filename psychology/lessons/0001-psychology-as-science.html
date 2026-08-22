@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 1 课：心理学——从直觉到证据的科学</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0001 · Psychology</p>
+  <h1>心理学：从直觉到证据的科学</h1>
+  <p class="lesson-meta">预计 15-20 分钟 · 零基础友好 · 本课是整套学习的地基</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>你想理解自己与他人、想在现实中应用心理学——这很棒，但心理学最反直觉的一点是：<strong>你的直觉恰恰是最不可靠的起点</strong>。民间说法（"性格使然""他就是懒""情绪要压抑"）往往听起来头头是道，却是事后才编出来的解释。本课给你第一件工具：分清<strong>科学心理学</strong>与<strong>关于心理的民间说法</strong>。没有这把尺子，后面学的所有概念都会退化成贴标签。</p>
+</div>
+
+<h2>心理学是什么</h2>
+<p>美国心理学会（APA）的定义：心理学是对<strong>心理</strong>（mind：思维、情绪、记忆等内在过程）与<strong>行为</strong>（behavior：可观察的动作与反应）的<strong>科学研究</strong>。<a href="https://dictionary.apa.org/psychology">[APA Dictionary of Psychology]</a></p>
+<p>关键词是"<strong>科学</strong>"。为什么非科学不可？因为关于人心，我们人人都有直觉，而且直觉错得特别隐蔽。心理学有一整套反直觉的发现（后续课程会一个个遇到），所以它必须用证据说话，而不是用"我觉得"说话。</p>
+
+<div class="callout warn">
+  <p class="callout-title">常见误解</p>
+  <p>心理学 ≠ 读心术、星座、性格测试、心理咨询。这些只是心理学周边产物（有些甚至是伪科学）。心理学是一门研究证据的<strong>科学学科</strong>，就像生物学研究生命一样。</p>
+</div>
+
+<h2>为什么直觉不可靠：三个陷阱</h2>
+<ol>
+  <li><strong>事后偏差</strong>（hindsight bias）：结果出来后觉得"我早就知道"。比如股票涨了你觉得自己看准了——但事前你根本没押注。心理学结论听起来"理所当然"，恰恰是因为你已经知道了答案。</li>
+  <li><strong>确认偏差</strong>（confirmation bias）：只注意支持自己看法的证据。信星座的人记住"准"的部分，忽略"不准"的部分。</li>
+  <li><strong>轶事 ≠ 数据</strong>：一个亲戚的故事不能代表规律。科学心理学看的是<strong>群体的、可复现的</strong>证据，而不是某个让人印象深刻的个案。</li>
+</ol>
+<p class="small">这三个概念今后会反复出现——它们是理解"为什么心理学是科学"的钥匙。</p>
+
+<h2>心理学的四大目标</h2>
+<ol>
+  <li><strong>描述</strong>（describe）：行为是什么样子的？</li>
+  <li><strong>解释</strong>（explain）：为什么会这样？</li>
+  <li><strong>预测</strong>（predict）：什么条件下会再次发生？</li>
+  <li><strong>影响/改变</strong>（change）：如何干预、改善？</li>
+</ol>
+
+<h2>科学怎么说话：三种研究方法</h2>
+<table>
+  <thead><tr><th>方法</th><th>能回答</th><th>能证明因果吗</th></tr></thead>
+  <tbody>
+    <tr><td>描述研究（观察/问卷/个案）</td><td>"是什么"</td><td>否</td></tr>
+    <tr><td>相关研究</td><td>"是否一起变化"</td><td>否——<strong>相关 ≠ 因果</strong></td></tr>
+    <tr><td>实验研究</td><td>"操纵 X 是否导致 Y"</td><td><strong>是</strong>（唯一能确立因果的方法）</td></tr>
+  </tbody>
+</table>
+<p>举例：研究发现"玩暴力游戏的孩子攻击性更强"。这是相关。但到底是游戏导致攻击性，还是攻击性强的孩子爱玩这类游戏？只有<strong>实验</strong>（随机分组、操纵变量）才能回答"导致"。</p>
+
+<h2>心理学的地图</h2>
+<p>心理学有十几个分支：认知、发展、社会、人格、临床、生物、学习、情绪、积极、组织……每个分支是理解同一对象（人）的不同镜头。现在你不需要记住全部，只需要知道地图存在。<a href="../reference/psychology-field-map.html">打开完整分支地图 →</a></p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "心理学作为一门科学，最关键的立场是：",
+    "options": ["以数据检验理论而非凭感觉", "以权威观点立论而非考证", "以个案故事立论而非样本", "以逻辑思辨立论而非实验"],
+    "answer": 0,
+    "explain": "科学心理学的分水岭是「用可检验的证据说话」。权威、个案、思辨都可以是灵感的来源，但不是证据——理论再漂亮，无法被数据检验，就不属于科学心理学。"
+  },
+  {
+    "q": "聚会中你会发现，人们会说出独处时绝不会说的话。研究这类「群体中的行为变化」属于哪个分支？",
+    "options": ["社会心理学", "发展心理学", "认知心理学", "临床心理学"],
+    "answer": 0,
+    "explain": "社会心理学研究「个体如何受到他人真实或想象的影响」。发展心理学看年龄带来的变化，认知心理学看信息加工，临床心理学看心理障碍。"
+  },
+  {
+    "q": "心理学四大目标中，「预测行为」指的是：",
+    "options": ["依据条件规律推断行为可能发生", "依据个人经验推断行为一定发生", "依据权威理论推断行为一定发生", "依据案例故事推断行为可能发生"],
+    "answer": 0,
+    "explain": "预测是「根据已知条件与规律，估计行为发生的可能性」——它是概率性的，不是算命式的「一定」。这也是为什么心理学用统计而不是预言。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（反馈环）</p>
+  <p>今天之内，选一个你注意到的行为（自己的或别人的都行），在脑中完成三连问：</p>
+  <ol>
+    <li>这个行为，心理学的<strong>哪个分支</strong>最可能研究它？（对照<a href="../reference/psychology-field-map.html">分支地图</a>）</li>
+    <li>如果有一个"民间说法"解释它（比如"性格使然""他就是懒"），科学心理学可能会提出什么<strong>质疑</strong>？</li>
+    <li>要验证你的解释，最合适的方法是描述、相关还是实验？为什么？</li>
+  </ol>
+  <p>把答案告诉我——这是你留给下一课的素材，我们会用它来学习"如何设计一个好问题"。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>首选：</strong>斯坦诺维奇《这才是心理学》——本书专治"听起来很有道理"的伪心理学，是入门第一本。<a href="https://search.douban.com/book/subject_search?search_text=这才是心理学">[找书]</a></p>
+  <p><strong>教材对照：</strong>津巴多《心理学与生活》第 1 章「心理学的科学」<a href="http://e.dangdang.com/touch/products/1901296035.html">[中文版第 19 版]</a>；或免费在线教材 <a href="https://openstax.org/details/books/psychology-2e">OpenStax Psychology 2e</a> 第 1 章。二选一即可。</p>
+  <p><strong>视频：</strong><a href="https://www.coursera.org/learn/introduction-psychology">耶鲁大学《心理学导论》(Coursera 可免费旁听)</a> 第 1 讲。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>任何地方不清楚（"什么是可证伪性？""为什么相关不算因果？"）——直接问我，我会用新的例子重新讲，直到你真正理解。这才是课程该有的样子。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../reference/psychology-field-map.html">参考：心理学分支地图与研究方法速查</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+  <li><a href="../RESOURCES.md">资源清单 RESOURCES.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    </script>
+  </div>
+  <script src="../assets/quiz.js"></script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+</script>
+</body>
+</html>

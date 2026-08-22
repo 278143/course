@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0002 · 院校数据库精讲与分层推荐</title>
+<style>
+/* ============================================================
+   Kaoyan Teaching Course — shared stylesheet
+   Tufte-inspired: generous margins, serif body, restrained color.
+   Print-friendly. Chinese typography optimized.
+   ============================================================ */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fdfcf8;
+  --rule: #d8d4c8;
+  --accent: #8b3a3a;      /* muted brick red — 考研红 */
+  --accent-soft: #f3e8e2;
+  --teal: #2f5d62;
+  --teal-soft: #e7f0ef;
+  --gold: #9a7b2f;
+  --gold-soft: #f6efdd;
+  --gray: #5f5f5f;
+  --code-bg: #f2efe9;
+  --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --measure: 68ch;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0;
+  padding: 0 0 4rem 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- header / hero ---------- */
+header.lesson-head {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+header.lesson-head .kicker {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+header.lesson-head h1 {
+  font-size: 2.1rem;
+  line-height: 1.3;
+  margin: 0 0 0.8rem;
+  font-weight: 700;
+}
+header.lesson-head .subtitle {
+  font-size: 1.02rem;
+  color: var(--gray);
+  margin: 0;
+}
+header.lesson-head .meta {
+  margin-top: 1.2rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* ---------- layout ---------- */
+main {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+section { margin: 0 0 2.8rem; }
+section > h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.4rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--rule);
+}
+section > h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 1.8rem 0 0.6rem;
+  color: var(--ink);
+}
+p { margin: 0.7rem 0; max-width: var(--measure); }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+a:hover { border-bottom-style: solid; }
+
+/* ---------- lists ---------- */
+ul, ol { max-width: var(--measure); }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- tables ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.92rem;
+  font-family: var(--sans);
+}
+th {
+  text-align: left;
+  background: var(--accent-soft);
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 2px solid var(--accent);
+  vertical-align: top;
+}
+td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+tr:hover td { background: #f7f4ec; }
+
+/* ---------- callouts ---------- */
+.callout {
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.9rem 1.1rem;
+  margin: 1.3rem 0;
+  border-radius: 0 6px 6px 0;
+  max-width: var(--measure);
+}
+.callout.teal { border-color: var(--teal); background: var(--teal-soft); }
+.callout.gold { border-color: var(--gold); background: var(--gold-soft); }
+.callout .callout-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+.callout p { margin: 0.4rem 0; }
+
+/* ---------- quiz ---------- */
+.quiz { margin: 1.6rem 0; max-width: var(--measure); }
+.quiz-question { font-weight: 700; margin-bottom: 0.6rem; }
+.quiz-options { list-style: none; padding: 0; margin: 0 0 0.8rem; }
+.quiz-options li {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  margin: 0.45rem 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: border-color 0.15s, background 0.15s;
+}
+.quiz-options li:hover { border-color: var(--teal); background: var(--teal-soft); }
+.quiz-options li.correct {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  font-weight: 700;
+}
+.quiz-options li.wrong {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.quiz-feedback { display: none; font-size: 0.95rem; padding: 0.6rem 0.9rem; border-radius: 6px; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.ok { background: var(--teal-soft); }
+.quiz-feedback.no { background: var(--accent-soft); }
+.quiz button {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+}
+.quiz button:hover { background: var(--accent); }
+
+/* ---------- code ---------- */
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  max-width: calc(var(--measure) + 4rem);
+}
+pre code { background: none; padding: 0; }
+
+/* ---------- sidenote (Tufte flavor, simplified) ---------- */
+.sidenote {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-family: var(--sans);
+  border-top: 1px dashed var(--rule);
+  padding-top: 0.4rem;
+  margin-top: 0.8rem;
+  max-width: var(--measure);
+}
+
+/* ---------- footer ---------- */
+footer {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 3rem auto 0;
+  padding: 1.5rem 2rem 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* ---------- print ---------- */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  header.lesson-head, main, footer { max-width: 100%; padding-left: 0.5in; padding-right: 0.5in; }
+  .quiz-options li { cursor: default; }
+  a { color: var(--ink); border-bottom: none; }
+  section { page-break-inside: avoid; }
+  table { font-size: 8.5pt; }
+}
+
+</style>
+</head>
+<body>
+<header class="lesson-head">
+  <p class="kicker">Lesson 0002 · 28考研调研课程</p>
+  <h1>院校数据库精讲与分层推荐</h1>
+  <p class="subtitle">第一轮调研的成果交付：27 所江浙沪院校数据库、考试体系已核实事实、你的冲刺/稳妥/保底推荐。约 25 分钟。</p>
+  <p class="meta">2026-08 · 基于 web_search 真实检索（来源见 research/ 目录与 RESOURCES.md）· 所有"待核实"项以 2027 年 9-10 月最新招生简章为准</p>
+</header>
+<main>
+
+<section id="bottomline">
+<h2>一句话结论</h2>
+<p>以你的条件（民办本科 + AI 专业 + 数学一般 + 四级未过 + 就业导向 + 江浙沪），第一年的最优策略是：<strong>主攻"杭州/上海地缘的双非省重点专硕（数二+英二）"，冲刺 1-2 所就业溢价高的院校，保底选一志愿招不满的调剂友好校</strong>。初试分数是唯一硬通货——民办本科在初试面前与任何学校考生同权。</p>
+<div class="callout gold">
+<span class="callout-title">本轮调研最重要的两个事实修正</span>
+<p>① 数学二只考高数+线代，<strong>不含概率论</strong>（"数二新增概率论"是 2025 年 8 月大纲发布前的预测传言，2026 大纲知识点无实质变化）——选数二院校依然是数学一般考生的合理避坑策略。<br>
+② 考研报名人数三连降（2023 年 474 万 → 2026 年 343 万），工学国家线 2026 年 264 分（A 区）——竞争窗口期客观上在收窄，但热门院校复试线仍然很高，务必分层看待。</p>
+</div>
+</section>
+
+<section id="tiers">
+<h2>一、分层推荐（就业导向 · 江浙沪 · 三本背景）</h2>
+<p>初版推荐由两路调研交叉汇总（上海+江苏路 / 浙江路），标注了每所学校的入选理由。报志愿最终只填 1 个一志愿，但这组校是你 9-10 月定校的候选池。</p>
+
+<h3>冲刺档（3 所）——就业溢价高，初试目标需高于院线 25 分+</h3>
+<table>
+<thead><tr><th>学校</th><th>城市</th><th>层次</th><th>入选理由</th><th>风险提示</th></tr></thead>
+<tbody>
+<tr><td><strong>杭州电子科技大学</strong></td><td>杭州</td><td>双非（计算机就业王，认可度≈211）</td><td>大厂认可度最高，就业回报最大</td><td>热门双非，2025 复试线显著高于国家线，竞争极其激烈；民办本科须初试拉开大分差</td></tr>
+<tr><td><strong>南京邮电大学</strong></td><td>南京</td><td>双一流（非211）</td><td>通信/计算机强校，双一流头衔</td><td>知乎有"二三本考南邮受歧视吗"讨论（无定论）；2026 业务课2调整中</td></tr>
+<tr><td><strong>浙江工业大学</strong></td><td>杭州</td><td>双非（省属第一）</td><td>计算机学科浙江双非第一梯队，就业好</td><td>已改考 408；有"复试歧视"流量帖（真实性待核实）</td></tr>
+</tbody>
+</table>
+
+<h3>稳妥档（3 所）——实力与热度匹配，性价比高</h3>
+<table>
+<thead><tr><th>学校</th><th>城市</th><th>层次</th><th>入选理由</th><th>风险提示</th></tr></thead>
+<tbody>
+<tr><td><strong>宁波大学</strong></td><td>宁波</td><td>双一流（非211）</td><td>双一流头衔 + 咨询区有"复试公平不歧视、保护一志愿"问答</td><td>报考热度较高，报录比约 4.5:1</td></tr>
+<tr><td><strong>南京信息工程大学</strong></td><td>南京</td><td>双一流（非211）</td><td>计算机学科强；2025 年 085401 复试线 288 分（相对可控）</td><td>2027 年 3 个专业从 408 改回自命题 811，科目变动需盯紧</td></tr>
+<tr><td><strong>浙江工商大学</strong></td><td>杭州</td><td>双非（省重点）</td><td><strong>一志愿录取率 78.5%（官方口径）</strong>，2025 计算机学硕复试线 273 分贴近国家线；已设人工智能专硕（2026）</td><td>计算机非学校最强学科，但就业地缘好</td></tr>
+</tbody>
+</table>
+
+<h3>保底档（3 所）——一志愿基本稳上，保留江浙沪地缘</h3>
+<table>
+<thead><tr><th>学校</th><th>城市</th><th>层次</th><th>入选理由</th><th>注意</th></tr></thead>
+<tbody>
+<tr><td><strong>上海应用技术大学</strong></td><td>上海</td><td>双非</td><td>上海地缘 + 2025 有系统调剂办法（一志愿生源不足→进线即稳）</td><td>确认考试科目是否数二英二</td></tr>
+<tr><td><strong>中国计量大学</strong></td><td>杭州</td><td>双非</td><td>杭州地缘 + 2026 信息工程学院有调剂 + 网络有"268 分保护一志愿上岸"经验</td><td>口碑信号不一致，复试前再核</td></tr>
+<tr><td><strong>盐城工学院</strong></td><td>盐城</td><td>双非（学院）</td><td><strong>085410 人工智能专硕直接对口你的专业</strong>，分数最友好，报考热度低</td><td>层次最低，就业溢价有限（作为极端保底）</td></tr>
+</tbody>
+</table>
+<p class="sidenote"><strong>备选保底</strong>：上海第二工业大学（上海）、浙江科技大学（杭州，2026 多批次调剂）、浙江海洋大学（舟山，热度最低）、江苏师范大学（徐州，有官方"一志愿复试录取细则"文件）。</p>
+</section>
+
+<section id="database">
+<h2>二、27 校速查表（完整版见 research/ 目录）</h2>
+<p>完整数据（含来源 URL 和"待核实"标注）在 <code>research/院校扫描汇总.md</code>（27 校全表）、<code>research/上海院校.md</code>、<code>research/江苏院校.md</code>、<code>research/浙江院校.md</code>。下表是压缩版关键信号：</p>
+
+<table>
+<thead><tr><th>学校</th><th>城市</th><th>层次</th><th>关键信号（科目/口碑/热度）</th></tr></thead>
+<tbody>
+<tr><td>上海理工大学</td><td>上海</td><td>双非</td><td>自命题 848 数据结构及操作系统；知乎有"848 压分"讨论；2026 科目拟调整</td></tr>
+<tr><td>上海海事大学</td><td>上海</td><td>双非</td><td>2026 初试科目调整；有中科院微小卫星联培</td></tr>
+<tr><td>上海电力大学</td><td>上海</td><td>双非</td><td>2026/2027 科目调整公告</td></tr>
+<tr><td>上海师范大学</td><td>上海</td><td>双非</td><td>2026 专业目录已发布</td></tr>
+<tr><td>上海应用技术大学</td><td>上海</td><td>双非</td><td><strong>调剂多→一志愿友好</strong></td></tr>
+<tr><td>上海工程技术大学</td><td>上海</td><td>双非</td><td>2027 科目调整公告（2026-08 发布）</td></tr>
+<tr><td>上海第二工业大学</td><td>上海</td><td>双非</td><td>有调剂名额→一志愿压力小</td></tr>
+<tr><td>江苏大学</td><td>镇江</td><td>双非</td><td>2026 业务课2调整；报录比公开</td></tr>
+<tr><td>南京工业大学</td><td>南京</td><td>双非</td><td>2026 业务课二调整</td></tr>
+<tr><td>南京信息工程大学</td><td>南京</td><td><strong>双一流</strong></td><td>3 专业 408→自命题 811 反转；2025 复试线 288</td></tr>
+<tr><td>南京邮电大学</td><td>南京</td><td><strong>双一流</strong></td><td>热门；2026 业务课2调整；出身讨论无定论</td></tr>
+<tr><td>苏州科技大学</td><td>苏州</td><td>双非</td><td>2025/2027 科目调整</td></tr>
+<tr><td>南通大学</td><td>南通</td><td>双非</td><td>2026 业务课2改考；AI 学院有调剂→一志愿相对友好</td></tr>
+<tr><td>扬州大学</td><td>扬州</td><td>双非</td><td>2026 部分专业<strong>改考 408</strong></td></tr>
+<tr><td>江苏师范大学</td><td>徐州</td><td>双非</td><td><strong>有官方"一志愿复试录取细则"→保护一志愿倾向</strong></td></tr>
+<tr><td>常州大学</td><td>常州</td><td>双非</td><td>2026+2027 两次科目调整</td></tr>
+<tr><td>南京财经大学</td><td>南京</td><td>双非</td><td>2026/2027 简章已发布</td></tr>
+<tr><td>盐城工学院</td><td>盐城</td><td>双非</td><td><strong>085410 人工智能专硕</strong>；热度低</td></tr>
+<tr><td>浙江工业大学</td><td>杭州</td><td>双非</td><td>已改考 408；计算机强</td></tr>
+<tr><td>浙江理工大学</td><td>杭州</td><td>双非</td><td>2025/2026 科目调整</td></tr>
+<tr><td>杭州电子科技大学</td><td>杭州</td><td>双非</td><td><strong>热门双非</strong>，就业认可度≈211，竞争极其激烈</td></tr>
+<tr><td>浙江工商大学</td><td>杭州</td><td>双非</td><td><strong>一志愿录取率 78.5%</strong>；有 AI 专硕；2025 复试线 273</td></tr>
+<tr><td>中国计量大学</td><td>杭州</td><td>双非</td><td>2026 调剂公告；口碑不一</td></tr>
+<tr><td>浙江师范大学</td><td>金华</td><td>双非</td><td>电子信息含<strong>人工智能专硕</strong>；报录比公开</td></tr>
+<tr><td>宁波大学</td><td>宁波</td><td><strong>双一流</strong></td><td>咨询区有"复试公平不歧视"问答；报录比 4.5:1</td></tr>
+<tr><td>浙江科技大学</td><td>杭州</td><td>双非</td><td><strong>2026 多批次调剂→一志愿招不满</strong>；杭州地缘性价比高</td></tr>
+<tr><td>浙江海洋大学</td><td>舟山</td><td>双非</td><td>热度最低，复试线贴国家线；2027 科目调整</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="facts">
+<h2>三、考试体系已核实事实（影响决策的 8 项）</h2>
+<table>
+<thead><tr><th>事实</th><th>核实结果</th><th>对你的含义</th></tr></thead>
+<tbody>
+<tr><td>科目体系</td><td>公共课全国统一命题：政治 101、英一 201/英二 204、数一 301/数二 302/数三 303；专业课分 408 统考与自命题</td><td>决定"难度天花板"的是数学+专业课两门</td></tr>
+<tr><td>2026 数学大纲</td><td>2025.9 发布，知识点无实质变化；数二=高数+线代（无概率论）；"数二加概率论"系传言</td><td>选数二院校仍是数学一般考生的合理策略</td></tr>
+<tr><td>学硕 vs 专硕</td><td>学硕重学术（3 年、论文、直博顺），专硕重应用（2-3 年、可考博、就业认可度趋同）</td><td>就业导向 → 专硕优先（数二+英二更友好）</td></tr>
+<tr><td>四六级</td><td>初试报名无统一要求；少数院校设硬门槛（如中国民航大学报考要求 CET-4≥425）；多数院校不卡</td><td>四级未过不构成放弃理由，但逐校查"报考条件"是必做动作</td></tr>
+<tr><td>408 vs 自命题</td><td>408 公平/透明/可调剂，但四门课复习量巨大；自命题范围小、可找真题，上岸难度可控</td><td>数学一般+时间有限 → 主攻自命题普通院校，408 慎选</td></tr>
+<tr><td>分数线层级</td><td>国家线（A/B 区）→ 院校复试线 → 34 所自划线</td><td>过国家线≠进复试；避开 34 所自划线，选以初试成绩为主导的院校</td></tr>
+<tr><td>工学国家线</td><td>2023=273 → 2024=273 → 2025=260（↓13）→ 2026=264（↑4）；B 区约低 10 分</td><td>目标锚点：初试 ≥ 目标校复试线 + 20~30 分</td></tr>
+<tr><td>宏观趋势</td><td>报名人数三连降：474 万（2023）→ 343 万（2026）</td><td>窗口期：一志愿过线 + 留好调剂后路</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="patterns">
+<h2>四、三条决定你行动的信号</h2>
+<ol>
+<li><strong>"改考 408 潮"正在进行</strong>：扬州大学、南通大学、浙工大已改考 408；南信大却从 408 改回自命题 811（反向）；27 校中至少 9 校有科目调整公告。<span class="sidenote">行动：9-10 月前先按"数据结构"这一门把 408 和自命题两条线的公共部分备起来，9 月定校再细化。</span></li>
+<li><strong>"调剂友好校"= 三本考生的安全区</strong>：有调剂公告的院校（上应大、二工大、南通、中量大、浙科大）一志愿生源不足，一志愿进线后录取概率大——保底档应从这类校里挑。</li>
+<li><strong>避雷信号已登记</strong>：上理工"848 压分"讨论、南邮出身讨论、浙工大歧视流量帖——报考前用<a href="../lessons/0001-考研择校全景图与决策框架.html#action">三步核实法</a>复查。</li>
+</ol>
+</section>
+
+<section id="verify">
+<h2>五、本周行动（把"待核实"变成"已核实"）</h2>
+<p>数据库里大量"待核实"不是敷衍——是 Web 检索无法读取官方 PDF 正文的诚实标注。把它们变成事实，是你的核心技能练习：</p>
+<ol>
+<li><strong>科目核实</strong>：研招网 → 硕士目录 → 输入学校+专业（085404/085410/081200），记录数一/数二、英一/英二、408/自命题。</li>
+<li><strong>简章核实</strong>：各校研究生院官网 → 2026 年招生简章 → 查"报考条件"是否有四六级要求。</li>
+<li><strong>复试线核实</strong>：各校研究生院 → 历年复试线（至少近 2 年：2025、2026）。</li>
+<li><strong>口碑核实</strong>：对冲刺/稳妥 6 校执行<a href="../lessons/0001-考研择校全景图与决策框架.html#action">三步核实法</a>（复试细则→拟录取名单生源→社区口碑）。</li>
+<li><strong>填表</strong>：把结果填进<a href="../assets/择校表模板.html">择校表模板</a>，发给我核对。</li>
+</ol>
+<div class="callout teal">
+<span class="callout-title">时间锚点（很重要）</span>
+<p>2026.09-10：28 考研招生简章/专业目录陆续发布（届时逐校核对，很多校会再调科目）→ 2026.12 前：一志愿定校 + 数学英语一轮复习完成 → 2027.03：预报名 → 2027.09：报名 → 2027.12：初试。</p>
+</div>
+</section>
+
+<section id="practice">
+<h2>六、练习</h2>
+
+<div class="quiz" data-answer="1">
+<p class="quiz-question">Q1 · 调研发现"调剂友好校"对你意味着什么？</p>
+<ul class="quiz-options">
+<li>调剂生能抢占一志愿名额，风险更大</li>
+<li>一志愿生源不足，进线后录取概率大，是保底首选</li>
+<li>调剂友好校一定歧视民办本科</li>
+<li>调剂友好校只在 B 区存在</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。有调剂公告=一志愿招不满=一志愿进线即稳，是三本背景考生的安全区。答案选第 2 项。</div>
+</div>
+
+<div class="quiz" data-answer="0">
+<p class="quiz-question">Q2 · 关于数学科目，本轮调研核实后的正确结论是？</p>
+<ul class="quiz-options">
+<li>数学二只考高数+线代，不含概率论，选数二院校仍是合理避坑策略</li>
+<li>2026 起数学二新增概率论，选数二已无优势</li>
+<li>数学二比数学一更难</li>
+<li>所有专硕都考数学二</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。"数二加概率论"是发布前传言，2026 大纲知识点无实质变化。答案选第 1 项。（注意：此前的课程材料若与本题冲突，以本题为准。）</div>
+</div>
+
+<div class="quiz" data-answer="3">
+<p class="quiz-question">Q3 · 冲刺/稳妥/保底的正确用法是？</p>
+<ul class="quiz-options">
+<li>只选冲刺档，考研就要拼名校</li>
+<li>三档每档报一所，共报三所</li>
+<li>保底档完全没用，浪费精力</li>
+<li>三档是候选池，9-10 月定校时从中挑 1 个一志愿，并备好调剂预案</li>
+</ul>
+<button>查看答案</button>
+<div class="quiz-feedback">正确。三档是候选池不是志愿表——最终只填 1 个一志愿，但用三档思维控制风险。答案选第 4 项。</div>
+</div>
+
+<h3>本周作业</h3>
+<p>从稳妥档和保底档各挑 1 所（如浙江工商大学 + 浙江科技大学），完成<a href="#verify">行动清单</a> 1-4 步，把结果填进<a href="../assets/择校表模板.html">择校表</a>发给我。这是 9 月定校的第一次实战。</p>
+</section>
+
+<section id="next">
+<h2>下一步</h2>
+<ul>
+<li>完整原始数据：<code>research/院校扫描汇总.md</code>、<code>research/考试体系结论.md</code>（打开方式：VS Code 或任何文本编辑器）</li>
+<li>课程 0003 预告：专业方向深挖——085404 计算机技术 vs 085410 人工智能 vs 081200 学硕，就业差异与选择逻辑</li>
+<li>随时把核实结果发我，我帮你逐校核对并更新数据库</li>
+</ul>
+</section>
+
+</main>
+<footer>
+<p>28考研 · 院校与专业调研课程 — Lesson 0002 · 有问题随时问教学代理 · 数据来源见 <a href="../RESOURCES.md">RESOURCES.md</a> 与 <code>research/</code> 目录</p>
+</footer>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(quiz) {
+  var btn = quiz.querySelector('button');
+  var opts = quiz.querySelectorAll('.quiz-options li');
+  var fb = quiz.querySelector('.quiz-feedback');
+  var answer = parseInt(quiz.dataset.answer, 10);
+  var answered = false;
+  opts.forEach(function(li, i) {
+    li.addEventListener('click', function() {
+      if (answered) return;
+      answered = true;
+      if (i === answer) { li.classList.add('correct'); fb.classList.add('show','ok'); }
+      else { li.classList.add('wrong'); opts[answer].classList.add('correct'); fb.classList.add('show','no'); }
+    });
+  });
+  btn.addEventListener('click', function() {
+    if (!answered) { opts[answer].classList.add('correct'); fb.classList.add('show','ok'); answered = true; }
+  });
+});
+</script>
+</body>
+</html>

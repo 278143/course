@@ -1,0 +1,601 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0001 · 中国法律体系全景图</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+
+  <header class="lesson-head">
+    <p class="meta">课程 0001 · 法律体系入门</p>
+    <h1>中国法律体系全景图：一张地图看懂你的权利在哪里</h1>
+    <p class="time">⏱ 预计 30 分钟 · 零基础友好 · 无需任何法律背景</p>
+  </header>
+
+  <div class="callout key">
+    <span class="tag">本课目标</span>
+    学完本课，你将能：① 说出法律位阶的层级与"上位法优于下位法"；② 说出七大部门法的名称；③ 把"欠薪、押金、假货、被盗"四个生活场景对应到正确的部门法；④ 会用国家法律法规数据库查法条。
+  </div>
+
+  <h2><span class="secno">1</span>为什么先学"地图"？</h2>
+  <p>很多初学者以为学法律就是"背法条"。但中国法律不是一部"万能法典"，而是一套<strong>由不同层级、不同部门组成的体系</strong>——这正是"律法"二字的含义：有"律"（规则），更有"法"（体系）。</p>
+  <p>你生活中的每一个具体问题，几乎都能在这张地图上找到它的"归属地"：</p>
+  <ul>
+    <li>老板拖欠工资 → 归<strong>劳动法</strong>管</li>
+    <li>房东不退押金 → 归<strong>民法（民法典）</strong>管</li>
+    <li>买到假货 → 归<strong>消费者保护</strong>管</li>
+    <li>手机被偷 → 归<strong>刑法</strong>管</li>
+  </ul>
+  <p>先学会看地图，你就知道：遇到问题该翻哪本书、找哪个部门、走哪条路。这就是本课的核心。</p>
+
+  <h2><span class="secno">2</span>法律位阶：法律的"金字塔"</h2>
+  <p>中国的法律文件有严格的<strong>效力等级</strong>（位阶）。位置越高，效力越强；低层级的文件不得与高层级冲突。</p>
+
+  <div class="pyramid">
+    <div class="tier t1">宪法<small>根本法 · 最高效力</small></div>
+    <div class="tier t2">法律<small>全国人大及其常委会制定</small></div>
+    <div class="tier t3">行政法规<small>国务院制定</small></div>
+    <div class="tier t4">地方性法规<small>地方人大及其常委会制定</small></div>
+    <div class="tier t5">规章等<small>部门规章 / 地方政府规章</small></div>
+  </div>
+
+  <table>
+    <tr><th>层级</th><th>由谁制定</th><th>常见例子</th></tr>
+    <tr><td><strong>宪法</strong></td><td>全国人民代表大会</td><td>1982 年宪法（2018 年修正文本为现行文本）</td></tr>
+    <tr><td><strong>法律</strong></td><td>全国人大及其常委会</td><td>《民法典》《刑法》《劳动合同法》</td></tr>
+    <tr><td><strong>行政法规</strong></td><td>国务院</td><td>《工伤保险条例》《劳动合同法实施条例》</td></tr>
+    <tr><td><strong>地方性法规</strong></td><td>省、设区的市人大及其常委会</td><td>各省《物业管理条例》</td></tr>
+    <tr><td><strong>规章</strong></td><td>国务院部门 / 地方政府</td><td>住建部《商品房屋租赁管理办法》</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <span class="tag">补充</span>
+    <strong>司法解释</strong>（最高人民法院、最高人民检察院发布）不在立法法规定的位阶里，但它指导法院裁判，实践中非常重要。学习时记住：司法解释<em>效力低于法律</em>，且必须与法律一致。
+  </div>
+
+  <h3>冲突了怎么办？三大适用规则</h3>
+  <p>当不同文件对同一问题规定不一致时，按这三个规则决定适用谁（这也是法院判案的基本方法）：</p>
+  <ul>
+    <li><strong>上位法优于下位法</strong>——宪法＞法律＞行政法规＞地方性法规，低层级让位于高层级；</li>
+    <li><strong>特别法优于一般法</strong>——比如《消费者权益保护法》与《民法典》都有规定时，消费者问题优先适用《消法》；</li>
+    <li><strong>新法优于旧法</strong>——同一机关制定的文件，后颁布的优先。</li>
+  </ul>
+  <blockquote>
+    <p>法律冲突时如何适用，是全国人大常委会的官方普法重点。详见：<a href="http://www.npc.gov.cn/c2/c30834/202011/t20201116_308737.html" target="_blank" rel="noopener">中国人大网 · 发生"法律冲突"时如何适用法律？</a></p>
+  </blockquote>
+
+  <h2><span class="secno">3</span>七大部门法：法律世界的"七栋楼"</h2>
+  <p>按全国人大常委会的官方划分，中国特色社会主义法律体系分为<strong>七个法律部门</strong>。记住这七个名字，你就拿到了地图的骨架：</p>
+
+  <table>
+    <tr><th>#</th><th>部门法</th><th>管什么</th><th>代表法律</th></tr>
+    <tr><td>1</td><td><strong>宪法及宪法相关法</strong></td><td>国家根本制度、公民基本权利</td><td>宪法、立法法、选举法</td></tr>
+    <tr><td>2</td><td><strong>民法商法</strong></td><td>平等主体之间的财产与人身关系</td><td>民法典、公司法</td></tr>
+    <tr><td>3</td><td><strong>行政法</strong></td><td>政府怎么行使权力、怎么约束政府</td><td>行政处罚法、行政复议法</td></tr>
+    <tr><td>4</td><td><strong>经济法</strong></td><td>国家对市场经济的干预与监管</td><td>反垄断法、消费者权益保护法</td></tr>
+    <tr><td>5</td><td><strong>社会法</strong></td><td>劳动就业、社会保障、弱势群体保护</td><td>劳动法、劳动合同法、社会保险法</td></tr>
+    <tr><td>6</td><td><strong>刑法</strong></td><td>什么是犯罪、怎么处罚</td><td>刑法</td></tr>
+    <tr><td>7</td><td><strong>诉讼与非诉讼程序法</strong></td><td>打官司（诉讼）与仲裁、调解的程序</td><td>民事诉讼法、刑事诉讼法、行政诉讼法、仲裁法</td></tr>
+  </table>
+
+  <blockquote>
+    <p>七个部门法的划分依据，见：<a href="http://www.npc.gov.cn/zgrdw/npc/zt/qt/2011zgtsshzyfltx/2011-03/11/content_1641301.htm" target="_blank" rel="noopener">中国人大网 · 解读中国特色社会主义法律体系的形成和完善</a></p>
+  </blockquote>
+
+  <h2><span class="secno">4</span>你的生活问题，住在哪栋楼？</h2>
+  <p>把第一节的四个场景展开，再加上两个常见场景，做一张"生活 → 法律"对照表。这张表值得长期贴在案头：</p>
+
+  <table>
+    <tr><th>生活场景</th><th>部门法</th><th>主要法律</th><th>维权入口</th></tr>
+    <tr><td>老板拖欠工资、违法辞退</td><td>社会法</td><td>《劳动合同法》《劳动法》</td><td>12333 人社热线 / 劳动人事争议仲裁</td></tr>
+    <tr><td>租房押金不退、买房纠纷、离婚、继承、民间借贷</td><td>民法商法</td><td>《民法典》</td><td>协商 → 人民调解 → 民事诉讼</td></tr>
+    <tr><td>买到假货、商家欺诈</td><td>经济法</td><td>《消费者权益保护法》+《民法典》</td><td>12315 投诉 / 市场监管部门 / 民事诉讼</td></tr>
+    <tr><td>被乱罚款、行政处罚不公</td><td>行政法</td><td>《行政处罚法》《行政复议法》</td><td>行政复议 → 行政诉讼</td></tr>
+    <tr><td>财物被盗、被骗</td><td>刑法</td><td>《刑法》+《刑事诉讼法》</td><td>报警（110）→ 检察院提起公诉</td></tr>
+    <tr><td>以上纠纷要打官司</td><td>诉讼法</td><td>《民事诉讼法》《行政诉讼法》等</td><td>法院立案 → 审理 → 判决 → 执行</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="tag">万能维权四步</span>
+    无论哪类纠纷，一般路径都是：<strong>① 保留证据 → ② 先协商 → ③ 投诉 / 调解 / 仲裁 → ④ 诉讼</strong>。遇到不确定怎么办时，可以拨打免费的<strong>12348 公共法律服务热线</strong>（司法行政部门主管）先咨询——这是国家提供的免费法律咨询渠道。
+  </div>
+
+  <h2><span class="secno">5</span>工具课：怎么查法条（必学技能）</h2>
+  <p>法律学习最重要的不是背，而是<strong>会查</strong>。国家法律法规数据库（全国人大常委会主办）是唯一的官方权威文本库：</p>
+  <ol>
+    <li>打开 <strong>flk.npc.gov.cn</strong>（国家法律法规数据库）；</li>
+    <li>顶部搜索框输入法律名称，如"劳动合同法"；</li>
+    <li>认准<strong>"现行有效"</strong>标签，避开已被修正或废止的版本；</li>
+    <li>点进条文页面，注意页面上的<strong>施行日期</strong>和<strong>修正历史</strong>；</li>
+    <li>核对条文时，永远以这里的原文为准，不要信搜索引擎的二手转载。</li>
+  </ol>
+  <blockquote>
+    <p>数据库官方开通报道：<a href="http://www.npc.gov.cn/c2/c30834/202102/t20210227_310127.html" target="_blank" rel="noopener">中国人大网 · 国家法律法规数据库正式开通了！</a></p>
+  </blockquote>
+
+  <h2><span class="secno">6</span>测验：检索练习（别偷看上面，先凭记忆作答）</h2>
+  <div class="quiz" data-questions="quiz-1"></div>
+  <script type="application/json" id="quiz-1">[
+    {
+      "q": "下列文件中，效力最高的是？",
+      "options": [
+        { "t": "宪法", "ok": true },
+        { "t": "法律", "ok": false },
+        { "t": "法规", "ok": false },
+        { "t": "规章", "ok": false }
+      ],
+      "why": "宪法是根本法，位于位阶金字塔顶端，一切法律、法规、规章都不得与宪法相抵触。"
+    },
+    {
+      "q": "房东无理扣押押金，应先查阅？",
+      "options": [
+        { "t": "民法典", "ok": true },
+        { "t": "刑法", "ok": false },
+        { "t": "劳动法", "ok": false },
+        { "t": "宪法", "ok": false }
+      ],
+      "why": "押金纠纷属于租赁合同纠纷，适用《民法典》合同编，而不是刑法或劳动法。"
+    },
+    {
+      "q": "公司欠薪三个月，讨薪应先走？",
+      "options": [
+        { "t": "劳动仲裁", "ok": true },
+        { "t": "民事诉讼", "ok": false },
+        { "t": "刑事诉讼", "ok": false },
+        { "t": "行政诉讼", "ok": false }
+      ],
+      "why": "劳动争议一般先申请劳动人事争议仲裁，对裁决不服再向法院起诉（个别情形一裁终局）。"
+    },
+    {
+      "q": "买到假货，应拨打的官方热线？",
+      "options": [
+        { "t": "12315", "ok": true },
+        { "t": "12348", "ok": false },
+        { "t": "12366", "ok": false },
+        { "t": "12345", "ok": false }
+      ],
+      "why": "12315 是市场监管部门的消费者投诉举报热线；12348 是法律服务热线，12366 是税务热线，12345 是政务服务热线。"
+    },
+    {
+      "q": "现行宪法颁布于哪一年？",
+      "options": [
+        { "t": "1954年", "ok": false },
+        { "t": "1975年", "ok": false },
+        { "t": "1982年", "ok": true },
+        { "t": "1999年", "ok": false }
+      ],
+      "why": "现行宪法于 1982 年 12 月 4 日通过，此后经 1988、1993、1999、2004、2018 五次修正。1954 年宪法是新中国第一部宪法。"
+    }
+  ]</script>
+  <script>
+/* ============================================================
+   quiz.js — 可复用测验组件（即时反馈 · 检索练习）
+   用法：
+     <div class="quiz" data-questions="quiz-1"></div>
+     <script type="application/json" id="quiz-1">[ …题目… ]</script>
+     <script src="../assets/quiz.js"></script>
+   题目 JSON 结构：
+     [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
+   选项建议等长（字数一致），避免通过格式泄露答案。
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function initQuiz(box) {
+    var dataId = box.getAttribute("data-questions");
+    var src = document.getElementById(dataId);
+    if (!src) { box.innerHTML = '<p class="q-feedback bad show">题目数据缺失（#' + dataId + '）</p>'; return; }
+    var questions;
+    try { questions = JSON.parse(src.textContent); }
+    catch (e) { box.innerHTML = '<p class="q-feedback bad show">题目 JSON 解析失败</p>'; return; }
+
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "q-wrap";
+
+    questions.forEach(function (item, i) {
+      var qBox = document.createElement("div");
+      qBox.className = "q";
+
+      var title = document.createElement("p");
+      title.className = "q-title";
+      title.textContent = (i + 1) + ". " + item.q;
+      qBox.appendChild(title);
+
+      var opts = document.createElement("div");
+      opts.className = "q-opts";
+      item.options.forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opt";
+        b.textContent = opt.t;
+        b.addEventListener("click", function () {
+          if (qBox.classList.contains("done")) return;
+          qBox.classList.add("done");
+          answered++;
+          var fb = qBox.querySelector(".q-feedback");
+          if (opt.ok) {
+            correct++;
+            b.classList.add("correct");
+            fb.className = "q-feedback show good";
+            fb.innerHTML = "✔ 正确。" + (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          } else {
+            b.classList.add("wrong");
+            fb.className = "q-feedback show bad";
+            var right = item.options.filter(function (o) { return o.ok; });
+            var rightText = right.length ? right.map(function (o) { return o.t; }).join("、") : "（无）";
+            fb.innerHTML = "✘ 再想想。正确答案是：<strong>" + rightText + "</strong>。" +
+              (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          }
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      qBox.appendChild(opts);
+
+      var fb = document.createElement("div");
+      fb.className = "q-feedback";
+      qBox.appendChild(fb);
+
+      wrap.appendChild(qBox);
+    });
+
+    var score = document.createElement("div");
+    score.className = "score";
+    score.textContent = "已完成 0 / " + total + " 题";
+    wrap.appendChild(score);
+
+    function updateScore() {
+      score.textContent = "已完成 " + answered + " / " + total + " 题 · 答对 " + correct + " 题";
+      if (answered === total) {
+        score.textContent += " · 正确率 " + Math.round((correct / total) * 100) + "%";
+        if (correct === total) score.textContent += " 🎉 全部答对！";
+      }
+    }
+
+    box.innerHTML = "";
+    box.appendChild(wrap);
+  }
+
+  function initAll() {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+})();
+
+</script>
+
+  <div class="task">
+    <span class="tag">实战任务（今天就做）</span>
+    <ol>
+      <li>打开 <strong>flk.npc.gov.cn</strong>，搜索《中华人民共和国民法典》；</li>
+      <li>把它的七编名称抄下来（总则、物权、合同、人格权、婚姻家庭、继承、侵权责任）；</li>
+      <li>再搜索《劳动合同法》，记下它的<strong>施行日期</strong>和<strong>最近一次修正时间</strong>；</li>
+      <li>把"生活场景对照表"抄进你的笔记本，或在手机备忘录里存一份。</li>
+    </ol>
+  </div>
+
+  <div class="callout tip">
+    <span class="tag">课后阅读（权威原文）</span>
+    <p>① 读《宪法》第一章"总纲"第 1—5 条：<a href="https://www.gov.cn/guoqing/2018-03/22/content_5276318.htm" target="_blank" rel="noopener">中国政府网 · 中华人民共和国宪法</a>（3 分钟）</p>
+    <p>② 浏览《民法典》目录，感受"法典"的体量：<a href="https://www.gov.cn/xinwen/2020-06/01/content_5516649.htm" target="_blank" rel="noopener">中国政府网 · 中华人民共和国民法典</a>（5 分钟）</p>
+  </div>
+
+  <h2><span class="secno">7</span>小结</h2>
+  <ul>
+    <li>中国法律是<strong>金字塔结构</strong>：宪法 → 法律 → 行政法规 → 地方性法规 → 规章；冲突时"上位法优于下位法、特别法优于一般法、新法优于旧法"。</li>
+    <li>法律体系分<strong>七个部门</strong>，日常生活问题集中在民商法、社会法、经济法、行政法、刑法这五栋楼里。</li>
+    <li>遇到问题先<strong>对号入座</strong>，再按"保留证据 → 协商 → 投诉/调解/仲裁 → 诉讼"推进；不确定就打 12348。</li>
+    <li>所有法条以 <strong>flk.npc.gov.cn</strong> 原文为准。</li>
+  </ul>
+
+  <div class="callout key">
+    <span class="tag">需要帮助？</span>
+    有任何不懂的地方，随时向你的 AI 老师提问——比如"上位法优于下位法到底怎么判断""劳动仲裁和诉讼有什么区别"。下一课我们可以走进<strong>民法典</strong>，或者你更想先学<strong>劳动法</strong>，由你决定。
+  </div>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      相关参考：<a href="../reference/legal-map.html">法律体系速查图</a> · <a href="../reference/glossary.html">法律术语表</a> · <a href="../MISSION.md">学习使命</a>
+    </div>
+    <p>课程 0001 · 中国法律体系全景图 — 所有法条事实以国家法律法规数据库（flk.npc.gov.cn）为准。</p>
+  </footer>
+
+</main>
+</body>
+</html>

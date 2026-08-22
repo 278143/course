@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 2 课：用科学解剖一个行为——以"撕嘴皮"为例</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0002 · Research Methods</p>
+  <h1>用科学解剖一个行为——以"撕嘴皮"为例</h1>
+  <p class="lesson-meta">预计 20 分钟 · 承接第 1 课的方法 · 使用你自己提供的案例</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>你选的行为（学习/工作时撕嘴皮、抠结痂）是完美的教学素材：它同时涉及<strong>习惯</strong>、<strong>情绪</strong>、<strong>压力</strong>与<strong>自我控制</strong>——这正是心理学要解释的典型对象。而且它与你"理解自己、应对心理困扰"的使命直接相关。本课把第 1 课的方法论真正用起来：不评判，先解剖。</p>
+</div>
+
+<h2>一个行为，多面棱镜</h2>
+<p>第 1 课说过：分支是理解同一对象的不同镜头。你选了<strong>生物心理学</strong>——这个判断可辩护，因为撕嘴皮确实有生物学基础（感觉反馈、习惯回路）。但它只是拼图的一块。同一行为至少可以看三个层面（导论教材称为 <em>levels of analysis</em>，层面分析）：</p>
+<table>
+  <thead><tr><th>层面</th><th>可能的解释</th><th>对应的分支</th></tr></thead>
+  <tbody>
+    <tr><td>生物层面</td><td>口腔/皮肤的感觉反馈有安抚作用；习惯回路（基底神经节）让动作自动化；可能提供自我刺激</td><td>生物心理学</td></tr>
+    <tr><td>心理/学习层面</td><td>紧张时撕→短暂缓解→行为被<strong>强化</strong>（操作性条件反射）；专注走神时的手部小动作</td><td>学习心理学、认知心理学</td></tr>
+    <tr><td>临床/社会层面</td><td>何时只是"小动作"，何时达到身体聚焦重复行为（BFRB）的界限——显著痛苦或损伤</td><td>临床心理学</td></tr>
+  </tbody>
+</table>
+<p class="small">关键点：这些层面<strong>互补而非互斥</strong>。科学心理学不找"唯一原因"，而是把各层面的证据拼成完整图景——这正是第 1 课"解释"目标的真义。</p>
+
+<h2>用五连问检验"太焦虑了"</h2>
+<p>你对民间说法"太过于焦虑了"发起了五连问——方向完全正确，这是科学家该有的动作。但把结论说得更精确一点，你才能拿到满分：</p>
+<ol>
+  <li><strong>"焦虑导致撕嘴皮"不是伪科学，而是证据不足。</strong>焦虑与撕嘴皮可能存在真实关联，但<strong>相关 ≠ 因果</strong>：是焦虑导致撕？还是撕这个动作本身在调节情绪（撕完有短暂放松）？还是压力让两者同时上升？方向未明。</li>
+  <li><strong>它解释不了所有场合。</strong>撕嘴皮也常发生在无聊、走神、高度专注时——"焦虑"这个单一原因覆盖不了这些情境。</li>
+  <li><strong>更科学的表述：</strong>"焦虑与撕嘴皮存在关联，因果方向与机制尚未明确；可能涉及情绪调节与习惯化过程。"——留下可检验的空间，而不是拍板。</li>
+</ol>
+<p class="small">这就是科学的措辞：承认证据边界，而不是给出确定的断言。民间说法急着给答案；科学先问"证据支持到什么程度"。</p>
+
+<h2>方法选择：从"是什么"到"为什么"</h2>
+<p>你答"实验研究，因为只有实验能确立因果"——规则记得很牢，满分。但要补充一个现实视角：<strong>不是每个问题都适合直接做实验</strong>（伦理、可行性），真实研究会组合使用：</p>
+<ol>
+  <li><strong>描述研究</strong>：连续记录撕嘴皮的发生时间、情境、频率（回答"是什么"）——你在本课任务里就会做这件事。</li>
+  <li><strong>相关研究</strong>：考察压力水平与撕的频率是否一起变化（回答"是否相关"）。</li>
+  <li><strong>实验/干预研究</strong>：随机分组、操纵变量，检验"改变什么能减少撕的行为"——例如<strong>习惯逆转训练</strong>（Habit Reversal Training, HRT）：觉察训练 + 替代反应 + 社会支持，有<a href="https://pubmed.ncbi.nlm.nih.gov/33880943/">随机对照试验</a>支持其效果。这就是四大目标中的"影响/改变"。</li>
+</ol>
+
+<div class="callout warn">
+  <p class="callout-title">关于健康边界（重要）</p>
+  <p>偶尔撕嘴皮、抠结痂<strong>非常常见</strong>，本身不是问题。但当它造成明显伤口、影响学习社交、或者"想停停不下来"并带来显著痛苦时，就值得认真对待——这类行为在临床上被称为身体聚焦重复行为（BFRB）。权威信息源：<a href="https://www.bfrb.org/">TLC Foundation for BFRBs</a>。需要时，寻求临床心理学/精神科/专业心理咨询的帮助是科学的态度，不是小题大做。</p>
+</div>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "关于「撕嘴皮是因为焦虑」这一说法，最科学的评价是：",
+    "options": ["焦虑与撕嘴皮可能相关但因果未明", "焦虑必定是撕嘴皮的唯一根源所在", "撕嘴皮足以证明此人心理素质欠佳", "只要情绪放松就永远不会再撕嘴皮"],
+    "answer": 0,
+    "explain": "焦虑与撕嘴皮可能有真实关联，但相关≠因果：方向未明（焦虑导致撕？撕在调节情绪？共因？），且无聊、专注时也会撕——单一原因解释证据不足。"
+  },
+  {
+    "q": "关于「层面的解释」，下列哪种说法正确？",
+    "options": ["生物层面和心理层面可以同时成立", "解释行为只能选取一个层面才科学", "只有找出唯一的原因才能算作解释", "民间说法通常比科学解释更靠谱些"],
+    "answer": 0,
+    "explain": "层面分析是互补拼图：习惯回路（生物）、强化历史（学习）、当下情境（社会）同时起作用。科学不找「唯一原因」，而是拼出完整图景。"
+  },
+  {
+    "q": "想检验「压力诱发撕嘴皮」这一因果假设，最合适的研究设计是：",
+    "options": ["随机分组并操纵压力的实验", "随机分组并测量压力的调查", "随机分组并询问压力的访谈", "随机分组并回忆压力的问卷"],
+    "answer": 0,
+    "explain": "确立因果需要实验：随机分组 + 操纵自变量（压力）。调查、访谈、问卷都只能描述或发现相关。现实中诱导压力的实验需伦理审查，研究者常组合多种方法。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务：3 天行为日记（描述研究）</p>
+  <p>接下来 3 天，每当你想撕嘴皮/抠结痂（或任何你想观察的习惯动作）时，记一行：</p>
+  <ol>
+    <li><strong>时间</strong>：大概几点？</li>
+    <li><strong>情境</strong>：在做什么？（学习？工作？发呆？）</li>
+    <li><strong>情绪</strong>：当时的感觉？（焦虑？无聊？专注？平静？）</li>
+    <li><strong>结果</strong>：真的撕了吗？撕完感觉如何？</li>
+  </ol>
+  <p>不评判、不试图改变——科学家第一步是<strong>先记录"是什么"</strong>。3 天后把记录带回来，我们一起找模式（这本身就是一次相关分析）。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong>津巴多《心理学与生活》第 2 章「心理学的研究方法」；或 <a href="https://openstax.org/books/psychology-2e/pages/2-introduction">OpenStax Psychology 2e 第 2 章</a>（免费）。</p>
+  <p><strong>延伸：</strong><a href="https://www.bfrb.org/">TLC Foundation for BFRBs</a>（身体聚焦重复行为的权威组织，含科普与求助信息）；HRT 的<a href="https://pubmed.ncbi.nlm.nih.gov/33880943/">随机对照试验研究</a>（PubMed）。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："操作性条件反射是什么？""我的行为算 BFRB 吗？""实验为什么还要伦理审查？"——直接问我，我会用新的例子讲到你懂为止。涉及你个人困扰的问题也欢迎随时提出，我会同时给你求助判断。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：心理学分支地图与研究方法速查</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（本课新增 6 个术语）</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    </script>
+  </div>
+  <script src="../assets/quiz.js"></script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研术语表 · 28考研调研课程</title>
+<style>
+/* ============================================================
+   Kaoyan Teaching Course — shared stylesheet
+   Tufte-inspired: generous margins, serif body, restrained color.
+   Print-friendly. Chinese typography optimized.
+   ============================================================ */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fdfcf8;
+  --rule: #d8d4c8;
+  --accent: #8b3a3a;      /* muted brick red — 考研红 */
+  --accent-soft: #f3e8e2;
+  --teal: #2f5d62;
+  --teal-soft: #e7f0ef;
+  --gold: #9a7b2f;
+  --gold-soft: #f6efdd;
+  --gray: #5f5f5f;
+  --code-bg: #f2efe9;
+  --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --mono: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --measure: 68ch;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0;
+  padding: 0 0 4rem 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- header / hero ---------- */
+header.lesson-head {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+header.lesson-head .kicker {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+header.lesson-head h1 {
+  font-size: 2.1rem;
+  line-height: 1.3;
+  margin: 0 0 0.8rem;
+  font-weight: 700;
+}
+header.lesson-head .subtitle {
+  font-size: 1.02rem;
+  color: var(--gray);
+  margin: 0;
+}
+header.lesson-head .meta {
+  margin-top: 1.2rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* ---------- layout ---------- */
+main {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 0 auto;
+  padding: 2rem 2rem 0;
+}
+section { margin: 0 0 2.8rem; }
+section > h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 2.4rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--rule);
+}
+section > h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 1.8rem 0 0.6rem;
+  color: var(--ink);
+}
+p { margin: 0.7rem 0; max-width: var(--measure); }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--teal); text-decoration: none; border-bottom: 1px dotted var(--teal); }
+a:hover { border-bottom-style: solid; }
+
+/* ---------- lists ---------- */
+ul, ol { max-width: var(--measure); }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- tables ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.92rem;
+  font-family: var(--sans);
+}
+th {
+  text-align: left;
+  background: var(--accent-soft);
+  font-weight: 700;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 2px solid var(--accent);
+  vertical-align: top;
+}
+td {
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+tr:hover td { background: #f7f4ec; }
+
+/* ---------- callouts ---------- */
+.callout {
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.9rem 1.1rem;
+  margin: 1.3rem 0;
+  border-radius: 0 6px 6px 0;
+  max-width: var(--measure);
+}
+.callout.teal { border-color: var(--teal); background: var(--teal-soft); }
+.callout.gold { border-color: var(--gold); background: var(--gold-soft); }
+.callout .callout-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+.callout p { margin: 0.4rem 0; }
+
+/* ---------- quiz ---------- */
+.quiz { margin: 1.6rem 0; max-width: var(--measure); }
+.quiz-question { font-weight: 700; margin-bottom: 0.6rem; }
+.quiz-options { list-style: none; padding: 0; margin: 0 0 0.8rem; }
+.quiz-options li {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  margin: 0.45rem 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: border-color 0.15s, background 0.15s;
+}
+.quiz-options li:hover { border-color: var(--teal); background: var(--teal-soft); }
+.quiz-options li.correct {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  font-weight: 700;
+}
+.quiz-options li.wrong {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.quiz-feedback { display: none; font-size: 0.95rem; padding: 0.6rem 0.9rem; border-radius: 6px; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.ok { background: var(--teal-soft); }
+.quiz-feedback.no { background: var(--accent-soft); }
+.quiz button {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+}
+.quiz button:hover { background: var(--accent); }
+
+/* ---------- code ---------- */
+code, kbd {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  max-width: calc(var(--measure) + 4rem);
+}
+pre code { background: none; padding: 0; }
+
+/* ---------- sidenote (Tufte flavor, simplified) ---------- */
+.sidenote {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-family: var(--sans);
+  border-top: 1px dashed var(--rule);
+  padding-top: 0.4rem;
+  margin-top: 0.8rem;
+  max-width: var(--measure);
+}
+
+/* ---------- footer ---------- */
+footer {
+  max-width: calc(var(--measure) + 8rem);
+  margin: 3rem auto 0;
+  padding: 1.5rem 2rem 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* ---------- print ---------- */
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  header.lesson-head, main, footer { max-width: 100%; padding-left: 0.5in; padding-right: 0.5in; }
+  .quiz-options li { cursor: default; }
+  a { color: var(--ink); border-bottom: none; }
+  section { page-break-inside: avoid; }
+  table { font-size: 8.5pt; }
+}
+
+</style>
+</head>
+<body>
+<header class="lesson-head">
+  <p class="kicker">Reference · 参考文档</p>
+  <h1>考研术语表</h1>
+  <p class="subtitle">本课程所有课程、练习、学习记录使用的统一术语。定义会被后续课程持续修订。</p>
+  <p class="meta">版本 0.1 · 2025 建立 · 随课程深化修订</p>
+</header>
+<main>
+
+<section id="tiers">
+<h2>培养类型</h2>
+<p><strong>学硕</strong>：学术型硕士。以学术研究为导向，学制一般 3 年，毕业要求侧重论文与科研，学费通常较低（一般 8000 元/年），适合想读博、进研究院所的考生。考试一般要求数学一、英语一。</p>
+<p><strong>专硕</strong>：专业型硕士。以职业能力为导向，学制一般 2~3 年，毕业要求侧重实践（很多学校要求实习），学费差异大（尤其非全日制/名校热门专业可能很高）。就业市场认可度与学硕相当，是就业导向考生的主流选择。电子信息类专硕常考数学二、英语二，难度低于学硕组合。</p>
+<p><strong>全日制 / 非全日制</strong>：全日制在校学习，多数应届生选择；非全日制周末/假期上课，多面向在职人员，应届生报考需谨慎（无宿舍、学费高、应届身份用途受限）。</p>
+</section>
+
+<section id="exam">
+<h2>初试科目</h2>
+<p><strong>政治（101）</strong>：所有考生必考，全国统一命题。满分 100 分。</p>
+<p><strong>英语一（201）/ 英语二（204）</strong>：英语一难度更高（接近六级水平），英语二略低。学硕一般英语一，专硕多英语二。</p>
+<p><strong>数学一（301）/ 数学二（302）/ 数学三（303）</strong>：数学一范围最广（高数+线代+概率论，难度最大）；数学二只考高数+线代（不含概率论，复习量明显更小）；数学三含概率论、偏经济管理。计算机/人工智能学硕几乎都考数学一，专硕多考数学二。<span class="sidenote">已核实（2026-08）：2026 年数学大纲知识点无实质变化，"数二增加概率论"系发布前传言，未获支持。以每年 9 月发布的当年大纲为准。</span></p>
+<p><strong>408 计算机学科专业基础综合</strong>：教育部统一命题，覆盖数据结构、计算机组成原理、操作系统、计算机网络四门课。复习量大、难度高，但公平（全国同卷、无信息差）、便于调剂。</p>
+<p><strong>自命题</strong>：各校自主命题专业课，信息差大（真题、出题风格、压分与否差别很大），需要针对性备考。</p>
+</section>
+
+<section id="lines">
+<h2>分数与录取</h2>
+<p><strong>国家线</strong>：教育部划定的考生进入复试或调剂的最低分数线，分 A 区 / B 区（A 区线高，B 区线低约 10 分）。工学门类国家线是计算机相关专业的最低门槛。近年工学 A 区国家线：2023=273、2024=273、2025=260（↓13）、2026=264（↑4）——注意：国家线低不等于好学校好考，热门院校复试线常年 330+。</p>
+<p><strong>院校线（复试线）</strong>：各校在国家线之上划定的复试分数线，热门院校远高于国家线。34 所自划线高校（985 名校）可自主划定，不受国家线限制。</p>
+<p><strong>一志愿</strong>：报名时填报的目标院校，初试达到一志愿复试线后参加其复试。</p>
+<p><strong>复试</strong>：初试过线后的面试/笔试/机试环节，通常包括专业课、英语、综合面试。复试权重各校不同（如 30%~50%），"复试占比高 + 初试占比低"对背景一般的考生可能是机会也可能是风险。</p>
+<p><strong>调剂</strong>：一志愿未录取或未过线时，在研招网系统申请其他有空缺院校的复试。调剂竞争惨烈，且 408 统考考生在调剂时更具优势（分数可比）。</p>
+<p><strong>保护一志愿</strong>：院校优先录取一志愿考生，不歧视一志愿、不预留名额给调剂生。择校时是重要考察点。</p>
+</section>
+
+<section id="misc">
+<h2>其他高频词</h2>
+<p><strong>推免（保研）</strong>：推荐免试，本科成绩优异者免初试直接复试。多数名额给了 985/211 学生，民办本科基本无缘。</p>
+<p><strong>报录比 / 复录比</strong>：报考人数与录取人数之比；进入复试人数与录取人数之比。衡量竞争激烈程度。</p>
+<p><strong>压分</strong>：学校刻意压低专业课或公共课主观题评分，导致一志愿考生分数低、难调剂，可能为接收优质调剂生。择校避雷要点。</p>
+<p><strong>四六级要求（已核实）</strong>：全国初试报名无统一四六级要求，多数院校不设门槛；少数院校在报考条件/复试/调剂中设硬性要求（如中国民航大学报考要求 CET-4≥425 分）。择校时必须逐校查招生简章"报考条件"和复试细则。</p>
+<p><strong>同等学力</strong>：未取得本科学历的考生（专科毕业 2 年等），加试科目多、限制多，本文档对象不涉及。</p>
+</section>
+
+<section id="aliases">
+<h2>术语别名对照（本课程统一用法）</h2>
+<p>考研 = 全国硕士研究生招生考试（统考）</p>
+<p>初试 = 笔试（12 月下旬，约 2 天）</p>
+<p>上岸 = 被录取</p>
+<p>双非 = 非 985、非 211 院校（含省属重点，部分为"双一流"学科建设高校）</p>
+<p>三本/民办本科 = 独立学院及民办高校（本课程指用户就读的院校层次）</p>
+<p>避雷 = 避开有坑的院校/专业</p>
+</section>
+
+<div class="callout gold">
+<span class="callout-title">版本记录</span>
+<p>v0.2（2026-08）：完成第一轮事实核实——数学大纲无实质变化（数二不含概率论）、工学国家线 2023-2026 趋势、四六级硬性要求实例已补充并注明来源。待后续补充：27 所院校的精确考试科目（以 2027 年 9-10 月最新招生简章为准）。</p>
+</div>
+
+</main>
+<footer>
+  <p>28考研 · 院校与专业调研课程 — 参考文档 1/3 · 有任何术语不清楚，随时问你的教学代理。</p>
+</footer>
+</body>
+</html>

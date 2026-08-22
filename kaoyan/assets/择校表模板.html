@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>择校表模板 · 28考研调研课程</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<style>
+  .sheet { width: 100%; overflow-x: auto; }
+  table input, table select {
+    width: 100%; border: none; background: transparent;
+    font-family: var(--sans); font-size: 0.88rem; padding: 2px 4px;
+    border-bottom: 1px dotted var(--rule);
+  }
+  table input:focus, table select:focus { outline: none; border-bottom: 2px solid var(--teal); background: var(--teal-soft); }
+  td, th { min-width: 80px; }
+  td.tier { font-weight: 700; }
+  .row-idx { color: var(--gray); font-family: var(--mono); font-size: 0.8rem; }
+  .notes { font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<header class="lesson-head">
+  <p class="kicker">Asset · 可复用组件</p>
+  <h1>择校表模板</h1>
+  <p class="subtitle">你的择校数据库。每看一所学校就填一行，全部信息来自研招网/学校官网/复试细则，禁止凭感觉填。</p>
+  <p class="meta">使用方法：浏览器中直接编辑 → 打印 或 截图保存 · 对应课程 0001 行动清单第 4 步</p>
+</header>
+<main>
+
+<section>
+<h2>填写指引</h2>
+<ul>
+<li><strong>档位</strong>：冲刺 / 稳妥 / 保底，由你的教学代理和你一起定</li>
+<li><strong>考试科目</strong>：数学几？英语几？专业课 408 还是自命题（写科目名或代码）——查研招网硕士目录</li>
+<li><strong>复试线</strong>：近 2 年院校复试线（不是国家线）——查学校研究生院"历年复试线"</li>
+<li><strong>四六级要求</strong>：查学校上一年《复试录取工作办法》中是否有四级/六级硬性要求</li>
+<li><strong>口碑</strong>：保护一志愿？是否歧视民办本科/三本？（有证据写证据+来源，无证据写"待核实"）</li>
+</ul>
+</section>
+
+<section>
+<h2>择校表（填满 8~12 行 = 完成初版数据库）</h2>
+<div class="sheet">
+<table>
+<thead>
+<tr>
+  <th>#</th><th>档位</th><th>学校</th><th>城市</th><th>层次</th><th>硕士专业</th>
+  <th>数学</th><th>英语</th><th>专业课</th><th>408?</th>
+  <th>复试线(近2年)</th><th>四六级要求</th><th>口碑/歧视</th><th>来源URL</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+<p><button onclick="addRow()" style="font-family:var(--sans);background:var(--ink);color:var(--paper);border:none;border-radius:6px;padding:0.45rem 1.1rem;cursor:pointer;">+ 添加一行</button></p>
+</section>
+
+<section class="notes">
+<h2>判断"是否歧视"的三步核实法（回顾）</h2>
+<ol>
+<li>看《复试录取工作办法》：初试占比（初试占比高 → 初试为王，对背景一般者更友好）、复试流程是否公开、是否接受跨考/同等学力</li>
+<li>看上年《拟录取名单》：录取者本科院校分布——有民办本科/三本录取者 = 实证不歧视</li>
+<li>看社区口碑：知乎/贴吧/王道论坛搜"学校名 + 三本/民办/歧视/压分"</li>
+</ol>
+</section>
+
+</main>
+<footer><p>28考研 · 院校与专业调研课程 — 组件：择校表模板 · 与<a href="../lessons/0001-考研择校全景图与决策框架.html">课程0001</a>配套使用</p></footer>
+
+<script>
+function blankRow(i) {
+  var cols = ["冲刺","","","","","","","","","","","",""];
+  var cell = function(v, extra) {
+    var e = extra || "";
+    if (v === "冲刺") return '<td class="tier"><select><option>冲刺</option><option>稳妥</option><option>保底</option></select></td>';
+    return '<td'+e+'><input value="'+v+'"></td>';
+  };
+  return '<tr>' +
+    '<td class="row-idx">'+(i+1)+'</td>' + cell("冲刺") +
+    cell("") + cell("") + cell("") + cell("") + cell("") + cell("") + cell("") + cell("") +
+    cell("") + cell("") + cell("") + cell("") +
+    '</tr>';
+}
+var tbody = document.getElementById("rows");
+for (var i = 0; i < 6; i++) tbody.innerHTML += blankRow(i);
+function addRow(){ tbody.innerHTML += blankRow(tbody.children.length); }
+</script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 1 课 · 画出你的财务地图</title>
+<style>
+/* ============================================================
+   lesson.css — 财商课程共享样式表（Tufte 风格）
+   所有课程共用：保证整套课程外观一致、可打印。
+   ============================================================ */
+
+:root {
+  --ink: #1c1a17;
+  --paper: #fffef9;
+  --accent: #8b5e3c;      /* 暖棕：主强调色 */
+  --accent-soft: #f0e6d8;
+  --teal: #2e6e5e;        /* 辅助强调色 */
+  --muted: #75706a;
+  --rule: #ddd6c9;
+  --card: #faf6ee;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --code-bg: #f4f1ea;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 2.25rem 1.4rem 4rem;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 头部 ---------- */
+
+.lesson-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.lesson-kicker {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.lesson-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.lesson-meta {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- 正文排版 ---------- */
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.4rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+
+h3 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; }
+
+p { margin: 0.7rem 0; }
+
+strong { font-weight: 700; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0.7rem 0; padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: normal;
+  color: var(--ink);
+}
+
+blockquote p { margin: 0.25rem 0; }
+
+code, .num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ---------- 关键公式框 ---------- */
+
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.12rem;
+}
+
+.formula .tag {
+  display: block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 练习卡片 ---------- */
+
+.exercise {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.exercise h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 小标签 ---------- */
+
+.pill {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---------- 测验 ---------- */
+
+.quiz { margin: 1.6rem 0; }
+
+.quiz-question {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.quiz-qtext {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.quiz-option.correct { background: #e8f3e9; border-color: var(--good); color: var(--good); }
+.quiz-option.wrong { background: #fbeae8; border-color: var(--bad); color: var(--bad); }
+
+.quiz-feedback { margin-top: 0.6rem; font-size: 0.9rem; min-height: 1.3em; }
+.quiz-feedback.ok { color: var(--good); }
+.quiz-feedback.no { color: var(--bad); }
+
+.quiz-score {
+  margin-top: 1rem;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.quiz-reset {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+}
+.quiz-reset:hover { background: var(--accent-soft); }
+
+/* ---------- 互动计算器（networth 组件） ---------- */
+
+.networth-widget {
+  margin: 1.4rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nw-group {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.nw-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.nw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.nw-row label { flex: 1; color: var(--ink); }
+
+.nw-row input {
+  width: 9rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: right;
+  color: var(--ink);
+}
+
+.nw-row input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+.nw-result {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  text-align: center;
+}
+
+.nw-big {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.nw-big.pos { color: var(--good); }
+.nw-big.neg { color: var(--bad); }
+
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.nw-cell { font-size: 0.85rem; color: var(--muted); }
+.nw-cell b { display: block; font-size: 1.02rem; color: var(--ink); }
+
+.nw-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+/* ---------- 课程地图 ---------- */
+
+.course-map { font-size: 0.95rem; }
+.course-map li { margin: 0.45rem 0; }
+.course-map .now { color: var(--accent); font-weight: 700; }
+.course-map .later { color: var(--muted); }
+
+/* ---------- 术语表 ---------- */
+
+.glossary { margin: 0.5rem 0; }
+.glossary dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+.glossary dt .en {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.glossary dd {
+  margin: 0.2rem 0 0 0;
+  color: var(--ink);
+}
+.glossary .later {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- 页脚 ---------- */
+
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 打印 ---------- */
+
+@media print {
+  html { font-size: 12pt; }
+  body { max-width: none; padding: 0; }
+  .quiz-option { border: 1px solid #999; }
+  .quiz-option:disabled { opacity: 1; }
+  .quiz-reset, .nw-hint { display: none; }
+  section, .exercise, .quiz-question { break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="lesson-header">
+  <p class="lesson-kicker">第 1 课 · 财商系统课</p>
+  <h1>画出你的财务地图：资产负债表与现金流</h1>
+  <p class="lesson-meta">预计 20 分钟 · 需要纸笔 · 零基础友好</p>
+</header>
+
+<main>
+
+  <blockquote>
+    <p><strong>这课和你的使命有什么关系？</strong>还清家庭 30 万负债、攒应急金、学会投资、走向财务自由——所有这些目标，都先要回答两个问题：<strong>你站在哪里？</strong>（资产负债表）和<strong>你的钱往哪里流？</strong>（现金流）。先把地图画出来，才能谈赶路。</p>
+  </blockquote>
+
+  <h2>一、两张表，看懂你全部的钱</h2>
+
+  <p>金融世界再复杂，落到个人身上只有两张表。把它们看懂了，你就拥有了财商的"字母表"。</p>
+
+  <h3>表 1：资产负债表 —— 某个时刻的快照（你站在哪里）</h3>
+  <p>像拍一张照片，记录"此刻我拥有什么、欠着什么"。</p>
+  <ul>
+    <li><strong>资产（Asset）</strong>：你拥有的、值钱的东西——现金、存款、基金股票市值、别人欠你的钱。</li>
+    <li><strong>负债（Liability）</strong>：你欠别人的钱——信用卡欠款、消费贷、助学贷款、你负责的家庭债务。</li>
+    <li><strong>净资产（Net Worth）</strong>：资产减去负债。这才是你真正的身家。</li>
+  </ul>
+  <div class="formula">
+    <span class="tag">恒等式 · 永远成立</span>
+    资产 ＝ 负债 ＋ 净资产　&nbsp;⟶&nbsp;　净资产 ＝ 资产 − 负债
+  </div>
+
+  <h3>表 2：现金流 —— 一段时间内的流动（钱往哪流）</h3>
+  <p>像一段录像，记录"这个月钱进来多少、出去多少"。</p>
+  <ul>
+    <li><strong>收入（Income）</strong>：每月进账——生活费、奖学金、兼职、未来的工资。</li>
+    <li><strong>支出（Expense）</strong>：每月出账——餐饮、住宿、交通、学习、娱乐。</li>
+    <li><strong>结余（Surplus）</strong>：收入减去支出。结余为正，你在变富；为负，你在变穷。</li>
+  </ul>
+  <div class="formula">
+    <span class="tag">核心公式</span>
+    每月结余 ＝ 收入 − 支出　&nbsp;·&nbsp;　结余率 ＝ 结余 ÷ 收入
+  </div>
+
+  <h3>为什么这两张表是整门课的地基？</h3>
+  <ul>
+    <li><strong>净资产</strong>告诉你"起点坐标"；<strong>结余</strong>是你变富的引擎——只有引擎是正转的，财富才会积累。</li>
+    <li>家庭 30 万负债，必须先把它<strong>放进资产负债表里标出来</strong>，才能冷静地谈应对，而不是凭焦虑做决定。</li>
+    <li>"财务自由"其实只是一个现金流问题：<strong>被动收入 ≥ 每月支出</strong>。你看，又是同一张表上的两个数字。</li>
+  </ul>
+
+  <h2>二、动手练习：填出你自己的两张表</h2>
+  <p>现在轮到你了。凭记忆填个大概就行，<strong>数字不准确没关系，先有一个起点</strong>。填完盯着"净资产"和"月结余"看十秒钟——这就是你现在的真实坐标。</p>
+
+  <div class="networth-widget"></div>
+
+  <div class="exercise">
+    <h3>✍️ 练习完成后，请回答（发给我，我是你的老师）</h3>
+    <ol>
+      <li>你的净资产是正还是负？大概多少？</li>
+      <li>你的每月结余是正还是负？结余率大约多少？</li>
+      <li>看到这两个数字，你心里有什么感受或想法？</li>
+    </ol>
+  </div>
+
+  <h2>三、债务地图：把 30 万负债看清</h2>
+  <p>这是本课最重要的一步。很多人的财务痛苦，来自"模糊的负债感"——不知道欠谁、欠多少、利息多少。财商的第一课，就是把模糊变清晰。</p>
+  <div class="exercise">
+    <h3>✍️ 对家庭的 30 万负债，回答这 5 个问题（写下来，或直接发给我）</h3>
+    <ol>
+      <li>这 30 万<strong>以谁的名义</strong>借的？谁在法律上负责偿还？</li>
+      <li>利率大概是多少？每年光利息要付多少钱？</li>
+      <li>现在的还款计划是什么？每月 / 每年还多少、还要还多少年？</li>
+      <li>你目前有没有参与还款？毕业后你的打算是什么？</li>
+      <li>最后给自己一句判断：<strong>"这是我的债务"还是"这是我家庭的债务"？</strong></li>
+    </ol>
+  </div>
+  <p>为什么要较真第 5 题？因为<strong>债务归属决定策略</strong>：如果你只是"帮忙的人"，你的首要任务是先照顾好自己（应急金、学业、收入）；如果你未来要承担还款责任，那债务利率、还款计划就是你的核心课题，我们会在第 3 课专门攻它。别用错误的责任感，做出错误的财务决定。</p>
+
+  <h2>四、小测验：考考你自己</h2>
+  <p>先回忆再作答，别翻回去看——想不起来再回看，记忆会更牢。</p>
+
+  <div class="quiz" data-title="小测验 · 两张表">
+    <script type="application/json">
+    [
+      { "q": "资产减去负债，得到什么？", "options": ["净资产", "净收入", "净支出", "净负债"], "answer": 0 },
+      { "q": "每月收入减去支出，得到：", "options": ["本月资产", "本月负债", "本月债务", "本月结余"], "answer": 3 },
+      { "q": "家里的 30 万负债，记在哪张表上？", "options": ["资产负债表", "现金流量表", "收支明细表", "投资组合表"], "answer": 0 },
+      { "q": "净资产要增加，必须做到：", "options": ["资产超过负债", "负债超过资产", "收入超过支出", "支出超过收入"], "answer": 2 },
+      { "q": "财务自由指的是：", "options": ["主动收入大于支出", "投资收入大于支出", "被动收入大于支出", "工资收入大于支出"], "answer": 2 }
+    ]
+    </script>
+  </div>
+
+  <h2>本课核心收获</h2>
+  <ul>
+    <li>净资产 ＝ 资产 − 负债，这是你的<strong>起点坐标</strong>。</li>
+    <li>每月结余 ＝ 收入 − 支出，这是你变富的<strong>引擎</strong>。</li>
+    <li>债务要先<strong>看清再应对</strong>，区分"我的债"与"家庭的债"。</li>
+  </ul>
+
+  <h2>推荐阅读（本课配套）</h2>
+  <ul>
+    <li><a href="https://youzhiyouxing.cn" target="_blank" rel="noopener">有知有行《投资第 1 课》</a>（孟岩 &amp; 张潇雨，免费）——站内搜索"投资第 1 课"，先读第 1–2 课。这是中文世界质量最高的投资入门课，用来校准你的金钱观。</li>
+    <li><a href="https://book.douban.com/subject/35295592" target="_blank" rel="noopener">《小狗钱钱》博多·舍费尔</a>——理财启蒙第一书，读"梦想清单 + 养鹅存钱"的部分即可，轻松有趣。</li>
+  </ul>
+
+  <h2>下一步</h2>
+  <p>第 2 课《记账与应急金》：用这张地图，建立你的第一道防线。先预告一个任务——<strong>从明天开始，每天记下你的每一笔支出</strong>（手机备忘录就够），第 2 课时我们要用真实数据。</p>
+
+  <h2>课程地图</h2>
+  <ul class="course-map">
+    <li class="now">1. 财务地图：资产负债表与现金流（会计）← <strong>本课</strong></li>
+    <li class="later">2. 记账与应急金：第一道防线（会计·已完成）</li>
+    <li class="later">3. 债务应对：还款表与边界（会计+法律）</li>
+    <li class="later">4. 法律与钱：合同·担保·劳动法·权益（法律）</li>
+    <li class="later">5. 人力资本：劳动力市场与收入（市场）</li>
+    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场）</li>
+    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资）</li>
+    <li class="later">8. 资产配置与定投：第一笔钱（投资）</li>
+    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合）</li>
+  </ul>
+
+</main>
+
+<footer class="lesson-footer">
+  <p>有任何不清楚的地方，直接问我（你的老师）——你随时可以追问，我会帮你讲透。<br>做完练习后，把答案发给我，我们就能进入第 2 课。</p>
+</footer>
+
+<script>
+/* ============================================================
+   networth.js — 可复用「财务地图」计算器组件
+   用法：<div class="networth-widget"></div>
+   功能：输入资产 / 负债 / 月收支，实时计算：
+       总资产、总负债、净资产、月收入、月支出、月结余、结余率
+   所有数字为人民币（元）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var ASSETS = [
+    { key: "cash", label: "现金与存款" },
+    { key: "invest", label: "投资品市值（基金/股票等）" },
+    { key: "receivable", label: "别人欠我的钱" },
+    { key: "otherA", label: "其他资产" }
+  ];
+
+  var LIABILITIES = [
+    { key: "credit", label: "信用卡欠款" },
+    { key: "consumer", label: "消费贷款" },
+    { key: "student", label: "助学贷款" },
+    { key: "family", label: "我负责的家庭债务" },
+    { key: "otherL", label: "其他负债" }
+  ];
+
+  var INCOME = [
+    { key: "allowance", label: "生活费 / 家庭支持" },
+    { key: "scholarship", label: "奖学金 / 助学金" },
+    { key: "parttime", label: "兼职收入" },
+    { key: "otherI", label: "其他收入" }
+  ];
+
+  var EXPENSE = [
+    { key: "food", label: "餐饮" },
+    { key: "housing", label: "住宿" },
+    { key: "transport", label: "交通" },
+    { key: "study", label: "学习" },
+    { key: "fun", label: "娱乐 / 社交" },
+    { key: "otherE", label: "其他支出" }
+  ];
+
+  function group(title, rows, placeholder) {
+    var html = '<div class="nw-group"><p class="nw-group-title">' + title + "</p>";
+    rows.forEach(function (r) {
+      html += '<div class="nw-row"><label for="nw-' + r.key + '">' + r.label + "</label>"
+        + '<input id="nw-' + r.key + '" type="number" min="0" step="100" value="0" inputmode="numeric" aria-label="' + r.label + '"></div>';
+    });
+    html += "</div>";
+    return html;
+  }
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString("zh-CN");
+  }
+
+  function render(container) {
+    container.innerHTML =
+      '<div class="nw-hint">💡 数字不用精确，凭记忆填个大概就行——重点是先有一个起点。</div>'
+      + group("资产（你拥有的）", ASSETS)
+      + group("负债（你欠的）", LIABILITIES)
+      + group("每月收入", INCOME)
+      + group("每月支出", EXPENSE)
+      + '<div class="nw-result">'
+      + '<p class="nw-group-title" style="margin-bottom:0.3rem;">结果</p>'
+      + '<p class="nw-big" id="nw-networth">¥ 0</p>'
+      + '<p class="nw-hint" id="nw-networth-note" style="margin-top:0.2rem;">净资产（资产 − 负债）</p>'
+      + '<div class="nw-grid">'
+      + '<div class="nw-cell">总资产<b id="nw-total-a">¥ 0</b></div>'
+      + '<div class="nw-cell">总负债<b id="nw-total-l">¥ 0</b></div>'
+      + '<div class="nw-cell">月收入<b id="nw-income">¥ 0</b></div>'
+      + '<div class="nw-cell">月支出<b id="nw-expense">¥ 0</b></div>'
+      + '<div class="nw-cell">月结余<b id="nw-surplus">¥ 0</b></div>'
+      + '<div class="nw-cell">结余率<b id="nw-rate">—</b></div>'
+      + "</div></div>";
+
+    function val(key) {
+      var el = document.getElementById("nw-" + key);
+      var n = parseFloat(el.value);
+      return isFinite(n) && n > 0 ? n : 0;
+    }
+
+    function sum(rows) {
+      return rows.reduce(function (acc, r) { return acc + val(r.key); }, 0);
+    }
+
+    function update() {
+      var totalA = sum(ASSETS);
+      var totalL = sum(LIABILITIES);
+      var income = sum(INCOME);
+      var expense = sum(EXPENSE);
+      var net = totalA - totalL;
+      var surplus = income - expense;
+
+      var nwEl = document.getElementById("nw-networth");
+      nwEl.textContent = "¥ " + fmt(net);
+      nwEl.className = "nw-big " + (net >= 0 ? "pos" : "neg");
+      document.getElementById("nw-networth-note").textContent =
+        net >= 0 ? "净资产为正值——起点不错，下一步是让现金流为正。" : "净资产为负——先看负债地图，逐项攻破。";
+
+      document.getElementById("nw-total-a").textContent = "¥ " + fmt(totalA);
+      document.getElementById("nw-total-l").textContent = "¥ " + fmt(totalL);
+      document.getElementById("nw-income").textContent = "¥ " + fmt(income);
+      document.getElementById("nw-expense").textContent = "¥ " + fmt(expense);
+      document.getElementById("nw-surplus").textContent = "¥ " + fmt(surplus);
+
+      var rateEl = document.getElementById("nw-rate");
+      if (income > 0) {
+        rateEl.textContent = Math.round((surplus / income) * 100) + "%";
+      } else {
+        rateEl.textContent = "—";
+      }
+    }
+
+    container.querySelectorAll("input").forEach(function (input) {
+      input.addEventListener("input", update);
+    });
+    update();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".networth-widget").forEach(render);
+  });
+})();
+
+</script>
+<script>
+/* ============================================================
+   quiz.js — 可复用测验组件
+   用法：在 HTML 中放置
+     <div class="quiz" data-title="小测验"></div>
+     <script type="application/json" id="quiz-data">[ ... ]</script>
+   JSON 结构：
+     [{ "q": "题目", "options": ["选项A","选项B","选项C","选项D"], "answer": 0 }]
+   answer 为正确选项下标。选项建议等长（字数相同）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function render(container) {
+    var title = container.getAttribute("data-title") || "小测验";
+    var dataSrc = container.querySelector('script[type="application/json"]');
+    if (!dataSrc) {
+      container.innerHTML = '<p class="nw-hint">测验数据缺失（缺少 script[type="application/json"]）。</p>';
+      return;
+    }
+
+    var questions;
+    try {
+      questions = JSON.parse(dataSrc.textContent);
+    } catch (e) {
+      container.innerHTML = '<p class="nw-hint">测验数据解析失败。</p>';
+      return;
+    }
+
+    var html = '<h2>' + title + '</h2>';
+    questions.forEach(function (q, qi) {
+      html += '<div class="quiz-question" data-q="' + qi + '">';
+      html += '<p class="quiz-qtext">' + (qi + 1) + '. ' + q.q + '</p>';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-option" data-oi="' + oi + '">' + opt + '</button>';
+      });
+      html += '<p class="quiz-feedback"></p>';
+      html += '</div>';
+    });
+    html += '<p class="quiz-score" hidden></p>';
+    html += '<button type="button" class="quiz-reset" hidden>重新作答</button>';
+    container.insertAdjacentHTML("beforeend", html);
+
+    var scoreEl = container.querySelector(".quiz-score");
+    var resetEl = container.querySelector(".quiz-reset");
+    var total = questions.length;
+    var correctCount = 0;
+
+    container.querySelectorAll(".quiz-question").forEach(function (box, qi) {
+      var q = questions[qi];
+      var buttons = box.querySelectorAll(".quiz-option");
+      var feedback = box.querySelector(".quiz-feedback");
+
+      buttons.forEach(function (btn, oi) {
+        btn.addEventListener("click", function () {
+          if (btn.disabled) return;
+          buttons.forEach(function (b) { b.disabled = true; });
+          if (oi === q.answer) {
+            btn.classList.add("correct");
+            feedback.textContent = "✓ 正确！";
+            feedback.className = "quiz-feedback ok";
+            correctCount++;
+          } else {
+            btn.classList.add("wrong");
+            buttons[q.answer].classList.add("correct");
+            feedback.textContent = "✗ 再想想。正确答案已标出。";
+            feedback.className = "quiz-feedback no";
+          }
+          var done = container.querySelectorAll(".quiz-question").length;
+          var answered = container.querySelectorAll(".quiz-option:disabled").length;
+          if (answered === done * q.options.length) {
+            scoreEl.hidden = false;
+            resetEl.hidden = false;
+            var pct = Math.round((correctCount / total) * 100);
+            var words = pct === 100 ? "满分！两张表你已经吃透了 🎉"
+              : pct >= 60 ? "不错，复习一下答错的题，把公式记牢。"
+              : "没关系，回到上面的公式框再看一遍，然后重试。";
+            scoreEl.textContent = "得分：" + correctCount + " / " + total + "（" + pct + "%）— " + words;
+          }
+        });
+      });
+    });
+
+    resetEl.addEventListener("click", function () {
+      correctCount = 0;
+      scoreEl.hidden = true;
+      resetEl.hidden = true;
+      container.querySelectorAll(".quiz-question").forEach(function (box) {
+        box.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove("correct", "wrong");
+        });
+        var fb = box.querySelector(".quiz-feedback");
+        fb.textContent = "";
+        fb.className = "quiz-feedback";
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".quiz").forEach(render);
+  });
+})();
+
+</script>
+</body>
+</html>

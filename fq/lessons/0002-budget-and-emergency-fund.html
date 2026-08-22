@@ -1,0 +1,693 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 2 课 · 记账与应急金</title>
+<style>
+/* ============================================================
+   lesson.css — 财商课程共享样式表（Tufte 风格）
+   所有课程共用：保证整套课程外观一致、可打印。
+   ============================================================ */
+
+:root {
+  --ink: #1c1a17;
+  --paper: #fffef9;
+  --accent: #8b5e3c;      /* 暖棕：主强调色 */
+  --accent-soft: #f0e6d8;
+  --teal: #2e6e5e;        /* 辅助强调色 */
+  --muted: #75706a;
+  --rule: #ddd6c9;
+  --card: #faf6ee;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --code-bg: #f4f1ea;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 2.25rem 1.4rem 4rem;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 头部 ---------- */
+
+.lesson-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.lesson-kicker {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.lesson-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.lesson-meta {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- 正文排版 ---------- */
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.4rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+
+h3 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; }
+
+p { margin: 0.7rem 0; }
+
+strong { font-weight: 700; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0.7rem 0; padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: normal;
+  color: var(--ink);
+}
+
+blockquote p { margin: 0.25rem 0; }
+
+code, .num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ---------- 关键公式框 ---------- */
+
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.12rem;
+}
+
+.formula .tag {
+  display: block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 练习卡片 ---------- */
+
+.exercise {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.exercise h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 小标签 ---------- */
+
+.pill {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---------- 测验 ---------- */
+
+.quiz { margin: 1.6rem 0; }
+
+.quiz-question {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.quiz-qtext {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.quiz-option.correct { background: #e8f3e9; border-color: var(--good); color: var(--good); }
+.quiz-option.wrong { background: #fbeae8; border-color: var(--bad); color: var(--bad); }
+
+.quiz-feedback { margin-top: 0.6rem; font-size: 0.9rem; min-height: 1.3em; }
+.quiz-feedback.ok { color: var(--good); }
+.quiz-feedback.no { color: var(--bad); }
+
+.quiz-score {
+  margin-top: 1rem;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.quiz-reset {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+}
+.quiz-reset:hover { background: var(--accent-soft); }
+
+/* ---------- 互动计算器（networth 组件） ---------- */
+
+.networth-widget {
+  margin: 1.4rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nw-group {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.nw-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.nw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.nw-row label { flex: 1; color: var(--ink); }
+
+.nw-row input {
+  width: 9rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: right;
+  color: var(--ink);
+}
+
+.nw-row input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+.nw-result {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  text-align: center;
+}
+
+.nw-big {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.nw-big.pos { color: var(--good); }
+.nw-big.neg { color: var(--bad); }
+
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.nw-cell { font-size: 0.85rem; color: var(--muted); }
+.nw-cell b { display: block; font-size: 1.02rem; color: var(--ink); }
+
+.nw-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+/* ---------- 课程地图 ---------- */
+
+.course-map { font-size: 0.95rem; }
+.course-map li { margin: 0.45rem 0; }
+.course-map .now { color: var(--accent); font-weight: 700; }
+.course-map .later { color: var(--muted); }
+
+/* ---------- 术语表 ---------- */
+
+.glossary { margin: 0.5rem 0; }
+.glossary dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+.glossary dt .en {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.glossary dd {
+  margin: 0.2rem 0 0 0;
+  color: var(--ink);
+}
+.glossary .later {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- 页脚 ---------- */
+
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 打印 ---------- */
+
+@media print {
+  html { font-size: 12pt; }
+  body { max-width: none; padding: 0; }
+  .quiz-option { border: 1px solid #999; }
+  .quiz-option:disabled { opacity: 1; }
+  .quiz-reset, .nw-hint { display: none; }
+  section, .exercise, .quiz-question { break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="lesson-header">
+  <p class="lesson-kicker">第 2 课 · 财商系统课</p>
+  <h1>记账与应急金：建起你的第一道防线</h1>
+  <p class="lesson-meta">预计 20 分钟 · 从今天开始记账 · 上一课：<a href="0001-financial-map.html">画出你的财务地图</a></p>
+</header>
+
+<main>
+
+  <blockquote>
+    <p><strong>这课和你的使命有什么关系？</strong>你在第 1 课算出了自己的地图：月结余 <strong>+916</strong>、结余率 <strong>38%</strong>——这个引擎已经启动了。这课的任务：把每月结余变成一道<strong>防线</strong>（应急金），让你在攒钱、考研、还贷的路上，任何一次意外都不会把你打回原点。</p>
+  </blockquote>
+
+  <h2>一、为什么先要应急金，而不是先还贷？</h2>
+  <p>很多人一看到负债就想"赶紧还"，但顺序错了会吃亏。应急金是<strong>防线</strong>：手机坏了、生病、回家车票、考研报名费——这些事一定会发生，只是时间不确定。没有应急金的人，遇到意外只能刷信用卡、借消费贷，用 <strong>10%+ 的利息</strong>去救急。</p>
+  <p>你的助学贷款在校期间利息由财政补贴（<strong>≈ 0 成本</strong>），毕业后利率也只有同期 LPR − 30 个基点（目前约 2.5%–3%，随市场波动，见<a href="http://cqszx.gov.cn/bm/xjw/zwgk_51558/fdzdgknr_51561/lzyj_51562/zcwd/202509/t20250904_14968896.html" target="_blank" rel="noopener">官方政策问答</a>）。<strong>为 0 利息的债牺牲现金流，是最亏的。</strong>所以顺序是：</p>
+  <div class="formula">
+    <span class="tag">资金优先级</span>
+    ① 应急金（3–6 个月支出）　→　② 还高息债　→　③ 还低息债　→　④ 开始投资
+  </div>
+
+  <h2>二、应急金：存多少、放哪里</h2>
+  <h3>存多少？</h3>
+  <p>3–6 个月的<strong>基本支出</strong>。你的月支出 1,500 元，所以目标是 <strong>4,500 – 9,000 元</strong>。学生阶段 3 个月打底、6 个月更稳。</p>
+
+  <h3>放哪里？</h3>
+  <ul>
+    <li><strong>货币基金</strong>（余额宝、零钱通、银行 App 里的货基）——安全、随取随用、有微薄利息（目前年化约 1% 上下，随市场波动）。</li>
+    <li>⚠️ 不要放股票、不要买成定期理财——应急金的第一要求是<strong>随时能取</strong>。</li>
+    <li>💡 把应急金放进货币基金，就是你人生<strong>第一次真实的投资</strong>——风险最低的那一档，先学会走，再学跑。</li>
+  </ul>
+
+  <h2>三、怎么攒：先存后花（Pay Yourself First）</h2>
+  <p>秘诀只有一句：<strong>钱到手，先把要存的转走，剩下的才是可花的。</strong>不要等月底看剩多少——人永远会花光眼前能花的钱。</p>
+  <ul>
+    <li>你每月收入 2,416，支出 1,500。试试点：生活费一到账，先转 <strong>500–900</strong> 进货币基金。</li>
+    <li>剩下的照常花。你会惊讶地发现：生活并没有变差，但存款在涨。</li>
+  </ul>
+
+  <h2>四、动手练习：算你的应急金计划</h2>
+  <p>下面的计算器已经预填了你的数字（月支出 1500、每月能存 916）。看看你多久能攒够 3 个月、6 个月的安全垫？</p>
+
+  <div class="savings-goal-widget"></div>
+
+  <div class="exercise">
+    <h3>✍️ 练习完成后，请回答（发给我）</h3>
+    <ol>
+      <li>你打算每月"先存后花"存多少？</li>
+      <li>你的应急金会放在哪个 App 里（余额宝 / 零钱通 / 银行货基）？</li>
+      <li>按这个速度，几个月后你有 3 个月的底气？</li>
+    </ol>
+  </div>
+
+  <h2>五、记账 7 天挑战（从今天开始）</h2>
+  <p>不看账本，你永远不知道钱去哪了——"好像没乱花，但月底就是没钱"是所有人的错觉。<strong>记账 7 天</strong>，你会第一次看清自己的真实流向。</p>
+  <div class="exercise">
+    <h3>📱 挑战规则</h3>
+    <ol>
+      <li><strong>每笔都记</strong>：≥ 1 元的支出都记（备忘录 / 记账 App 都行，用 App 更省事）。</li>
+      <li><strong>只分 5 类</strong>：餐饮 / 住宿 / 交通 / 学习 / 娱乐社交（其他归"其他"）。分类越少越容易坚持。</li>
+      <li><strong>睡前 2 分钟</strong>：当天结账，不隔夜。</li>
+      <li><strong>不评判</strong>：这 7 天只记录，不改习惯。数据收集完了，第 3 课我们一起来"审"它。</li>
+    </ol>
+  </div>
+
+  <h2>六、小测验</h2>
+  <p>先回忆再作答，答完再翻上去核对。</p>
+
+  <div class="quiz" data-title="小测验 · 应急金">
+    <script type="application/json">
+    [
+      { "q": "应急金的用途是什么？", "options": ["应对突发支出", "获得高额回报", "偿还所有贷款", "购买最新手机"], "answer": 0 },
+      { "q": "应急金应该放在哪里？", "options": ["股票市场里", "货币基金里", "比特币里面", "期货合约里"], "answer": 1 },
+      { "q": "应急金一般存多少？", "options": ["一个月支出", "三个月支出", "一年收入额", "十年收入额"], "answer": 1 },
+      { "q": "攒应急金的第一步是：", "options": ["先花钱再存钱", "借钱来消费", "先存钱再花钱", "把钱全部花光"], "answer": 2 },
+      { "q": "助学贷款在校期间：", "options": ["贷款会自动消失", "本金需要立刻还", "利息由自己承担", "利息由财政补贴"], "answer": 3 }
+    ]
+    </script>
+  </div>
+
+  <h2>本课核心收获</h2>
+  <ul>
+    <li>顺序很重要：<strong>先应急金，再还低息债，最后才投资</strong>。</li>
+    <li>应急金 = 3–6 个月基本支出，放在<strong>货币基金</strong>，随时能取。</li>
+    <li><strong>先存后花</strong>：钱到手先转走要存的，剩下才可花。</li>
+    <li>从今天开始记账 7 天，只记录、不评判。</li>
+  </ul>
+
+  <h2>推荐阅读（本课配套）</h2>
+  <ul>
+    <li><a href="https://podcasts.apple.com/cn/podcast/e111-%E4%BB%A4%E4%BA%BA%E6%80%A6%E7%84%B6%E5%BF%83%E5%8A%A8%E7%9A%84%E5%BF%AB%E4%B9%90-%E5%AD%98%E9%92%B1-%E6%B3%95/id1559695855?i=1000632005443" target="_blank" rel="noopener">播客《知行小酒馆》E111：令人怦然心动的快乐（存钱）法</a>——听普通人怎么把存钱变成快乐的事，适合碎片时间。</li>
+    <li>《小狗钱钱》里"会下金蛋的鹅"的故事——应急金就是你第一只鹅的雏形。</li>
+    <li>助学贷款政策原文（官方）：<a href="https://jyt.ln.gov.cn/gk/zcjd/2025112111180311402/" target="_blank" rel="noopener">辽宁省教育厅政策解读</a>、<a href="http://cqszx.gov.cn/bm/xjw/zwgk_51558/fdzdgknr_51561/lzyj_51562/zcwd/202509/t20250904_14968896.html" target="_blank" rel="noopener">生源地助学贷款利率与贴息问答</a></li>
+  </ul>
+
+  <h2>下一步</h2>
+  <p>第 3 课《债务应对》：我们用你的真实债务地图（8 万助学贷款 + 30 万家庭债边界），制定还款优先级和节奏。记账满 7 天后带着数据来。</p>
+
+  <h2>课程地图</h2>
+  <ul class="course-map">
+    <li class="later">1. 财务地图：资产负债表与现金流（会计·已完成）</li>
+    <li class="now">2. 记账与应急金：第一道防线（会计）← <strong>本课</strong></li>
+    <li class="later">3. 债务应对：还款表与边界（会计+法律）</li>
+    <li class="later">4. 法律与钱：合同·担保·劳动法·权益（法律）</li>
+    <li class="later">5. 人力资本：劳动力市场与收入（市场）</li>
+    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场）</li>
+    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资）</li>
+    <li class="later">8. 资产配置与定投：第一笔钱（投资）</li>
+    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合）</li>
+  </ul>
+
+</main>
+
+<footer class="lesson-footer">
+  <p>有任何不清楚的地方，直接问我（你的老师）——你随时可以追问，我会帮你讲透。<br>做完练习、开始记账后告诉我，我们进入第 3 课。</p>
+</footer>
+
+<script>
+/* ============================================================
+   savings-goal.js — 可复用「应急金计算器」组件
+   用法：<div class="savings-goal-widget"></div>
+   功能：输入每月基本支出 + 每月能存多少 → 实时计算
+       3 个月 / 6 个月应急金目标、达成所需月数、预计达成日期
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString("zh-CN");
+  }
+
+  function addMonths(date, n) {
+    var d = new Date(date);
+    d.setMonth(d.getMonth() + n);
+    return d;
+  }
+
+  function render(container) {
+    container.innerHTML =
+      '<div class="nw-group">'
+      + '<p class="nw-group-title">输入你的数字</p>'
+      + '<div class="nw-row"><label for="sg-expense">每月基本支出（元）</label>'
+      + '<input id="sg-expense" type="number" min="0" step="100" value="1500" inputmode="numeric"></div>'
+      + '<div class="nw-row"><label for="sg-save">每月能存下的钱（元）</label>'
+      + '<input id="sg-save" type="number" min="0" step="100" value="916" inputmode="numeric"></div>'
+      + "</div>"
+      + '<div class="nw-result">'
+      + '<p class="nw-group-title" style="margin-bottom:0.3rem;">你的应急金计划</p>'
+      + '<div class="nw-grid">'
+      + '<div class="nw-cell">3 个月目标<b id="sg-target3">¥ 0</b></div>'
+      + '<div class="nw-cell">6 个月目标<b id="sg-target6">¥ 0</b></div>'
+      + '<div class="nw-cell">攒够 3 个月<b id="sg-months3">—</b></div>'
+      + '<div class="nw-cell">攒够 6 个月<b id="sg-months6">—</b></div>'
+      + '<div class="nw-cell">3 个月达成日<b id="sg-date3">—</b></div>'
+      + '<div class="nw-cell">6 个月达成日<b id="sg-date6">—</b></div>'
+      + "</div>"
+      + '<p class="nw-hint" id="sg-note" style="margin-top:0.6rem;"></p>'
+      + "</div>";
+
+    function val(id) {
+      var n = parseFloat(document.getElementById(id).value);
+      return isFinite(n) && n > 0 ? n : 0;
+    }
+
+    function update() {
+      var expense = val("sg-expense");
+      var save = val("sg-save");
+      var t3 = expense * 3;
+      var t6 = expense * 6;
+
+      document.getElementById("sg-target3").textContent = "¥ " + fmt(t3);
+      document.getElementById("sg-target6").textContent = "¥ " + fmt(t6);
+
+      function setMonths(el, target) {
+        if (save <= 0 || target <= 0) {
+          el.textContent = "—";
+          return null;
+        }
+        var months = Math.ceil(target / save);
+        el.textContent = months + " 个月";
+        return months;
+      }
+
+      var m3 = setMonths(document.getElementById("sg-months3"), t3);
+      var m6 = setMonths(document.getElementById("sg-months6"), t6);
+
+      function setDate(el, months) {
+        if (months == null) { el.textContent = "—"; return; }
+        el.textContent = addMonths(new Date(), months).toLocaleDateString("zh-CN", { year: "numeric", month: "long" });
+      }
+      setDate(document.getElementById("sg-date3"), m3);
+      setDate(document.getElementById("sg-date6"), m6);
+
+      var note = document.getElementById("sg-note");
+      if (save <= 0) {
+        note.textContent = "把" + fmt(expense) + "元基本支出 × 3~6，就是你的安全垫。先想办法让每月能存的钱 > 0。";
+      } else if (expense > 0) {
+        note.textContent = "保持这个存钱速度，约 " + (m6 == null ? "—" : m6) + " 个月后你就拥有 6 个月的底气。记住顺序：先存后花，存下的钱转进货币基金，别和日常开销混在一起。";
+      }
+    }
+
+    container.querySelectorAll("input").forEach(function (input) {
+      input.addEventListener("input", update);
+    });
+    update();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".savings-goal-widget").forEach(render);
+  });
+})();
+
+</script>
+<script>
+/* ============================================================
+   quiz.js — 可复用测验组件
+   用法：在 HTML 中放置
+     <div class="quiz" data-title="小测验"></div>
+     <script type="application/json" id="quiz-data">[ ... ]</script>
+   JSON 结构：
+     [{ "q": "题目", "options": ["选项A","选项B","选项C","选项D"], "answer": 0 }]
+   answer 为正确选项下标。选项建议等长（字数相同）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function render(container) {
+    var title = container.getAttribute("data-title") || "小测验";
+    var dataSrc = container.querySelector('script[type="application/json"]');
+    if (!dataSrc) {
+      container.innerHTML = '<p class="nw-hint">测验数据缺失（缺少 script[type="application/json"]）。</p>';
+      return;
+    }
+
+    var questions;
+    try {
+      questions = JSON.parse(dataSrc.textContent);
+    } catch (e) {
+      container.innerHTML = '<p class="nw-hint">测验数据解析失败。</p>';
+      return;
+    }
+
+    var html = '<h2>' + title + '</h2>';
+    questions.forEach(function (q, qi) {
+      html += '<div class="quiz-question" data-q="' + qi + '">';
+      html += '<p class="quiz-qtext">' + (qi + 1) + '. ' + q.q + '</p>';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-option" data-oi="' + oi + '">' + opt + '</button>';
+      });
+      html += '<p class="quiz-feedback"></p>';
+      html += '</div>';
+    });
+    html += '<p class="quiz-score" hidden></p>';
+    html += '<button type="button" class="quiz-reset" hidden>重新作答</button>';
+    container.insertAdjacentHTML("beforeend", html);
+
+    var scoreEl = container.querySelector(".quiz-score");
+    var resetEl = container.querySelector(".quiz-reset");
+    var total = questions.length;
+    var correctCount = 0;
+
+    container.querySelectorAll(".quiz-question").forEach(function (box, qi) {
+      var q = questions[qi];
+      var buttons = box.querySelectorAll(".quiz-option");
+      var feedback = box.querySelector(".quiz-feedback");
+
+      buttons.forEach(function (btn, oi) {
+        btn.addEventListener("click", function () {
+          if (btn.disabled) return;
+          buttons.forEach(function (b) { b.disabled = true; });
+          if (oi === q.answer) {
+            btn.classList.add("correct");
+            feedback.textContent = "✓ 正确！";
+            feedback.className = "quiz-feedback ok";
+            correctCount++;
+          } else {
+            btn.classList.add("wrong");
+            buttons[q.answer].classList.add("correct");
+            feedback.textContent = "✗ 再想想。正确答案已标出。";
+            feedback.className = "quiz-feedback no";
+          }
+          var done = container.querySelectorAll(".quiz-question").length;
+          var answered = container.querySelectorAll(".quiz-option:disabled").length;
+          if (answered === done * q.options.length) {
+            scoreEl.hidden = false;
+            resetEl.hidden = false;
+            var pct = Math.round((correctCount / total) * 100);
+            var words = pct === 100 ? "满分！两张表你已经吃透了 🎉"
+              : pct >= 60 ? "不错，复习一下答错的题，把公式记牢。"
+              : "没关系，回到上面的公式框再看一遍，然后重试。";
+            scoreEl.textContent = "得分：" + correctCount + " / " + total + "（" + pct + "%）— " + words;
+          }
+        });
+      });
+    });
+
+    resetEl.addEventListener("click", function () {
+      correctCount = 0;
+      scoreEl.hidden = true;
+      resetEl.hidden = true;
+      container.querySelectorAll(".quiz-question").forEach(function (box) {
+        box.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove("correct", "wrong");
+        });
+        var fb = box.querySelector(".quiz-feedback");
+        fb.textContent = "";
+        fb.className = "quiz-feedback";
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".quiz").forEach(render);
+  });
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考 · 法律术语表</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+  <header class="lesson-head">
+    <p class="meta">参考文档 · 术语表</p>
+    <h1>法律术语表（Glossary）</h1>
+    <p class="time">所有课程统一遵循本术语定义 · 建议打印或收藏</p>
+  </header>
+
+  <dl class="glossary">
+    <dt>律法 / 法律 <span class="en">law</span></dt>
+    <dd>广义：由国家制定或认可、以国家强制力保证实施的行为规范总和。狭义：仅指"法律"这一层级（见下）。</dd>
+
+    <dt>宪法 <span class="en">Constitution</span></dt>
+    <dd>国家的根本法，规定国家根本制度与公民基本权利义务，效力最高。现行宪法为 1982 年宪法（2018 年修正文本）。</dd>
+
+    <dt>法律 <span class="en">law (statute)</span></dt>
+    <dd>狭义法律：由全国人民代表大会及其常务委员会制定，如《民法典》《刑法》《劳动合同法》。</dd>
+
+    <dt>行政法规 <span class="en">administrative regulation</span></dt>
+    <dd>由国务院制定，效力低于法律，如《工伤保险条例》。</dd>
+
+    <dt>地方性法规 <span class="en">local regulation</span></dt>
+    <dd>由省、自治区、直辖市及设区的市人大及其常委会制定，只在本地有效，如各省《物业管理条例》。</dd>
+
+    <dt>规章 <span class="en">rules</span></dt>
+    <dd>部门规章（国务院部门制定）与地方政府规章（地方政府制定），效力最低，如住建部《商品房屋租赁管理办法》。</dd>
+
+    <dt>司法解释 <span class="en">judicial interpretation</span></dt>
+    <dd>最高人民法院、最高人民检察院对法律适用作出的解释，指导裁判，效力低于法律且不得与法律抵触。</dd>
+
+    <dt>部门法 <span class="en">branch of law</span></dt>
+    <dd>按调整对象划分的法律门类。中国官方划分为七个部门：宪法及宪法相关法、民法商法、行政法、经济法、社会法、刑法、诉讼与非诉讼程序法。</dd>
+
+    <dt>法典 <span class="en">code</span></dt>
+    <dd>对某一部门法系统编纂而成的整体性法律。现行最典型的是《中华人民共和国民法典》（7 编 1260 条，2021 年 1 月 1 日施行）。</dd>
+
+    <dt>法条 <span class="en">provision</span></dt>
+    <dd>法律文本中以"第×条"编号的基本单位。引用时写"《民法典》第 496 条"这样规范表述。</dd>
+
+    <dt>法律位阶 <span class="en">hierarchy of norms</span></dt>
+    <dd>法律文件的效力等级：宪法＞法律＞行政法规＞地方性法规＞规章。</dd>
+
+    <dt>上位法 / 下位法 <span class="en">higher / lower law</span></dt>
+    <dd>位阶高的叫上位法，低的叫下位法。规则：上位法优于下位法，下位法不得与上位法抵触。</dd>
+
+    <dt>特别法 / 一般法 <span class="en">special / general law</span></dt>
+    <dd>对特定领域特别规定的是特别法（如《消费者权益保护法》），普遍适用的是一般法（如《民法典》）。规则：特别法优于一般法。</dd>
+
+    <dt>现行有效 <span class="en">currently in force</span></dt>
+    <dd>法律数据库中的"时效性"标签。查法条必须认准此标签，避开已修正、已废止的版本。</dd>
+
+    <dt>调解 <span class="en">mediation</span></dt>
+    <dd>在第三方（人民调解委员会、法院等）主持下自愿达成协议解决纠纷，不伤和气、成本低。</dd>
+
+    <dt>仲裁 <span class="en">arbitration</span></dt>
+    <dd>把纠纷提交仲裁机构裁决。劳动争议仲裁是劳动争议的前置程序（一般先仲裁后诉讼）；商事仲裁一裁终局。</dd>
+
+    <dt>诉讼 <span class="en">litigation</span></dt>
+    <dd>向法院起诉，通过审判解决纠纷。分民事诉讼、刑事诉讼、行政诉讼三类，分别适用三部诉讼法。</dd>
+
+    <dt>行政复议 <span class="en">administrative reconsideration</span></dt>
+    <dd>不服行政机关的决定（如处罚），请求上级行政机关复查的制度，是行政诉讼前的救济途径之一。</dd>
+
+    <dt>证据 <span class="en">evidence</span></dt>
+    <dd>证明案件事实的材料：合同、聊天记录、转账记录、录音录像等。维权第一步永远是"保留证据"。</dd>
+  </dl>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      返回：<a href="../lessons/0001-chinese-legal-system-map.html">课程 0001</a> · <a href="legal-map.html">法律体系速查图</a>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
