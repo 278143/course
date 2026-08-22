@@ -6,12 +6,12 @@
 
 | 课程 | 子目录 | 页面网址 |
 | --- | --- | --- |
-| 心理学 | `psychology/` | `https://<用户名>.github.io/courses/psychology/` |
-| 考研 | `kaoyan/` | `https://<用户名>.github.io/courses/kaoyan/` |
-| FQ（理财） | `fq/` | `https://<用户名>.github.io/courses/fq/` |
-| 法律 | `law/` | `https://<用户名>.github.io/courses/law/` |
+| 心理学 | `psychology/` | https://278143.github.io/course/psychology/ |
+| 考研 | `kaoyan/` | https://278143.github.io/course/kaoyan/ |
+| FQ（理财） | `fq/` | https://278143.github.io/course/fq/ |
+| 法律 | `law/` | https://278143.github.io/course/law/ |
 
-课程链接形如：`https://<用户名>.github.io/courses/psychology/lessons/0001-psychology-as-science.html`
+课程链接形如：https://278143.github.io/course/psychology/lessons/0001-psychology-as-science.html
 
 ## 如何更新
 
