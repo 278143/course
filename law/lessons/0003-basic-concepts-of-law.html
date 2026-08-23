@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0003 · 法的基本概念</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+
+  <header class="lesson-head">
+    <p class="meta">课程 0003 · 法理基础</p>
+    <h1>法的基本概念：权利、义务与民事主体</h1>
+    <p class="time">⏱ 预计 30 分钟 · 前置：课程 0001、0002 · 为进入民法典做准备</p>
+  </header>
+
+  <h2><span class="secno">1</span>先回顾：三题热身上期内容</h2>
+  <div class="quiz" data-questions="review-1"></div>
+  <script type="application/json" id="review-1">[
+    {
+      "q": "“但书”在条文中起什么作用？",
+      "options": [
+        { "t": "设定例外", "ok": true },
+        { "t": "加重处罚", "ok": false },
+        { "t": "解释概念", "ok": false },
+        { "t": "规定程序", "ok": false }
+      ],
+      "why": "但书是“但是……但……除外”引导的例外条款，往往是最关键的争议点。"
+    },
+    {
+      "q": "“试用期包含在劳动合同期限内”是哪类条款？",
+      "options": [
+        { "t": "定义条款", "ok": true },
+        { "t": "规则条款", "ok": false },
+        { "t": "原则条款", "ok": false },
+        { "t": "但书条款", "ok": false }
+      ],
+      "why": "它只是在解释试用期与合同期的关系，不规定行为后果，是定义条款。"
+    },
+    {
+      "q": "只约定试用期、未约定总期限，试用期算？",
+      "options": [
+        { "t": "合同期限", "ok": true },
+        { "t": "附加期限", "ok": false },
+        { "t": "自动失效", "ok": false },
+        { "t": "视为无效", "ok": false }
+      ],
+      "why": "《劳动合同法》第 19 条第 4 款：仅约定试用期的，试用期不成立，该期限为劳动合同期限。"
+    }
+  ]</script>
+
+  <h2><span class="secno">2</span>法律关系三要素：谁 · 什么权利义务 · 指向什么</h2>
+  <p>法律不是抽象的文字游戏。任何一个法律关系，都由三块组成：</p>
+  <table>
+    <tr><th>要素</th><th>是什么</th><th>租房例子</th></tr>
+    <tr><td><strong>主体</strong></td><td>参与法律关系的人（自然人或组织）</td><td>你（承租人）、房东（出租人）</td></tr>
+    <tr><td><strong>内容</strong></td><td>双方的权利与义务</td><td>你有权住、有义务交租；房东有权收租、有义务交付房屋</td></tr>
+    <tr><td><strong>客体</strong></td><td>权利义务指向的对象</td><td>房屋、租金</td></tr>
+  </table>
+  <p>看懂任何纠纷，先问这三问：<strong>谁和谁之间？各自有什么权利义务？指向什么东西？</strong>——问题就清晰了一半。</p>
+
+  <h2><span class="secno">3</span>权利与义务：一枚硬币的两面</h2>
+  <p>用课程 0002 学过的“规范词”来理解，一秒就通：</p>
+  <ul>
+    <li><strong>义务</strong>＝你<strong>应当</strong>做什么 / <strong>不得</strong>做什么（如：按时交租；不得损坏房屋）；</li>
+    <li><strong>权利</strong>＝你<strong>可以</strong>做什么 / 要求别人做什么（如：有权居住；有权要求房东维修）。</li>
+  </ul>
+  <p>关键规律：<strong>你的权利，就是对方的义务</strong>（反之亦然）。权利义务总是成对出现——没人承担义务的地方，你的权利就是空话。</p>
+  <p>再细分一下权利：</p>
+  <ul>
+    <li><strong>绝对权（对世权）</strong>：能对抗所有人，比如你的物权、人身权——任何人都不得侵犯你的财产和身体；</li>
+    <li><strong>相对权（对人权）</strong>：只能向特定对象主张，典型是合同债权——你只能要求“承租人/出租人”履行，不能要求路人。</li>
+  </ul>
+  <p>此外还要区分两种关系：<strong>私法关系</strong>（个人对个人，如合同，适用《民法典》）与<strong>公法关系</strong>（个人对国家，如被处罚，适用《行政处罚法》《行政诉讼法》）。你在课程 0001 的地图上已经见过它们的家。</p>
+
+  <h2><span class="secno">4</span>民事主体三兄弟：自然人 · 法人 · 非法人组织</h2>
+  <p>谁是“人”？《民法典》给出了三类民事主体。记住它们，你就知道<strong>该和谁讲理、找谁要钱</strong>。</p>
+
+  <h3>① 自然人——你我他</h3>
+  <p>自然人的两个“能力”要分清：</p>
+  <table>
+    <tr><th></th><th>权利能力</th><th>行为能力</th></tr>
+    <tr><td><strong>是什么</strong></td><td>有资格享有权利、承担义务</td><td>能自己动手做法律行为（签合同、买东西）</td></tr>
+    <tr><td><strong>何时有</strong></td><td><strong>始于出生、终于死亡</strong>，人人平等（第 13、14 条）</td><td>分三档，与年龄和智力有关（见下表）</td></tr>
+  </table>
+  <table>
+    <tr><th>档次</th><th>对象</th><th>能做什么</th></tr>
+    <tr><td><strong>完全民事行为能力</strong></td><td>18 周岁以上；<br>16–18 周岁以自己劳动收入为主要生活来源的（“视为”完全，第 18 条）</td><td>独立实施一切民事法律行为</td></tr>
+    <tr><td><strong>限制民事行为能力</strong></td><td>8 周岁以上未成年人（第 19 条）；不能完全辨认自己行为的成年人（第 22 条）</td><td>独立实施纯获利益或与其年龄、智力相适应的行为；其他行为须法定代理人代理/同意/追认</td></tr>
+    <tr><td><strong>无民事行为能力</strong></td><td>不满 8 周岁（第 20 条）；不能辨认自己行为的成年人（第 21 条）</td><td>一切行为由法定代理人代理</td></tr>
+  </table>
+  <blockquote>
+    <p>看到“<strong>视为</strong>”这个词了吗？它就是法律拟制——法律把“16 岁打工少年”当作“完全行为能力人”对待，正如《劳动合同法》把“只约定试用期的合同”当作正式劳动合同。遇到“视为”，说明这是法律有意安排的后果，别拿常识硬套。</p>
+  </blockquote>
+
+  <h3>② 法人——公司这类“法律上的人”</h3>
+  <blockquote>
+    <p>第五十七条　法人是具有民事权利能力和民事行为能力，依法独立享有民事权利和承担民事义务的组织。</p>
+    <p>第六十条　法人以其全部财产独立承担民事责任。</p>
+    <span class="src">来源：《中华人民共和国民法典》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <p>公司是法人的典型。它有“人格”，能签合同、能被告。关键在<strong>独立责任</strong>：公司欠债，用<strong>公司自己的财产</strong>还；老板个人的财产一般不受牵连（这就是“有限责任”）。</p>
+  <p><strong>生活提示</strong>：公司欠薪，你起诉的对象是<strong>公司</strong>（法人），不是老板个人——除非存在滥用法人独立地位等特殊情形。</p>
+
+  <h3>③ 非法人组织——能活动，但“人格”不完整</h3>
+  <blockquote>
+    <p>第一百零二条　非法人组织是不具有法人资格，但是能够依法以自己的名义从事民事活动的组织。非法人组织包括个人独资企业、合伙企业、不具有法人资格的专业服务机构等。</p>
+    <span class="src">来源：《中华人民共和国民法典》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <p>合伙开饭馆、个人独资企业都属于这类。它们能以自己名义签合同，但没有“有限责任”的保护：<strong>普通合伙人对合伙债务承担无限连带责任</strong>——亏了，出资人要用自己的财产兜底。所以“跟谁做生意”先看清对方的“组织形态”。</p>
+
+  <h2><span class="secno">5</span>实战：跟谁签合同，决定了找谁负责</h2>
+  <table>
+    <tr><th>合同对方</th><th>主体类型</th><th>出了问题找谁</th></tr>
+    <tr><td>某某科技有限公司</td><td>法人（营利法人）</td><td>公司（以公司财产担责）</td></tr>
+    <tr><td>李老板（个体户执照）</td><td>个体工商户（自然人的特殊形态）</td><td>李老板本人（以个人财产担责）</td></tr>
+    <tr><td>张三、王五合伙经营</td><td>非法人组织（合伙企业）</td><td>合伙企业财产先还，不足时普通合伙人连带</td></tr>
+    <tr><td>邻居个人</td><td>自然人</td><td>其本人</td></tr>
+  </table>
+
+  <h2><span class="secno">6</span>测验：检索练习</h2>
+  <div class="quiz" data-questions="quiz-3"></div>
+  <script type="application/json" id="quiz-3">[
+    {
+      "q": "民法典规定，成年的年龄是？",
+      "options": [
+        { "t": "十六周岁", "ok": false },
+        { "t": "十八周岁", "ok": true },
+        { "t": "二十周岁", "ok": false },
+        { "t": "二十二周岁", "ok": false }
+      ],
+      "why": "第 17 条：十八周岁以上的自然人为成年人；成年人一般为完全民事行为能力人。"
+    },
+    {
+      "q": "无民事行为能力的未成年人，年龄是？",
+      "options": [
+        { "t": "不满六周岁", "ok": false },
+        { "t": "不满七周岁", "ok": false },
+        { "t": "不满八周岁", "ok": true },
+        { "t": "不满十周岁", "ok": false }
+      ],
+      "why": "第 20 条：不满八周岁的未成年人为无民事行为能力人，由其法定代理人代理实施民事法律行为。"
+    },
+    {
+      "q": "公司（法人）欠薪，应当起诉？",
+      "options": [
+        { "t": "公司本身", "ok": true },
+        { "t": "老板个人", "ok": false },
+        { "t": "总经理个", "ok": false },
+        { "t": "董事长个", "ok": false }
+      ],
+      "why": "第 60 条：法人以其全部财产独立承担民事责任。公司欠薪告公司，一般告不到老板个人。"
+    },
+    {
+      "q": "自然人的权利能力始于？",
+      "options": [
+        { "t": "出生", "ok": true },
+        { "t": "十八岁", "ok": false },
+        { "t": "结婚时", "ok": false },
+        { "t": "登记时", "ok": false }
+      ],
+      "why": "第 13 条：自然人从出生时起到死亡时止，具有民事权利能力。权利能力人人平等。"
+    },
+    {
+      "q": "下列哪项属于“义务”的表述？",
+      "options": [
+        { "t": "应当守约", "ok": true },
+        { "t": "可以买房", "ok": false },
+        { "t": "有权继承", "ok": false },
+        { "t": "享有名誉", "ok": false }
+      ],
+      "why": "“应当”=义务（必须做），“可以/有权/享有”=权利。你的权利往往就是对方的义务。"
+    }
+  ]</script>
+  <script>
+/* ============================================================
+   quiz.js — 可复用测验组件（即时反馈 · 检索练习）
+   用法：
+     <div class="quiz" data-questions="quiz-1"></div>
+     <script type="application/json" id="quiz-1">[ …题目… ]<\/script>
+     <script src="../assets/quiz.js"><\/script>
+   题目 JSON 结构：
+     [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
+   选项建议等长（字数一致），避免通过格式泄露答案。
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function initQuiz(box) {
+    var dataId = box.getAttribute("data-questions");
+    var src = document.getElementById(dataId);
+    if (!src) { box.innerHTML = '<p class="q-feedback bad show">题目数据缺失（#' + dataId + '）</p>'; return; }
+    var questions;
+    try { questions = JSON.parse(src.textContent); }
+    catch (e) { box.innerHTML = '<p class="q-feedback bad show">题目 JSON 解析失败</p>'; return; }
+
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "q-wrap";
+
+    questions.forEach(function (item, i) {
+      var qBox = document.createElement("div");
+      qBox.className = "q";
+
+      var title = document.createElement("p");
+      title.className = "q-title";
+      title.textContent = (i + 1) + ". " + item.q;
+      qBox.appendChild(title);
+
+      var opts = document.createElement("div");
+      opts.className = "q-opts";
+      item.options.forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opt";
+        b.textContent = opt.t;
+        b.addEventListener("click", function () {
+          if (qBox.classList.contains("done")) return;
+          qBox.classList.add("done");
+          answered++;
+          var fb = qBox.querySelector(".q-feedback");
+          if (opt.ok) {
+            correct++;
+            b.classList.add("correct");
+            fb.className = "q-feedback show good";
+            fb.innerHTML = "✔ 正确。" + (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          } else {
+            b.classList.add("wrong");
+            fb.className = "q-feedback show bad";
+            var right = item.options.filter(function (o) { return o.ok; });
+            var rightText = right.length ? right.map(function (o) { return o.t; }).join("、") : "（无）";
+            fb.innerHTML = "✘ 再想想。正确答案是：<strong>" + rightText + "</strong>。" +
+              (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          }
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      qBox.appendChild(opts);
+
+      var fb = document.createElement("div");
+      fb.className = "q-feedback";
+      qBox.appendChild(fb);
+
+      wrap.appendChild(qBox);
+    });
+
+    var score = document.createElement("div");
+    score.className = "score";
+    score.textContent = "已完成 0 / " + total + " 题";
+    wrap.appendChild(score);
+
+    function updateScore() {
+      score.textContent = "已完成 " + answered + " / " + total + " 题 · 答对 " + correct + " 题";
+      if (answered === total) {
+        score.textContent += " · 正确率 " + Math.round((correct / total) * 100) + "%";
+        if (correct === total) score.textContent += " 🎉 全部答对！";
+      }
+    }
+
+    box.innerHTML = "";
+    box.appendChild(wrap);
+  }
+
+  function initAll() {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+})();
+
+</script>
+
+  <div class="task">
+    <span class="tag">实战任务（今天就做）</span>
+    <ol>
+      <li>在 <strong>flk.npc.gov.cn</strong> 打开《中华人民共和国民法典》，读第 13、17、18、19、20、57、60、102 条，每条用一句话概括（写下来）；</li>
+      <li>找一份你身边的真实合同（租房、劳动合同、购物订单都行），回答：① 双方各是什么民事主体？② 列出对方的 3 条义务、你的 3 条义务；③ 如果对方违约，你找谁负责？</li>
+    </ol>
+  </div>
+
+  <div class="callout tip">
+    <span class="tag">课后阅读（权威原文）</span>
+    <p>① 《民法典》第一编第二章“自然人”第 13—24 条：<a href="https://www.gov.cn/xinwen/2020-06/01/content_5516649.htm" target="_blank" rel="noopener">中国政府网 · 中华人民共和国民法典</a>（10 分钟）</p>
+    <p>② 第三章“法人”第 57—60 条，感受“组织也有法律人格”（5 分钟）</p>
+  </div>
+
+  <h2><span class="secno">7</span>小结</h2>
+  <ul>
+    <li>法律关系 = <strong>主体 + 权利义务 + 客体</strong>；你的权利 = 对方的义务；</li>
+    <li>权利分<strong>绝对权</strong>（对抗所有人）与<strong>相对权</strong>（只能向特定人主张）；</li>
+    <li>自然人区分<strong>权利能力</strong>（始于出生，人人平等）与<strong>行为能力</strong>（三档：完全 / 限制 / 无）；</li>
+    <li>民事主体三类：<strong>自然人、法人、非法人组织</strong>——法人以自己财产独立担责（有限责任），非法人组织出资人要兜底（无限责任）；</li>
+    <li>看到“<strong>视为</strong>”＝法律拟制，是按法律意图安排的后果。</li>
+  </ul>
+
+  <div class="callout key">
+    <span class="tag">需要帮助？</span>
+    有任何不懂的地方，随时向你的 AI 老师提问。下一课（0004）正式踏入<strong>《民法典总则编》</strong>——民事法律行为、诉讼时效，都是从这里开始。
+  </div>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      上一课：<a href="0002-how-to-read-a-law.html">0002 如何读懂一部法律</a> · 参考：<a href="../reference/legal-map.html">法律体系速查图</a> · <a href="../reference/glossary.html">法律术语表</a>
+    </div>
+    <p>课程 0003 · 法的基本概念 — 法条原文以国家法律法规数据库（flk.npc.gov.cn）为准。</p>
+  </footer>
+
+</main>
+</body>
+</html>
