@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 5 课：感觉与知觉——你看到的世界是大脑建构的</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0005 · Sensation &amp; Perception</p>
+  <h1>感觉与知觉——你看到的世界是大脑建构的</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 1「认知与基本心理过程」第一课 · 承接第 4 课结尾"学习的认知面"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>从本课起进入认知领域。核心问题：<strong>"眼见为实"是真的吗？</strong>你将发现，你看到的不是世界本身，而是大脑对世界的一种<strong>建构</strong>。这既是理解自己的基础，也是继续批判伪科学（如读心术、"眼见"的直觉判断）的关键。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>感觉 vs 知觉：一步之遥，两种建构</h2>
+<p><strong>感觉（sensation）</strong>：感官接收原始物理刺激并转为神经信号——眼睛接收光、耳朵接收声波、皮肤接收压力。<strong>知觉（perception）</strong>：大脑把这些信号<strong>组织、解释、赋予意义</strong>。看手机屏幕，"视网膜接收到光点"是感觉；"这是一条微信消息"是知觉。<a href="https://openstax.org/books/psychology-2e/pages/5-1-sensation-versus-perception">[OpenStax Psychology 2e · 5.1]</a></p>
+<p>一句话：感觉是<strong>物理的</strong>，知觉是<strong>心理的</strong>。同一份感觉信息，可以被建构出完全不同的知觉——下面的例子会让这一点变得直观。</p>
+
+<h2>知觉是主动建构：错觉与两可图</h2>
+<ul>
+  <li><strong>错觉（illusion）</strong>：物理刺激没变，知觉却"错了"。缪勒-莱尔箭头：两条等长的线段，因为两端箭头的朝向不同，看起来一长一短——量一量，其实一样长。</li>
+  <li><strong>两可图（ambiguous figure）</strong>：同一张图，可以看成鸭子也可以看成兔子；可以看成花瓶也可以看成两个人的侧脸。<strong>同一个物理输入，两种稳定知觉</strong>——这直接证明知觉不是照相机式的复制，而是大脑的选择与组织。</li>
+</ul>
+<p class="small">关键推论：如果大脑会"编"，那么<strong>记忆、目击证词、直觉判断都可能被建构</strong>——这正是第 1 课"眼见不一定为实"的心理学基础，也是阶段 3 讨论心理困扰时反复出现的主题。</p>
+
+<h2>自上而下与自下而上：经验在替你"填空"</h2>
+<ul>
+  <li><strong>自下而上（bottom-up）</strong>：从感觉细节拼出整体——"先看到横竖撇捺，再认出是个字"。</li>
+  <li><strong>自上而下（top-down）</strong>：用经验、预期、情境解释感觉——"报纸标题有个字被咖啡渍盖住，你照样读得懂"，因为你的经验在替它填空。</li>
+</ul>
+<p>日常例子：你预期杯子里是热水，喝到温水也觉得偏烫；熟悉的人换个发型，你依然一眼认出；初到陌生城市的街道，怎么看都像"迷宫"，住三个月后觉得"一目了然"——<strong>同一双眼睛，不同的经验，不同的世界</strong>。</p>
+
+<h3>格式塔：知觉天生爱"组团"</h3>
+<p>格式塔心理学家发现，知觉会自动把部分组织成整体：<strong>接近</strong>（靠得近的看成一堆）、<strong>相似</strong>（长得像的归为一组）、<strong>闭合</strong>（缺口的图形自动补全）。手机图标为什么一眼能认出是一组？点状图为什么能看出人脸？都是这个原理。</p>
+
+<h2>感觉适应：为什么"久闻不觉其香"</h2>
+<p>持续不变的刺激，感觉会逐渐减弱：香水味闻久了闻不到，房间的钟摆声几分钟后消失，泡热水澡十分钟后觉得"就这温度"。<strong>感觉适应</strong>让大脑把资源留给"变化"——变化才是需要警觉的。反过来，这也是为什么一成不变的环境让人麻木、而变化让人清醒。</p>
+
+<h2>为什么这很重要：伪科学如何利用你的知觉</h2>
+<p>自称"读心""通灵"的表演，常常利用自上而下加工与错觉：给出模糊信息，让你自己的预期去"填空"，然后宣称"我说中了"。用第 1 课的武器检查：<strong>这些说法可证伪吗？有没有可重复的实验证据？</strong>没有——正如 ESP（超感知觉）研究在严密实验中始终无法稳定重复。知觉科学给你的不是神秘，而是<strong>更可信的解释</strong>。</p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "看到一朵红花：视网膜接收光线是感觉，「这是一朵花」的认出来是：",
+    "options": ["知觉：大脑组织并赋予感觉意义", "感觉：视网膜接收光的物理刺激", "适应：长期暴露后反应逐渐减弱", "错觉：物理刺激本身发生了变化"],
+    "answer": 0,
+    "explain": "接收原始刺激=感觉；组织、解释、赋予意义=知觉。「这是一朵花」是大脑的建构，不是眼睛的输入。"
+  },
+  {
+    "q": "同一张图既能看成鸭子又能看成兔子，最能说明：",
+    "options": ["同一刺激可以被建构出不同知觉", "眼睛接收的信息本身就是错误的", "这种图属于伪造的视觉骗局", "知觉是完全被动复制外界信息"],
+    "answer": 0,
+    "explain": "两可图=同一个物理输入、两种稳定知觉，证明知觉是大脑主动选择与组织，不是照相机式复制。"
+  },
+  {
+    "q": "报纸标题有个字被污渍盖住，你依然读懂了整句话。这主要靠：",
+    "options": ["自上而下加工：经验预期在填空", "自下而上加工：从细节拼出整体", "感觉适应：对污渍逐渐失去注意", "格式塔闭合：图形自动补全缺口"],
+    "answer": 0,
+    "explain": "缺字仍能读懂，是经验与上下文在替你补全——自上而下加工。格式塔「闭合」在此也参与，但主因是语义经验。"
+  },
+  {
+    "q": "刚进房间闻到明显气味，十分钟后几乎感觉不到。这是：",
+    "options": ["感觉适应：持续刺激使反应减弱", "知觉错觉：大脑错误地忽略了气味", "自下而上加工：细节被逐步放大", "经典条件反射：气味与场景自动配对"],
+    "answer": 0,
+    "explain": "持续不变的刺激导致感觉反应减弱=感觉适应。大脑把资源留给「变化」，这解释了对熟悉环境的麻木。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务：找一个"建构"的证据</p>
+  <p>三选一，发给我：</p>
+  <ol>
+    <li>网上搜一个<strong>视错觉或两可图</strong>（如"鸭子还是兔子""缪勒-莱尔箭头"），用本课概念解释它为什么"骗"了你的眼睛；</li>
+    <li>回忆一次<strong>"预期改变了你的知觉"</strong>的经历（以为杯里是水结果是别的、以为某人会生气结果没有……），用自下而上/自上而下分析；</li>
+    <li>找一个生活中的<strong>感觉适应</strong>例子（气味、声音、温度……），说明它帮你把注意力留给了什么。</li>
+  </ol>
+  <p>写完发我，我们进入第 6 课：记忆。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/5-1-sensation-versus-perception">OpenStax Psychology 2e 第 5 章「感觉与知觉」</a>（免费；5.1 感觉 vs 知觉、5.4 视知觉、5.5 听觉等）；或津巴多《心理学与生活》第 4 章「感觉」与第 5 章「知觉」。</p>
+  <p><strong>延伸：</strong>错觉演示与两可图合集可搜 "optical illusions" / "ambiguous figures"；对"眼见为实"的伪科学辨析可回看第 1 课的可证伪性概念。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："感觉和知觉的界限到底在哪？""为什么有人看到的鸭子有人看到兔子？""记忆也会被建构吗？"——直接问我，特别是与你的直觉冲突的地方。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0004-observational-learning.html">第 4 课：观察学习（学习单元收尾）</a></li>
+  <li><a href="0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学（批判思维武器）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（含第 5 课术语）</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>

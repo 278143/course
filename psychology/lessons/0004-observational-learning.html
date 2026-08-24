@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 4 课：观察学习——班杜拉、波波娃娃与"看会"的本领</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0004 · Learning (Part 2)</p>
+  <h1>观察学习——班杜拉、波波娃娃与"看会"的本领</h1>
+  <p class="lesson-meta">预计 20 分钟 · 学习的科学（下）· 完成"学习"单元的第三块拼图</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>第 3 课学了两种条件反射——它们都要求你<strong>亲身经历后果</strong>。但人类大量学习恰恰不是这样：看别人怎么做、看到后果，就学会了。本课补上观察学习，<strong>"学习"单元就完整了</strong>；这也是理解广告、追星、家庭教育、网络跟风等现象的钥匙。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。（你上轮问的斯金纳箱与老虎机原理，已在对话中解答，并作为课后补充并入第 3 课，不占本课主线。）</p>
+</div>
+
+<h2>波波娃娃实验：看，就是学</h2>
+<p>班杜拉（Albert Bandura）1961 年的经典实验：让幼儿园孩子观看一段视频——一个成人对着充气娃娃"波波"拳打脚踢、大喊大叫，视频里的成人因为打娃娃得到表扬（或毫无后果）。随后孩子被带进放有波波娃娃的房间，<strong>没有经过任何训练</strong>，许多孩子立刻对娃娃拳打脚踢，动作几乎和视频里一模一样。<a href="https://openstax.org/books/psychology-2e/pages/6-4-observational-learning-modeling">[OpenStax Psychology 2e · 6.4]</a></p>
+<p>对照组的安排更关键：看成人温和对待娃娃的孩子，之后也温和对待。结论是：<strong>通过观察他人的行为及其后果，就能习得行为——不需要亲自被强化</strong>。这正是观察学习（observational learning）与操作性条件反射的根本区别。</p>
+
+<h3>观察学习的四步</h3>
+<ol>
+  <li><strong>注意（attention）</strong>：得先看见。分心、没留意就学不到。</li>
+  <li><strong>保持（retention）</strong>：得记住，把看到的编码进记忆。</li>
+  <li><strong>复现（reproduction）</strong>：得有动作能力把它做出来（小孩看懂了扣篮也扣不了）。</li>
+  <li><strong>动机（motivation）</strong>：得有理由去做——尤其是看到"榜样因此得到好结果"（替代强化，vicarious reinforcement）。</li>
+</ol>
+<p class="small">注意第四步：<strong>看到别人因某个行为得到好结果</strong>，会增强你做同样行为的动机——这是广告和偶像文化的心理基础。</p>
+
+<h2>三种学习方式放在一起（检索练习）</h2>
+<table>
+  <thead><tr><th></th><th>经典条件反射</th><th>操作性条件反射</th><th>观察学习</th></tr></thead>
+  <tbody>
+    <tr><td>怎么学的</td><td>刺激配对</td><td>亲身经历后果</td><td>观察他人与后果</td></tr>
+    <tr><td>关键人物</td><td>巴甫洛夫</td><td>斯金纳</td><td>班杜拉</td></tr>
+    <tr><td>学习方式</td><td>被动联想</td><td>主动操作</td><td>看会（可无亲自强化）</td></tr>
+    <tr><td>例子</td><td>铃声→流口水</td><td>点赞→更爱发</td><td>看爸妈怎么打招呼→照做</td></tr>
+  </tbody>
+</table>
+<p>把三者放在一起比着记，比单独记一个牢固得多——这也是学习科学里的"交错练习"（interleaving）。</p>
+
+<h2>观察学习在真实世界里</h2>
+<ul>
+  <li><strong>广告与偶像</strong>：明星代言 = 把产品与"我喜欢/羡慕的人"配对；粉丝模仿偶像的言行、穿搭、语气——观察学习的四步全部在线。</li>
+  <li><strong>家庭教育</strong>：孩子对情绪的回应方式、说话的腔调、遇挫时的反应，大多不是被教出来的，而是看父母看会的。对父母如此，对你观察身边的同事、朋友也一样。</li>
+  <li><strong>媒体暴力争议</strong>：波波娃娃实验常被引用为"看暴力片会让人暴力"。用第 1 课的武器检查这句话：实验是在实验室、短期情境下测量立即反应——它说明"看到攻击行为会激活攻击行为"，但<strong>不能直接推出"长期看暴力内容导致现实暴力"的因果结论</strong>。相关 ≠ 因果，永远先问证据。</li>
+</ul>
+
+<h3>顺带一提：学习的"认知面"</h3>
+<p>托尔曼（Tolman）的老鼠能在迷宫中央被堵住时，绕路找到之前只走过一次的捷径——说明它脑子里有<strong>认知地图</strong>，学习不只是"刺激—反应"的机械联结；苛勒（Köhler）的黑猩猩会"顿悟"——突然看明白怎么把箱子叠起来够到香蕉，而非盲目试错。学习里有<strong>看不见的认知过程</strong>在起作用——这正是下一阶段（感觉与知觉、记忆、思维）的桥。</p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "波波娃娃实验最核心的发现是：",
+    "options": ["孩子能通过观察学会攻击行为且无需亲自被强化", "孩子只有亲自体验后果才能真正学会任何行为", "攻击行为完全是本能天生与学习无关", "观察只能影响情绪反应无法影响行为"],
+    "answer": 0,
+    "explain": "孩子只看视频就习得并做出攻击动作，没有亲自得到任何强化——这是观察学习与操作性条件反射的根本区别。"
+  },
+  {
+    "q": "小明看到同学因为主动回答问题被老师表扬，之后也开始举手。这最符合：",
+    "options": ["替代强化：看到他人因行为得好处而增强动机", "经典条件反射：铃声与食物自动配对形成联想", "连续强化：每一次回答都得到老师的直接表扬", "顿悟学习：突然看明白回答问题的意义所在"],
+    "answer": 0,
+    "explain": "观察到「别人做→得到好结果」，自己没被强化但动机增强——观察学习第四步（动机/替代强化）。"
+  },
+  {
+    "q": "「波波娃娃实验证明看暴力片会让人变暴力」——用第一课的方法检查，最恰当的说法是：",
+    "options": ["实验只能说明短期情境下的激活，不能直接推出长期因果", "该实验是随机对照实验，完全可以确立长期因果关系", "波波娃娃是虚构玩具，因此该结论完全无效无需在意", "媒体内容与行为毫无关系任何研究都不值得参考"],
+    "answer": 0,
+    "explain": "实验室短期情境 ≠ 长期现实因果；「相关≠因果」是第 1 课的武器。实验有价值，但结论不能超范围外推。"
+  },
+  {
+    "q": "看懂了扣篮动作但做不出来，说明观察学习卡在了哪一步？",
+    "options": ["复现：缺少做出动作所需的技能与体能", "注意：没有认真观察扣篮的动作细节", "保持：看完之后没能记住这个动作", "动机：没有足够的理由去做扣篮动作"],
+    "answer": 0,
+    "explain": "四步中的「复现」需要身体能力。看懂≠能做到，正是这一步在起作用。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务：找一个"看会"的实例</p>
+  <p>在生活、影视或自己的经历中找一个<strong>观察学习</strong>实例，用四步分析它（注意→保持→复现→动机），发给我：</p>
+  <ol>
+    <li>这个人看到了什么行为？看到了什么后果？</li>
+    <li>四步里哪一步最明显、哪一步可能缺失？</li>
+    <li>这个例子如果换成操作性条件反射，会有什么不同？</li>
+  </ol>
+  <p>提示：你自己的经历可选可不选——选一个你觉得有意思的就行。写完发我，我们就完成"学习"单元，下一课进入<strong>感觉与知觉</strong>。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/6-4-observational-learning-modeling">OpenStax Psychology 2e 第 6.4 节「观察学习（建模）」</a>（免费，含波波娃娃实验与媒体暴力讨论）；或津巴多《心理学与生活》第 6 章「学习」。</p>
+  <p><strong>延伸：</strong>Bandura, Ross &amp; Ross (1961). <em>Transmission of aggression through imitation of aggressive models.</em> 波波娃娃实验原文；<a href="https://www.simplypsychology.org/bobo-doll.html">[Simply Psychology 的通俗解读]</a>（二手，结论以教材为准）。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："观察学习和模仿有什么区别？""我看了那么久别人的学习方法，为什么还是学不会？""广告里到底哪些是观察学习、哪些是经典条件反射？"——直接问我，直到概念真正属于你。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0003-the-science-of-learning.html">第 3 课：学习的科学（上）——含课后补充：斯金纳箱与老虎机原理</a></li>
+  <li><a href="../reference/learning-and-behavior.html">参考：学习与行为改变速查</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>
