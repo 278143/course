@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红旗清单 · 识别课程风险</title>
+<style>
+/* ============================================================
+   lesson.css — 教学工作区共享样式（Tufte 风格，中文友好，可打印）
+   所有 lessons/ 与 reference/ 页面共用；妈妈版讲义有独立更柔和的样式。
+   ============================================================ */
+:root {
+  --ink: #2b2b2b;
+  --paper: #fdfcf8;
+  --accent: #8a5a44;
+  --accent2: #3f627f;
+  --muted: #6b6b6b;
+  --rule: #d8d2c4;
+  --good: #3f7d51;
+  --bad: #a0453c;
+  --hl: #f4ead8;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  line-height: 1.8; font-size: 1rem;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.4rem 6rem; }
+header.lesson-head { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 2.4rem; }
+.kicker {
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; font-size: .7rem; color: var(--accent); margin: 0 0 .4rem;
+}
+h1 {
+  font-size: 1.85rem; line-height: 1.3; margin: .3rem 0 .5rem;
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lesson-meta { font-size: .85rem; color: var(--muted); }
+h2 {
+  font-size: 1.28rem; margin: 2.6rem 0 .7rem; color: var(--accent2);
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  border-bottom: 1px solid var(--rule); padding-bottom: .3rem;
+}
+h3 { font-size: 1.05rem; margin: 1.7rem 0 .4rem; color: var(--ink); }
+p { margin: .85rem 0; }
+a { color: var(--accent2); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); }
+ul, ol { padding-left: 1.5rem; margin: .7rem 0; }
+li { margin: .35rem 0; }
+blockquote {
+  margin: 1.3rem 0; padding: .4rem 1.2rem; border-left: 3px solid var(--accent);
+  background: var(--hl); font-size: .96rem;
+}
+blockquote p { margin: .5rem 0; }
+code { font-family: Consolas, Menlo, monospace; font-size: .85em; background: #f1ede2; padding: .05rem .3rem; border-radius: 3px; }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1.1rem; margin: 1.1rem 0; background: #fff; }
+.card.flag { border-left: 4px solid var(--bad); }
+.card.ok { border-left: 4px solid var(--good); }
+.card.tip { border-left: 4px solid var(--accent2); }
+.card.warn { border-left: 4px solid #b8860b; }
+.card h4 { margin: 0 0 .4rem; font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .95rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--rule); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--hl); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-weight: 600; }
+.practice {
+  border: 1.5px dashed var(--accent2); border-radius: 6px; padding: 1rem 1.2rem; margin: 1.4rem 0; background: #fff;
+}
+.practice h4 { margin: 0 0 .4rem; color: var(--accent2); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+/* ---- quiz widget ---- */
+.quiz { margin: 1.6rem 0; }
+.quiz-question { font-weight: 600; margin-bottom: .5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left; margin: .45rem 0; padding: .55rem .85rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: #fff; font: inherit; cursor: pointer; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--accent2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { border-color: var(--good); background: #edf4ee; }
+.quiz-option.wrong { border-color: var(--bad); background: #f9eceb; }
+.quiz-feedback { font-size: .88rem; margin-top: .55rem; color: var(--muted); min-height: 1.2em; }
+/* ---- primary source callout ---- */
+.primary { margin: 1.6rem 0; padding: .9rem 1.2rem; border-radius: 6px; background: #eef2f6; border: 1px solid #c9d6e0; }
+.primary .tag { font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .72rem; letter-spacing: .12em; color: var(--accent2); }
+footer.lesson-foot {
+  margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .85rem; color: var(--muted);
+}
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; font-size: .9rem; }
+.sidenote { font-size: .8rem; color: var(--muted); }
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 1cm; }
+  .quiz-option { border: none; background: #fff; }
+  .quiz-option.correct { background: #edf4ee; }
+  .quiz-option.wrong { background: #f9eceb; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="lesson-head">
+  <p class="kicker">Reference · 只给你自己看</p>
+  <h1>红旗信号清单</h1>
+  <p class="lesson-meta">用于监测元素舞/大师班的风险升级。<strong>绝不给妈妈看。</strong>打印一份贴在你自己案头。</p>
+</header>
+
+<h2>A. 课程本身的红旗（≥3 条 = 认真设防）</h2>
+<ol>
+  <li>费用层层加码：初级班 → 游学 → 大师班，价格跳涨（3000 → 3 万+）</li>
+  <li>诱导借贷/分期/众筹上课："大师班里大部分人都借钱，有人欠几百万"</li>
+  <li>要求对导师绝对信任，不允许质疑，质疑被说成"能量不够/功课没做到"</li>
+  <li>隔离学员与家人："家人不理解你""只有这里懂你"</li>
+  <li>用大哭大喊/极端情绪制造"见效"假象，课后精疲力竭、失声、情绪更差</li>
+  <li>要求保密："课程内容不要外传""这是你的功课"</li>
+  <li>制造愧疚感："你不来就是不够爱自己""你不进步对不起老师"</li>
+  <li>导师无公开资质、无心理学受训背景、查无专业认证</li>
+  <li>神化导师：学员的进步全部归功于老师，老师的话不容讨论</li>
+  <li>鼓励拉人入会、发展下线、带朋友来上课</li>
+  <li>收费不走正规对公账户、不开发票、不退费条款苛刻</li>
+  <li>课程内容高度情绪化、仪式化、不允许"冷静旁观"</li>
+</ol>
+
+<h2>B. 家庭财务防线（现在就做，不等出事）</h2>
+<ul>
+  <li>和爸爸/家人统一口径：<strong>不共同承担她个人的学习借贷</strong>（先讲好，比事发后吵架强）</li>
+  <li>明确"家里的钱怎么花，需要全家一起商量"——这是边界，不是控制</li>
+  <li>若她已签约借贷：看合同利率、违约金、放贷机构是否持牌（警惕套路贷）</li>
+  <li>大额付款前设"冷静期"：24–48 小时后再决定</li>
+  <li>别替她还第一笔——那是把家庭财务拖下水的开始</li>
+</ul>
+
+<h2>C. 求助通道（抄下来）</h2>
+<table>
+<thead><tr><th>情况</th><th>通道</th></tr></thead>
+<tbody>
+<tr><td>妈妈或你情绪崩溃、想不开</td><td><strong>12356</strong> 全国心理援助热线（免费，24 小时）</td></tr>
+<tr><td>借贷/合同纠纷</td><td><strong>12348</strong> 法律援助热线</td></tr>
+<tr><td>疑似诈骗/非法集资</td><td><strong>96110</strong> 反诈专线 / 110</td></tr>
+<tr><td>消费纠纷、不退费</td><td><strong>12315</strong> 市场监管投诉</td></tr>
+<tr><td>疑似邪教性质的精神操控</td><td>当地反邪教部门 / 12339（国家安全机关举报）</td></tr>
+</tbody>
+</table>
+
+<div class="card warn">
+  <h4>什么时候该升级行动</h4>
+  <p>出现以下任一情况，别再"慢慢来"：她已被要求借贷、被要求与家人断联、出现自伤/自杀言语、课程方上门或电话施压。此时直接执行 B 和 C。</p>
+</div>
+
+<footer class="lesson-foot">
+  <p class="nav-links"><a href="glossary.html">← 术语表</a> · <a href="../lessons/0003-the-course.html">第 3 课：课程设计 →</a></p>
+</footer>
+</div>
+</body>
+</html>

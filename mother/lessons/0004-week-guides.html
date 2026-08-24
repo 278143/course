@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 4 课 · 8 周执行手册（你用的）</title>
+<style>
+/* ============================================================
+   lesson.css — 教学工作区共享样式（Tufte 风格，中文友好，可打印）
+   所有 lessons/ 与 reference/ 页面共用；妈妈版讲义有独立更柔和的样式。
+   ============================================================ */
+:root {
+  --ink: #2b2b2b;
+  --paper: #fdfcf8;
+  --accent: #8a5a44;
+  --accent2: #3f627f;
+  --muted: #6b6b6b;
+  --rule: #d8d2c4;
+  --good: #3f7d51;
+  --bad: #a0453c;
+  --hl: #f4ead8;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  line-height: 1.8; font-size: 1rem;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.4rem 6rem; }
+header.lesson-head { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 2.4rem; }
+.kicker {
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; font-size: .7rem; color: var(--accent); margin: 0 0 .4rem;
+}
+h1 {
+  font-size: 1.85rem; line-height: 1.3; margin: .3rem 0 .5rem;
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lesson-meta { font-size: .85rem; color: var(--muted); }
+h2 {
+  font-size: 1.28rem; margin: 2.6rem 0 .7rem; color: var(--accent2);
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  border-bottom: 1px solid var(--rule); padding-bottom: .3rem;
+}
+h3 { font-size: 1.05rem; margin: 1.7rem 0 .4rem; color: var(--ink); }
+p { margin: .85rem 0; }
+a { color: var(--accent2); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); }
+ul, ol { padding-left: 1.5rem; margin: .7rem 0; }
+li { margin: .35rem 0; }
+blockquote {
+  margin: 1.3rem 0; padding: .4rem 1.2rem; border-left: 3px solid var(--accent);
+  background: var(--hl); font-size: .96rem;
+}
+blockquote p { margin: .5rem 0; }
+code { font-family: Consolas, Menlo, monospace; font-size: .85em; background: #f1ede2; padding: .05rem .3rem; border-radius: 3px; }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1.1rem; margin: 1.1rem 0; background: #fff; }
+.card.flag { border-left: 4px solid var(--bad); }
+.card.ok { border-left: 4px solid var(--good); }
+.card.tip { border-left: 4px solid var(--accent2); }
+.card.warn { border-left: 4px solid #b8860b; }
+.card h4 { margin: 0 0 .4rem; font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .95rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--rule); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--hl); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-weight: 600; }
+.practice {
+  border: 1.5px dashed var(--accent2); border-radius: 6px; padding: 1rem 1.2rem; margin: 1.4rem 0; background: #fff;
+}
+.practice h4 { margin: 0 0 .4rem; color: var(--accent2); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+/* ---- quiz widget ---- */
+.quiz { margin: 1.6rem 0; }
+.quiz-question { font-weight: 600; margin-bottom: .5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left; margin: .45rem 0; padding: .55rem .85rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: #fff; font: inherit; cursor: pointer; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--accent2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { border-color: var(--good); background: #edf4ee; }
+.quiz-option.wrong { border-color: var(--bad); background: #f9eceb; }
+.quiz-feedback { font-size: .88rem; margin-top: .55rem; color: var(--muted); min-height: 1.2em; }
+/* ---- primary source callout ---- */
+.primary { margin: 1.6rem 0; padding: .9rem 1.2rem; border-radius: 6px; background: #eef2f6; border: 1px solid #c9d6e0; }
+.primary .tag { font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .72rem; letter-spacing: .12em; color: var(--accent2); }
+footer.lesson-foot {
+  margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .85rem; color: var(--muted);
+}
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; font-size: .9rem; }
+.sidenote { font-size: .8rem; color: var(--muted); }
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 1cm; }
+  .quiz-option { border: none; background: #fff; }
+  .quiz-option.correct { background: #edf4ee; }
+  .quiz-option.wrong { background: #f9eceb; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="lesson-head">
+  <p class="kicker">Lesson 4 · 执行手册 · 只给你自己看</p>
+  <h1>8 周执行手册：每周具体怎么做</h1>
+  <p class="lesson-meta">讲义是给妈妈看的门面；这一份是你看的操作手册。每周结构：每天小动作 → 周日电话脚本 → 可能的反应与应对 → 你要记的。</p>
+</header>
+
+<h2>通用规则（每周都一样）</h2>
+<ul>
+  <li><strong>顺序可调</strong>：默认 1→8，但第 2 周（跳舞）或她愿意的先做。她做哪周，就哪周是"本周"。</li>
+  <li><strong>每周只推一件事</strong>，别贪多。她一周只做了 1 天，也算完成——不检查、不验收。</li>
+  <li><strong>周日电话固定时间</strong>（比如 20:00），雷打不动。时间的稳定比内容更重要。</li>
+  <li>电话里你只做三件事：<strong>听、说"嗯/然后呢"、问一个轻问题</strong>。绝不问"你做了没"。</li>
+</ul>
+
+<div class="card ok"><h4>开课前清单（3 项）</h4>
+<ol>
+  <li>飞书把讲义链接发给妈妈（配一句话，别解释）</li>
+  <li>离家前一起做一次：放歌动一动，或各写一个情绪词</li>
+  <li>约好"每周日晚上 8 点打电话"</li>
+</ol></div>
+
+<h2>第 1 周 · 给自己的情绪取名字</h2>
+<p><strong>每天：</strong>纸上写"今天我有点___"。她想不到词时给她词库：<em>委屈、憋屈、烦、累、怕、慌、高兴、踏实、松快</em>。</p>
+<p><strong>周日电话脚本：</strong>①"这周过得咋样？"→ 听 → ②"哪天心里动了一下？"→ 她说什么都接："哦，那会儿你心里是啥感觉？"→ ③收尾："这周就这一件事，别的不用做。"</p>
+<p><strong>可能的反应：</strong>她说"这有什么用"→ 你："我也不知道有没有用，试一周呗，没用就扔。"</p>
+<p><strong>你要记的：</strong>她常提哪个词？如果是"委屈/憋屈"，下周电话顺着这个词聊。</p>
+
+<h2>第 2 周 · 身体动一动</h2>
+<p><strong>每天：</strong>放歌自由动 3–5 分钟。你们约好同一首歌。</p>
+<p><strong>周日电话：</strong>开着免提放同一首歌，各自在屋里动。<strong>互相看不见</strong>——这点很重要，她不会觉得被盯着。</p>
+<p><strong>可能的反应：</strong>她笑场/嫌弃 → "哈哈，那就晃两下也行。"</p>
+<p><strong>你要记的：</strong>她放的什么歌？老歌 → 下次聊那个年代的事。</p>
+
+<h2>第 3 周 · 写写心里话</h2>
+<p><strong>每天：</strong>写 15 分钟"心里最想说的话"，写完合上，不重读。可选提示："最近压在心里的一件事""最想对谁说但没说出口的话""今天最堵的一个瞬间"。</p>
+<p><strong>周日电话：</strong><strong>不问她写了什么。</strong>只问："写的时候，松快一点没？"她主动说起就听；不说，不追问。</p>
+<p><strong>可能的反应：</strong>"写不出来"→ "那就写'写不出来'四个字，也算。"</p>
+<p><strong>你要记的：</strong>她电话里的语气变化（比上周松还是紧）。</p>
+
+<h2>第 4 周 · 对自己温柔一点</h2>
+<p><strong>每天：</strong>对自己说三句："你累了。""你做得够好了。""我在呢。"</p>
+<p><strong>周日电话：</strong>"说说你想原谅自己什么。"她沉默/抗拒 → 你先示范："我先说，我上次答应你的事没做到……"（示范，不是评判）。她哭了 → 安静陪着，说"我在这"。</p>
+<p><strong>你要记的：</strong>她提的"想原谅的事"，往往是她最深的痛点——记录下来，以后别踩。</p>
+
+<h2>第 5 周 · 讲讲你厉害的地方</h2>
+<p><strong>每天：</strong>记一件干得漂亮的事，哪怕很小。</p>
+<p><strong>周日电话：</strong>"讲一件你干得最漂亮的事，我听着。"不打断；讲完说"这事我真不知道 / 你真行"。</p>
+<p><strong>可能的反应：</strong>"我没什么厉害的"→ 你直接举例："你把我带大了，这不算？"（要具体，别空夸）</p>
+<p><strong>你要记的：</strong>她讲了哪几件事 → 她自我价值的火种，爬山时可以接着聊。</p>
+
+<h2>第 6 周 · 出门走一走</h2>
+<p><strong>每天：</strong>下楼走 10 分钟，或去菜市场转转。</p>
+<p><strong>周日电话：</strong>"想去哪个地方看看？"她说"哪都不想去"→ "那就说说你小时候爱去哪儿。"</p>
+<p><strong>你要记的：</strong>她提到的地方 → 爬山候选地。</p>
+
+<h2>第 7 周 · 咱俩说说话（最重要的一周）</h2>
+<p><strong>每天：</strong>想一句想对我说但没说的话（不用马上说）。</p>
+<p><strong>周日电话：</strong>专门留 20 分钟。开场就说："今晚你说话，我听，我不插嘴。"然后真的只听。</p>
+<p><strong>可能的反应：</strong>"没什么说的"→ 一起沉默一会儿，然后"那我先挂了，下周再来"——沉默不是失败，是安全。</p>
+<p><strong>你要记的：</strong>她说了什么。这一周的内容就是这门课最大的成果。</p>
+
+<h2>第 8 周 · 结业礼</h2>
+<p><strong>周末：</strong>她泡杯茶，把八周里写的一句话或一个东西拿出来给你看/读。<strong>真的鼓掌</strong>，她听得见。如果她愿意，视频里跳一段舞。</p>
+<p><strong>宣布：</strong>"以后每月第一个周日是咱们的茶话日。"</p>
+<p><strong>别忘了：</strong>爬山承诺还挂着——"等我放假，咱们去爬山。"</p>
+
+<h2>每周通用的红线（出现就打住）</h2>
+<ul>
+  <li>她提起借钱/大师班 → <strong>不辩论</strong>，用第 2 课工具 4 问一个问题（"如果还不上，最坏会怎样？"），然后转话题。</li>
+  <li>她情绪崩溃、说想不开 → 陪着她，必要时 <strong>12356</strong>。</li>
+  <li>她拉你入她的课 → "我支持你去，我不去。"</li>
+  <li>课程方开始要求保密、借贷、拉人、与家人断联 → 执行 <a href="../reference/red-flags.html">红旗清单</a>。</li>
+</ul>
+
+<div class="practice">
+  <h4>本周你的任务（从第 1 周开始前做）</h4>
+  <p>① 把周日电话时间写进自己手机日历，设提醒；② 想好一句开场白（"这周过得咋样"就行，不用更复杂）；③ 把 <a href="../reference/mom-worksheets.html">记录卡</a> 打印好放在家里显眼处（妈妈愿意用就用，不愿意就放着）。</p>
+</div>
+
+<footer class="lesson-foot">
+  <p>执行中卡在任何一步（她不理你、她哭了、她骂人），把原话告诉我，我帮你写下一句。</p>
+  <p class="nav-links"><a href="0003-the-course.html">← 第 3 课</a> · <a href="../reference/mom-worksheets.html">妈妈记录卡 →</a></p>
+</footer>
+</div>
+</body>
+</html>

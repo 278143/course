@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 2 课 · 不再触发"你在评判我"</title>
+<style>
+/* ============================================================
+   lesson.css — 教学工作区共享样式（Tufte 风格，中文友好，可打印）
+   所有 lessons/ 与 reference/ 页面共用；妈妈版讲义有独立更柔和的样式。
+   ============================================================ */
+:root {
+  --ink: #2b2b2b;
+  --paper: #fdfcf8;
+  --accent: #8a5a44;
+  --accent2: #3f627f;
+  --muted: #6b6b6b;
+  --rule: #d8d2c4;
+  --good: #3f7d51;
+  --bad: #a0453c;
+  --hl: #f4ead8;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  line-height: 1.8; font-size: 1rem;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.4rem 6rem; }
+header.lesson-head { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 2.4rem; }
+.kicker {
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; font-size: .7rem; color: var(--accent); margin: 0 0 .4rem;
+}
+h1 {
+  font-size: 1.85rem; line-height: 1.3; margin: .3rem 0 .5rem;
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lesson-meta { font-size: .85rem; color: var(--muted); }
+h2 {
+  font-size: 1.28rem; margin: 2.6rem 0 .7rem; color: var(--accent2);
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  border-bottom: 1px solid var(--rule); padding-bottom: .3rem;
+}
+h3 { font-size: 1.05rem; margin: 1.7rem 0 .4rem; color: var(--ink); }
+p { margin: .85rem 0; }
+a { color: var(--accent2); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); }
+ul, ol { padding-left: 1.5rem; margin: .7rem 0; }
+li { margin: .35rem 0; }
+blockquote {
+  margin: 1.3rem 0; padding: .4rem 1.2rem; border-left: 3px solid var(--accent);
+  background: var(--hl); font-size: .96rem;
+}
+blockquote p { margin: .5rem 0; }
+code { font-family: Consolas, Menlo, monospace; font-size: .85em; background: #f1ede2; padding: .05rem .3rem; border-radius: 3px; }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1.1rem; margin: 1.1rem 0; background: #fff; }
+.card.flag { border-left: 4px solid var(--bad); }
+.card.ok { border-left: 4px solid var(--good); }
+.card.tip { border-left: 4px solid var(--accent2); }
+.card.warn { border-left: 4px solid #b8860b; }
+.card h4 { margin: 0 0 .4rem; font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .95rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--rule); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--hl); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-weight: 600; }
+.practice {
+  border: 1.5px dashed var(--accent2); border-radius: 6px; padding: 1rem 1.2rem; margin: 1.4rem 0; background: #fff;
+}
+.practice h4 { margin: 0 0 .4rem; color: var(--accent2); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+/* ---- quiz widget ---- */
+.quiz { margin: 1.6rem 0; }
+.quiz-question { font-weight: 600; margin-bottom: .5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left; margin: .45rem 0; padding: .55rem .85rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: #fff; font: inherit; cursor: pointer; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--accent2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { border-color: var(--good); background: #edf4ee; }
+.quiz-option.wrong { border-color: var(--bad); background: #f9eceb; }
+.quiz-feedback { font-size: .88rem; margin-top: .55rem; color: var(--muted); min-height: 1.2em; }
+/* ---- primary source callout ---- */
+.primary { margin: 1.6rem 0; padding: .9rem 1.2rem; border-radius: 6px; background: #eef2f6; border: 1px solid #c9d6e0; }
+.primary .tag { font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .72rem; letter-spacing: .12em; color: var(--accent2); }
+footer.lesson-foot {
+  margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .85rem; color: var(--muted);
+}
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; font-size: .9rem; }
+.sidenote { font-size: .8rem; color: var(--muted); }
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 1cm; }
+  .quiz-option { border: none; background: #fff; }
+  .quiz-option.correct { background: #edf4ee; }
+  .quiz-option.wrong { background: #f9eceb; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+<script>
+(function () {
+  "use strict";
+  function initQuiz(q) {
+    var opts = Array.prototype.slice.call(q.querySelectorAll(".quiz-option"));
+    var fb = q.querySelector(".quiz-feedback");
+    if (!fb) {
+      fb = document.createElement("div");
+      fb.className = "quiz-feedback";
+      q.appendChild(fb);
+    }
+    opts.forEach(function (o) {
+      o.addEventListener("click", function () {
+        if (q.getAttribute("data-done") === "1") { return; }
+        q.setAttribute("data-done", "1");
+        var ok = o.getAttribute("data-correct") === "true";
+        o.className += ok ? " correct" : " wrong";
+        opts.forEach(function (x) {
+          if (x !== o && x.getAttribute("data-correct") === "true") { x.className += " correct"; }
+          x.disabled = true;
+        });
+        var msg = ok
+          ? "对。" + (q.getAttribute("data-good") || "")
+          : "再想想：" + (q.getAttribute("data-hint") || "");
+        fb.textContent = msg;
+      });
+    });
+  }
+  function boot() {
+    var quizzes = document.querySelectorAll(".quiz");
+    for (var i = 0; i < quizzes.length; i++) { initQuiz(quizzes[i]); }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
+
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="lesson-head">
+  <p class="kicker">Lesson 2 · 沟通 · 只给你自己看</p>
+  <h1>不再触发"你在评判我"：7 个沟通工具 + 实战改写</h1>
+  <p class="lesson-meta">约 20 分钟 · 学完你能带走：一套话术 + 4 段实战改写 + 一个 5 分钟练习</p>
+</header>
+
+<h2>核心心法：顺序错 = 全错</h2>
+<p>妈妈的大脑在听你说话之前，先回答一个问题：<strong>"这个人站在我这边吗？"</strong>答案是否，内容再好也是"评判"。</p>
+<p>所以铁律只有一条：<strong>先验证情绪，再谈事实</strong>。验证 ≠ 同意。你可以说"我听到你很难受"，同时不说"所以你该借钱"。</p>
+<p>这其实是她自己立的规矩——她说"我在描述事实"。好，那就都描述事实：她描述她的，你描述你的（"我担心"），谁也不评判谁。</p>
+
+<h2>工具 1：情感反射</h2>
+<p>把她没说出口的感受说出来，不加解释、不纠正、不给建议。</p>
+<blockquote>
+  <p>她说："我就是觉得丢人，跟看大门的似的。"<br>
+  你说（反射）："丢人——像被所有人看见伤口一样难受。"<br>
+  别说："那有什么丢人的？"（这是评判）</p>
+</blockquote>
+
+<h2>工具 2：镜像复述</h2>
+<p>用你自己的话重复她刚说的，让她感到被听懂。她抱怨、讲道理、说气话时都用这招。</p>
+<blockquote>
+  <p>她说："大师班里大家都借钱上课，有人欠几百万。"<br>
+  你说（镜像）："你是说，借钱上课在那儿很普遍？"<br>
+  她："对啊！"——此刻她感到被听见，防御降下来了。</p>
+</blockquote>
+
+<h2>工具 3："我"句式（用她的语言说话）</h2>
+<p>她主张"每个人管好自己"。那就用"我"来表达，不越界、不评判她：</p>
+<ul>
+  <li>"我担心家里的债越滚越多，我晚上睡不好。"（说感受，不说她该怎样）</li>
+  <li>"我想多陪你做一些开心的事。"（说愿望，不说她缺什么）</li>
+</ul>
+
+<h2>工具 4：提问代替断言（借钱话题专用）</h2>
+<p>不劝、不拦、不分析风险。用问题让她自己走到答案：</p>
+<ul>
+  <li>"如果到时候还不上，最坏会怎样？"</li>
+  <li>"这 3 万你打算几年还清？每月还多少？"</li>
+  <li>"家里现在每个月能匀出多少还债？"</li>
+  <li>"如果上完大师班，生活反而更难了，你还会觉得值吗？"</li>
+</ul>
+<p>她可能会恼火。这没关系——问题的作用不是说服她，是让那个声音进到她脑子里。</p>
+
+<h2>工具 5：先承认她的韧性，再轻轻追问</h2>
+<p>"痛苦=磨练"是她的自我安慰，戳穿 = 战争。先承认，再轻问：</p>
+<blockquote>
+  <p>"你确实扛了很多，这么多年换了好几份工作都没垮。"<br>
+  （停一下）<br>
+  "磨练是你自己选的，还是不得不接的？"</p>
+</blockquote>
+
+<h2>工具 6：不接钩子</h2>
+<p>她批判别人、要求你一起批判时，不附和、不反驳：</p>
+<blockquote>
+  <p>她说："办公室那帮人真不是东西！"<br>
+  你说："嗯，我听到了。跟这样的人共事，你挺不容易的。"<br>
+  别说："就是！"（强化对立）也别反驳（触发评判）。</p>
+</blockquote>
+
+<h2>工具 7：撤退与时机</h2>
+<ul>
+  <li>情绪高峰（刚下课、刚被刺激）不谈事，只陪伴。</li>
+  <li>黄金时机：散步、做饭、开车——并排做事的时刻，比面对面坐着安全得多。<strong>这也是爬山计划的价值</strong>。</li>
+  <li>聊崩就撤："我先去烧水。"明天再来。恋战 = 双输。</li>
+  <li>每次对话只带一个目标（这次只表达关心 / 这次只问一个问题）。</li>
+</ul>
+
+<h2>实战改写（对照着看）</h2>
+<table>
+<thead><tr><th>你可能会说的（触发）</th><th>触发点</th><th>改写（不触发）</th></tr></thead>
+<tbody>
+<tr><td>"3 万块你借了怎么还？"</td><td>评判 + 管教</td><td>"听到大师班的事，我有点担心你后面压力太大。你能多跟我说说那个课吗？"</td></tr>
+<tr><td>"那个课就是骗人的！"</td><td>否定她的选择</td><td>"你从课里确实得到了些东西，比如放松。我好奇，它好在哪儿？"</td></tr>
+<tr><td>"你怎么能听她的不听我的？"</td><td>逼她选边</td><td>不说。先听她把课讲完。</td></tr>
+<tr><td>（她批判同事时）"就是，真讨厌。"</td><td>强化对立</td><td>"嗯，你挺不容易的，跟他们共事。"</td></tr>
+</tbody>
+</table>
+
+<div class="practice">
+  <h4>练习（5 分钟）</h4>
+  <p>三个情景，先自己写回应，再对照上面工具：<br>
+  ① 她说："你们都不懂我，只有老师懂。"<br>
+  ② 她说："我上完课嗓子都哑了，但是特别痛快。"<br>
+  ③ 她说："你别管我，我有我自己的活法。"<br>
+  写完后想想：你哪句话可能被她听成"评判"？</p>
+</div>
+
+<h2 id="quiet">你不善表达？那正好——内向版话术</h2>
+<p>你不会说"柔情似水"的话，这恰恰不是劣势。妈妈的痛点是<strong>没人听她说话</strong>，不是没人给她讲道理。一个安静的人，只要做到下面几句，效果超过任何长篇大论：</p>
+<table>
+<thead><tr><th>她…</th><th>你说（就这几个字，多了都不用）</th></tr></thead>
+<tbody>
+<tr><td>说了一大段</td><td>"嗯，我在听。""然后呢？"</td></tr>
+<tr><td>哭了</td><td>"我在这。""你受苦了。"（别说"别哭了"）</td></tr>
+<tr><td>骂人、抱怨</td><td>"听着呢。你接着说。"</td></tr>
+<tr><td>问"你说是不是"</td><td>"我懂你的意思。"（不附和不反驳）</td></tr>
+<tr><td>沉默</td><td>陪着，不用找话说。沉默不是失败。</td></tr>
+</tbody>
+</table>
+<div class="card tip">
+  <h4>行动比漂亮话有用</h4>
+  <p>你说不出漂亮话，就用行动兑现：每周日打电话、下次放假陪她爬山。她信的是"你说到做到"，不是文采。妈妈版讲义也是按这个原则写的——平实、短句、像你，而不是像一本鸡汤书。</p>
+</div>
+
+<h2>测验（2 题）</h2>
+<div class="quiz" data-good="先接住她的热情，防御才可能降下来。" data-hint="讲道理的顺序错了，内容再好也进不去。">
+  <p class="quiz-question">1. 她坚持要借钱上大师班，第一步最该做什么？</p>
+  <button class="quiz-option" data-correct="false">A. 列出利息和风险让她清醒</button>
+  <button class="quiz-option" data-correct="true">B. 先接住热情："你真的很想上这个课"</button>
+  <button class="quiz-option" data-correct="false">C. 找课程老师谈谈取消念头</button>
+  <button class="quiz-option" data-correct="false">D. 把家里银行卡都收起来</button>
+</div>
+<div class="quiz" data-good="验证 + 说出自己的感受，不辩解不评判。" data-hint="辩解"我没有评判你"本身就是在评判她。">
+  <p class="quiz-question">2. 她说"你在评判我"，你最好的回应是？</p>
+  <button class="quiz-option" data-correct="false">A. "我没有评判你，是你太敏感"</button>
+  <button class="quiz-option" data-correct="false">B. "你误会了，我只是为你好"</button>
+  <button class="quiz-option" data-correct="true">C. "我听到了。我想说的是，我担心你"</button>
+  <button class="quiz-option" data-correct="false">D. "那我不说了，行了吧"</button>
+</div>
+
+<div class="primary">
+  <p class="tag">推荐阅读</p>
+  <p>马歇尔·卢森堡《非暴力沟通》（中文版）——只需掌握"观察→感受→需要"三步；以及 <a href="https://self-compassion.org/exercise-2-self-compassion-break/" target="_blank" rel="noopener">Self-Compassion Break 练习（Neff 官网）</a>——对她说之前，先对自己说。</p>
+</div>
+
+<footer class="lesson-foot">
+  <p>有任何一句话不知道怎么接，直接拿来问我，我给你写。</p>
+  <p class="nav-links"><a href="0001-understanding-mother.html">← 第 1 课</a> · <a href="0003-the-course.html">下一课：课程设计 →</a></p>
+</footer>
+</div>
+</body>
+</html>

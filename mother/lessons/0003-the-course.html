@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 3 课 · 课程设计与交付指南</title>
+<style>
+/* ============================================================
+   lesson.css — 教学工作区共享样式（Tufte 风格，中文友好，可打印）
+   所有 lessons/ 与 reference/ 页面共用；妈妈版讲义有独立更柔和的样式。
+   ============================================================ */
+:root {
+  --ink: #2b2b2b;
+  --paper: #fdfcf8;
+  --accent: #8a5a44;
+  --accent2: #3f627f;
+  --muted: #6b6b6b;
+  --rule: #d8d2c4;
+  --good: #3f7d51;
+  --bad: #a0453c;
+  --hl: #f4ead8;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  line-height: 1.8; font-size: 1rem;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.4rem 6rem; }
+header.lesson-head { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 2.4rem; }
+.kicker {
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; font-size: .7rem; color: var(--accent); margin: 0 0 .4rem;
+}
+h1 {
+  font-size: 1.85rem; line-height: 1.3; margin: .3rem 0 .5rem;
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lesson-meta { font-size: .85rem; color: var(--muted); }
+h2 {
+  font-size: 1.28rem; margin: 2.6rem 0 .7rem; color: var(--accent2);
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  border-bottom: 1px solid var(--rule); padding-bottom: .3rem;
+}
+h3 { font-size: 1.05rem; margin: 1.7rem 0 .4rem; color: var(--ink); }
+p { margin: .85rem 0; }
+a { color: var(--accent2); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); }
+ul, ol { padding-left: 1.5rem; margin: .7rem 0; }
+li { margin: .35rem 0; }
+blockquote {
+  margin: 1.3rem 0; padding: .4rem 1.2rem; border-left: 3px solid var(--accent);
+  background: var(--hl); font-size: .96rem;
+}
+blockquote p { margin: .5rem 0; }
+code { font-family: Consolas, Menlo, monospace; font-size: .85em; background: #f1ede2; padding: .05rem .3rem; border-radius: 3px; }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1.1rem; margin: 1.1rem 0; background: #fff; }
+.card.flag { border-left: 4px solid var(--bad); }
+.card.ok { border-left: 4px solid var(--good); }
+.card.tip { border-left: 4px solid var(--accent2); }
+.card.warn { border-left: 4px solid #b8860b; }
+.card h4 { margin: 0 0 .4rem; font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .95rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--rule); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--hl); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-weight: 600; }
+.practice {
+  border: 1.5px dashed var(--accent2); border-radius: 6px; padding: 1rem 1.2rem; margin: 1.4rem 0; background: #fff;
+}
+.practice h4 { margin: 0 0 .4rem; color: var(--accent2); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+/* ---- quiz widget ---- */
+.quiz { margin: 1.6rem 0; }
+.quiz-question { font-weight: 600; margin-bottom: .5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left; margin: .45rem 0; padding: .55rem .85rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: #fff; font: inherit; cursor: pointer; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--accent2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { border-color: var(--good); background: #edf4ee; }
+.quiz-option.wrong { border-color: var(--bad); background: #f9eceb; }
+.quiz-feedback { font-size: .88rem; margin-top: .55rem; color: var(--muted); min-height: 1.2em; }
+/* ---- primary source callout ---- */
+.primary { margin: 1.6rem 0; padding: .9rem 1.2rem; border-radius: 6px; background: #eef2f6; border: 1px solid #c9d6e0; }
+.primary .tag { font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .72rem; letter-spacing: .12em; color: var(--accent2); }
+footer.lesson-foot {
+  margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .85rem; color: var(--muted);
+}
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; font-size: .9rem; }
+.sidenote { font-size: .8rem; color: var(--muted); }
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 1cm; }
+  .quiz-option { border: none; background: #fff; }
+  .quiz-option.correct { background: #edf4ee; }
+  .quiz-option.wrong { background: #f9eceb; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+<script>
+(function () {
+  "use strict";
+  function initQuiz(q) {
+    var opts = Array.prototype.slice.call(q.querySelectorAll(".quiz-option"));
+    var fb = q.querySelector(".quiz-feedback");
+    if (!fb) {
+      fb = document.createElement("div");
+      fb.className = "quiz-feedback";
+      q.appendChild(fb);
+    }
+    opts.forEach(function (o) {
+      o.addEventListener("click", function () {
+        if (q.getAttribute("data-done") === "1") { return; }
+        q.setAttribute("data-done", "1");
+        var ok = o.getAttribute("data-correct") === "true";
+        o.className += ok ? " correct" : " wrong";
+        opts.forEach(function (x) {
+          if (x !== o && x.getAttribute("data-correct") === "true") { x.className += " correct"; }
+          x.disabled = true;
+        });
+        var msg = ok
+          ? "对。" + (q.getAttribute("data-good") || "")
+          : "再想想：" + (q.getAttribute("data-hint") || "");
+        fb.textContent = msg;
+      });
+    });
+  }
+  function boot() {
+    var quizzes = document.querySelectorAll(".quiz");
+    for (var i = 0; i < quizzes.length; i++) { initQuiz(quizzes[i]); }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
+
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="lesson-head">
+  <p class="kicker">Lesson 3 · 设计 · 只给你自己看</p>
+  <h1>为妈妈设计一门她能读的课：8 周小课 + 远程交付指南</h1>
+  <p class="lesson-meta">约 20 分钟 · 完整课程包：① <a href="../reference/mom-course.html">妈妈版讲义（发飞书）</a> ② <a href="0004-week-guides.html">8 周执行手册（你用的）</a> ③ <a href="../reference/mom-worksheets.html">妈妈记录卡（可打印）</a></p>
+</header>
+
+<h2>0. 为什么讲义"给她看"，设计文档"给你看"</h2>
+<p>课程是给妈妈看的。所以拆成两层：</p>
+<ul>
+  <li><strong>她看</strong>：<a href="../reference/mom-course.html">妈妈版讲义</a>——单文件自包含网页（样式已内联，发飞书链接也能正常显示），零术语、零分析、零评判、<strong>平实短句</strong>，只有"我们一起"。</li>
+  <li><strong>你看</strong>：本课 + <a href="../reference/red-flags.html">红旗清单</a>——设计逻辑、7 天窗口、风险防线。</li>
+</ul>
+<div class="card warn">
+  <h4>你的现实（本课按此设计）</h4>
+  <p>妈妈 47 岁；你在外地上大学，<strong>还有 7 天离家</strong>；她还没报名大师班（借贷只是随口提起）；全家（含姥姥）已反对过一轮，她态度决绝、把课程叫"事业"；你不擅长煽情的话。</p>
+</div>
+
+<h2>1. 设计原则（4 条）</h2>
+<ol>
+  <li><strong>替代，不否定</strong>：她在元素舞课里买的是"被看见、归属感、情绪出口、成长感、仪式感"。小课给她同样的东西，免费、温暖、在家。绝不贬低她的课。</li>
+  <li><strong>加工大于宣泄</strong>：大哭大喊 → 换成表达性书写（有研究支持）。宣泄是出口，加工才是解药。</li>
+  <li><strong>小成就是真药</strong>：习得性无助只能靠真实的小成功来治。第 6 周"出门走一走"、第 5 周"讲讲你厉害的地方"都是小成就。</li>
+  <li><strong>仪式感是刚需</strong>：大师班卖的是仪式和进阶。小课有自己的仪式——每周日电话、第 8 周结业礼、下次放假的爬山。</li>
+</ol>
+
+<h2>2. 8 周结构（远程版：每天 5 分钟 + 周日电话）</h2>
+<table>
+<thead><tr><th>周</th><th>主题</th><th>每天小动作</th><th>周日电话</th><th>替代的需求</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>给自己的情绪取名字</td><td>写"今天我有点___"（一个词）</td><td>哪天心里动了一下</td><td>情绪出口 + 被听见</td></tr>
+<tr><td>2</td><td>身体动一动</td><td>放歌自由动 3–5 分钟</td><td>约好放同一首歌，一起动</td><td>舞动的快乐（保留！）</td></tr>
+<tr><td>3</td><td>写写心里话</td><td>写 15 分钟，写完合上</td><td>只聊"写的时候松不松快"</td><td>宣泄的循证替代</td></tr>
+<tr><td>4</td><td>对自己温柔一点</td><td>对自己说三句温柔的话</td><td>想原谅自己什么</td><td>自我慈悲（打"我不够好"）</td></tr>
+<tr><td>5</td><td>讲讲你厉害的地方</td><td>记一件干得漂亮的事</td><td>讲最骄傲的一件事，我不插嘴</td><td>重建身份叙事（治"看大门"）</td></tr>
+<tr><td>6</td><td>出门走一走</td><td>下楼走 10 分钟</td><td>想去哪个地方看看</td><td>身体活动 + 盼头</td></tr>
+<tr><td>7</td><td>咱俩说说话</td><td>想一句想对我说的话</td><td>你说，我听，不评判</td><td>被无条件接纳</td></tr>
+<tr><td>8</td><td>结业礼</td><td>准备一件展示的东西</td><td>电话里鼓掌；以后变每月"茶话日"</td><td>仪式感 + 进阶感</td></tr>
+</tbody>
+</table>
+<p>注意：第 6 周原来设计的是"手上活儿（手工）"，你要求去掉——已改为"出门走一走"，顺便为爬山做铺垫。</p>
+
+<h2>3. 交付指南：这 7 天怎么用（你离家前的窗口）</h2>
+<div class="card ok">
+  <h4>分步计划</h4>
+  <ol>
+    <li><strong>第 1–2 天：发讲义。</strong>飞书把链接发过去，就配一句话："妈，我做了个小东西给你，你闲了看看，不想看也没事。"<strong>别配长篇大论，别解释理由</strong>——解释就是评判，会让她把讲义也关掉。</li>
+    <li><strong>第 3–4 天：一起做一周。</strong>找一天说："放首歌，咱俩动一动？"（第 2 周）或各写一个情绪词（第 1 周）。她做不做都行，你不催。</li>
+    <li><strong>第 5–7 天：把节奏定下来。</strong>约好"每周日晚上打电话"；把爬山挂在"下次放假"上（讲义里已经写了）。</li>
+    <li><strong>之后（远程阶段）</strong>：每周日打电话，先听她说，再问一个轻问题。你不需要说很多——听，就是你这门课的主要内容。</li>
+  </ol>
+</div>
+<div class="card tip">
+  <h4>全家都反对时，你的位置</h4>
+  <p>全家（含姥姥）已经反对过一轮，她称课程为"事业"、不让插手。越围攻她越守阵地。你的讲义是<strong>唯一一个没有对她说"不"的入口</strong>——里面没有"钱"、没有"课好不好"、没有"你应该"。保持这个属性，别在微信里补一段劝她别借钱的"补充说明"，那会毁掉整份讲义。</p>
+</div>
+
+<h2>4. 与元素舞课的关系（不骂课，三个改变）</h2>
+<ol>
+  <li><strong>预算上限</strong>：每月课程支出设上限（比如 100 元）——通过"家里的钱全家一起商量"来定，不是没收她的钱。</li>
+  <li><strong>只上不借贷的课</strong>：任何要借钱才能上的课，直接不参与（用提问让她自己得出这个结论，见第 2 课工具 4）。</li>
+  <li><strong>每次课后 15 分钟"加工笔记"</strong>："上完课回来，把今天发生了什么、身体什么感觉写下来"——把宣泄变成加工。</li>
+</ol>
+<div class="card tip">
+  <h4>如果她问"你为什么不支持我上课"</h4>
+  <p>"我支持你上课，支持你跳舞，支持你变好。我不支持的是借钱——家里的债我不想再多了。这两件事我分得很清楚。"（支持感受，不支持行为）</p>
+</div>
+
+<h2>5. 爬山计划（下次放假的锚点）</h2>
+<ul>
+  <li><strong>远程阶段</strong>：电话里聊"去哪座山"，让她参与选——先给盼头。</li>
+  <li><strong>放假回来</strong>：一起定路线、买水买鞋；慢慢走；聊天话题（别聊课、别聊钱）：她的童年、她教过的学生、她最骄傲的事。</li>
+  <li><strong>回来</strong>：合影 + 让她写一篇"我们的山"（第 3 周的表达性书写正好派上用场）。</li>
+</ul>
+
+<h2>6. 安全线与财务防线（你自己执行，不进讲义）</h2>
+<ul>
+  <li>出现自伤/自杀言语、情绪崩溃 → <strong>12356</strong> 或急诊。</li>
+  <li>课程方开始要求保密、借贷、拉人、与家人断联 → 执行 <a href="../reference/red-flags.html">红旗清单</a>。</li>
+  <li>和爸爸/家人先统一口径：<strong>不共同承担她个人的学习借贷</strong>。</li>
+</ul>
+
+<h2>7. 你不擅表达？这套方案正好是给你这种人的</h2>
+<div class="card ok">
+  <p>讲义已经改成平实的、像你平时说话的样子——妈妈不会觉得"这不是我孩子写的"。每周日电话你不需要会聊天，只需要做到：<strong>接起来、听她说、说"嗯"和"然后呢"</strong>。详细短句话术见 <a href="0002-communication.html#quiet">第 2 课"内向版话术"</a>。</p>
+  <p>你在外地上学这件事不是短板，反而是优势：妈妈现在把课当"事业"、不许家人插手，你远距离的"不评判的陪伴"比天天见面更容易被接受。</p>
+</div>
+
+<h2>测验（2 题）</h2>
+<div class="quiz" data-good="替代她的情感需求，而不是否定她的爱好。" data-hint="她买的不是课，是匮乏的东西。">
+  <p class="quiz-question">1. 小课设计的第一原则是？</p>
+  <button class="quiz-option" data-correct="false">A. 让妈妈彻底远离所有舞动课</button>
+  <button class="quiz-option" data-correct="true">B. 替代她的需求，不否定她的爱好</button>
+  <button class="quiz-option" data-correct="false">C. 用更多道理说服她别借钱</button>
+  <button class="quiz-option" data-correct="false">D. 让她先还清家里的债</button>
+</div>
+<div class="quiz" data-good="陪她坐，之后请她说/写今天发生了什么——宣泄要配加工。" data-hint="别让她多哭，也别批评课程。">
+  <p class="quiz-question">2. 她上完课回来大哭、嗓子哑了，你该？</p>
+  <button class="quiz-option" data-correct="false">A. 让她多哭，把情绪排干净</button>
+  <button class="quiz-option" data-correct="false">B. 立刻批评那课伤身体</button>
+  <button class="quiz-option" data-correct="true">C. 陪她坐，再请她说说发生了什么</button>
+  <button class="quiz-option" data-correct="false">D. 从此不让她再去上课</button>
+</div>
+
+<div class="primary">
+  <p class="tag">下一步</p>
+  <p>打开 <a href="../reference/mom-course.html">妈妈版讲义</a>（已适配手机），发飞书前先自己在手机上打开看一眼排版。</p>
+</div>
+
+<footer class="lesson-foot">
+  <p>远程阶段她每周日在电话里的反应，回来告诉我，我帮你调下一周的话题。</p>
+  <p class="nav-links"><a href="0002-communication.html">← 第 2 课</a> · <a href="../reference/mom-course.html">妈妈版讲义 →</a></p>
+</footer>
+</div>
+</body>
+</html>

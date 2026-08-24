@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 1 课 · 读懂妈妈的心理地图</title>
+<style>
+/* ============================================================
+   lesson.css — 教学工作区共享样式（Tufte 风格，中文友好，可打印）
+   所有 lessons/ 与 reference/ 页面共用；妈妈版讲义有独立更柔和的样式。
+   ============================================================ */
+:root {
+  --ink: #2b2b2b;
+  --paper: #fdfcf8;
+  --accent: #8a5a44;
+  --accent2: #3f627f;
+  --muted: #6b6b6b;
+  --rule: #d8d2c4;
+  --good: #3f7d51;
+  --bad: #a0453c;
+  --hl: #f4ead8;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; padding: 0; color: var(--ink); background: var(--paper);
+  font-family: "Source Han Serif SC","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  line-height: 1.8; font-size: 1rem;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 2.5rem 1.4rem 6rem; }
+header.lesson-head { border-bottom: 1px solid var(--rule); padding-bottom: 1.4rem; margin-bottom: 2.4rem; }
+.kicker {
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  letter-spacing: .22em; text-transform: uppercase; font-size: .7rem; color: var(--accent); margin: 0 0 .4rem;
+}
+h1 {
+  font-size: 1.85rem; line-height: 1.3; margin: .3rem 0 .5rem;
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+.lesson-meta { font-size: .85rem; color: var(--muted); }
+h2 {
+  font-size: 1.28rem; margin: 2.6rem 0 .7rem; color: var(--accent2);
+  font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  border-bottom: 1px solid var(--rule); padding-bottom: .3rem;
+}
+h3 { font-size: 1.05rem; margin: 1.7rem 0 .4rem; color: var(--ink); }
+p { margin: .85rem 0; }
+a { color: var(--accent2); text-decoration-color: var(--rule); text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+strong { color: var(--ink); }
+ul, ol { padding-left: 1.5rem; margin: .7rem 0; }
+li { margin: .35rem 0; }
+blockquote {
+  margin: 1.3rem 0; padding: .4rem 1.2rem; border-left: 3px solid var(--accent);
+  background: var(--hl); font-size: .96rem;
+}
+blockquote p { margin: .5rem 0; }
+code { font-family: Consolas, Menlo, monospace; font-size: .85em; background: #f1ede2; padding: .05rem .3rem; border-radius: 3px; }
+.card { border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1.1rem; margin: 1.1rem 0; background: #fff; }
+.card.flag { border-left: 4px solid var(--bad); }
+.card.ok { border-left: 4px solid var(--good); }
+.card.tip { border-left: 4px solid var(--accent2); }
+.card.warn { border-left: 4px solid #b8860b; }
+.card h4 { margin: 0 0 .4rem; font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .95rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--rule); padding: .45rem .6rem; text-align: left; vertical-align: top; }
+th { background: var(--hl); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-weight: 600; }
+.practice {
+  border: 1.5px dashed var(--accent2); border-radius: 6px; padding: 1rem 1.2rem; margin: 1.4rem 0; background: #fff;
+}
+.practice h4 { margin: 0 0 .4rem; color: var(--accent2); font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+/* ---- quiz widget ---- */
+.quiz { margin: 1.6rem 0; }
+.quiz-question { font-weight: 600; margin-bottom: .5rem; }
+.quiz-option {
+  display: block; width: 100%; text-align: left; margin: .45rem 0; padding: .55rem .85rem;
+  border: 1px solid var(--rule); border-radius: 5px; background: #fff; font: inherit; cursor: pointer; color: var(--ink);
+}
+.quiz-option:hover { border-color: var(--accent2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { border-color: var(--good); background: #edf4ee; }
+.quiz-option.wrong { border-color: var(--bad); background: #f9eceb; }
+.quiz-feedback { font-size: .88rem; margin-top: .55rem; color: var(--muted); min-height: 1.2em; }
+/* ---- primary source callout ---- */
+.primary { margin: 1.6rem 0; padding: .9rem 1.2rem; border-radius: 6px; background: #eef2f6; border: 1px solid #c9d6e0; }
+.primary .tag { font-family: "Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif; font-size: .72rem; letter-spacing: .12em; color: var(--accent2); }
+footer.lesson-foot {
+  margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .85rem; color: var(--muted);
+}
+.nav-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; font-size: .9rem; }
+.sidenote { font-size: .8rem; color: var(--muted); }
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .wrap { max-width: none; padding: 1cm; }
+  .quiz-option { border: none; background: #fff; }
+  .quiz-option.correct { background: #edf4ee; }
+  .quiz-option.wrong { background: #f9eceb; }
+  a { color: var(--ink); text-decoration: none; }
+}
+
+</style>
+<script>
+(function () {
+  "use strict";
+  function initQuiz(q) {
+    var opts = Array.prototype.slice.call(q.querySelectorAll(".quiz-option"));
+    var fb = q.querySelector(".quiz-feedback");
+    if (!fb) {
+      fb = document.createElement("div");
+      fb.className = "quiz-feedback";
+      q.appendChild(fb);
+    }
+    opts.forEach(function (o) {
+      o.addEventListener("click", function () {
+        if (q.getAttribute("data-done") === "1") { return; }
+        q.setAttribute("data-done", "1");
+        var ok = o.getAttribute("data-correct") === "true";
+        o.className += ok ? " correct" : " wrong";
+        opts.forEach(function (x) {
+          if (x !== o && x.getAttribute("data-correct") === "true") { x.className += " correct"; }
+          x.disabled = true;
+        });
+        var msg = ok
+          ? "对。" + (q.getAttribute("data-good") || "")
+          : "再想想：" + (q.getAttribute("data-hint") || "");
+        fb.textContent = msg;
+      });
+    });
+  }
+  function boot() {
+    var quizzes = document.querySelectorAll(".quiz");
+    for (var i = 0; i < quizzes.length; i++) { initQuiz(quizzes[i]); }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else { boot(); }
+})();
+
+</script>
+</head>
+<body>
+<div class="wrap">
+<header class="lesson-head">
+  <p class="kicker">Lesson 1 · 分析 · 只给你自己看</p>
+  <h1>读懂妈妈的心理地图：她不是"想不通"，是想通了别的东西</h1>
+  <p class="lesson-meta">约 20 分钟 · 学完你能带走：一张地图、一个视角转变、一个练习</p>
+</header>
+
+<p>你在 4 小时长谈里收集的信息非常完整。把它翻译成心理学的语言，你会看到一个<strong>可以被理解</strong>的、而不是"不可理喻"的人。</p>
+
+<h2>1. 一句话地图</h2>
+<p>妈妈的困境不是"想不通"，是<strong>身份在塌方</strong>。她今年 47 岁，正处在“我是谁”重新洗牌的年纪；而在她这个年纪，职业线却是一条不断下行的斜坡：</p>
+<table>
+<thead><tr><th>阶段</th><th>角色</th><th>身份信号</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>保险行业</td><td>有职业、有收入</td></tr>
+<tr><td>2</td><td>全职妈妈</td><td>家庭角色，社会身份暂停</td></tr>
+<tr><td>3</td><td>学前教师 → 幼儿园教师 → 小学语文教师</td><td>重新有职业身份，但<strong>无编制</strong>——随时可以被拿走</td></tr>
+<tr><td>4</td><td>失业 + 零散手工</td><td>身份真空期</td></tr>
+<tr><td>5</td><td>救济岗位（办事处，1500/月）</td><td>"救济人员""被分配到大厅""像看大门的"——<strong>羞耻顶点</strong></td></tr>
+</tbody>
+</table>
+<p>每一步下行，都削掉一层"我是谁"。到办事处这一步，她的自我价值感几乎全靠别人怎么看她撑着——而"看大门的"这个标签，是压垮她的最后一根稻草。<a href="../reference/glossary.html">（羞耻 vs 内疚，见术语表）</a></p>
+
+<h2>2. 为什么她听不得一点不同意见</h2>
+<p>她说"你在评判我、你在否定我、你在讲道理，我在描述事实"。这句话其实是精确的自我报告——只是说的不是沟通，是<strong>防御</strong>。</p>
+<ul>
+  <li>内心有一个严苛的自我批判者（"我不够好"），所以任何外部异议都被当成对整个人格的攻击，而不是对一个观点的讨论。</li>
+  <li>她的"评判雷达"灵敏度，正好等于她自我批判的强度。你越温和，她越觉得你在"居高临下"。</li>
+  <li>她要"无条件支持"、批判时必须一起批判——这是羞耻者的典型策略：<strong>用同盟来确认"我不是最差的那个"</strong>。</li>
+</ul>
+<div class="card tip">
+  <h4>关键启示</h4>
+  <p>你要反对的不是"她的观点"，而是"她整个人的价值"——在她听来是这样。所以争论永远赢不了。破局在 <a href="0002-communication.html">第 2 课</a>：先验证，后建议。</p>
+</div>
+
+<h2>3. "都是原生家庭害的"——一半对，一半是牢笼</h2>
+<p>研究支持早期经历塑造自尊和依恋（<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4324421/" target="_blank" rel="noopener">早期压力→依恋/自尊→抑郁风险，PMC</a>）。所以"原生家庭有影响"不是她的借口，是事实。</p>
+<p>但阿德勒提醒另一面：<a href="https://book.douban.com/review/12637530/" target="_blank" rel="noopener">"决定我们的不是经历，而是我们对经历的解释"</a>。"都是原生家庭害的"作为解释，把人锁进<strong>受害者叙事</strong>：我不用负责，但也永远无法改变。疗愈课程最大的诱惑正在于此——它给你一个"换种解释"的仪式，让你重新成为自己故事的主角。</p>
+<p>所以她的归因不是病，是她现在唯一的解释框架。别拆它——给她一个更好的框架（课程第 5 周"高光时刻"就是干这个的）。</p>
+
+<h2>4. 元素舞课程给了她什么（她真正在买的）</h2>
+<p>把课程当成商品，她买的不是"舞"，是四样东西：</p>
+<table>
+<thead><tr><th>她在课程里得到</th><th>对应的情感需求</th><th>家里缺的</th></tr></thead>
+<tbody>
+<tr><td>一起跳舞、一起哭喊</td><td>情绪出口 + 团体归属</td><td>情绪出口被评判；没有"一起"</td></tr>
+<tr><td>老师"看见"她、接纳她</td><td>被无条件接纳</td><td>家人总在讲道理</td></tr>
+<tr><td>"我在成长/磨练"的叙事</td><td>意义感、希望</td><td>每天只有"看大门"的羞耻</td></tr>
+<tr><td>花钱上课的仪式感、进阶感</td><td>价值感（我值得）</td><td>1500/月的岗位给不了价值感</td></tr>
+</tbody>
+</table>
+<p>这是关键洞察：<strong>她不是被"骗"了，她是在用钱买她极度匮乏的东西。</strong>你的 8 周小课如果只给"道理"，就输定了；如果给她"被看见、一起做、有仪式"，才有机会赢。</p>
+
+<h2>5. 大喊大哭到失声：宣泄的陷阱</h2>
+<p>研究证据：<a href="https://news.cuanschutz.edu/news-stories/rage-rooms-are-aggression-based-outlets-helping-or-hurting-mental-health" target="_blank" rel="noopener">单纯的情绪发泄（喊、砸、哭）不能减压，甚至加重</a>；有效的是<strong>宣泄 + 加工</strong>（把经历说出来/写下来并理解它，<a href="https://nwkpsych.rutgers.edu/~kharber/emotions/Class%20Readings/PSYCHOLOGY%20OF%20EMOTIONS%20READINGS%202021/Pennebaker.Opening%20Up.1990.pdf" target="_blank" rel="noopener">Pennebaker 的表达性书写范式</a>）。</p>
+<ul>
+  <li>她课后嗓子失声 = 宣泄过量、加工缺失。身体在替她"喊"，但心里的结没解开。</li>
+  <li>更危险的是依赖：只有去上课才能"释放"，于是必须不断上课、不断进阶、不断花钱——这就是课程商业模式。</li>
+</ul>
+
+<h2>6. "大师班里大部分人都借贷上课"——这句话要当回事</h2>
+<p>这不是事实陈述，是<strong>操控性话术</strong>：把借贷正常化、用同伴压力消除你的顾虑。国内已有多起报道：<a href="https://news.youth.cn/fzlm/202403/t20240328_15160554.htm" target="_blank" rel="noopener">3600 余人深陷精神控制、被骗 1100 余万</a>；<a href="https://finance.jrj.com.cn/2023/09/26100737909365.shtml" target="_blank" rel="noopener">有人辞职、借贷上"灵修课"，负债百万</a>。借贷-进阶-再借贷是这类课程的经典链条（<a href="../reference/red-flags.html">红旗清单</a>）。</p>
+<p>注意：这不是说盘海英的课违法——我们没证据，不指控。但"借钱上课"这个动作本身就是最大的风险信号，家里的十几万外债经不起再来 3 万。</p>
+
+<h2>7. 她的矛盾行为（死活不去 → 去了 → 想换 → 坚决不换）</h2>
+<p>这不是反复无常，是<strong>恐惧改变 vs 恐惧维持</strong>的两难：去了怕丢人，不去怕失业；换了怕更差，不换怕憋屈。"痛苦=磨练"是她的韧性叙事——也是自我安慰，让它存在，别戳穿。</p>
+<p>你要给的不是"正确答案"，是<strong>可逆的选择</strong>："先试一个月，不满意随时可以走"比"你到底走不走"有效一百倍。</p>
+
+<h2>8. 先照顾你自己（这一节最重要）</h2>
+<div class="card warn">
+  <h4>你不是她的治疗师</h4>
+  <p>你已经在"管的很累、想放弃"的边缘。请把目标调成现实版：</p>
+  <ul>
+    <li>你做不到"治好她"，你能做到"给她更好的替代品 + 不让她把全家拖下水"</li>
+    <li>你不是家庭里唯一要稳住船的人——如果只有你在划，船还是会在别人手里翻（记住：妈妈也是成年人，有选择权）</li>
+    <li>答应她的两件事（小课 + 爬山）照做，这是你唯一承诺的事，其余量力而行</li>
+    <li>你自己撑不住时，打 <strong>12356</strong>。这不是丢人的事。</li>
+  </ul>
+</div>
+
+<div class="practice">
+  <h4>练习（3 分钟）</h4>
+  <p>写三行：<br>
+  1) 她在课程里得到的四样东西里，哪一样最打动她？（猜一个）<br>
+  2) 家里现在缺的，你能补哪一样？<br>
+  3) 你打算用哪一周的课程来补它？</p>
+</div>
+
+<h2>测验（3 题）</h2>
+<div class="quiz" data-good="她的自我价值感脆弱，任何异议都被当成对整个人格的攻击。" data-hint="她不是逻辑问题，是羞耻问题。">
+  <p class="quiz-question">1. 妈妈把"你不同意她"听成"你在评判我"，最可能的原因是？</p>
+  <button class="quiz-option" data-correct="false">A. 她逻辑混乱，听不懂道理</button>
+  <button class="quiz-option" data-correct="true">B. 她自我价值感脆弱，异议被当成攻击</button>
+  <button class="quiz-option" data-correct="false">C. 她故意找茬，不想好好谈</button>
+  <button class="quiz-option" data-correct="false">D. 她语文理解能力差</button>
+</div>
+<div class="quiz" data-good="单纯宣泄作用有限，缺少加工环节才是问题。" data-hint="喊和哭本身不等于疗愈（rage rooms 研究）。">
+  <p class="quiz-question">2. 她上课大喊大哭到失声。按研究证据，这说明？</p>
+  <button class="quiz-option" data-correct="false">A. 她释放得很彻底，效果很好</button>
+  <button class="quiz-option" data-correct="false">B. 宣泄有效，坚持就能巩固</button>
+  <button class="quiz-option" data-correct="true">C. 宣泄过量，缺"加工"环节</button>
+  <button class="quiz-option" data-correct="false">D. 哭得越大声病好得越快</button>
+</div>
+<div class="quiz" data-good="这是把借贷正常化的同伴压力话术。" data-hint="报道里的灵修骗局都这么说话。">
+  <p class="quiz-question">3. "大师班里大部分人都借贷来上课"，从风险角度看是？</p>
+  <button class="quiz-option" data-correct="false">A. 说明课程值得借钱上</button>
+  <button class="quiz-option" data-correct="true">B. 把借贷正常化的同伴压力话术</button>
+  <button class="quiz-option" data-correct="false">C. 说明班里同学都有钱</button>
+  <button class="quiz-option" data-correct="false">D. 老师的好心提醒</button>
+</div>
+
+<div class="primary">
+  <p class="tag">推荐阅读（给 20 分钟）</p>
+  <p>① <a href="https://news.youth.cn/fzlm/202403/t20240328_15160554.htm" target="_blank" rel="noopener">中国青年网：起底大型"灵修"骗局</a>——看懂"借贷上课"的产业逻辑；② 布雷尼·布朗《脆弱的力量》（Daring Greatly，中文版）——理解羞耻与归属。</p>
+</div>
+
+<footer class="lesson-foot">
+  <p>学完了？有任何不清楚的地方，随时问我——我是你的老师，不是你的医生。</p>
+  <p class="nav-links"><a href="0002-communication.html">下一课：不再触发"你在评判我" →</a> · <a href="../reference/glossary.html">术语表</a></p>
+</footer>
+</div>
+</body>
+</html>
