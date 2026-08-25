@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 7 课：思维与决策——快思考、慢思考与看不见的捷径</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0007 · Thinking &amp; Decision Making</p>
+  <h1>思维与决策——快思考、慢思考与看不见的捷径</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 1「认知」第三课 · 承接第 6 课"记忆会骗你"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>前两课说"大脑会编"（知觉、记忆），本课说"大脑会<strong>偷懒</strong>"。你的每个重要决定——工作、人际、自我管理——都在两套思考系统之间做出。本课给你一份<strong>认知偏差清单</strong>：认得出它们，是减少被自己骗的第一步，也是最可操作的应用（对应使命成功标准"把原理转化为可操作做法"）。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>两套思考系统：系统 1 和系统 2</h2>
+<p>心理学家卡尼曼（Daniel Kahneman，2002 年诺贝尔经济学奖得主）提出：大脑有两套思考系统。<a href="https://openstax.org/books/psychology-2e/pages/7-1-what-is-cognition">[OpenStax Psychology 2e · 7.1]</a></p>
+<ul>
+  <li><strong>系统 1</strong>：快、自动、直觉、几乎不费力——"2+2=4""这人是生气还是高兴""这广告好眼熟"。</li>
+  <li><strong>系统 2</strong>：慢、费劲、需要注意力——"17×24 等于多少？"你必须真正集中精力算。</li>
+</ul>
+<p>关键事实：<strong>系统 1 是默认设置，系统 2 是懒的</strong>。绝大多数判断由系统 1 完成（省力），系统 2 只在"被叫醒"时介入。这不是缺陷——快判断让祖先在丛林中活下来；但现代环境里，系统 1 的快捷方式会系统性出错，下面就是它最常见的几种"翻车"。</p>
+
+<h2>三条看不见的捷径（启发式）</h2>
+<ul>
+  <li><strong>可得性启发式</strong>：越容易想起的事，越觉得常见、概率越大。新闻连播两起空难 → "坐飞机好危险"（实际上车祸死亡率高得多）。刷到一堆"暴雨"视频 → "今年雨怎么这么多"。</li>
+  <li><strong>代表性启发式</strong>：长得像 = 就是。"说话有条理的人一定能力强""学理科的人不擅长聊天"——刻板印象就是这么来的：用"像不像"替代了真实概率。</li>
+  <li><strong>锚定效应</strong>：先听到的数字绑架后面的判断。看到标签"原价 999，现价 199"，你很难不觉得"真便宜"——那个 999 就是锚。拍卖、砍价、促销全在用。</li>
+</ul>
+
+<h2>还有三副"有色眼镜"</h2>
+<ul>
+  <li><strong>框架效应</strong>：同一件事，说法不同，选择就变。一种药"存活率 90%"和"死亡率 10%"是同一事实，前者让人更愿意接受——医生、保险、广告深谙此道。</li>
+  <li><strong>沉没成本</strong>：已经投入且收不回来的钱/时间/感情，不该再影响决策，但它总是影响。"这课都上两个小时了，不能走""电影都看一半了，再难看也要看完"——继续投入只会越陷越深。</li>
+  <li><strong>损失厌恶</strong>：失去的痛苦 > 等量获得的快乐。丢 100 元的难受，远大于捡到 100 元的开心——所以"限时折扣、再不买就没了""再赌一把把本捞回来"总能生效。</li>
+</ul>
+
+<h2>怎么办：把系统 2 叫出来</h2>
+<ol>
+  <li><strong>重要决策前强制拖延</strong>：系统 1 要即时反馈，系统 2 需要时间。给自己"24 小时冷静期"，或者先睡一觉再说。</li>
+  <li><strong>问反例</strong>：专门问"我可能错在哪？有没有反面证据？"——对冲确认偏差（第 1 课武器）。</li>
+  <li><strong>把感觉换成数字</strong>："很常见"是多常见？"很危险"是百分之几？换成数字，可得性启发式就漏了气。</li>
+  <li><strong>拉开距离</strong>：问"如果这是我的朋友，我会怎么劝他？"旁观者视角能绕开情绪绑架。</li>
+  <li><strong>预先承诺</strong>：在冷静时就把规则定好（比如"超过预算 10% 就不买"），冲动时刻直接执行规则，而不是现场做决定——这是第 3 课"环境设计"的认知版。</li>
+</ol>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "心算「17×24」主要靠哪套系统？",
+    "options": ["系统一：快速自动的直觉反应", "系统二：缓慢费力的理性加工", "系统一：省力且不需要注意力", "系统二：自动完成无需意识参与"],
+    "answer": 1,
+    "explain": "心算需要集中注意力、一步步加工——典型系统 2。系统 1 负责自动直觉（如 2+2=4）。"
+  },
+  {
+    "q": "看到两起空难新闻后觉得「坐飞机很危险」（实际车祸死亡率更高）。这属于：",
+    "options": ["可得性启发式：容易想起就觉常见", "代表性启发式：像危险就当危险", "锚定效应：被新闻数字先入为主", "框架效应：说法不同影响判断"],
+    "answer": 0,
+    "explain": "空难新闻更容易被想起（可得），于是被高估——可得性启发式。换个角度：车祸更常发生却很难被想起。"
+  },
+  {
+    "q": "同一种药，说「存活率 90%」比「死亡率 10%」更让人愿意接受。这属于：",
+    "options": ["锚定效应：先看到数字被其影响", "可得性启发式：容易想起的东西", "框架效应：同一事实不同说法", "沉没成本：已投入无法收回"],
+    "answer": 2,
+    "explain": "事实完全相同，只是表述框架不同，选择就变了——框架效应。医生和保险业常用它。"
+  },
+  {
+    "q": "「电影都看了一半，再难看也要看完」最符合：",
+    "options": ["沉没成本：已投入继续绑架决策", "损失厌恶：害怕失去已看电影", "可得性启发式：好看的片容易想起", "代表性启发式：烂片看起来像好片"],
+    "answer": 0,
+    "explain": "已经投入的时间和票钱收不回来（沉没成本），却仍然绑架着「继续看完」的决定。正确做法：只问「接下来这一个小时，做哪件事最值」。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（三项全部完成）</p>
+  <ol>
+    <li><strong>找 3 个被捷径影响的判断</strong>：回忆你最近被系统 1 捷径影响的 3 个判断/选择（购物、工作、社交都行）。每个写清楚：情境是什么、中了哪种启发式/偏差、如果系统 2 出场会怎么改。</li>
+    <li><strong>拆一个营销</strong>：打开一个电商页面或看一条广告，找出里面用了哪些偏差（锚定、框架、损失厌恶、可得性……至少找到 2 处），并说明它怎么"骗"你。</li>
+    <li><strong>复盘一次沉没成本</strong>：最近有没有"因为已经投入太多所以继续"的决定（项目、关系、课程都算）？用沉没成本概念分析它，并说明如果重来，你会怎么用系统 2 处理。</li>
+  </ol>
+  <p>三项都要完成，写完发我，我们进入第 8 课：动机与情绪。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/7-1-what-is-cognition">OpenStax Psychology 2e 第 7 章「思维与智力」</a>（免费；7.1 认知与启发式、7.3 问题解决）；或津巴多《心理学与生活》第 8 章「认知」。</p>
+  <p><strong>必读经典：</strong>卡尼曼《思考，快与慢》（Thinking, Fast and Slow）——系统 1/系统 2 与全部偏差的完整讲述，既是科普也是作者的诺贝尔奖工作回顾。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："系统 1 和系统 2 是大脑里的两个区域吗？""启发式有没有用对的时候？""怎么判断自己是不是正在被锚定？"——直接问我，特别是当你在自己身上认出这些偏差的时候。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0006-memory.html">第 6 课：记忆（记忆会骗你 → 判断也会）</a></li>
+  <li><a href="0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学（确认偏差与可证伪性）</a></li>
+  <li><a href="0003-the-science-of-learning.html">第 3 课：学习的科学（环境设计/预先承诺）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（含第 7 课术语）</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>

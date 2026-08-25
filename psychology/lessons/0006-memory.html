@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 6 课：记忆——记住什么、忘记什么、以及记忆如何骗你</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0006 · Memory</p>
+  <h1>记忆——记住什么、忘记什么、以及记忆如何骗你</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 1「认知与基本心理过程」第二课 · 承接第 5 课"大脑会编"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>记忆是"你是谁"的底层：学习靠它、决策靠它、自我认同靠它。本课三件事：记忆怎么工作（三大工序与三种存储）、为什么忘记、以及——<strong>记忆会骗你</strong>（呼应第 5 课：如果知觉会编，记忆同样会编）。第三点直接关系到你的批判思维与日常判断。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>记忆的三大工序：编码 → 存储 → 提取</h2>
+<p>记忆不是"存东西"，而是三道工序：<strong>编码</strong>（把信息加工成可存储的形式——类似"写文件"）、<strong>存储</strong>（保持——"存文件"）、<strong>提取</strong>（取用——"找文件"）。<a href="https://openstax.org/books/psychology-2e/pages/8-1-how-memory-functions">[OpenStax Psychology 2e · 8.1]</a></p>
+<ul>
+  <li>"学的时候没用心" → 编码失败（根本没写进去）；</li>
+  <li>"当时记住了，现在想不起" → 提取失败（文件还在，找不到路径）；</li>
+  <li>"彻底想不起来" → 可能是存储衰退，也可能只是提取路径断了。</li>
+</ul>
+<p class="small">实用推论：<strong>记不住 ≠ 笨</strong>。先诊断是哪道工序出了问题，再对症下药——编码问题靠"加工深度"（理解、联想、复述），提取问题靠"检索练习"（见第 6 节）。</p>
+
+<h2>三种存储：感觉记忆、工作记忆、长时记忆</h2>
+<table>
+  <thead><tr><th>存储</th><th>容量与时长</th><th>日常体验</th></tr></thead>
+  <tbody>
+    <tr><td>感觉记忆</td><td>容量大、极短（不到 1 秒）</td><td>烟花在眼前"留影"的那一瞬间；闪过的画面好像还看得见</td></tr>
+    <tr><td>短时/工作记忆</td><td>约 7±2 个项目，15–30 秒，靠复述维持</td><td>报电话号后默念着走到电话旁；分心一打岔就忘</td></tr>
+    <tr><td>长时记忆</td><td>容量近乎无限，可保持终生</td><td>小学同学的名字、骑自行车、母语</td></tr>
+  </tbody>
+</table>
+<p><strong>短时记忆 vs 工作记忆</strong>：短时记忆是<strong>临时储物柜</strong>——只负责暂存（约 7±2 项、15–30 秒）。工作记忆是它的升级版——<strong>工作台</strong>：既放东西，又当场加工。"心算 17×4"时既存数又做运算，全在工作台（工作记忆）上完成。这也是它容量小的原因：又当仓库又当工坊，装不下太多。现代心理学基本用"工作记忆"取代了"短时记忆"的说法。</p>
+
+<h2>为什么忘记</h2>
+<ul>
+  <li><strong>编码失败</strong>：根本没存入——"昨天中午吃了什么"想不起，多半是当时没编码。</li>
+  <li><strong>衰退</strong>：不用就淡（关于这一点学界仍有争论，但作为日常理解够用）。</li>
+  <li><strong>干扰</strong>：新旧信息互相打架。<strong>前摄干扰</strong>=旧信息干扰新信息（学英语后再学法语，法语难记）；<strong>倒摄干扰</strong>=新信息干扰旧信息（学法语后，英语单词想不起来）。</li>
+  <li><strong>提取失败</strong>：信息在，但找不到——<strong>舌尖现象</strong>：名字就在嘴边，怎么也想不起，过一会儿自己冒出来。</li>
+</ul>
+
+<h2>记忆会骗你：建构性记忆</h2>
+<p>Loftus 的经典实验：让被试看车祸视频，然后问"两车<strong>撞碎</strong>（smashed）时车速多少"——比问"<strong>碰到</strong>（hit）时车速多少"的人，报告的速度更高；一周后，前者甚至有 32% 的人"记起"了视频里根本不存在的碎玻璃。<a href="https://openstax.org/books/psychology-2e/pages/8-3-problems-with-memory">[OpenStax Psychology 2e · 8.3]</a></p>
+<div class="callout">
+  <p class="callout-title">关键推论</p>
+  <p>记忆不是录像机。每次提取，都是一次<strong>重写</strong>——事后获得的信息会悄悄改写入"原来的记忆"。这就是<strong>错误信息效应</strong>：目击证词可能非常自信却非常不准；多年后的"童年回忆"可能被家人聊天、照片、别人的叙述重新建构。第 5 课说"大脑会编"，本课补上：<strong>它连你的过去也编</strong>。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">学生案例：被"讲出来"的童年</p>
+  <p>一位学员说：小时候在老家骑着玩具车、背着挎包在院子里转圈，嘴里念着"去保险公司上班咯"——他本来完全没有这段记忆；但妈妈告诉他这件事之后，他脑子里慢慢"长出"了这段画面，仿佛真的记得。这就是<strong>来源监控失败</strong>：记忆的来源（妈妈的叙述）被误认成了亲身经历。Loftus 的"商场走失"实验做过几乎相同的事：约 1/4 的被试被植入了一段从未发生的童年记忆。<strong>反复讲述 + 画面想象 = 记忆被"做旧"</strong>。</p>
+</div>
+
+<h2>怎么记得牢：本课程一直偷偷在用</h2>
+<ul>
+  <li><strong>测试效应（检索练习）</strong>：合上书凭记忆回忆，远比重读有效——每课的自测就是这个设计。</li>
+  <li><strong>间隔（spacing）</strong>：分散复习优于一口气突击——我们每课复习旧概念，就是间隔。</li>
+  <li><strong>交错（interleaving）</strong>：混合练习不同概念优于按块练——第 4 课的三种学习对比表就是交错。</li>
+  <li><strong>加工深度</strong>：理解、联想、用自己的话解释，比死记硬背记得牢——本课每节都要你"用自己的例子"，就是这个道理。</li>
+</ul>
+<p class="small">这些属于"学习科学"，正是第 3-4 课内容的应用——心理学在教你怎么学自己。</p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "记忆的三道工序，正确顺序是：",
+    "options": ["编码 → 存储 → 提取", "提取 → 编码 → 存储", "存储 → 编码 → 提取", "编码 → 提取 → 存储"],
+    "answer": 0,
+    "explain": "先编码（写入）→ 再存储（保持）→ 最后提取（取用）。类似：写文件→存文件→找文件。"
+  },
+  {
+    "q": "听到一个电话号码，默念几遍走到电话旁，一打岔就忘了。它最可能还停留在：",
+    "options": ["工作记忆：容量小且靠复述维持", "感觉记忆：不到一秒的短暂留影", "长时记忆：已经永久存储了", "语义记忆：对意义的抽象保存"],
+    "answer": 0,
+    "explain": "十几秒、靠复述、容量有限——典型的工作记忆。打岔=复述中断=信息丢失。"
+  },
+  {
+    "q": "学了法语之后，之前会的英语单词突然想不起来了。这属于：",
+    "options": ["倒摄干扰：新信息干扰了旧信息", "前摄干扰：旧信息干扰了新信息", "编码失败：英语根本没存进去", "感觉适应：对单词刺激逐渐麻木"],
+    "answer": 0,
+    "explain": "新学的法语「向后」干扰了旧英语记忆=倒摄干扰。反过来（旧干扰新）是前摄干扰。"
+  },
+  {
+    "q": "Loftus 的车祸视频实验，最重要的发现是：",
+    "options": ["事后信息会改写入原有记忆", "人们对车速的判断总是准确", "目击证词永远可以完全信任", "视频信息会直接进入长时记忆"],
+    "answer": 0,
+    "explain": "「撞碎」vs「碰到」影响报告车速，甚至让人记起不存在的碎玻璃——记忆是建构的，事后信息会改写记忆（错误信息效应）。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（三项全部完成）</p>
+  <ol>
+    <li><strong>诊断一次"想不起"</strong>：最近一次"明明记得却想不起来"是什么？用编码/存储/提取分析是哪道工序的问题，你打算怎么对症下药？</li>
+    <li><strong>测试效应实验</strong>：合上本页，凭记忆写下本课 5 个概念（不许回看）；明天再回忆一次。把两次结果发我——亲身感受"提取即强化"。</li>
+    <li><strong>找一个"记忆骗人"的例子</strong>：目击证词翻案、被错误记忆误导的新闻或经历，或用舌尖现象分析一次自己的经历。</li>
+  </ol>
+  <p>三项都要完成，写完发我，我们进入第 7 课：思维与决策。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/8-1-how-memory-functions">OpenStax Psychology 2e 第 8 章「记忆」</a>（免费；8.1 记忆如何运作、8.2 编码与存储、8.3 记忆的问题——含 Loftus 错误记忆）；或津巴多《心理学与生活》第 7 章「记忆」。</p>
+  <p><strong>延伸：</strong>Elizabeth Loftus 关于错误记忆的公开演讲与访谈（搜 "Loftus false memory"）；错误信息效应与目击证词的科普见 Simply Psychology。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："工作记忆和短时记忆到底什么区别？""为什么童年的事记得那么清？""怎么区分真记忆和建构记忆？"——直接问我，特别是当你发现"我的记忆好像也被编过"的时候。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0005-sensation-and-perception.html">第 5 课：感觉与知觉（"大脑会编"）</a></li>
+  <li><a href="0003-the-science-of-learning.html">第 3 课：学习的科学（测试效应/间隔/交错的出处）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>
