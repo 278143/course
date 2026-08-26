@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 8 课：动机与情绪——什么驱动你，情绪从哪来</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0008 · Motivation &amp; Emotion</p>
+  <h1>动机与情绪——什么驱动你，情绪从哪来</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 1「认知」收官课 · 承接第 7 课"系统 1"与第 5 课"大脑会编"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>阶段 1 最后一课，主题直奔你的使命：<strong>自我管理</strong>。动机告诉你"为什么做"（以及奖励怎么悄悄改变你），情绪告诉你"我怎么感觉"（以及情绪为什么是建构的、怎么调节）。这两块是"把心理学原理转化为可操作做法"最直接的来源。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>动机：什么在驱动你</h2>
+<p><strong>动机（motivation）</strong>是驱动与维持行为的内部状态。最简单的模型是"驱力理论"：需求 → 驱力（紧张）→ 行为 → 满足。饿了就找吃的——但这个模型解释不了那些"不缺什么还去做"的行为：好奇心、成就欲、纯粹觉得有意思。于是心理学家区分了两种动机来源：<a href="https://openstax.org/books/psychology-2e/pages/10-1-motivation">[OpenStax Psychology 2e · 10.1]</a></p>
+<ul>
+  <li><strong>内在动机</strong>：为行为本身而做——画画是因为喜欢画画。</li>
+  <li><strong>外在动机</strong>：为外部奖励/压力而做——画画是为了奖品、工资、表扬。</li>
+</ul>
+<h3>过度理由效应：奖励可能"杀死"兴趣</h3>
+<p>经典实验：本来爱画画的孩子，被承诺"画一幅给一张奖状"后，反而<strong>画得少了</strong>——原本"因为喜欢"（内在）的事，被解释成"为了奖状"（外在）后，兴趣被挤掉了。这叫<strong>过度理由效应</strong>。第 3 课说强化增加行为——这里补上重要边界：<strong>奖励能增加行为，却可能削弱动机的"质量"</strong>。给任务加奖励时要想：这会让人更愿意做，还是把"我喜欢"变成"我为了"？</p>
+<p class="small">补充：马斯洛的需要层次（生理→安全→归属→尊重→自我实现）是了解"人有哪些需求"的好清单，但层级顺序并非铁律——艺术家饿着肚子创作，就是自我实现压过了生理需求。把它当描述框架，别当定律。</p>
+
+<h2>情绪：不只是"感觉"</h2>
+<h3>情绪的三个成分</h3>
+<ul>
+  <li><strong>生理唤醒</strong>：心跳加快、出汗、呼吸变浅——身体的反应。</li>
+  <li><strong>认知评价</strong>：大脑的解读——"这是威胁！""这是惊喜！"</li>
+  <li><strong>行为表达</strong>：表情、动作、语调——"皱眉""握拳""尖叫"。</li>
+</ul>
+<p>"我焦虑了"不是一句话，而是这三件事同时发生。拆开它们，你就能在情绪来临时知道"哪部分是真的危险、哪部分只是身体的警报"。</p>
+
+<h3>情绪是建构的：同一颗心跳，不同的剧本</h3>
+<p>心理学家发现：<strong>先有生理唤醒，大脑再根据情境给它安一个解释</strong>（沙赫特-辛格双因素理论）。心跳加速时——如果对面是凶恶的人，你解释成"害怕"；如果是喜欢的人，你解释成"心动"；如果刚跑完步，你解释成"累"。生理反应几乎相同，<strong>剧本（认知评价）决定情绪</strong>。这正是第 5 课"大脑会编"在情绪领域的翻版。Ekman 发现六种基本情绪（快乐、悲伤、恐惧、愤怒、惊讶、厌恶）在不同文化中表情几乎一样——身体的底稿是共通的，故事是各自编的。</p>
+
+<h3>情绪的功能</h3>
+<ul>
+  <li><strong>信号</strong>：告诉你环境/自己出了什么事（焦虑 = 有不确定的事要处理）。</li>
+  <li><strong>动机</strong>：推动行动（恐惧 → 回避，愤怒 → 应对）。</li>
+  <li><strong>社交</strong>：表情是给别人的信号（微笑 = 友好，皱眉 = 不悦）。</li>
+</ul>
+
+<h2>情绪调节：最实用的工具</h2>
+<p>两种常见策略，效果天差地别（Gross 的研究）：</p>
+<table>
+  <thead><tr><th>策略</th><th>做法</th><th>效果</th></tr></thead>
+  <tbody>
+    <tr><td>压抑（suppression）</td><td>忍住、憋着、装没事</td><td>表面平静，但内心体验未减、记忆更差、社交更累，长期与身心负担相关</td></tr>
+    <tr><td><strong>认知重评（reappraisal）</strong></td><td>换个解释："他是故意踩我" → "他可能也被挤了一下"</td><td>负面情绪本身减弱，记忆更好，社交更顺</td></tr>
+  </tbody>
+</table>
+<p>三步做法：<strong>觉察</strong>（先拆三成分：身体哪在报警？我在怎么解释？）→ <strong>重评</strong>（有没有另一种解释？）→ <strong>行动</strong>（按新剧本行动）。用第 7 课的话说：情绪是系统 1 的快反应，重评是<strong>把系统 2 叫出来改剧本</strong>——生理反应可以一样，故事可以换。</p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "本来爱画画的孩子，被承诺画一幅给一张奖状后反而画得少了。这最符合：",
+    "options": ["过度理由效应：外部奖励挤掉内在兴趣", "正强化失效：奖状强度不够起作用", "负强化过度：奖励变成了厌恶刺激", "内在动机过剩：孩子对画画太狂热"],
+    "answer": 0,
+    "explain": "「因为喜欢」被解释成「为了奖状」后，内在动机被外部奖励挤掉——过度理由效应。奖励增加行为，却可能削弱动机质量。"
+  },
+  {
+    "q": "心跳加速时，对面是坏人→害怕，是喜欢的人→心动。这说明情绪：",
+    "options": ["由认知评价决定：同一唤醒不同剧本", "由生理唤醒决定：身体反应本身即情绪", "由行为表达决定：表情反过来塑造感受", "由文化决定：不同文化有不同基本情绪"],
+    "answer": 0,
+    "explain": "双因素理论：先有唤醒，大脑再按情境解释（认知评价）——同一个心跳，不同的剧本=不同的情绪。"
+  },
+  {
+    "q": "情绪的三个成分是：",
+    "options": ["生理唤醒、认知评价、行为表达", "快慢思考、记忆编码、感官刺激", "需求层级、驱力水平、满足程度", "感觉适应、知觉建构、注意力分配"],
+    "answer": 0,
+    "explain": "身体的反应（生理唤醒）+ 大脑的解释（认知评价）+ 外显的表现（行为表达）——焦虑不是一个词，是三件事同时发生。"
+  },
+  {
+    "q": "被踩了一脚，把「他故意的」换成「他可能被挤了一下」，情绪明显缓和。这属于：",
+    "options": ["认知重评：改解释以调节情绪", "压抑策略：把怒火强行憋回去", "情绪表达：用表情把情绪外化", "感觉适应：对疼痛逐渐麻木"],
+    "answer": 0,
+    "explain": "认知重评=换剧本。研究（Gross）显示它比压抑更有效：负面体验更少、记忆更好、社交更顺。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（三项全部完成）</p>
+  <ol>
+    <li><strong>动机质检</strong>：找一件你"本来喜欢、后来因为被奖励/被要求/被考核而变得不想做"的事（或反过来），用过度理由效应分析它，并说说如果重新设计，你会怎么保住内在动机。</li>
+    <li><strong>情绪拆解</strong>：回忆最近一次强烈情绪（生气/焦虑/开心都行），拆出三成分——生理上发生了什么？当时的解释是什么？行为上做了什么？哪个成分最明显？</li>
+    <li><strong>重评练习</strong>：找一件最近让你不爽的事（已发生的也行），用"原解释 → 另一种解释 → 感受差异"三步做一次认知重评，把过程写下来。</li>
+  </ol>
+  <p>三项都要完成，写完发我，阶段 1 就收官了，我们进入第 9 课：人格。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/10-1-motivation">OpenStax Psychology 2e 第 10 章「情绪与动机」</a>（免费；10.1 动机、10.4 情绪）；或津巴多《心理学与生活》第 10 章「动机与情绪」。</p>
+  <p><strong>延伸：</strong>Gross 关于情绪调节的经典论文（搜 "Gross emotion regulation reappraisal suppression"）；Ekman 的基本情绪研究（搜 "Ekman basic emotions"）。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："过度理由效应是不是说奖励完全没用？""情绪能被重评到没有吗？""负面情绪是不是应该全部消灭？"——直接问我，特别是当你在自己身上认出这些机制的时候。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0007-thinking-and-decisions.html">第 7 课：思维与决策（情绪=系统 1，重评=叫醒系统 2）</a></li>
+  <li><a href="0005-sensation-and-perception.html">第 5 课：感觉与知觉（情绪也是建构）</a></li>
+  <li><a href="0003-the-science-of-learning.html">第 3 课：学习的科学（强化与动机质量）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（含第 8 课术语）</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>
