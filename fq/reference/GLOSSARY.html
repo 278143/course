@@ -356,6 +356,145 @@ code, .num {
 
 /* ---------- 打印 ---------- */
 
+/* ---------- 还款表（repayment 组件） ---------- */
+
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
+}
+
+.rep-table th, .rep-table td {
+  text-align: right;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rep-table th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.rep-table td:first-child, .rep-table th:first-child {
+  text-align: center;
+  color: var(--muted);
+}
+
+.rep-table tbody tr:first-child td { color: var(--accent); font-weight: 700; }
+.rep-table tbody tr:last-child td { color: var(--good); }
+/* ---------- 债务地图表（lesson 3） ---------- */
+
+.debt-map {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1.2rem 0;
+}
+
+.debt-map th, .debt-map td {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: left;
+}
+
+.debt-map thead th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.debt-map tbody th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  white-space: nowrap;
+  width: 8rem;
+}
+/* ---------- 课程地图内的跳转链接 ---------- */
+
+.course-map a { color: inherit; text-decoration: none; }
+.course-map a:hover { text-decoration: underline; }
+.course-map a::before { content: "↗ "; font-size: 0.9em; }
+
+/* ---------- 术语表快捷入口（每课顶部） ---------- */
+
+.glossary-link {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--accent);
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.glossary-link:hover { background: var(--accent-soft); }
+/* ---------- 签约检查清单（contract-check 组件） ---------- */
+
+.cc-list {
+  margin-top: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.cc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cc-row.cc-head {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
+
+.cc-title { flex: 1; }
+
+.cc-tag {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cc-ok { background: #e8f3e9; color: var(--good); }
+.cc-amber { background: var(--accent-soft); color: var(--accent); }
+.cc-red { background: #fbeae8; color: var(--bad); font-weight: 700; }
+
+.cc-check { width: 1.2rem; height: 1.2rem; }
+
+.cc-tip {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.35rem 0.8rem 0.55rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.cc-verdict {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
 @media print {
   html { font-size: 12pt; }
   body { max-width: none; padding: 0; }
@@ -365,7 +504,6 @@ code, .num {
   section, .exercise, .quiz-question { break-inside: avoid; }
   a { color: var(--ink); text-decoration: none; }
 }
-
 </style>
 </head>
 <body>
@@ -422,10 +560,10 @@ code, .num {
     <dd>好债：利率极低、或在投资自己（如助学贷款，在校期间财政贴息 ≈ 0 成本）。坏债：高利率的消费（信用卡分期、消费贷，年化常 12%–18%）。还债顺序：先坏债、后好债。第 2–3 课。</dd>
 
     <dt>利率 <span class="en">Interest Rate</span></dt>
-    <dd>借钱的"价格"。年利率 3% 意味着借 1 万元一年要付 300 元利息。第 2–3 课。</dd>
+    <dd>借钱的"价格"，统一按<strong>一年</strong>算。<strong>年利率</strong>专指"借的钱每年产生的利息比例"：年利率 3% 就是借 1 万一年付 300 元。注意：<strong>年利率 ≠ 总利率</strong>。因为你每月在还本金（等额本息/等额本金），利息只按"剩余本金"算，所以 8 万、15 年、2.7% 的实际总利息约 1.74 万，而不是 8 万 × 2.7% × 15 = 3.24 万。第 2–3 课。</dd>
 
     <dt>年化收益率 <span class="en">Annualized Return</span></dt>
-    <dd>把收益换算成"一年"的口径，方便比较不同投资品。例如货币基金年化 1%，指按当前水平存一年大约赚 1%。第 2–5 课。</dd>
+    <dd>把收益/利息折算成"一年"的口径，这样不同期限的东西才能放在同一把尺子上比。<strong>年化 1%</strong> = 按当前水平，放一年大约赚 1%。（一个 90 天赚 2% 的产品，年化大约是 8%，因为它一年能滚动约 4 次。）贷款用<strong>年利率</strong>，投资用<strong>年化收益率</strong>，都是一个意思：每年多少比例。第 2–5 课。</dd>
 
     <dt>LPR <span class="en">Loan Prime Rate</span></dt>
     <dd>贷款市场报价利率，由央行授权发布，是银行贷款定价的"基准价"，每月公布一次。目前 1 年期约 3.0%、5 年期约 3.5%（2025 年 12 月）。注意：<strong>两个都是年利率</strong>——1 年期档给短期贷款（消费贷、助学贷款等）定价，5 年期档给长期贷款（房贷等）定价。助学贷款利率 = LPR − 30 个基点，随它浮动。第 2–3 课。</dd>
@@ -466,11 +604,69 @@ code, .num {
     <dt>记账 / 预算 <span class="en">Tracking / Budgeting</span></dt>
     <dd>记账：记录每一笔收支，看清钱的流向。预算：给每类支出设上限，主动分配钱。第 2 课。</dd>
 
-  </dl>
-</main>
+    <dt>经常性支出 / 一次性支出 <span class="en">Recurring / One-off Expense</span></dt>
+    <dd>经常性支出：每周/每月都会发生（日常吃喝、交通）。一次性或低频支出：几个月才一次（理发卡、换轮胎、囤米蛋）。<strong>算月基线和应急金目标时，只算经常性，别让一次大额带偏。</strong>第 3 课。</dd>
+
+    <dt>还款方式 <span class="en">Repayment Method</span></dt>
+    <dd>常见两种：<strong>等额本息</strong>——每月还款额固定，前期利息占比高、本金占比低，月供好规划；<strong>等额本金</strong>——每月还的本金固定，利息逐月减少，月供逐月递减，前期压力略大、总利息略省。第 3 课。</dd>
+
+    <dt>等额本息 / 等额本金 <span class="en">Annuity / Equal Principal</span></dt>
+    <dd>见"还款方式"。核心认知：<strong>利息按"剩余本金"收取</strong>，剩余本金越少，当月利息越少。第 3 课。</dd>
+
+    <dt>提前还款 <span class="en">Early Repayment</span></dt>
+    <dd>提前偿还本金。节省的是"未来按剩余本金算的利息"。对高息债很划算；对低息好债（如助学贷 2.7%）省得有限，往往不如先把应急金和现金流保住。第 3 课。</dd>
+
+    <dt>债务归属 <span class="en">Debt Ownership</span></dt>
+    <dd>一笔债"以谁名义借、法律上由谁负责偿还"。它决定策略：<strong>你的债</strong>要纳入你的资产负债表；<strong>家庭的债</strong>你有情分、无法律义务——别把两笔混在一起焦虑。第 1、3 课。</dd>
+
+    <dt>还本宽限期 <span class="en">Grace Period</span></dt>
+    <dd>毕业后、开始还本金前的一段期限，期间通常只还利息、不还本金（具体年限以当下助学贷款政策为准，见第 3 课官方链接）。在校期间则利息由财政全额贴息。第 3 课。</dd>
+
+  
+    <dt>合同 <span class="en">Contract</span></dt>
+    <dd>双方都同意的约定，<strong>签字即受约束</strong>。所以签之前务必看懂。常见的个人合同：租房合同、劳动合同、借款合同、买课服务合同。第 4 课。</dd>
+
+    <dt>定金 / 订金 <span class="en">Deposit / Earnest Money</span></dt>
+    <dd>一字之差，钱差一倍。<strong>定金</strong>（法定担保）有<strong>罚则</strong>：你违约定金不退，对方违约要双倍返还；上限是合同金额的 20%。<strong>订金</strong>只是预付款、可退。第 4 课。</dd>
+
+    <dt>押金 <span class="en">Security Deposit</span></dt>
+    <dd>俗称的"保证金/押金"。租房常见。理由：数额、退还条件、扣款标准都写进合同，退房才有得讲。第 4 课。</dd>
+
+    <dt>违约金 <span class="en">Liquidated Damages</span></dt>
+    <dd>违约要赔的钱。写得明显高于实际损失时，可请求法院/仲裁<strong>调低</strong>。第 4 课。</dd>
+
+    <dt>试用期 <span class="en">Probation Period</span></dt>
+    <dd>劳动合同里的试用期：3 个月以上不满 1 年合同 ≤ 1 个月；1–3 年 ≤ 2 个月；3 年以上/无固定期限 ≤ 6 个月。<strong>试用期工资 ≥ 约定工资的 80%</strong>，且不低于当地最低工资；同一单位只能约定一次。第 4 课。</dd>
+
+    <dt>竞业限制 <span class="en">Non-Compete</span></dt>
+    <dd>约定离职后一定年限内不去竞争对手处。最长不超过 2 年，用人单位须<strong>按月给补偿</strong>；没给补偿可主张不受其约束。第 4 课。</dd>
+
+    <dt>担保 / 保证 <span class="en">Guarantee</span></dt>
+    <dd>你替别人还钱。<strong>连带责任保证</strong>（最危险）——债权人可直接找你要钱；<strong>一般保证</strong>——先找借款人，还不了才找你。民法典默认按一般保证，但合同常写明"连带责任"。铁律：<strong>不当担保人</strong>。第 4 课。</dd>
+
+    <dt>五险一金 <span class="en">Social Insurance &amp; Housing Fund</span></dt>
+    <dd>五险 = 养老、医疗、失业、工伤、生育保险；一金 = 住房公积金。用人单位<strong>依法必须缴纳</strong>，个人缴一部分、单位缴更多。它是<strong>单位统一为你缴到社保系统</strong>，不是分别"打款"给你——给你的是<strong>保障</strong>（看病报销、失业补助、养老金等）。比例以当地为准（约：养老个人8%/单位16%，医疗个人约2%）。第 4 课。</dd>
+
+    <dt>住房公积金 <span class="en">Housing Fund</span></dt>
+    <dd>个人 + 单位缴的<strong>都进你个人账户</strong>，是"你的钱"；买房、租房、离职可提取。第 4 课。</dd>
+
+    <dt>个税 / 个人所得税 <span class="en">Individual Income Tax</span></dt>
+    <dd>对个人所得征收的税。工资的起征点（减除费用）为每月 <strong>5000 元</strong>（年 6 万）。计税时先扣：五险一金个人部分、专项附加扣除。第 4 课。</dd>
+
+    <dt>专项附加扣除 <span class="en">Special Additional Deduction</span></dt>
+    <dd>个税里可申报的扣除项：住房租金、住房贷款利息、继续教育、子女教育、赡养老人、大病医疗等。填了才减，<strong>别漏填</strong>，是合法节税渠道。第 4 课。</dd>
+
+  
+    <dt>劳动合同 <span class="en">Labor Contract</span></dt>
+    <dd>你与用人单位之间确立劳动关系的书面约定（含岗位、工资、合同期限、试用期等）。<strong>应在用工之日起 1 个月内签订</strong>；超过 1 个月不满 1 年未签，单位应每月支付<strong>二倍工资</strong>（最多 11 个月）。第 4 课。</dd>
+
+    <dt>社保缴费基数 <span class="en">Contribution Base</span></dt>
+    <dd>五险一金缴纳比例所乘的"基数"。常设<strong>上下限</strong>（约当地社会平均工资的 60%–300%），所以不一定是你的全额工资。例如养老个人 8%、单位 16%，是按这个基数算的。第 4 课。</dd>
+
+  </dl>ain>
 
 <footer class="lesson-footer">
-  <p>本表会随着课程推进持续补充。某个词看不懂？先查这里，再问我。<br>返回：<a href="../lessons/0001-financial-map.html">第 1 课</a> · <a href="../lessons/0002-budget-and-emergency-fund.html">第 2 课</a></p>
+  <p>本表会随着课程推进持续补充。某个词看不懂？先查这里，再问我。<br>返回：<a href="../lessons/0001-financial-map.html">第 1 课</a> · <a href="../lessons/0002-budget-and-emergency-fund.html">第 2 课</a> · <a href="../lessons/0003-debt-response.html">第 3 课</a> · <a href="../lessons/0004-law-and-money.html">第 4 课</a></p>
 </footer>
 
 </body>

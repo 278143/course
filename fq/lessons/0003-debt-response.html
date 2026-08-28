@@ -1,0 +1,962 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 3 课 · 债务应对</title>
+<style>
+/* ============================================================
+   lesson.css — 财商课程共享样式表（Tufte 风格）
+   所有课程共用：保证整套课程外观一致、可打印。
+   ============================================================ */
+
+:root {
+  --ink: #1c1a17;
+  --paper: #fffef9;
+  --accent: #8b5e3c;      /* 暖棕：主强调色 */
+  --accent-soft: #f0e6d8;
+  --teal: #2e6e5e;        /* 辅助强调色 */
+  --muted: #75706a;
+  --rule: #ddd6c9;
+  --card: #faf6ee;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --code-bg: #f4f1ea;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 2.25rem 1.4rem 4rem;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 头部 ---------- */
+
+.lesson-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.lesson-kicker {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.lesson-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.lesson-meta {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- 正文排版 ---------- */
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.4rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+
+h3 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; }
+
+p { margin: 0.7rem 0; }
+
+strong { font-weight: 700; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0.7rem 0; padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: normal;
+  color: var(--ink);
+}
+
+blockquote p { margin: 0.25rem 0; }
+
+code, .num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ---------- 关键公式框 ---------- */
+
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.12rem;
+}
+
+.formula .tag {
+  display: block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 练习卡片 ---------- */
+
+.exercise {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.exercise h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 小标签 ---------- */
+
+.pill {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---------- 测验 ---------- */
+
+.quiz { margin: 1.6rem 0; }
+
+.quiz-question {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.quiz-qtext {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.quiz-option.correct { background: #e8f3e9; border-color: var(--good); color: var(--good); }
+.quiz-option.wrong { background: #fbeae8; border-color: var(--bad); color: var(--bad); }
+
+.quiz-feedback { margin-top: 0.6rem; font-size: 0.9rem; min-height: 1.3em; }
+.quiz-feedback.ok { color: var(--good); }
+.quiz-feedback.no { color: var(--bad); }
+
+.quiz-score {
+  margin-top: 1rem;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.quiz-reset {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+}
+.quiz-reset:hover { background: var(--accent-soft); }
+
+/* ---------- 互动计算器（networth 组件） ---------- */
+
+.networth-widget {
+  margin: 1.4rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nw-group {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.nw-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.nw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.nw-row label { flex: 1; color: var(--ink); }
+
+.nw-row input {
+  width: 9rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: right;
+  color: var(--ink);
+}
+
+.nw-row input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+.nw-result {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  text-align: center;
+}
+
+.nw-big {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.nw-big.pos { color: var(--good); }
+.nw-big.neg { color: var(--bad); }
+
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.nw-cell { font-size: 0.85rem; color: var(--muted); }
+.nw-cell b { display: block; font-size: 1.02rem; color: var(--ink); }
+
+.nw-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+/* ---------- 课程地图 ---------- */
+
+.course-map { font-size: 0.95rem; }
+.course-map li { margin: 0.45rem 0; }
+.course-map .now { color: var(--accent); font-weight: 700; }
+.course-map .later { color: var(--muted); }
+
+/* ---------- 术语表 ---------- */
+
+.glossary { margin: 0.5rem 0; }
+.glossary dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+.glossary dt .en {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.glossary dd {
+  margin: 0.2rem 0 0 0;
+  color: var(--ink);
+}
+.glossary .later {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- 页脚 ---------- */
+
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 打印 ---------- */
+
+/* ---------- 还款表（repayment 组件） ---------- */
+
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
+}
+
+.rep-table th, .rep-table td {
+  text-align: right;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rep-table th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.rep-table td:first-child, .rep-table th:first-child {
+  text-align: center;
+  color: var(--muted);
+}
+
+.rep-table tbody tr:first-child td { color: var(--accent); font-weight: 700; }
+.rep-table tbody tr:last-child td { color: var(--good); }
+/* ---------- 债务地图表（lesson 3） ---------- */
+
+.debt-map {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1.2rem 0;
+}
+
+.debt-map th, .debt-map td {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: left;
+}
+
+.debt-map thead th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.debt-map tbody th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  white-space: nowrap;
+  width: 8rem;
+}
+/* ---------- 课程地图内的跳转链接 ---------- */
+
+.course-map a { color: inherit; text-decoration: none; }
+.course-map a:hover { text-decoration: underline; }
+.course-map a::before { content: "↗ "; font-size: 0.9em; }
+
+/* ---------- 术语表快捷入口（每课顶部） ---------- */
+
+.glossary-link {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--accent);
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.glossary-link:hover { background: var(--accent-soft); }
+/* ---------- 签约检查清单（contract-check 组件） ---------- */
+
+.cc-list {
+  margin-top: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.cc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cc-row.cc-head {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
+
+.cc-title { flex: 1; }
+
+.cc-tag {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cc-ok { background: #e8f3e9; color: var(--good); }
+.cc-amber { background: var(--accent-soft); color: var(--accent); }
+.cc-red { background: #fbeae8; color: var(--bad); font-weight: 700; }
+
+.cc-check { width: 1.2rem; height: 1.2rem; }
+
+.cc-tip {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.35rem 0.8rem 0.55rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.cc-verdict {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+@media print {
+  html { font-size: 12pt; }
+  body { max-width: none; padding: 0; }
+  .quiz-option { border: 1px solid #999; }
+  .quiz-option:disabled { opacity: 1; }
+  .quiz-reset, .nw-hint { display: none; }
+  section, .exercise, .quiz-question { break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="lesson-header">
+  <p class="lesson-kicker">第 3 课 · 财商系统课</p>
+  <h1>债务应对：给你的债一张地图、一个边界</h1>
+  <p class="lesson-meta">预计 30 分钟 · 数据已就位 · 上一课：<a href="0002-budget-and-emergency-fund.html">记账与应急金</a></p>
+</header>
+
+<main>
+
+<p><a class="glossary-link" href="../reference/GLOSSARY.html">📖 查术语表（随课程持续更新）</a></p>
+
+  <blockquote>
+    <p><strong>这课和你的使命有什么关系？</strong>你的使命里最沉的那块，是家庭那 30 万。但第 1 课我们已经确认：<strong>那是父母的债，不是你法律上的债</strong>。真正写在你名下、要你还的，只有 <strong>8 万助学贷款</strong>。这课的任务：把这两笔债彻底看清 —— 哪笔该先还、哪笔该慢慢还、哪笔根本不是你的 —— 并学会读<strong>还款表</strong>，算出你毕业后每月要还多少。最后，给自己画一个关于家庭债的<strong>边界</strong>。这是整门课里你最需要、也最容易做错的一课。</p>
+  </blockquote>
+
+  <h2>一、先审你的账：7 天记账证实了一件大事</h2>
+  <p>恭喜，你坚持记满了 7 天，连"无"的那天也如实记录了。这份数据比任何课都值钱，因为它是<strong>你的真实血流</strong>。我们一起来读它。</p>
+
+  <table class="rep-table">
+    <thead><tr><th>日期</th><th>笔数</th><th>当日支出</th></tr></thead>
+    <tbody>
+      <tr><td>8.22</td><td>4</td><td>¥57.00</td></tr>
+      <tr><td>8.23</td><td>1</td><td>¥10.00</td></tr>
+      <tr><td>8.24</td><td>1</td><td>¥11.80</td></tr>
+      <tr><td>8.25</td><td>0</td><td>¥0.00</td></tr>
+      <tr><td>8.26</td><td>3</td><td>¥107.00</td></tr>
+      <tr><td>8.27</td><td>5</td><td>¥123.00</td></tr>
+      <tr><td>8.28</td><td>4</td><td>¥172.34</td></tr>
+      <tr><td><strong>合计</strong></td><td><strong>18</strong></td><td><strong>¥481.14</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="formula">
+    <span class="tag">⚠️ 最容易踩的坑</span>
+    481.14 × (30 ÷ 7) ≈ <strong>2062 元/月</strong> —— <strong>这是错的！</strong>
+    <br>因为这里面挤进了 <strong>231 元低频/囤货</strong> + <strong>120 元一顿社交大餐</strong>，它们不会每月都发生。
+  </div>
+
+  <p><strong>真正有用的读法，是把钱分成三类。这是本课要教你的第一个真技能。</strong></p>
+
+  <ul>
+    <li><span class="pill">日常</span><strong>日常吃喝 + 日用</strong>：104.80 元 ÷ 7 天 ≈ <strong>15 元/天</strong>。这才是你"天天在花"的部分——数值很低，说明大部分伙食由食堂/家里承担。</li>
+    <li><span class="pill">低频</span><strong>低频 / 一次性</strong>：231.44 元（理发卡 100、换轮胎 80、囤大米 21.44、买鸡蛋 30）。几个月才碰一次，<strong>不该算进"月基线"</strong>。</li>
+    <li><span class="pill">社交</span><strong>社交大餐</strong>：119.90 元（8.28 那顿饭）。这是<strong>弹性支出</strong>，可大、可小、可无。</li>
+    <li><span class="pill">自己</span><strong>投资自己 / 学习工具</strong>：25.00 元（Deepseek API 20 + dsh 5）。这笔是"好"的花——投资自己，但要<strong>有意识地花</strong>，不是随手。</li>
+  </ul>
+
+  <p><strong>这对你的意义</strong>：第 2 课我们按"月支出 1500"定应急金目标 4500–9000。现在你看到了——这 1500 里<strong>已经含固定成本</strong>（住宿、交通月卡等），而你真正"天天现金流出"的部分每天才 15 元。所以：<strong>应急金目标不用改</strong>（4500–9000 仍合理），但你要开始在心里区分三类钱，别让一次大额打扰你的判断。</p>
+
+  <div class="exercise">
+    <h3>✍️ 读完自己的账，回答这 3 个问题（发给我）</h3>
+    <ol>
+      <li>这 7 天里，你觉得自己哪一类花得最"值"，哪一类最"没必要"？</li>
+      <li>如果把"低频"（理发卡、轮胎、囤货）单独留一小笔"备用金"（比如每月 50–100），你能接受吗？</li>
+      <li>你的应急金——现在开始往里存了吗？还是在等"有闲钱再说"？</li>
+    </ol>
+  </div>
+
+  <h2>二、你的债务地图：其实只有两笔债</h2>
+  <p>很多人的财务焦虑来自"模糊的负债感"。把它写成一张表，你会发现事情没那么可怕。</p>
+
+  <table class="debt-map">
+    <thead><tr><th></th><th>8 万助学贷款</th><th>30 万家庭负债</th></tr></thead>
+    <tbody>
+      <tr><th>以谁名义</th><td>你（本人）</td><td>父母</td></tr>
+      <tr><th>法律上谁还</th><td>你</td><td>父母</td></tr>
+      <tr><th>写在你的资产负债表上？</th><td>✅ 是（这解释了你的净资产 −78,300）</td><td>❌ 否（不因它欠债）</td></tr>
+      <tr><th>利率</th><td>在校 0（财政贴息）；毕业后 = 同期 LPR − 30 个基点（随市场浮动，目前约 2.7% 上下，以最近一期官方公布为准）</td><td>待你自己弄清（见下方）</td></tr>
+      <tr><th>定性</th><td><strong>好债</strong>：极低利率 + 投资自己（教育）</td><td><strong>边界外</strong>：归属父母，你有情分、无义务</td></tr>
+      <tr><th>你的策略</th><td>先建应急金；毕业后按还款表还，绝不逾期</td><td>先搞清情况，再谈"怎么帮"；不替他签、不替他背</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>记住最要紧的一句</strong>：<strong>8 万是你的债，30 万是你家庭的债。</strong>把这两笔混在一起焦虑，是你目前最大的认知负担。分开，路就清楚了。</p>
+
+  <h2>三、好债 vs 坏债，以及"先还哪一笔"</h2>
+  <p>还债不是"看见债就还"，先判断<strong>贵不贵（利率）</strong>和<strong>值不值（用在哪儿）</strong>。</p>
+  <div class="formula">
+    <span class="tag">还债优先级</span>
+    ① 应急金　→　② 高息坏债（年化 10%+）　→　③ 低息好债（如助学贷约 2.7%）　→　④ 开始投资
+  </div>
+  <ul>
+    <li><strong>坏债</strong>：信用卡分期、消费贷，年化常 12%–18%。这是"贵"的债，<strong>先还</strong>。</li>
+    <li><strong>好债</strong>：助学贷款这种——利率极低，且是<strong>投资自己</strong>（你还的就是给你的教育成本）。在校还≈0 成本，毕业后也只有约 2.7% 上下(随 LPR 浮动)。你目前<strong>没有坏债</strong>，只有这笔好债。</li>
+  </ul>
+  <p><strong>所以你的顺序很清晰</strong>：<strong>先攒应急金</strong>（4500–9000），<strong>再慢慢还助学贷</strong>。<strong>绝不要为了"早点无债一身轻"而把应急金掏空</strong>——那会让你在意外来临时用 15% 的利息去借钱，得不偿失。而且，<strong>千万别逾期</strong>：助学贷逾期会伤征信，影响你将来考研、第一份工作、租房、办信用卡。</p>
+
+  <h2>四、读懂一张还款表（本课的核心技能）</h2>
+  <p>你要还的 8 万，是怎么在十几年里慢慢还清的？先懂两种最常见方式，再看下面的计算器。</p>
+  <ul>
+    <li><strong>等额本息</strong>：每月还款额<strong>固定</strong>。前期利息占比高、本金占比低，后期反过来。好处：月供好规划。中国房贷、大部分贷款都用它。</li>
+    <li><strong>等额本金</strong>：每月还的<strong>本金固定</strong>，利息逐月减少，所以月供<strong>逐月递减</strong>。前期压力大一点点，但<strong>总利息略省</strong>。</li>
+  </ul>
+
+  <div class="repayment-widget"></div>
+
+  <p><strong>看懂表里最关键的一列——"剩余本金"。</strong>你会发现：<strong>利息是"按剩余本金"收的</strong>。剩下本金越少，当月利息就越少。这就是为什么——</p>
+  <div class="formula">
+    <span class="tag">提前还款的逻辑</span>
+    <strong>提前还的是"剩余本金"，省下的是"未来的利息"。</strong><br>
+    对你这种约 2.7% 的低息好债，省下的利息有限，<strong>不如把现金留在应急金里</strong>（保命、保流动性）。<br>
+    但如果你<strong>已经还完应急金</strong>、手上又有一笔闲钱，提前还掉一部分也没什么损失——关键是<strong>顺序别搞反</strong>。
+  </div>
+
+  <h2>五、家庭 30 万：给你自己画一个边界</h2>
+  <p>这是本课<strong>最难、也最重要</strong>的部分。想让家人过得好，没有错；但<strong>用错方式去"帮"，会让你和家人都陷得更深</strong>。把边界分成三层想清楚：</p>
+
+  <ul>
+    <li><strong>法律层</strong>：30 万以父母名义借，<strong>法律上由父母负责</strong>。你——一个在读书、收入几乎为 0 的学生——<strong>没有替他们还债的义务</strong>。认清这点不是冷漠，是保护你还有能力去"帮"的前提。</li>
+    <li><strong>情分层</strong>：想帮家人，人之常情。但"帮"不等于"替还"。你可以<strong>帮他们出主意</strong>（厘清债务、谈延期、谈利率），而不是<strong>替他们扛债</strong>。</li>
+    <li><strong>能力层</strong>：你现在没有能力背 30 万。任何"替你还"都会把你拖进更深的坑，让你连自己的 8 万、自己的应急金都保不住。<strong>先把自己变强</strong>（技能、收入），等你有余力、又确实理解家里情况时，从"有能力"的位置去帮，而不是从"被拖下水"的位置去救。</li>
+  </ul>
+
+  <div class="exercise">
+    <h3>🛡️ 边界练习：请回答这 3 题（写下来，或发给我）</h3>
+    <ol>
+      <li>你会不会<strong>签字、担保、共同借款</strong>来"帮家里"？（请承诺答案必须是"不会"）</li>
+      <li>这 30 万，你们家现在<strong>每月 / 每年实际在还多少？还要还几年？利率多少？</strong>——如果不知道，这正是你该在毕业前跟家人<strong>坦诚谈一次</strong>的话题。</li>
+      <li>你打算怎么"帮"？请写一句<strong>你能做到、且不伤害自己的</strong>具体行动（例如："毕业后稳定了，每月从结余里给家里转 500"），并<strong>明确不做</strong>哪些事（例如："不替他们借任何新贷款"）。</li>
+    </ol>
+  </div>
+
+  <h2>六、小测验</h2>
+  <p>先回忆再作答，答完再翻上去核对。这次题里藏着一个"边界陷阱"。</p>
+
+  <div class="quiz" data-title="小测验 · 债务与边界">
+    <script type="application/json">
+    [
+      { "q": "助学贷款在校期间的利息？", "options": ["自己承担", "财政补贴", "立即归还", "自动免除"], "answer": 1 },
+      { "q": "还款优先级正确的是？", "options": ["先还债再存钱", "先投资再存钱", "先应急再还债", "先消费再存钱"], "answer": 2 },
+      { "q": "等额本息的特点是？", "options": ["月供逐月递减", "每月还款固定", "每月只还本金", "首月没有利息"], "answer": 1 },
+      { "q": "家庭 30 万负债属于？", "options": ["你的债务", "父母债务", "你的好债", "学校债务"], "answer": 1 },
+      { "q": "面对家庭债，正确的是？", "options": ["签字偿债", "替其借债", "先保自己", "弃学还债"], "answer": 2 }
+    ]
+    </script>
+  </div>
+
+  <h2>本课核心收获</h2>
+  <ul>
+    <li><strong>把钱分三类</strong>：日常 / 低频一次性 / 社交弹性——别让一次大额打扰你的月基线判断。</li>
+    <li><strong>你的债只有一笔</strong>：8 万助学贷款是好债；30 万是你家庭的债，法律上不属于你。</li>
+    <li><strong>顺序</strong>：先应急金，再还低息债，别为"无债一身轻"掏空安全垫；<strong>绝不逾期</strong>。</li>
+    <li><strong>还款表</strong>：利息随剩余本金减少；等额本息月供稳、等额本金总利息略省。低息好债，留着应急金比抢着还更划算。</li>
+    <li><strong>边界</strong>：法律 + 情分 + 能力三层想清楚——先把自己变强，才是对家人最长久的帮。</li>
+  </ul>
+
+  <h2>推荐阅读（本课配套）</h2>
+  <ul>
+    <li><a href="https://jyt.ln.gov.cn/gk/gsgg/2025040810113636341/" target="_blank" rel="noopener">生源地信用助学贷款政策（辽宁省教育厅）</a>——官方政策，确认"在校贴息、毕业后 LPR−30bp、期限与宽限期"。要核实数字就查这里。</li>
+    <li>《小狗钱钱》"债务"一章：先存钱、别借新钱、把困难说清楚。用讲故事的方式把边界讲给你自己听。</li>
+    <li>有知有行《投资第 1 课》第 3–4 课：谈"把钱花在值的地方"与"区分需要和想要"，和本课"三类分账"是一回事。</li>
+  </ul>
+
+  <h2>下一步</h2>
+  <p>第 4 课《法律与钱》：合同、担保、劳动法、你的权益——很多你以后会踩的坑（租房押金、实习协议、社保公积金），都能在前面避开。下一课前，试着把上面"边界练习"第 1 题在心里<strong>大声讲一遍</strong>。</p>
+
+  <h2>课程地图</h2>
+  <ul class="course-map">
+    <li class="later"><a href="0001-financial-map.html">1. 财务地图：资产负债表与现金流（会计·已完成）</a></li>
+    <li class="later"><a href="0002-budget-and-emergency-fund.html">2. 记账与应急金：第一道防线（会计·已完成）</a></li>
+    <li class="now"><a href="0003-debt-response.html">3. 债务应对：还款表与边界（会计+法律）</a> ← <strong>本课</strong></li>
+    <li class="later"><a href="0004-law-and-money.html">4. 法律与钱：合同·担保·劳动法·权益（法律）</a></li>
+    <li class="later">5. 人力资本：劳动力市场与收入（市场） · 待上线</li>
+    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场） · 待上线</li>
+    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资） · 待上线</li>
+    <li class="later">8. 资产配置与定投：第一笔钱（投资） · 待上线</li>
+    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合） · 待上线</li>
+  </ul>
+
+</main>
+
+<footer class="lesson-footer">
+  <p>有任何不清楚的地方，直接问我（你的老师）——你随时可以追问，我会帮你讲透。<br>做完账目复盘和边界练习后告诉我，我们进入第 4 课。</p>
+</footer>
+
+<script>
+/* ============================================================
+   repayment.js — 可复用「还款表计算器」组件
+   用法：<div class="repayment-widget"></div>
+   功能：输入借款本金、年利率、贷款期限（年）→ 实时计算并排对比
+       等额本息 / 等额本金两种还款方式：
+       每月还款、总利息、总还款额，以及「本金余额逐月减少、
+       利息随剩余本金下降」的过程。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function fmtMoney(n) {
+    return "¥ " + Math.round(n).toLocaleString("zh-CN");
+  }
+
+  /* ---- 等额本息：每月固定月供 ---- */
+  function annuity(p, annual, years) {
+    var n = years * 12;
+    var r = annual / 100 / 12;
+    var m;
+    if (r === 0) {
+      m = p / n;
+    } else {
+      var f = Math.pow(1 + r, n);
+      m = p * r * f / (f - 1);
+    }
+    return { monthly: m, n: n, total: m * n, totalInterest: m * n - p };
+  }
+
+  /* ---- 等额本金：每月本金固定、利息递减 ---- */
+  function linear(p, annual, years) {
+    var n = years * 12;
+    var r = annual / 100 / 12;
+    var principalPerMonth = p / n;
+    var totalInterest = 0;
+    var balance = p;
+    var first, last;
+    for (var i = 1; i <= n; i++) {
+      var interest = balance * r;
+      totalInterest += interest;
+      var pay = principalPerMonth + interest;
+      if (i === 1) first = pay;
+      if (i === n) last = pay;
+      balance -= principalPerMonth;
+    }
+    return { n: n, first: first, last: last, totalInterest: totalInterest };
+  }
+
+  /* ---- 等额本息的前若干期明细：展示本金余额与当月利息 ---- */
+  function amortization(p, annual, years, periods) {
+    var n = years * 12;
+    var r = annual / 100 / 12;
+    var f = Math.pow(1 + r, n);
+    var monthly = p * r * f / (f - 1);
+    var rows = [];
+    var balance = p;
+    for (var i = 1; i <= Math.min(periods, n); i++) {
+      var interest = balance * r;
+      var principal = monthly - interest;
+      balance -= principal;
+      if (balance < 0) balance = 0;
+      rows.push({
+        period: i,
+        payment: monthly,
+        interest: interest,
+        principal: principal,
+        balance: balance
+      });
+    }
+    return rows;
+  }
+
+  function render(container) {
+    container.innerHTML =
+      '<div class="nw-group">'
+      + '<p class="nw-group-title">输入这笔借款（默认已填你的助学贷款）</p>'
+      + '<div class="nw-row"><label for="rp-principal">借款本金（元）</label>'
+      + '<input id="rp-principal" type="number" min="0" step="1000" value="80000" inputmode="numeric"></div>'
+      + '<div class="nw-row"><label for="rp-rate">年利率（%）</label>'
+      + '<input id="rp-rate" type="number" min="0" step="0.1" value="2.7" inputmode="decimal"></div>'
+      + '<div class="nw-row"><label for="rp-years">贷款期限（年）</label>'
+      + '<input id="rp-years" type="number" min="1" max="40" step="1" value="15" inputmode="numeric"></div>'
+      + "</div>"
+      + '<div class="nw-result">'
+      + '<p class="nw-group-title" style="margin-bottom:0.3rem;">两种还款方式对比</p>'
+      + '<div class="nw-grid">'
+      + '<div class="nw-cell">等额本息 · 月供<b id="rp-ann-monthly">¥ 0</b></div>'
+      + '<div class="nw-cell">等额本息 · 总利息<b id="rp-ann-interest">¥ 0</b></div>'
+      + '<div class="nw-cell">等额本金 · 首月<b id="rp-lin-first">¥ 0</b></div>'
+      + '<div class="nw-cell">等额本金 · 末月<b id="rp-lin-last">¥ 0</b></div>'
+      + '<div class="nw-cell">等额本金 · 总利息<b id="rp-lin-interest">¥ 0</b></div>'
+      + '<div class="nw-cell">两种总利息差<b id="rp-diff">¥ 0</b></div>'
+      + "</div>"
+      + '<p class="nw-hint" id="rp-note" style="margin-top:0.6rem;"></p>'
+      + "</div>"
+      + '<div class="nw-group">'
+      + '<p class="nw-group-title">等额本息 · 本金余额怎么慢慢还清（前 12 个月）</p>'
+      + '<table class="rep-table" id="rp-table"></table>'
+      + "</div>";
+
+    function val(id) {
+      var v = parseFloat(document.getElementById(id).value);
+      return isFinite(v) ? v : 0;
+    }
+
+    function update() {
+      var p = val("rp-principal");
+      var annual = val("rp-rate");
+      var years = val("rp-years");
+      if (p <= 0 || annual < 0 || years <= 0) {
+        document.getElementById("rp-ann-monthly").textContent = "¥ 0";
+        document.getElementById("rp-ann-interest").textContent = "¥ 0";
+        document.getElementById("rp-lin-first").textContent = "¥ 0";
+        document.getElementById("rp-lin-last").textContent = "¥ 0";
+        document.getElementById("rp-lin-interest").textContent = "¥ 0";
+        document.getElementById("rp-diff").textContent = "¥ 0";
+        document.getElementById("rp-note").textContent = "请填写有效的本金、利率和期限。";
+        document.getElementById("rp-table").innerHTML = "";
+        return;
+      }
+
+      var a = annuity(p, annual, years);
+      var l = linear(p, annual, years);
+
+      document.getElementById("rp-ann-monthly").textContent = fmtMoney(a.monthly);
+      document.getElementById("rp-ann-interest").textContent = fmtMoney(a.totalInterest);
+      document.getElementById("rp-lin-first").textContent = fmtMoney(l.first);
+      document.getElementById("rp-lin-last").textContent = fmtMoney(l.last);
+      document.getElementById("rp-lin-interest").textContent = fmtMoney(l.totalInterest);
+      document.getElementById("rp-diff").textContent = fmtMoney(Math.abs(l.totalInterest - a.totalInterest));
+
+      var note = document.getElementById("rp-note");
+      var diff = Math.abs(l.totalInterest - a.totalInterest);
+      if (diff < 0.01) {
+        note.textContent = "当利率为 0 时，两种方式的总利息相同。";
+      } else {
+        note.textContent = "等额本息总利息比等额本金高 " + fmtMoney(diff) + " 元。等额本息前期本金还得慢、利息按更高剩余本金算得更久，所以总利息略高；等额本金月供逐月递减、总利息更省，但前期月供更高。";
+      }
+
+      /* 明细表：展示利息随剩余本金递减 */
+      var rows = amortization(p, annual, years, 12);
+      var html = "<thead><tr>"
+        + "<th>期数</th><th>当月还款</th><th>其中利息</th><th>其中本金</th><th>剩余本金</th>"
+        + "</tr></thead><tbody>";
+      rows.forEach(function (row) {
+        html += "<tr>"
+          + "<td>" + row.period + "</td>"
+          + "<td>" + fmtMoney(row.payment) + "</td>"
+          + "<td>" + fmtMoney(row.interest) + "</td>"
+          + "<td>" + fmtMoney(row.principal) + "</td>"
+          + "<td>" + fmtMoney(row.balance) + "</td>"
+          + "</tr>";
+      });
+      html += "</tbody>";
+      document.getElementById("rp-table").innerHTML = html;
+    }
+
+    container.querySelectorAll("input").forEach(function (input) {
+      input.addEventListener("input", update);
+    });
+    update();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".repayment-widget").forEach(render);
+  });
+})();
+</script>
+<script>
+/* ============================================================
+   quiz.js — 可复用测验组件
+   用法：在 HTML 中放置
+     <div class="quiz" data-title="小测验"></div>
+     <script type="application/json" id="quiz-data">[ ... ]<\/script>
+   JSON 结构：
+     [{ "q": "题目", "options": ["选项A","选项B","选项C","选项D"], "answer": 0 }]
+   answer 为正确选项下标。选项建议等长（字数相同）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function render(container) {
+    var title = container.getAttribute("data-title") || "小测验";
+    var dataSrc = container.querySelector('script[type="application/json"]');
+    if (!dataSrc) {
+      container.innerHTML = '<p class="nw-hint">测验数据缺失（缺少 script[type="application/json"]）。</p>';
+      return;
+    }
+
+    var questions;
+    try {
+      questions = JSON.parse(dataSrc.textContent);
+    } catch (e) {
+      container.innerHTML = '<p class="nw-hint">测验数据解析失败。</p>';
+      return;
+    }
+
+    var html = '<h2>' + title + '</h2>';
+    questions.forEach(function (q, qi) {
+      html += '<div class="quiz-question" data-q="' + qi + '">';
+      html += '<p class="quiz-qtext">' + (qi + 1) + '. ' + q.q + '</p>';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-option" data-oi="' + oi + '">' + opt + '</button>';
+      });
+      html += '<p class="quiz-feedback"></p>';
+      html += '</div>';
+    });
+    html += '<p class="quiz-score" hidden></p>';
+    html += '<button type="button" class="quiz-reset" hidden>重新作答</button>';
+    container.insertAdjacentHTML("beforeend", html);
+
+    var scoreEl = container.querySelector(".quiz-score");
+    var resetEl = container.querySelector(".quiz-reset");
+    var total = questions.length;
+    var correctCount = 0;
+
+    container.querySelectorAll(".quiz-question").forEach(function (box, qi) {
+      var q = questions[qi];
+      var buttons = box.querySelectorAll(".quiz-option");
+      var feedback = box.querySelector(".quiz-feedback");
+
+      buttons.forEach(function (btn, oi) {
+        btn.addEventListener("click", function () {
+          if (btn.disabled) return;
+          buttons.forEach(function (b) { b.disabled = true; });
+          if (oi === q.answer) {
+            btn.classList.add("correct");
+            feedback.textContent = "✓ 正确！";
+            feedback.className = "quiz-feedback ok";
+            correctCount++;
+          } else {
+            btn.classList.add("wrong");
+            buttons[q.answer].classList.add("correct");
+            feedback.textContent = "✗ 再想想。正确答案已标出。";
+            feedback.className = "quiz-feedback no";
+          }
+          var done = container.querySelectorAll(".quiz-question").length;
+          var answered = container.querySelectorAll(".quiz-option:disabled").length;
+          if (answered === done * q.options.length) {
+            scoreEl.hidden = false;
+            resetEl.hidden = false;
+            var pct = Math.round((correctCount / total) * 100);
+            var words = pct === 100 ? "满分！两张表你已经吃透了 🎉"
+              : pct >= 60 ? "不错，复习一下答错的题，把公式记牢。"
+              : "没关系，回到上面的公式框再看一遍，然后重试。";
+            scoreEl.textContent = "得分：" + correctCount + " / " + total + "（" + pct + "%）— " + words;
+          }
+        });
+      });
+    });
+
+    resetEl.addEventListener("click", function () {
+      correctCount = 0;
+      scoreEl.hidden = true;
+      resetEl.hidden = true;
+      container.querySelectorAll(".quiz-question").forEach(function (box) {
+        box.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove("correct", "wrong");
+        });
+        var fb = box.querySelector(".quiz-feedback");
+        fb.textContent = "";
+        fb.className = "quiz-feedback";
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".quiz").forEach(render);
+  });
+})();
+
+</script>
+</body>
+</html>

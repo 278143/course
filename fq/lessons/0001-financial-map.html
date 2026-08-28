@@ -356,6 +356,145 @@ code, .num {
 
 /* ---------- 打印 ---------- */
 
+/* ---------- 还款表（repayment 组件） ---------- */
+
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
+}
+
+.rep-table th, .rep-table td {
+  text-align: right;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rep-table th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.rep-table td:first-child, .rep-table th:first-child {
+  text-align: center;
+  color: var(--muted);
+}
+
+.rep-table tbody tr:first-child td { color: var(--accent); font-weight: 700; }
+.rep-table tbody tr:last-child td { color: var(--good); }
+/* ---------- 债务地图表（lesson 3） ---------- */
+
+.debt-map {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1.2rem 0;
+}
+
+.debt-map th, .debt-map td {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: left;
+}
+
+.debt-map thead th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.debt-map tbody th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  white-space: nowrap;
+  width: 8rem;
+}
+/* ---------- 课程地图内的跳转链接 ---------- */
+
+.course-map a { color: inherit; text-decoration: none; }
+.course-map a:hover { text-decoration: underline; }
+.course-map a::before { content: "↗ "; font-size: 0.9em; }
+
+/* ---------- 术语表快捷入口（每课顶部） ---------- */
+
+.glossary-link {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--accent);
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.glossary-link:hover { background: var(--accent-soft); }
+/* ---------- 签约检查清单（contract-check 组件） ---------- */
+
+.cc-list {
+  margin-top: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.cc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cc-row.cc-head {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
+
+.cc-title { flex: 1; }
+
+.cc-tag {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cc-ok { background: #e8f3e9; color: var(--good); }
+.cc-amber { background: var(--accent-soft); color: var(--accent); }
+.cc-red { background: #fbeae8; color: var(--bad); font-weight: 700; }
+
+.cc-check { width: 1.2rem; height: 1.2rem; }
+
+.cc-tip {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.35rem 0.8rem 0.55rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.cc-verdict {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
 @media print {
   html { font-size: 12pt; }
   body { max-width: none; padding: 0; }
@@ -365,7 +504,6 @@ code, .num {
   section, .exercise, .quiz-question { break-inside: avoid; }
   a { color: var(--ink); text-decoration: none; }
 }
-
 </style>
 </head>
 <body>
@@ -377,6 +515,8 @@ code, .num {
 </header>
 
 <main>
+
+<p><a class="glossary-link" href="../reference/GLOSSARY.html">📖 查术语表（随课程持续更新）</a></p>
 
   <blockquote>
     <p><strong>这课和你的使命有什么关系？</strong>还清家庭 30 万负债、攒应急金、学会投资、走向财务自由——所有这些目标，都先要回答两个问题：<strong>你站在哪里？</strong>（资产负债表）和<strong>你的钱往哪里流？</strong>（现金流）。先把地图画出来，才能谈赶路。</p>
@@ -478,15 +618,15 @@ code, .num {
 
   <h2>课程地图</h2>
   <ul class="course-map">
-    <li class="now">1. 财务地图：资产负债表与现金流（会计）← <strong>本课</strong></li>
-    <li class="later">2. 记账与应急金：第一道防线（会计·已完成）</li>
-    <li class="later">3. 债务应对：还款表与边界（会计+法律）</li>
-    <li class="later">4. 法律与钱：合同·担保·劳动法·权益（法律）</li>
-    <li class="later">5. 人力资本：劳动力市场与收入（市场）</li>
-    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场）</li>
-    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资）</li>
-    <li class="later">8. 资产配置与定投：第一笔钱（投资）</li>
-    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合）</li>
+    <li class="now"><a href="0001-financial-map.html">1. 财务地图：资产负债表与现金流（会计）</a> ← <strong>本课</strong></li>
+    <li class="later"><a href="0002-budget-and-emergency-fund.html">2. 记账与应急金：第一道防线（会计·已完成）</a></li>
+    <li class="later"><a href="0003-debt-response.html">3. 债务应对：还款表与边界（会计+法律）</a></li>
+    <li class="later"><a href="0004-law-and-money.html">4. 法律与钱：合同·担保·劳动法·权益（法律）</a></li>
+    <li class="later">5. 人力资本：劳动力市场与收入（市场） · 待上线</li>
+    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场） · 待上线</li>
+    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资） · 待上线</li>
+    <li class="later">8. 资产配置与定投：第一笔钱（投资） · 待上线</li>
+    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合） · 待上线</li>
   </ul>
 
 </main>

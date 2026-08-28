@@ -1,0 +1,853 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 4 课 · 法律与钱</title>
+<style>
+/* ============================================================
+   lesson.css — 财商课程共享样式表（Tufte 风格）
+   所有课程共用：保证整套课程外观一致、可打印。
+   ============================================================ */
+
+:root {
+  --ink: #1c1a17;
+  --paper: #fffef9;
+  --accent: #8b5e3c;      /* 暖棕：主强调色 */
+  --accent-soft: #f0e6d8;
+  --teal: #2e6e5e;        /* 辅助强调色 */
+  --muted: #75706a;
+  --rule: #ddd6c9;
+  --card: #faf6ee;
+  --good: #2e7d32;
+  --bad: #b3261e;
+  --code-bg: #f4f1ea;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0 auto;
+  max-width: 46rem;
+  padding: 2.25rem 1.4rem 4rem;
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 头部 ---------- */
+
+.lesson-header {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.lesson-kicker {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.35rem;
+}
+
+.lesson-header h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+}
+
+.lesson-meta {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---------- 正文排版 ---------- */
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.4rem 0 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+
+h3 { font-size: 1.08rem; margin: 1.6rem 0 0.5rem; font-weight: 700; }
+
+p { margin: 0.7rem 0; }
+
+strong { font-weight: 700; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { margin: 0.7rem 0; padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  font-style: normal;
+  color: var(--ink);
+}
+
+blockquote p { margin: 0.25rem 0; }
+
+code, .num {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--code-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ---------- 关键公式框 ---------- */
+
+.formula {
+  margin: 1.2rem 0;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.12rem;
+}
+
+.formula .tag {
+  display: block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 练习卡片 ---------- */
+
+.exercise {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.exercise h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- 小标签 ---------- */
+
+.pill {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-right: 0.3rem;
+}
+
+/* ---------- 测验 ---------- */
+
+.quiz { margin: 1.6rem 0; }
+
+.quiz-question {
+  margin: 1.4rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.quiz-qtext {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.8rem;
+  margin: 0.35rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; opacity: 0.85; }
+
+.quiz-option.correct { background: #e8f3e9; border-color: var(--good); color: var(--good); }
+.quiz-option.wrong { background: #fbeae8; border-color: var(--bad); color: var(--bad); }
+
+.quiz-feedback { margin-top: 0.6rem; font-size: 0.9rem; min-height: 1.3em; }
+.quiz-feedback.ok { color: var(--good); }
+.quiz-feedback.no { color: var(--bad); }
+
+.quiz-score {
+  margin-top: 1rem;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.quiz-reset {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--accent);
+  cursor: pointer;
+}
+.quiz-reset:hover { background: var(--accent-soft); }
+
+/* ---------- 互动计算器（networth 组件） ---------- */
+
+.networth-widget {
+  margin: 1.4rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nw-group {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.nw-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.nw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.nw-row label { flex: 1; color: var(--ink); }
+
+.nw-row input {
+  width: 9rem;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  text-align: right;
+  color: var(--ink);
+}
+
+.nw-row input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+
+.nw-result {
+  margin-top: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  text-align: center;
+}
+
+.nw-big {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.nw-big.pos { color: var(--good); }
+.nw-big.neg { color: var(--bad); }
+
+.nw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.nw-cell { font-size: 0.85rem; color: var(--muted); }
+.nw-cell b { display: block; font-size: 1.02rem; color: var(--ink); }
+
+.nw-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.7rem;
+  text-align: center;
+}
+
+/* ---------- 课程地图 ---------- */
+
+.course-map { font-size: 0.95rem; }
+.course-map li { margin: 0.45rem 0; }
+.course-map .now { color: var(--accent); font-weight: 700; }
+.course-map .later { color: var(--muted); }
+
+/* ---------- 术语表 ---------- */
+
+.glossary { margin: 0.5rem 0; }
+.glossary dt {
+  font-weight: 700;
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+.glossary dt .en {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 0.4rem;
+}
+.glossary dd {
+  margin: 0.2rem 0 0 0;
+  color: var(--ink);
+}
+.glossary .later {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---------- 页脚 ---------- */
+
+.lesson-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- 打印 ---------- */
+
+/* ---------- 还款表（repayment 组件） ---------- */
+
+.rep-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.82rem;
+  margin-top: 0.6rem;
+}
+
+.rep-table th, .rep-table td {
+  text-align: right;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rep-table th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+.rep-table td:first-child, .rep-table th:first-child {
+  text-align: center;
+  color: var(--muted);
+}
+
+.rep-table tbody tr:first-child td { color: var(--accent); font-weight: 700; }
+.rep-table tbody tr:last-child td { color: var(--good); }
+/* ---------- 债务地图表（lesson 3） ---------- */
+
+.debt-map {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 1.2rem 0;
+}
+
+.debt-map th, .debt-map td {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  text-align: left;
+}
+
+.debt-map thead th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.debt-map tbody th {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  white-space: nowrap;
+  width: 8rem;
+}
+/* ---------- 课程地图内的跳转链接 ---------- */
+
+.course-map a { color: inherit; text-decoration: none; }
+.course-map a:hover { text-decoration: underline; }
+.course-map a::before { content: "↗ "; font-size: 0.9em; }
+
+/* ---------- 术语表快捷入口（每课顶部） ---------- */
+
+.glossary-link {
+  display: inline-block;
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--accent);
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.glossary-link:hover { background: var(--accent-soft); }
+/* ---------- 签约检查清单（contract-check 组件） ---------- */
+
+.cc-list {
+  margin-top: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.cc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cc-row.cc-head {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  background: var(--card);
+}
+
+.cc-title { flex: 1; }
+
+.cc-tag {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 0.7rem;
+  padding: 0.1em 0.5em;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.cc-ok { background: #e8f3e9; color: var(--good); }
+.cc-amber { background: var(--accent-soft); color: var(--accent); }
+.cc-red { background: #fbeae8; color: var(--bad); font-weight: 700; }
+
+.cc-check { width: 1.2rem; height: 1.2rem; }
+
+.cc-tip {
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.35rem 0.8rem 0.55rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.cc-verdict {
+  font-family: system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+@media print {
+  html { font-size: 12pt; }
+  body { max-width: none; padding: 0; }
+  .quiz-option { border: 1px solid #999; }
+  .quiz-option:disabled { opacity: 1; }
+  .quiz-reset, .nw-hint { display: none; }
+  section, .exercise, .quiz-question { break-inside: avoid; }
+  a { color: var(--ink); text-decoration: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="lesson-header">
+  <p class="lesson-kicker">第 4 课 · 财商系统课</p>
+  <h1>看懂一份合同：法律给你的钱护盾</h1>
+  <p class="lesson-meta">预计 35 分钟 · 毕业前必学 · 上一课：<a href="0003-debt-response.html">债务应对</a></p>
+</header>
+
+<main>
+
+  <p><a class="glossary-link" href="../reference/GLOSSARY.html">📖 查术语表（随课程持续更新）</a></p>
+
+  <blockquote>
+    <p><strong>这课和你的使命有什么关系？</strong>你还债、攒应急金、考研、找工作的每一步，都踩在一张"纸"上——租房合同、劳动合同、借款合同、婚礼请人"帮个忙签个字"的担保书。你 21 岁，接下来几年要签的每一张纸，都在决定你的钱袋子。<strong>看懂它们，是你给自己装上的第一层法律护盾</strong>。这一课不用你背法条，只要学会"签约前看 5 个词 + 绝不乱当担保人 + 知道五险一金不是扣你钱"。</p>
+  </blockquote>
+
+  <h2>一、为什么"法律"是财商的一根柱子</h2>
+  <p>钱的问题里，很大一部分是"纸"的问题。你吃亏，往往不是因为不懂投资，而是因为<strong>在没看清的纸上签了字</strong>。看懂这些词，就能拦住大部分"本可以不发生"的损失。</p>
+  <ul>
+    <li><strong>合同</strong>：双方都同意的约定，<strong>签字就受约束</strong>。所以签之前，务必看懂。</li>
+    <li><strong>法律护盾</strong>：很多条款写的是"保护你的底线"（比如试用期工资不低于 80%、押金有条件退、定金有罚则），你要做的不是背下来，而是<strong>会用</strong>——签约前问一句、核对一下。</li>
+  </ul>
+
+  <h2>二、签约前必看的 5 个词</h2>
+  <p>不管签什么（租房、报班、借书、工作合同），先找这 5 个词，多半能避开 80% 的坑。</p>
+
+  <h3>1. 定金 vs 订金 —— 一字之差，钱差一倍</h3>
+  <p>这两个词发音一样、意思完全不同，是租房/买房/报班最常踩的坑。</p>
+  <ul>
+    <li><strong>定金</strong>（法定的担保）：有<strong>罚则</strong>。你违约，定金<strong>不退</strong>；对方违约，要<strong>双倍返还</strong>给你。定金最高不超过合同金额的 <strong>20%</strong>（超过部分无效）。</li>
+    <li><strong>订金</strong>：只是"预付款"，<strong>可以退</strong>，没有双倍那套。</li>
+    <li>💡 签约时看清是哪个字。你要是交了"定金"又想反悔，钱就没了。</li>
+  </ul>
+
+  <h3>2. 押金 —— 什么时候退、什么情况扣，要写清</h3>
+  <p>尤其租房。押金数额、退房时什么情况能退、什么情况会扣、扣多少，都写进合同。别签完才问，那时候就晚了。</p>
+
+  <h3>3. 违约金 —— 高到离谱可以主张调低</h3>
+  <p>违约金是"违约要赔的钱"。如果写得明显<strong>高于实际损失</strong>（比如报个班违约金翻倍），你可以请求法院或仲裁<strong>调低</strong>。但最好签约前就把它谈合理。</p>
+
+  <h3>4. 试用期 —— 最长 6 个月，工资不低于 80%</h3>
+  <p><strong>劳动合同</strong>里的试用期有硬性上限，且<strong>同一单位只能约定一次</strong>：</p>
+  <ul>
+    <li>合同期限 3 个月以上不满 1 年：试用期 ≤ 1 个月；1 年以上不满 3 年：≤ 2 个月；3 年以上或无固定期限：≤ 6 个月。</li>
+    <li><strong>试用期工资 ≥ 约定工资的 80%</strong>，且不低于当地最低工资。</li>
+    <li>试用期包含在劳动合同期限内；合同期限不满 3 个月的工作，不得约定试用期。</li>
+  </ul>
+  <p><strong>还有一条硬规定（最容易被忽略）</strong>：书面劳动合同应在<strong>用工之日起 1 个月内</strong>签订；超过 1 个月不满 1 年仍未签，用人单位应每月支付<strong>二倍工资</strong>（最多 11 个月）。别以为"先干着、合同以后再说"没事——这是法律在保护你。</p>
+
+  <h3>5. 竞业限制 / 保密 —— 有补偿才成立</h3>
+  <p>有些岗位会让你签"离职后一定年限内不到竞争对手那里"（竞业限制）。它<strong>最长不超过 2 年</strong>，且用人单位<strong>按月给你补偿</strong>。如果签了限制却没给补偿，你不受它约束。</p>
+
+  <h2>三、最危险的一个：担保（尤其是"连带责任"）</h2>
+  <p>这是本课的<strong>红色警报</strong>，也直接接上第 3 课"不签字担保"。</p>
+  <ul>
+    <li><strong>担保</strong> = 你替别人还钱。别人还不上，债权人就来要你的。</li>
+    <li><strong>连带责任保证</strong>：最危险——债权人<strong>可以直接找你要钱</strong>，不用先去找借款人。银行、借款合同往往就写这个。</li>
+    <li><strong>一般保证</strong>:相对安全——债权人要先找借款人，借款人确实还不了、法院执行后仍不够时，才轮到你。民法典默认（没写明时）按这个，但合同常常写明"连带责任"。</li>
+  </ul>
+  <div class="formula">
+    <span class="tag">铁律</span>
+    <strong>不当担保人。</strong>尤其你 21 岁、没收入、没资产。<br>
+    就算对方是亲友、对方是"就签个字"，也<strong>绝不</strong>在"连带责任保证"上签字。<br>
+    真想帮，就帮对方理清债务、找正规渠道，而不是拿自己的信用甚至未来去担保。
+  </div>
+
+  <h2>四、五险一金：它不是"扣你钱"，是"给你钱"</h2>
+  <p>工作后，每月工资单上会有一行"五险一金"。很多人嫌"到手少了"，其实这是在帮你<strong>买保障 + 攒钱</strong>。</p>
+  <ul>
+    <li><strong>五险</strong>（社保）：养老、医疗、失业、工伤、生育保险。看病能报销、失业有补助、老了有养老金。</li>
+    <li><strong>一金</strong>（住房公积金）：<strong>个人 + 单位缴的都进你个人账户</strong>——是"你的钱"。买房、租房、离职都能提取。</li>
+    <li><strong>用人单位依法必须为你缴纳</strong>，这不是可选项。个人缴一部分，单位缴的更多（单位缴的部分也进你的账户/统筹）。</li>
+  </ul>
+  <p><strong>典型比例（以当地最新规定为准）</strong>：养老 个人 8% / 单位 16%；医疗 个人约 2% / 单位约 8%–10%；失业 个人约 0.5% / 单位约 0.5%；工伤（仅单位）、生育（仅单位，多地并入医疗）；公积金 个人与单位各 <strong>5%–12%</strong>。各地不同，以你实际为准。</p>
+  <p><strong>算个例子就懂"谁出钱"</strong>：你税前 8000，养老<strong>个人 8% = 640 元</strong>，是从你工资里扣的；<strong>单位再缴 16% = 1280 元</strong>（这是单位成本，<strong>不从你工资里扣</strong>）。你那 640 进你的<strong>个人养老账户</strong>，单位那 1280 进社会<strong>统筹</strong>。医疗、失业、工伤、生育同理——<strong>五险是单位统一为你缴到社保系统</strong>，不是分别"打款"给你，而是给你看病报销、失业补助、养老金这些<strong>保障</strong>。注意：比例是对<strong>"社保缴费基数"</strong>算的（基数常设上下限，约当地社平工资的 60%–300%），不一定等于你的全额工资。</p>
+  <p>💡 别轻易信"不交社保，多给你现金"——那是在牺牲你的保障，也通常是违法的。</p>
+
+  <h2>五、个税：钱怎么被"税"走，怎么合法少交点</h2>
+  <p>工资到手 = 税前 − 五险一金个人部分 − 个税。想少交点（合法地），懂这两条：</p>
+  <ul>
+    <li><strong>起征点</strong>：每月 <strong>5000 元</strong>（年 6 万）减除费用，低于这个不用交。</li>
+    <li><strong>专项附加扣除</strong>（填了才减）：<strong>住房租金</strong>（你租房)、<strong>继续教育</strong>（你考研/考证)、<strong>赡养老人</strong>（如符合）等。这是给普通人的合法节税渠道，<strong>别漏填</strong>。</li>
+  </ul>
+  <p><strong>算一遍就懂</strong>：</p>
+  <div class="formula"><span class="tag">个税算例（月薪 7000）</span>应纳税所得 = 7000 − 5000（起征点）− 700（五险一金个人） = <strong>1300 元</strong> → 交税 ≈ 1300 × 3% ≈ <strong>39 元</strong>。<br>所以<strong>不是"7000 全都交税"</strong>——只对超出起征点、再扣掉其他扣除后的那部分按比例交。若填了<strong>住房租金 / 继续教育</strong>等专项附加扣除，可能降到 <strong>0</strong>，就不用交。</div>
+  <p>💡 毕业签工作后，记得在个税 App 里把"住房租金""继续教育"等专项附加扣除填上，一年能省不少。</p>
+
+  <h2>六、动手练习：签约前检查清单</h2>
+  <p>下面这张清单，你以后<strong>每次签约前</strong>都可以过一遍。现在先"想象一份合同"练一次，感受一下红色警报长什么样。</p>
+
+  <div class="contract-check"></div>
+
+  <div class="exercise">
+    <h3>✍️ 练习完成后，请回答（发给我）</h3>
+    <ol>
+      <li>这 9 条里，哪一条对你最"陌生"？</li>
+      <li>如果有一天亲友请你签名"担保一笔钱"，你打算怎么拒绝（说一句你真正会说的话）？</li>
+      <li>假设你毕业签了月薪 8000 的工作，你希望把"住房租金 / 继续教育"专项附加扣除都申报吗？为什么？</li>
+    </ol>
+  </div>
+
+  <h2>七、小测验</h2>
+  <p>先回忆再作答。这一课的题，答错一个都值得警惕。</p>
+
+  <div class="quiz" data-title="小测验 · 法律与钱">
+    <script type="application/json">[
+      { "q": "付了“定金”，你方违约会怎样？", "options": ["定金不退还", "双倍拿回来", "对方退全款", "无任何后果"], "answer": 0 },
+      { "q": "试用期工资不得低于？", "options": ["约定工资半数", "约定工资八成", "最低工资一半", "约定工资整额"], "answer": 1 },
+      { "q": "连带责任保证意味着？", "options": ["先找借款人", "只能找担保", "直接找保证", "保证人无责"], "answer": 2 },
+      { "q": "住房公积金账户的钱？", "options": ["属于单位钱", "全是你自己", "缴进统筹金", "归单位所有"], "answer": 1 },
+      { "q": "个税起征点是每月？", "options": ["三千元整", "五千元整", "八千元整", "一万元整"], "answer": 1 },
+      { "q": "书面劳动合同应多久内签订？", "options": ["一个月以内", "三个月以内", "六个月以内", "十个月以内"], "answer": 0 }
+    ]</script>
+  </div>
+
+  <h2>本课核心收获</h2>
+  <ul>
+    <li><strong>合同签字就生效</strong>——签前先看 5 个词：定金/押金/违约金/试用期/竞业限制。</li>
+    <li><strong>定金有罚则、订金可退</strong>；违约金过高可主张调低；试用期最长 6 个月、工资 ≥80%。</li>
+    <li><strong>红色警报：不当担保人</strong>，绝不签"连带责任保证"。</li>
+    <li><strong>五险一金不是扣你钱</strong>——是买保障 + 攒钱（公积金是你自己的钱）。</li>
+    <li><strong>个税</strong>：起征点 5000/月，填满专项附加扣除（住房租金/继续教育等）合法省税。</li>
+  </ul>
+
+  <h2>推荐阅读（本课配套）</h2>
+  <ul>
+    <li><a href="http://jxhl.hljcourt.gov.cn/public/detail.php?id=2729" target="_blank" rel="noopener">劳动合同试用期的相关规定（法院网解读）</a>——试用期上限、工资 80%、只有一次，官方口径。</li>
+    <li><a href="https://bjgy.bjcourt.gov.cn/article/detail/2015/03/id/1564819.shtml" target="_blank" rel="noopener">劳动合同试用期规定（北京法院网）</a>——对试用期高发纠纷的通俗解释。</li>
+    <li>《中华人民共和国民法典》——"定金"罚则在合同编（第五百八十六、五百八十七条），"保证/连带责任"在合同编（第六百八十六至六百八十九条）。想较真法条就在这里查。</li>
+    <li>《中华人民共和国劳动合同法》第 10、19、20、23、24 条——合同签订时限、试用期、竞业限制。</li>
+    <li>个税：个人所得税 App 内"专项附加扣除填报"说明——你毕业后会用得上。</li>
+  </ul>
+
+  <h2>下一步</h2>
+  <p>第 5 课《人力资本：劳动力市场与收入》：从"法律护盾"的防守，转向"怎么提升收入"的进攻——认识你最大的资产（你自己+你的技能），以及毕业后如何最大化收入。下一课前，试着把"拒当担保人"那句话<strong>在心里说三遍</strong>。</p>
+
+  <h2>课程地图</h2>
+  <ul class="course-map">
+    <li class="later"><a href="0001-financial-map.html">1. 财务地图：资产负债表与现金流（会计·已完成）</a></li>
+    <li class="later"><a href="0002-budget-and-emergency-fund.html">2. 记账与应急金：第一道防线（会计·已完成）</a></li>
+    <li class="later"><a href="0003-debt-response.html">3. 债务应对：还款表与边界（会计+法律·已完成）</a></li>
+    <li class="now"><a href="0004-law-and-money.html">4. 法律与钱：合同·担保·劳动法·权益（法律）</a> ← <strong>本课</strong></li>
+    <li class="later">5. 人力资本：劳动力市场与收入（市场） · 待上线</li>
+    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场） · 待上线</li>
+    <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资） · 待上线</li>
+    <li class="later">8. 资产配置与定投：第一笔钱（投资） · 待上线</li>
+    <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合） · 待上线</li>
+  </ul>
+
+</main>
+
+<footer class="lesson-footer">
+  <p>有任何不清楚的地方，直接问我（你的老师）——你随时可以追问，我会帮你讲透。<br>做完检查清单和思考题后告诉我，我们进入第 5 课。</p>
+</footer>
+
+<script>
+/* ============================================================
+   contract-check.js — 可复用「签约前检查清单」组件
+   用法：<div class="contract-check"></div>
+   功能：逐项核对合同里的风险点，勾选"我已核实"。
+       勾选状态实时计分，并给出 "放心签 / 有风险 / 红色警报" 的提示。
+   每条目带风险等级：0=正常 1=谨慎 2=红色警报（如担保/连带责任）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  var ITEMS = [
+    { key: "term",   risk: 0, q: "金额、期限、用途、付款方式都白纸黑字写清楚了", tip: "钱和期限要写明，别只凭口头。金额大写、日期、付款节点，缺一不可。" },
+    { key: "ding",   risk: 0, q: "我清楚这是"定金"还是"订金"，两者不一样", tip: "定金有罚则（违约不退/对方双倍返还，上限为合同额 20%）；订金只是预付款、可退。" },
+    { key: "deposit",risk: 0, q: "押金多少、什么时候退、什么情况会扣，都写了", tip: "尤其租房：押金退还条件、扣款标准写清楚，退房时才有得讲。" },
+    { key: "penalty",risk: 1, q: "违约金金额我接受（感觉过高可请求调低）", tip: "违约金过高（明显超过实际损失）可主张调低；先问清触发条件。" },
+    { key: "probation",risk: 0, q: "试用期 ≤ 6 个月，且 ≤ 合同约定的合理期限", tip: "试用期与合同期限挂钩，最长 6 个月；试用期工资 ≥ 约定工资 80% 且 ≥ 当地最低工资。" },
+    { key: "noncompete",risk: 1, q: "没有竞业限制，或有但约定了按月补偿", tip: "竞业限制最长 2 年、须按月给补偿；没给补偿可主张不受其约束。" },
+    { key: "guarantee",risk: 2, q: "没有让我担保 / 承担"连带责任"", tip: "最危险的一条：连带责任保证意味着债权人可直接找你要钱。宁可拒绝，也别在上面签字。" },
+    { key: "party",  risk: 0, q: "对方是正规主体（公司全称/资质），不全凭口头", tip: "签的是公司，就要公司全称+公章；跟个人签，要核身份证、写清身份。" },
+    { key: "copy",   risk: 0, q: "我留了一份自己签过的（原件或照片）", tip: "保留一份你自己签字/盖章的文本，出纠纷时是证据。" }
+  ];
+
+  function render(container) {
+    var html = '<p class="nw-hint" style="margin-bottom:.6rem;">💡 对照你手上的合同（或想象一份），每条核对后勾选"我已核实"。没勾到的风险点，会实时提示。</p>';
+    html += '<div class="cc-list">';
+    html += '<div class="cc-row cc-head"><span>核对项</span><span class="cc-tag">风险</span><span>我已核实</span></div>';
+    ITEMS.forEach(function (it) {
+      var cls = it.risk === 2 ? "cc-red" : (it.risk === 1 ? "cc-amber" : "cc-ok");
+      html += '<div class="cc-row" data-key="' + it.key + '">'
+        + '<span class="cc-title">' + it.q + '</span>'
+        + '<span class="cc-tag ' + cls + '">' + (it.risk === 2 ? "红色警报" : (it.risk === 1 ? "谨慎" : "常规")) + '</span>'
+        + '<input type="checkbox" class="cc-check" aria-label="已核实"></div>';
+      html += '<div class="cc-tip">' + it.tip + '</div>';
+    });
+    html += '</div>';
+    html += '<div class="nw-result"><p class="nw-group-title" style="margin-bottom:.3rem;">审查结论</p>'
+      + '<p class="cc-verdict" id="cc-verdict">—</p>'
+      + '<p class="nw-hint" id="cc-note" style="margin-top:.4rem;"></p></div>';
+
+    container.innerHTML = html;
+
+    var verdictEl = document.getElementById("cc-verdict");
+
+    function update() {
+      var uncheckedRed = 0, uncheckedAmber = 0;
+      container.querySelectorAll(".cc-row").forEach(function (row) {
+        var it = ITEMS.find(function (x) { return x.key === row.getAttribute("data-key"); });
+        var checked = row.querySelector(".cc-check").checked;
+        if (!checked) {
+          if (it.risk === 2) uncheckedRed++;
+          else if (it.risk === 1) uncheckedAmber++;
+        }
+      });
+      if (uncheckedRed > 0) {
+        verdictEl.textContent = "🚨 红色警报：存在担保 / 连带责任等原则性风险";
+        verdictEl.className = "cc-verdict cc-alert";
+        verdictEl.style.color = "var(--bad)";
+      } else if (uncheckedAmber > 0) {
+        verdictEl.textContent = "⚠️ 有风险点未排除，签前务必问清楚、写进合同";
+        verdictEl.className = "cc-verdict cc-warn";
+        verdictEl.style.color = "var(--accent)";
+      } else {
+        verdictEl.textContent = "✅ 基本放心，可以签";
+        verdictEl.className = "cc-verdict cc-good";
+        verdictEl.style.color = "var(--good)";
+      }
+    }
+
+    container.querySelectorAll(".cc-check").forEach(function (cb) {
+      cb.addEventListener("change", update);
+    });
+    update();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".contract-check").forEach(render);
+  });
+})();
+
+</script>
+<script>
+/* ============================================================
+   quiz.js — 可复用测验组件
+   用法：在 HTML 中放置
+     <div class="quiz" data-title="小测验"></div>
+     <script type="application/json" id="quiz-data">[ ... ]<\/script>
+   JSON 结构：
+     [{ "q": "题目", "options": ["选项A","选项B","选项C","选项D"], "answer": 0 }]
+   answer 为正确选项下标。选项建议等长（字数相同）。
+   ============================================================ */
+
+(function () {
+  "use strict";
+
+  function render(container) {
+    var title = container.getAttribute("data-title") || "小测验";
+    var dataSrc = container.querySelector('script[type="application/json"]');
+    if (!dataSrc) {
+      container.innerHTML = '<p class="nw-hint">测验数据缺失（缺少 script[type="application/json"]）。</p>';
+      return;
+    }
+
+    var questions;
+    try {
+      questions = JSON.parse(dataSrc.textContent);
+    } catch (e) {
+      container.innerHTML = '<p class="nw-hint">测验数据解析失败。</p>';
+      return;
+    }
+
+    var html = '<h2>' + title + '</h2>';
+    questions.forEach(function (q, qi) {
+      html += '<div class="quiz-question" data-q="' + qi + '">';
+      html += '<p class="quiz-qtext">' + (qi + 1) + '. ' + q.q + '</p>';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-option" data-oi="' + oi + '">' + opt + '</button>';
+      });
+      html += '<p class="quiz-feedback"></p>';
+      html += '</div>';
+    });
+    html += '<p class="quiz-score" hidden></p>';
+    html += '<button type="button" class="quiz-reset" hidden>重新作答</button>';
+    container.insertAdjacentHTML("beforeend", html);
+
+    var scoreEl = container.querySelector(".quiz-score");
+    var resetEl = container.querySelector(".quiz-reset");
+    var total = questions.length;
+    var correctCount = 0;
+
+    container.querySelectorAll(".quiz-question").forEach(function (box, qi) {
+      var q = questions[qi];
+      var buttons = box.querySelectorAll(".quiz-option");
+      var feedback = box.querySelector(".quiz-feedback");
+
+      buttons.forEach(function (btn, oi) {
+        btn.addEventListener("click", function () {
+          if (btn.disabled) return;
+          buttons.forEach(function (b) { b.disabled = true; });
+          if (oi === q.answer) {
+            btn.classList.add("correct");
+            feedback.textContent = "✓ 正确！";
+            feedback.className = "quiz-feedback ok";
+            correctCount++;
+          } else {
+            btn.classList.add("wrong");
+            buttons[q.answer].classList.add("correct");
+            feedback.textContent = "✗ 再想想。正确答案已标出。";
+            feedback.className = "quiz-feedback no";
+          }
+          var done = container.querySelectorAll(".quiz-question").length;
+          var answered = container.querySelectorAll(".quiz-option:disabled").length;
+          if (answered === done * q.options.length) {
+            scoreEl.hidden = false;
+            resetEl.hidden = false;
+            var pct = Math.round((correctCount / total) * 100);
+            var words = pct === 100 ? "满分！两张表你已经吃透了 🎉"
+              : pct >= 60 ? "不错，复习一下答错的题，把公式记牢。"
+              : "没关系，回到上面的公式框再看一遍，然后重试。";
+            scoreEl.textContent = "得分：" + correctCount + " / " + total + "（" + pct + "%）— " + words;
+          }
+        });
+      });
+    });
+
+    resetEl.addEventListener("click", function () {
+      correctCount = 0;
+      scoreEl.hidden = true;
+      resetEl.hidden = true;
+      container.querySelectorAll(".quiz-question").forEach(function (box) {
+        box.querySelectorAll(".quiz-option").forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove("correct", "wrong");
+        });
+        var fb = box.querySelector(".quiz-feedback");
+        fb.textContent = "";
+        fb.className = "quiz-feedback";
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".quiz").forEach(render);
+  });
+})();
+
+</script>
+</body>
+</html>
