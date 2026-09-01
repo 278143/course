@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 9 课：人格——你真的是"一个样子"吗</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0009 · Personality</p>
+  <h1>人格——你真的是"一个样子"吗</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 2「理解自己与他人」第一课 · 承接第 8 课"自信随实力上升"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>阶段 1 结束，"大脑怎么工作"讲完了；阶段 2 转向"人怎么成为现在这样"。人格是其中最核心的一问：<strong>有稳定不变的"你"吗？</strong>本课还会给你一套批判工具——为什么"性格测试"那么流行却大多不可信（你上轮抽的塔罗牌正好是案例）。完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>人格是什么</h2>
+<p><strong>人格（personality）</strong>：相对稳定的思维、情感与行为模式，跨情境、跨时间保持一定一致性。但注意"相对"两个字——心理学的主流结论是：<strong>人既不是完全稳定，也不是完全看情境</strong>。先看三大流派怎么吵，再看现代共识。<a href="https://openstax.org/books/psychology-2e/pages/11-1-what-is-personality">[OpenStax Psychology 2e · 11.1]</a></p>
+
+<h2>特质论：用五个维度描述你</h2>
+<p>当前研究的主流：<strong>五因素模型</strong>（Big Five）——五个相对独立的维度可以概括人格差异：<a href="https://openstax.org/books/psychology-2e/pages/11-7-trait-theorists">[OpenStax Psychology 2e · 11.7]</a></p>
+<table>
+  <thead><tr><th>维度</th><th>高分倾向</th><th>低分倾向</th></tr></thead>
+  <tbody>
+    <tr><td>开放性（Openness）</td><td>好奇、爱尝试新事物</td><td>守旧、偏好熟悉</td></tr>
+    <tr><td>尽责性（Conscientiousness）</td><td>自律、有条理、可靠</td><td>随性、拖延</td></tr>
+    <tr><td>外向性（Extraversion）</td><td>活跃、爱社交、精力外放</td><td>安静、独处回血（内向）</td></tr>
+    <tr><td>宜人性（Agreeableness）</td><td>友善、合作、信任</td><td>挑剔、竞争、多疑</td></tr>
+    <tr><td>神经质（Neuroticism）</td><td>情绪波动大、易焦虑</td><td>情绪稳定、抗压</td></tr>
+  </tbody>
+</table>
+<p class="small">重要细节：特质是<strong>概率性的</strong>——尽责性高的人更可能守时，但不是每时每刻都守时。说"他是尽责的人"不等于预测他今晚一定不迟到。这是很多人误读人格测验的地方。</p>
+
+<h2>弗洛伊德：无意识与被推翻的"科学"</h2>
+<p>弗洛伊德提出无意识、本我/自我/超我等概念，把人格的根挖到童年与潜意识冲突。历史贡献巨大（"人并不完全知道自己为什么这么做"），但作为理论有三个致命伤：<strong>难以证伪</strong>（第 1 课武器！任何结果都能被解释）、缺少可重复的实证证据、治疗也缺乏疗效证据。<strong>今天的心理学把它当历史与文化遗产，而不是有效科学理论</strong>——这是"用证据检验理论"的经典示范。</p>
+
+<h2>人本主义：罗杰斯与"自我概念"</h2>
+<p>罗杰斯提出：人有一个<strong>自我概念</strong>（对自己的看法），心理健康的关键是"现实中的我"与"理想的我"不太远，以及成长中获得<strong>无条件积极关注</strong>（被当作有价值的人对待，而非"做到 X 才配被爱"）。这个思想深刻影响了心理咨询的底色——"被无条件接纳本身就是疗愈"——但它作为科学理论同样难以严格检验。</p>
+
+<h2>情境之争：人格到底有多"稳"？</h2>
+<p>1970 年代 Mischel 发现：一个人的行为在不同情境间的一致性远低于直觉预期——"外向的人"在课堂上可能一言不发。这引发激烈争论。现代共识是<strong>交互作用</strong>：行为 = 特质 × 情境。回到第 2 课：<strong>层面分析</strong>——人格（心理层面）和情境（社会文化层面）都在起作用，问"哪个更重要"不如问"在什么情境下哪个更重要"。</p>
+
+<h2>测量与"伪人格测试"：为什么塔罗/星座/MBTI 那么"准"</h2>
+<p>科学的测量（自陈量表，如 Big Five 问卷）有信度与效度检验；而流行的人格测试（星座、塔罗、MBTI、性格色彩）大多没经过这两关。它们"准"的原因你已经学过了：</p>
+<ul>
+  <li><strong>巴纳姆效应</strong>（第 5 课）：模糊描述 + 你的预期填空 + 确认偏差 → "这说的就是我"。</li>
+  <li><strong>事后解释</strong>（第 1 课）：先给结论，再找证据证明它对——不可证伪。</li>
+  <li>它们不是"测你"，是"写你爱听的故事"。</li>
+</ul>
+<p class="small">你的塔罗牌"完美契合当前心境"就是这个机制——不是牌准，是描述够模糊、你的大脑够会填空。用第 1 课的武器再问一遍：<strong>它能被证伪吗？它有可重复的检验数据吗？</strong></p>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "「尽责性高的人更可能守时，但不是每次都守时」。这句话说明特质是：",
+    "options": ["概率性的：提高可能性而非绝对预测", "决定性的：完全确定每个具体行为", "虚构的：人格与实际行为毫无关系", "情境性的：人格变量完全没有作用"],
+    "answer": 0,
+    "explain": "特质提高行为概率，不锁定每个行为——「更可能」而非「一定」。误读这一点是人格测验被滥用的根源。"
+  },
+  {
+    "q": "弗洛伊德理论今天被主流心理学视为历史而非有效科学，最主要的原因是：",
+    "options": ["其命题难以证伪且缺实证证据", "他的实验样本数量实在太少", "他没有发表任何书面著作", "现代人不再相信无意识存在"],
+    "answer": 0,
+    "explain": "不可证伪+缺少可重复实证=不符合科学标准（第 1 课武器）。无意识概念虽影响深远，但作为理论过不了证据关。"
+  },
+  {
+    "q": "「外向的人在课堂上也可能一言不发」支持了：",
+    "options": ["行为是特质与情境的交互作用", "外向性这个特质完全不存在", "课堂情境能消灭所有人格差异", "观察学习解释了全部行为"],
+    "answer": 0,
+    "explain": "行为 = 特质 × 情境——情境之争的现代共识（也是第 2 课层面分析的实战）。不是人格失效，是情境在起作用。"
+  },
+  {
+    "q": "塔罗牌描述「完美契合你当前的心境」，最可能是：",
+    "options": ["巴纳姆效应：模糊描述被预期填空", "塔罗牌能准确读取潜意识信息", "牌面的随机结果具有特殊含义", "人格测验测出了你的真实性格"],
+    "answer": 0,
+    "explain": "模糊+普适的描述，被你的自上而下加工填成「精准」——巴纳姆效应。这也是星座/性格测试「准」的通用机制。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（三项全部完成）</p>
+  <ol>
+    <li><strong>Big Five 自评</strong>：给你自己五个维度各打 1–5 分，每个维度给一个生活例子；再想想：哪个维度在不同情境下变化最大？（体会情境之争）</li>
+    <li><strong>拆一个"准"的测试</strong>：把你上轮塔罗牌（或星座/性格测试）的原文找出来，用巴纳姆效应 + 可证伪性逐句分析：哪句模糊、哪句通用、为什么你觉得"准"。</li>
+    <li><strong>特质 × 情境案例</strong>：回忆一次"我平时不是这样的人，但那次却……"（或"我以为很了解他，结果意外"），用"特质 × 情境交互"解释它。</li>
+  </ol>
+  <p>三项都要完成，写完发我，我们进入第 10 课：社会心理学。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/11-1-what-is-personality">OpenStax Psychology 2e 第 11 章「人格」</a>（免费；11.1 什么是人格、11.7 特质理论、11.9 人格评估）；或津巴多《心理学与生活》第 12 章「人格」。</p>
+  <p><strong>延伸：</strong>Big Five 免费测评可搜 "IPIP Big Five"；对 MBTI 的科学批评可搜 "MBTI scientific validity criticism"（用第 1 课武器判断）。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："Big Five 会随着人生经历改变吗？""内向需要被纠正吗？""为什么我测不同的人格测试结果不一样？"——直接问我，特别是当你发现"性格测试说的不是我"的时候。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0008-motivation-and-emotion.html">第 8 课：动机与情绪（阶段 1 收官）</a></li>
+  <li><a href="0005-sensation-and-perception.html">第 5 课：感觉与知觉（巴纳姆效应）</a></li>
+  <li><a href="0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学（可证伪性）</a></li>
+  <li><a href="0002-psychology-of-a-behavior.html">第 2 课：用科学解剖一个行为（层面分析）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（含第 9 课术语）</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>

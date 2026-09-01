@@ -1,0 +1,632 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0005 · 劳动合同怎么签才不吃亏</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+
+  <header class="lesson-head">
+    <p class="meta">课程 0005 · 阶段二 劳动法块 ①</p>
+    <h1>劳动合同怎么签才不吃亏：书面合同 · 试用期 · 加班费</h1>
+    <p class="time">⏱ 预计 30 分钟 · 前置：课程 0004 · 从"总则"进入你最关心的劳动场景</p>
+  </header>
+
+  <h2><span class="secno">1</span>先回顾：四题热身上期内容</h2>
+  <div class="quiz" data-questions="review-5"></div>
+  <script type="application/json" id="review-5">[
+    {
+      "q": "五岁小孩掏钱买糖，买卖的效力是？",
+      "options": [
+        { "t": "直接无效", "ok": true },
+        { "t": "效力待定", "ok": false },
+        { "t": "当然有效", "ok": false },
+        { "t": "可以撤销", "ok": false }
+      ],
+      "why": "不满 8 周岁＝无民事行为能力人，实施的行为直接无效（第 144 条）——行为真实发生，但法律不承认效力。"
+    },
+    {
+      "q": "八岁小孩收两千元红包，效力是？",
+      "options": [
+        { "t": "当然有效", "ok": true },
+        { "t": "效力待定", "ok": false },
+        { "t": "直接无效", "ok": false },
+        { "t": "可以撤销", "ok": false }
+      ],
+      "why": "纯获利益＝只进不出，限制行为能力人可独立实施（第 145 条），收了就有效。"
+    },
+    {
+      "q": "借出五千元没约定还款期，也从没催过，三年时效？",
+      "options": [
+        { "t": "还没开始", "ok": true },
+        { "t": "已经开始", "ok": false },
+        { "t": "已经届满", "ok": false },
+        { "t": "不会起算", "ok": false }
+      ],
+      "why": "未约定履行期限的借款，贷款人可随时催告返还（第 675 条），时效从催告后宽限期届满才起算——从未催过，时效尚未起算。"
+    },
+    {
+      "q": "微信催款，对方回复“下个月还”，法律效果？",
+      "options": [
+        { "t": "中断且失去抗辩", "ok": true },
+        { "t": "中断但仍可抗辩", "ok": false },
+        { "t": "时效不受影响", "ok": false },
+        { "t": "诉讼必然失败", "ok": false }
+      ],
+      "why": "一箭双雕：同意履行→失去时效抗辩（第 192 条）＋提出履行请求→时效中断重算（第 195 条）。"
+    }
+  ]</script>
+
+  <h2><span class="secno">2</span>你签的到底是什么：劳动合同 vs 劳务合同</h2>
+  <p>找工作的第一件事：分清你签的是<strong>劳动合同</strong>还是<strong>劳务合同</strong>。一字之差，保护差一大截。</p>
+  <table>
+    <tr><th></th><th>劳动合同</th><th>劳务合同</th></tr>
+    <tr><td><strong>适用法律</strong></td><td>《劳动合同法》《劳动法》</td><td>《民法典》合同编</td></tr>
+    <tr><td><strong>双方关系</strong></td><td>有隶属关系：你受管理、考勤、服从安排</td><td>平等主体：你干完活拿钱，谁也不管谁</td></tr>
+    <tr><td><strong>社保</strong></td><td>必须缴（五险一金）</td><td>不缴</td></tr>
+    <tr><td><strong>保护</strong></td><td>经济补偿、双倍工资、工伤保护……</td><td>按约定履行，无劳动法特殊保护</td></tr>
+    <tr><td><strong>例子</strong></td><td>入职公司当文员</td><td>自己雇的钟点工、外包承揽、一次性劳务</td></tr>
+  </table>
+  <p>判断口诀：<strong>有没有"管理与被管理"？有＝劳动关系；没有＝劳务关系。</strong>注意主体：劳动合同的"用人单位"必须是<strong>组织</strong>（公司/个体户/合伙企业等，还记得第 3 课的三类民事主体吗），两个自然人之间（比如你直接雇保姆）不存在劳动合同关系。</p>
+  <div class="callout warn">
+    <span class="tag">警惕</span>
+    <p>有些公司让你签"劳务合同""合作协议"来逃避社保和补偿——判断标准是<strong>实际关系</strong>，不是合同名字：只要你有考勤、受指挥、按月领工资，法律上就是劳动关系，公司照样要担责。</p>
+  </div>
+
+  <h2><span class="secno">3</span>签合同三件套：书面合同 · 试用期 · 违约金红线</h2>
+
+  <h3>① 书面合同：不签，你就多了一个武器</h3>
+  <blockquote>
+    <p>第十条　建立劳动关系，应当订立书面劳动合同。已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。</p>
+    <p>第八十二条　用人单位自用工之日起超过一个月不满一年未与劳动者订立书面劳动合同的，应当向劳动者每月支付二倍的工资。</p>
+    <span class="src">来源：《中华人民共和国劳动合同法（2012 修正）》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <p>翻译成人话：<strong>入职一个月内必须签书面合同；超过一个月还不签，从第二个月起公司每月要付你双倍工资</strong>（最多 11 个月）。</p>
+  <div class="callout tip">
+    <span class="tag">生活小妙招</span>
+    <p>公司拖着不签合同？别怕，先上班，但<strong>保留证据</strong>：打卡记录、工资转账、工作群聊天、工牌——既证明你在那工作，又是将来主张双倍工资的弹药。这是阶段三"证据意识"的提前应用。</p>
+  </div>
+
+  <h3>② 试用期：上限、次数、工资，三条线</h3>
+  <blockquote>
+    <p>第十九条　劳动合同期限三个月以上不满一年的，试用期不得超过一个月；劳动合同期限一年以上不满三年的，试用期不得超过二个月；三年以上固定期限和无固定期限的劳动合同，试用期不得超过六个月。</p>
+    <p>同一用人单位与同一劳动者只能约定一次试用期。以完成一定工作任务为期限的劳动合同或者劳动合同期限不满三个月的，不得约定试用期。</p>
+    <p>第二十条　劳动者在试用期的工资不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十，并不得低于用人单位所在地的最低工资标准。</p>
+    <span class="src">来源：《中华人民共和国劳动合同法（2012 修正）》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <table>
+    <tr><th>合同期限</th><th>试用期上限</th></tr>
+    <tr><td>不满 3 个月 / 以完成任务为期限</td><td><strong>不得约定</strong></td></tr>
+    <tr><td>3 个月以上不满 1 年</td><td>≤ 1 个月</td></tr>
+    <tr><td>1 年以上不满 3 年</td><td>≤ 2 个月</td></tr>
+    <tr><td>3 年以上固定期限 / 无固定期限</td><td>≤ 6 个月</td></tr>
+  </table>
+  <ul>
+    <li><strong>只能约定一次</strong>——同一用人单位对同一劳动者，换岗、续签都不能再设试用期；</li>
+    <li>试用期<strong>包含在合同期内</strong>；合同<strong>只约定了试用期</strong>的，试用期不成立，该期限就是合同期限——这句话你在课程 0002 用三步法拆过！</li>
+    <li>试用期工资 ≥ 约定工资的 <strong>80%</strong> 且 ≥ 当地<strong>最低工资标准</strong>（第 20 条）；</li>
+    <li>试用期内公司<strong>不能随便辞退</strong>：除非你符合第 39 条（严重违纪等）或第 40 条第（一）（二）项（医疗期满/不胜任），且解除要<strong>说明理由</strong>（第 21 条）。</li>
+  </ul>
+
+  <h3>③ 违约金红线：只有两种合法，其他一律无效</h3>
+  <blockquote>
+    <p>第二十二条　用人单位为劳动者提供专项培训费用，对其进行专业技术培训的，可以与该劳动者订立协议，约定服务期。</p>
+    <p>第二十五条　除本法第二十二条和第二十三条规定的情形外，用人单位不得与劳动者约定由劳动者承担违约金。</p>
+    <span class="src">来源：《中华人民共和国劳动合同法（2012 修正）》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <p>合法的"劳动者违约金"只有两种：</p>
+  <ul>
+    <li><strong>服务期违约金</strong>：公司出钱给你做<strong>专项技术培训</strong>（不是普通入职培训），约定你干满几年，提前走要赔（但违约金不得超过培训费用）；</li>
+    <li><strong>竞业限制违约金</strong>：高管/涉密人员离职后一定期限内不去竞争对手（公司须支付经济补偿）。</li>
+  </ul>
+  <div class="callout key">
+    <span class="tag">红线清单</span>
+    <p>以下统统<strong>无效</strong>：押一个月工资当"保证金"、收培训押金、扣押身份证件（第 9 条禁止）、约定"辞职赔 3 个月工资"、签"卖身契"式违约金（第 25 条）。遇到这些，你不需要交钱，直接保留证据投诉。</p>
+  </div>
+
+  <h2><span class="secno">4</span>工资与加班：150% / 200% / 300%</h2>
+  <blockquote>
+    <p>《劳动法》第三十六条　国家实行劳动者每日工作时间不超过八小时、平均每周工作时间不超过四十四小时的工时制度。</p>
+    <p>第四十一条　用人单位由于生产经营需要，经与工会和劳动者协商后可以延长工作时间，一般每日不得超过一小时；……每日不得超过三小时，但是每月不得超过三十六小时。</p>
+    <p>第四十四条　有下列情形之一的，用人单位应当按照下列标准支付高于劳动者正常工作时间工资的工资报酬：（一）安排劳动者延长工作时间的，支付不低于工资的百分之一百五十的工资报酬；（二）休息日安排劳动者工作又不能安排补休的，支付不低于工资的百分之二百的工资报酬；（三）法定休假日安排劳动者工作的，支付不低于工资的百分之三百的工资报酬。</p>
+    <span class="src">来源：《中华人民共和国劳动法》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <table>
+    <tr><th>加班类型</th><th>加班费</th><th>能否用补休替代</th></tr>
+    <tr><td>工作日延长（平时加班）</td><td>≥ 150%</td><td>不能，只能给钱</td></tr>
+    <tr><td>休息日（周末）加班</td><td>≥ 200%</td><td>可以：安排补休则可不给</td></tr>
+    <tr><td>法定休假日（如春节、国庆当天）加班</td><td>≥ 300%</td><td>不能，必须给钱</td></tr>
+  </table>
+  <ul>
+    <li>加班要<strong>协商</strong>，每月累计不得超过 <strong>36 小时</strong>；"996"式强制加班违法；</li>
+    <li><strong>300% 不可用补休替代</strong>——法定节假日上班，公司说"明天给你放一天假"是不够的，必须付三倍工资；</li>
+    <li>加班费举证：保留<strong>加班证据</strong>（打卡记录、加班审批、工作群消息、任务完成记录）。</li>
+  </ul>
+
+  <h2><span class="secno">5</span>实战任务</h2>
+  <div class="task">
+    <span class="tag">实战任务（今天就做）</span>
+    <ol>
+      <li>在 <strong>flk.npc.gov.cn</strong> 打开《中华人民共和国劳动合同法》（2012 修正），读第 10、19、20、82 条；再打开《劳动法》读第 44 条——每条用一句话概括（写下来）；</li>
+      <li>找一份劳动合同（网上的模板，或你自己签过的都行），检查三件事：① 这是劳动合同还是劳务合同？② 试用期约定合不合法（对照第 19、20 条）？③ 有没有违法的违约金/押金条款（对照第 9、22、25 条）？</li>
+      <li>思考题：老板说"<strong>试用期 3 个月，工资按 80% 发，转正后补足差额</strong>"——拆开这句承诺：哪部分合法、哪部分违法、哪部分是话术陷阱？（提示：试用期上限看合同期限；80% 看第 20 条；"补差额"本身意味着什么？）</li>
+    </ol>
+  </div>
+
+  <h2><span class="secno">6</span>测验：检索练习</h2>
+  <div class="quiz" data-questions="quiz-5"></div>
+  <script type="application/json" id="quiz-5">[
+    {
+      "q": "三年期劳动合同，试用期最长不得超过？",
+      "options": [
+        { "t": "六个月", "ok": true },
+        { "t": "三个月", "ok": false },
+        { "t": "两个月", "ok": false },
+        { "t": "一个月", "ok": false }
+      ],
+      "why": "第 19 条：三年以上固定期限和无固定期限合同，试用期不得超过六个月。"
+    },
+    {
+      "q": "一年期劳动合同，试用期最长不得超过？",
+      "options": [
+        { "t": "两个月", "ok": true },
+        { "t": "一个月", "ok": false },
+        { "t": "三个月", "ok": false },
+        { "t": "六个月", "ok": false }
+      ],
+      "why": "第 19 条：一年以上不满三年的合同，试用期不得超过二个月。"
+    },
+    {
+      "q": "入职超过一个月公司还不签书面合同，可主张？",
+      "options": [
+        { "t": "每月双倍工资", "ok": true },
+        { "t": "每月一倍工资", "ok": false },
+        { "t": "每月三倍工资", "ok": false },
+        { "t": "没有任何后果", "ok": false }
+      ],
+      "why": "第 82 条：超过一个月不满一年未订立书面劳动合同，每月支付二倍工资（最多 11 个月）。"
+    },
+    {
+      "q": "法定休假日加班，加班费至少是？",
+      "options": [
+        { "t": "三倍工资", "ok": true },
+        { "t": "一倍半工资", "ok": false },
+        { "t": "两倍工资", "ok": false },
+        { "t": "四倍工资", "ok": false }
+      ],
+      "why": "《劳动法》第 44 条：法定休假日安排工作的，支付不低于工资 300% 的报酬，不可用补休替代。"
+    },
+    {
+      "q": "下列哪项违约金约定合法？",
+      "options": [
+        { "t": "专项培训服务期违约金", "ok": true },
+        { "t": "辞职赔偿违约金", "ok": false },
+        { "t": "入职押金违约金", "ok": false },
+        { "t": "扣押证件违约金", "ok": false }
+      ],
+      "why": "第 22、25 条：只有专项培训服务期和竞业限制两种情形可约定劳动者违约金；押金、扣押证件（第 9 条）均违法。"
+    }
+  ]</script>
+  <script>
+/* ============================================================
+   quiz.js — 可复用测验组件（即时反馈 · 检索练习）
+   用法：
+     <div class="quiz" data-questions="quiz-1"></div>
+     <script type="application/json" id="quiz-1">[ …题目… ]<\/script>
+     <script src="../assets/quiz.js"><\/script>
+   题目 JSON 结构：
+     [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
+   选项建议等长（字数一致），避免通过格式泄露答案。
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function initQuiz(box) {
+    var dataId = box.getAttribute("data-questions");
+    var src = document.getElementById(dataId);
+    if (!src) { box.innerHTML = '<p class="q-feedback bad show">题目数据缺失（#' + dataId + '）</p>'; return; }
+    var questions;
+    try { questions = JSON.parse(src.textContent); }
+    catch (e) { box.innerHTML = '<p class="q-feedback bad show">题目 JSON 解析失败</p>'; return; }
+
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "q-wrap";
+
+    questions.forEach(function (item, i) {
+      var qBox = document.createElement("div");
+      qBox.className = "q";
+
+      var title = document.createElement("p");
+      title.className = "q-title";
+      title.textContent = (i + 1) + ". " + item.q;
+      qBox.appendChild(title);
+
+      var opts = document.createElement("div");
+      opts.className = "q-opts";
+      item.options.forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opt";
+        b.textContent = opt.t;
+        b.addEventListener("click", function () {
+          if (qBox.classList.contains("done")) return;
+          qBox.classList.add("done");
+          answered++;
+          var fb = qBox.querySelector(".q-feedback");
+          if (opt.ok) {
+            correct++;
+            b.classList.add("correct");
+            fb.className = "q-feedback show good";
+            fb.innerHTML = "✔ 正确。" + (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          } else {
+            b.classList.add("wrong");
+            fb.className = "q-feedback show bad";
+            var right = item.options.filter(function (o) { return o.ok; });
+            var rightText = right.length ? right.map(function (o) { return o.t; }).join("、") : "（无）";
+            fb.innerHTML = "✘ 再想想。正确答案是：<strong>" + rightText + "</strong>。" +
+              (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          }
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      qBox.appendChild(opts);
+
+      var fb = document.createElement("div");
+      fb.className = "q-feedback";
+      qBox.appendChild(fb);
+
+      wrap.appendChild(qBox);
+    });
+
+    var score = document.createElement("div");
+    score.className = "score";
+    score.textContent = "已完成 0 / " + total + " 题";
+    wrap.appendChild(score);
+
+    function updateScore() {
+      score.textContent = "已完成 " + answered + " / " + total + " 题 · 答对 " + correct + " 题";
+      if (answered === total) {
+        score.textContent += " · 正确率 " + Math.round((correct / total) * 100) + "%";
+        if (correct === total) score.textContent += " 🎉 全部答对！";
+      }
+    }
+
+    box.innerHTML = "";
+    box.appendChild(wrap);
+  }
+
+  function initAll() {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+})();
+
+</script>
+
+  <h2><span class="secno">7</span>小结</h2>
+  <ul>
+    <li><strong>劳动合同 vs 劳务合同</strong>：看有没有"管理与被管理"——有隶属关系就是劳动关系，名字骗不了人；</li>
+    <li><strong>书面合同</strong>：入职 1 个月内必签；不签 → 第 2 个月起双倍工资（第 10、82 条），记住保留证据；</li>
+    <li><strong>试用期</strong>：上限看合同期限（1/2/6 个月三档），只能约定一次，工资 ≥80% 且 ≥ 最低工资，不能随便辞退；</li>
+    <li><strong>违约金红线</strong>：只有服务期和竞业限制两种合法，押金、扣押证件、辞职赔偿统统无效；</li>
+    <li><strong>加班费</strong>：工作日 150%、休息日 200%（可补休）、法定节假日 300%（不可替代），每月加班 ≤36 小时。</li>
+  </ul>
+
+  <div class="callout tip">
+    <span class="tag">课后阅读（权威原文）</span>
+    <p>① 《中华人民共和国劳动合同法（2012 修正）》全文：<a href="https://flk.npc.gov.cn/" target="_blank" rel="noopener">国家法律法规数据库 flk.npc.gov.cn</a>，重点读第 9—26、31—45、82 条（15 分钟）</p>
+    <p>② 官方解读延伸：<a href="https://hrss.jining.gov.cn/art/2023/4/24/art_18527_2713094.html" target="_blank" rel="noopener">济宁市人社局 ·《劳动合同法》第十条解读</a> · <a href="https://www.suzhou.gov.cn/szsrmzf/rdwd3/202411/5893bb5857cd4140a373738621310ec7.shtml" target="_blank" rel="noopener">苏州市政府 · 劳动合同及参保风险提示</a>（5 分钟）</p>
+  </div>
+
+  <div class="callout key">
+    <span class="tag">需要帮助？</span>
+    有任何不懂的地方，随时向你的 AI 老师提问。本课问答与实战批改完成后会整理成参考页。下一课（0006）：<strong>劳动合同解除与经济补偿——被辞退、自己辞职、公司倒闭，钱怎么算</strong>。
+  </div>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      上一课：<a href="0004-civil-juristic-acts.html">0004 民事法律行为与诉讼时效</a> · 相关：<a href="0002-how-to-read-a-law.html">0002 如何读懂一部法律</a> · 参考：<a href="../reference/glossary.html">法律术语表</a> · <a href="../reference/legal-map.html">法律体系速查图</a>
+    </div>
+    <p>课程 0005 · 劳动合同怎么签才不吃亏 — 法条原文以国家法律法规数据库（flk.npc.gov.cn）为准。</p>
+  </footer>
+
+</main>
+</body>
+</html>

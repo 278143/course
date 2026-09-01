@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考 · 第四课答疑与纠错</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+
+  <header class="lesson-head">
+    <p class="meta">参考文档 · 对应课程 0004 · 2026-08 课堂反馈整理</p>
+    <h1>第四课答疑与纠错</h1>
+    <p class="time">本页收录第四课学习中的疑问、实战任务批改与自测题答案 · 建议打印或收藏</p>
+  </header>
+
+  <h2><span class="secno">1</span>概念答疑：你问过的问题</h2>
+
+  <h3>① 第 145 条第 2 款：催告 / 追认 / 善意相对人撤销（"这一段没看懂"）</h3>
+  <p>场景：<strong>13 岁的小明</strong>（限制民事行为能力人）在手机店花 5000 元买手机，当场付钱拿走。这个合同<strong>效力待定</strong>——悬在半空。法律给双方各发一把"钥匙"，让悬着的状态尽快落地：</p>
+  <table>
+    <tr><th>谁</th><th>钥匙</th><th>怎么用</th><th>效果</th></tr>
+    <tr><td>小明妈妈（法定代理人）</td><td><strong>追认</strong></td><td>说"我同意"</td><td>合同自订立之日起有效（自始有效）</td></tr>
+    <tr><td>小明妈妈</td><td>（不追认）</td><td>始终不表态</td><td>合同最终无效</td></tr>
+    <tr><td>店主（相对人）</td><td><strong>催告</strong></td><td>通知妈妈："30 天内给个准话"</td><td>30 天没回 → <strong>视为拒绝追认</strong> → 无效</td></tr>
+    <tr><td>店主</td><td><strong>撤销</strong></td><td>追认之前自己反悔："我不卖了"</td><td>合同解除（<strong>仅限善意相对人</strong>）</td></tr>
+  </table>
+  <ul>
+    <li><strong>相对人</strong>＝合同里"跟他对面"的那个人（这里是店主）；</li>
+    <li><strong>追认</strong>＝事后点头，合同"补票上车"，自始有效；</li>
+    <li><strong>催告</strong>＝催对方快给准话，期限 <strong>30 日</strong>；</li>
+    <li><strong>视为拒绝追认</strong>＝没回话就当拒绝——"视为"又出现了（法律拟制第 3 次）；</li>
+    <li><strong>善意相对人</strong>＝不知道也不应当知道对方是限制行为能力人。店主明知是 13 岁小孩还卖＝非善意，撤销权没了。</li>
+  </ul>
+  <p>一句话：<strong>效力待定不是"无效"，是"悬着"；追认在妈，催告撤销在店（撤销仅限善意）。</strong></p>
+  <p>对比第 144 条：不满 8 周岁的无民事行为能力人实施的行为是<strong>直接无效</strong>——没有追认这回事。</p>
+
+  <h3>② 第 188 条：诉讼时效——法律给"要账"设的倒计时（"没怎么看懂"）</h3>
+  <p>一句话：<strong>你知道自己吃亏了，就赶紧去要；拖着拖着，法院就不帮你强制要了。</strong></p>
+  <ul>
+    <li><strong>一般 3 年</strong>：从你"知道<strong>或应当知道</strong>两件事"那天起算——①你的权利被损害了；②<strong>谁是害你的人（义务人）</strong>。两个要件缺一不可。不是从借钱那天算！</li>
+    <li><strong>最长 20 年</strong>：从"权利受损之日"起算（不是从知晓日），无论你知道不知道，满 20 年法院一律不保护；</li>
+    <li><strong>过了 3 年 ≠ 权利没了</strong>：债务还在，只是法院不再强制保护，变成"良心债"——对方愿意还照样还；</li>
+    <li><strong>为什么有这制度</strong>：①证据会灭失；②法律不保护躺在权利上睡觉的人；③让社会关系尽快稳定。</li>
+  </ul>
+  <p>类比：诉讼时效像"法律保护的保质期"，或游戏里的任务倒计时——过期不是任务消失，是"强制完成"按钮失效。</p>
+
+  <h3>③ 第 192 条：时效届满后会发生什么（"没怎么看懂"）</h3>
+  <table>
+    <tr><th>场景</th><th>结果</th><th>为什么</th></tr>
+    <tr><td>过了 3 年，债务人说"我不还"</td><td>法院支持他（抗辩成功）</td><td>时效届满，义务人有权抗辩</td></tr>
+    <tr><td>过了 3 年，债务人说"钱我会还的"</td><td>以后不能再拿时效说事，3 年重新算</td><td>同意履行＝放弃抗辩（192）＋中断重算（195）</td></tr>
+    <tr><td>过了 3 年，债务人已经还了</td><td>不能要回去</td><td>自愿履行不得请求返还</td></tr>
+  </table>
+  <ul>
+    <li>义务人"<strong>可以</strong>"抗辩——他不提，法院不会主动说"时效过了"；</li>
+    <li><strong>微信催款的双保险</strong>：你发"那 5000 元啥时候还？"，他回"下个月还"——一条消息同时触发 195 条（中断重算）和 192 条（同意履行、失去抗辩）。</li>
+  </ul>
+
+  <h2><span class="secno">2</span>实战任务批改</h2>
+
+  <h3>① 任务一（第二次）</h3>
+  <table>
+    <tr><th>条文</th><th>判定</th><th>要点</th></tr>
+    <tr><td>第 133 条</td><td>✅</td><td>意思正确，措辞顺序与原文略异（原文：民事主体<strong>通过意思表示</strong>设立……）</td></tr>
+    <tr><td>第 143 条</td><td>⚠️ 第二次漏"相应的"</td><td>应为"具有<strong>相应的</strong>民事行为能力"——不是"完全"！限制行为能力人也能有效实施纯获利/相适应行为，要件是"与行为相称"；"道德规范"→"<strong>公序良俗</strong>"（公共秩序与善良风俗）；"不违法律法"笔误</td></tr>
+    <tr><td>第 144 条</td><td>❌ 重要误区</td><td>"无法实施"是错的——法律不是说无行为能力人"做不了"，而是"做了也<strong>无效</strong>"（原文：无民事行为能力人实施的民事法律行为无效）。5 岁小孩能掏钱买糖（行为真实发生），但买卖无效。<strong>法律不禁止行为发生，只否定法律效力。</strong></td></tr>
+    <tr><td>第 145 条</td><td>✅ 大幅进步</td><td>催告 30 日／逾期视为拒绝追认／追认前善意相对人可撤销／撤销以通知方式作出——机制全部复述正确！术语：相当→<strong>相适应</strong>、视为作废→<strong>视为拒绝追认</strong></td></tr>
+    <tr><td>第 188 条</td><td>⚠️ 起算要件漏两点</td><td>"知道<strong>或应当知道</strong>权利受损<strong>以及义务人</strong>"——光知道吃亏不知道谁害的，不起算；20 年从<strong>权利受损之日</strong>起算（非知晓日）；另：时效≠起诉资格（随时可起诉，过时效只是对方可抗辩）</td></tr>
+  </table>
+
+  <h3>② 任务二（下单自检）</h3>
+  <p>✅ 正确。下单＝完全民事行为能力人＋意思表示真实＋内容合法 → <strong>有效</strong>。补一句：下单是<strong>双方法律行为</strong>（你发出要约＋卖家承诺），成立时即生效。</p>
+
+  <h3>③ 任务三（5000 元借款思考题）完整解答</h3>
+  <p><strong>第一问：还能起诉吗？</strong> 能——法院受理没问题。但能不能赢，关键看 <strong>3 年时效是否已过，而这取决于当时有没有约定还款日期</strong>：</p>
+  <ul>
+    <li><strong>约定了还款日期</strong>（如 2022 年 3 月底还）：时效从到期日（2022-03-31）起算 → 2025-03-31 届满 → <strong>已过</strong> → 对方若抗辩，可能败诉；</li>
+    <li><strong>没约定还款日期</strong>（没写借条，很可能）：借款没有履行期限的，<strong>贷款人可以随时催告返还</strong>（第 675 条），时效从<strong>催告后的宽限期届满</strong>才开始算——你从没催过，<strong>时效可能根本还没开始走</strong> → 现在起诉或先催告，仍然能要回。</li>
+  </ul>
+  <p><strong>第二问：补救做什么？</strong> 你的"发一条催款信息"正是关键动作，但要发得讲究，一箭三雕：</p>
+  <ol>
+    <li><strong>发微信催款，写明金额与事实</strong>："2022 年 3 月借你的 5000 元，什么时候还？"——固定"欠款事实"证据（没写借条，催款记录＋他的回复就是证据）；</li>
+    <li><strong>争取他回复确认</strong>（"下个月还"）——双保险：192 条（同意履行→失去时效抗辩）＋195 条（提出履行请求→时效中断重算）；</li>
+    <li><strong>更稳妥</strong>：让他补写一张借条或还款承诺书，重新确认债务；</li>
+    <li>催后仍不还 → 起诉（保留转账记录＋催款记录）。</li>
+  </ol>
+
+  <h2><span class="secno">3</span>自测题（互动测验，点选项看解析）</h2>
+  <div class="quiz" data-questions="qa-4"></div>
+  <script type="application/json" id="qa-4">[
+    {
+      "q": "五岁小孩掏钱买糖，这个买卖的效力是？",
+      "options": [
+        { "t": "直接无效", "ok": true },
+        { "t": "效力待定", "ok": false },
+        { "t": "当然有效", "ok": false },
+        { "t": "可以撤销", "ok": false }
+      ],
+      "why": "不满 8 周岁＝无民事行为能力人，实施的民事法律行为无效（第 144 条）——行为真实发生，但法律不承认其效力，也没有追认的可能。"
+    },
+    {
+      "q": "十三岁小孩买五千元手机，店主明知他是小孩，妈妈追认前店主能撤销吗？",
+      "options": [
+        { "t": "不能撤销", "ok": true },
+        { "t": "可以撤销", "ok": false },
+        { "t": "必须成交", "ok": false },
+        { "t": "直接无效", "ok": false }
+      ],
+      "why": "店主明知对方是限制行为能力人＝非善意相对人，无撤销权（第 145 条第 2 款限“善意相对人”）；但他仍可催告妈妈 30 日内追认。"
+    },
+    {
+      "q": "借出五千元没约定还款期，也从没催过，三年时效开始走了吗？",
+      "options": [
+        { "t": "还没开始", "ok": true },
+        { "t": "已经开始", "ok": false },
+        { "t": "走了三年", "ok": false },
+        { "t": "不会起算", "ok": false }
+      ],
+      "why": "未约定履行期限的借款，贷款人可随时催告返还（第 675 条），时效从催告后宽限期届满才起算——从未催过，时效尚未起算。"
+    }
+  ]</script>
+
+  <h2><span class="secno">4</span>一句话口诀速记</h2>
+  <ul>
+    <li><strong>效力待定三把钥匙：追认在妈，催告撤销在店</strong>（撤销仅限善意相对人）；</li>
+    <li><strong>时效三问</strong>：知道受损＋知道是谁 → 起算；过了 → 对方可抗辩（他不提法院不主动说）；同意还 / 自愿还 → 不反悔；</li>
+    <li><strong>无效 vs 效力待定</strong>：无民事行为能力人 → 直接无效；限制民事行为能力人 → 效力待定可追认；</li>
+    <li><strong>"视为"家族再添一员</strong>：视为拒绝追认（第 145 条）——不表态就当拒绝；</li>
+    <li><strong>法律不禁止行为发生，只否定法律效力</strong>（第 144 条）；</li>
+    <li><strong>催款一箭三雕</strong>：固定证据 ＋ 192 放弃抗辩 ＋ 195 中断重算。</li>
+  </ul>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      返回：<a href="../lessons/0004-civil-juristic-acts.html">课程 0004 民事法律行为与诉讼时效</a> · <a href="glossary.html">法律术语表</a> · <a href="legal-map.html">法律体系速查图</a>
+    </div>
+    <p>参考 · 第四课答疑与纠错 — 法条原文以国家法律法规数据库（flk.npc.gov.cn）为准。</p>
+  </footer>
+
+</main>
+<script>
+/* ============================================================
+   quiz.js — 可复用测验组件（即时反馈 · 检索练习）
+   用法：
+     <div class="quiz" data-questions="quiz-1"></div>
+     <script type="application/json" id="quiz-1">[ …题目… ]<\/script>
+     <script src="../assets/quiz.js"><\/script>
+   题目 JSON 结构：
+     [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
+   选项建议等长（字数一致），避免通过格式泄露答案。
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function initQuiz(box) {
+    var dataId = box.getAttribute("data-questions");
+    var src = document.getElementById(dataId);
+    if (!src) { box.innerHTML = '<p class="q-feedback bad show">题目数据缺失（#' + dataId + '）</p>'; return; }
+    var questions;
+    try { questions = JSON.parse(src.textContent); }
+    catch (e) { box.innerHTML = '<p class="q-feedback bad show">题目 JSON 解析失败</p>'; return; }
+
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "q-wrap";
+
+    questions.forEach(function (item, i) {
+      var qBox = document.createElement("div");
+      qBox.className = "q";
+
+      var title = document.createElement("p");
+      title.className = "q-title";
+      title.textContent = (i + 1) + ". " + item.q;
+      qBox.appendChild(title);
+
+      var opts = document.createElement("div");
+      opts.className = "q-opts";
+      item.options.forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opt";
+        b.textContent = opt.t;
+        b.addEventListener("click", function () {
+          if (qBox.classList.contains("done")) return;
+          qBox.classList.add("done");
+          answered++;
+          var fb = qBox.querySelector(".q-feedback");
+          if (opt.ok) {
+            correct++;
+            b.classList.add("correct");
+            fb.className = "q-feedback show good";
+            fb.innerHTML = "✔ 正确。" + (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          } else {
+            b.classList.add("wrong");
+            fb.className = "q-feedback show bad";
+            var right = item.options.filter(function (o) { return o.ok; });
+            var rightText = right.length ? right.map(function (o) { return o.t; }).join("、") : "（无）";
+            fb.innerHTML = "✘ 再想想。正确答案是：<strong>" + rightText + "</strong>。" +
+              (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          }
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      qBox.appendChild(opts);
+
+      var fb = document.createElement("div");
+      fb.className = "q-feedback";
+      qBox.appendChild(fb);
+
+      wrap.appendChild(qBox);
+    });
+
+    var score = document.createElement("div");
+    score.className = "score";
+    score.textContent = "已完成 0 / " + total + " 题";
+    wrap.appendChild(score);
+
+    function updateScore() {
+      score.textContent = "已完成 " + answered + " / " + total + " 题 · 答对 " + correct + " 题";
+      if (answered === total) {
+        score.textContent += " · 正确率 " + Math.round((correct / total) * 100) + "%";
+        if (correct === total) score.textContent += " 🎉 全部答对！";
+      }
+    }
+
+    box.innerHTML = "";
+    box.appendChild(wrap);
+  }
+
+  function initAll() {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+})();
+
+</script>
+</body>
+</html>
