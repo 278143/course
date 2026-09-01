@@ -1,0 +1,276 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>术语表 · 销售与市场营销</title>
+<style>
+/* ============================================================
+   Sales & Marketing Teaching Workspace — Shared Stylesheet
+   Tufte-inspired: readable serif, generous margins, calm inking.
+   Linked by every lesson; print-friendly.
+   ============================================================ */
+
+:root{
+  --ink:#1a1a1a;
+  --ink-soft:#444;
+  --ink-faint:#6b6b6b;
+  --paper:#ffffff;
+  --wash:#faf7f2;         /* soft paper tint */
+  --rule:#e3ddd2;
+  --accent:#8a5a3b;       /* warm umber — "persuasion" */
+  --accent-2:#2f5d62;     /* deep teal — "logic" */
+  --good:#2e7d4f;
+  --bad:#a4382f;
+  --serif: Georgia, "Times New Roman", "Songti SC", "Noto Serif SC", serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  padding:2.4rem 1.2rem 4rem;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:1.075rem;
+  line-height:1.7;
+  text-rendering:optimizeLegibility;
+}
+
+/* Recipe: a lesson column */
+main, .lesson{
+  max-width:42rem;
+  margin:0 auto;
+}
+
+/* --- Typography --- */
+h1,h2,h3,h4{ font-family:var(--sans); line-height:1.25; color:var(--ink); }
+h1{
+  font-size:2.05rem; font-weight:600; letter-spacing:-0.01em;
+  margin:0 0 0.25rem;
+  text-wrap:balance;
+}
+h2{
+  font-size:1.35rem; font-weight:600; margin:2.4rem 0 0.7rem;
+  padding-top:0.4rem; border-top:1px solid var(--rule);
+  color:var(--accent-2);
+}
+h3{ font-size:1.12rem; font-weight:600; margin:1.6rem 0 0.5rem; color:var(--accent); }
+p{ margin:0 0 1rem; }
+a{ color:var(--accent-2); text-decoration:none; border-bottom:1px solid var(--rule); }
+a:hover{ border-bottom-color:var(--accent-2); }
+strong{ color:var(--ink); }
+em{ color:var(--ink-soft); }
+
+.mark{ background:linear-gradient(transparent 55%, #f4e6d6 55%); padding:0 0.15em; }
+.cn{ color:var(--ink-soft); }
+
+/* --- Lesson masthead --- */
+.masthead{
+  margin-bottom:2.2rem;
+  padding-bottom:1.4rem;
+  border-bottom:2px solid var(--accent);
+}
+.kicker{
+  font-family:var(--sans); font-size:0.8rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 0.6rem;
+  font-weight:600;
+}
+.subtitle{ margin:0; font-size:1.12rem; color:var(--ink-soft); font-style:italic; }
+.goal{
+  margin:1.4rem 0 0; padding:0.8rem 1.1rem;
+  background:var(--wash); border-left:3px solid var(--accent);
+  font-size:0.98rem;
+}
+.goal strong{ color:var(--accent); }
+
+/* --- Sections --- */
+.section-head{ display:flex; align-items:baseline; gap:0.6rem; }
+.tag{
+  font-family:var(--sans); font-size:0.7rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--paper); background:var(--accent-2);
+  padding:0.12rem 0.5rem; border-radius:2px; white-space:nowrap;
+}
+.tag.knowledge{ background:var(--accent); }
+.tag.skill{ background:var(--accent-2); }
+.tag.real{ background:var(--good); }
+
+/* --- Callouts & quotes --- */
+.callout{
+  margin:1.4rem 0; padding:1rem 1.2rem; position:relative;
+  background:var(--wash); border-radius:4px;
+  font-size:1rem;
+}
+.callout .label{
+  font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);
+  display:block; margin-bottom:0.4rem;
+}
+blockquote{
+  margin:1.4rem 0; padding:0.2rem 0 0.2rem 1.1rem; border-left:3px solid var(--rule);
+  color:var(--ink-soft); font-size:1.05rem; font-style:italic;
+}
+blockquote cite{ display:block; margin-top:0.4rem; font-style:normal; font-size:0.85rem; color:var(--ink-faint); }
+
+/* --- Diagram (value cycle / funnel) --- */
+.cycle{
+  display:flex; flex-wrap:wrap; gap:0.5rem; align-items:stretch;
+  justify-content:center; margin:1.5rem 0;
+}
+.cycle .node{
+  flex:1 1 110px; background:var(--wash); border:1px solid var(--rule);
+  border-top:3px solid var(--accent); border-radius:4px; padding:0.7rem 0.6rem;
+  text-align:center; font-family:var(--sans); font-size:0.92rem; line-height:1.35;
+}
+.cycle .node small{ display:block; font-size:0.74rem; color:var(--ink-faint); margin-top:0.25rem; }
+.arrow{ align-self:center; color:var(--accent); font-size:1.1rem; }
+
+.funnel{ margin:1.4rem 0; }
+.funnel .row{
+  display:flex; align-items:center; gap:0.8rem; margin-bottom:0.5rem;
+}
+.funnel .bar{
+  display:flex; flex-direction:column; justify-content:center; padding:0.5rem 0.9rem;
+  background:var(--accent-2); color:var(--paper); border-radius:3px;
+  font-family:var(--sans); font-size:0.9rem;
+}
+.funnel .bar.w1{ width:100%; } .funnel .bar.w2{ width:82%; } .funnel .bar.w3{ width:64%; }
+.funnel .bar.w4{ width:46%; } .funnel .bar.w5{ width:30%; }
+.funnel .meta{ font-family:var(--sans); font-size:0.82rem; color:var(--ink-faint); }
+.funnel .rate{ margin-left:auto; font-family:var(--sans); font-size:0.86rem; color:var(--ink-soft); white-space:nowrap; }
+
+/* --- Tables --- */
+table{ width:100%; border-collapse:collapse; margin:1.4rem 0; font-size:0.98rem; }
+th,td{ text-align:left; padding:0.5rem 0.7rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+th{ font-family:var(--sans); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); }
+
+/* --- Quiz --- */
+.quiz{
+  margin:1rem 0; padding:1rem 1.1rem; border:1px solid var(--rule); border-radius:4px;
+  background:var(--paper);
+}
+.quiz .q{ font-family:var(--sans); font-weight:600; margin:0 0 0.7rem; font-size:0.98rem; }
+.quiz .opts{ display:flex; flex-direction:column; gap:0.45rem; }
+.quiz button{
+  text-align:left; font:inherit; font-family:var(--sans); font-size:0.95rem;
+  padding:0.55rem 0.8rem; border:1px solid var(--rule); border-radius:3px;
+  background:var(--paper); color:var(--ink); cursor:pointer; transition:all 0.12s ease;
+}
+.quiz button:hover:not(:disabled){ border-color:var(--accent-2); background:var(--wash); }
+.quiz button.correct{ background:var(--good); border-color:var(--good); color:#fff; }
+.quiz button.wrong{ background:var(--bad); border-color:var(--bad); color:#fff; }
+.quiz button:disabled{ cursor:default; opacity:0.9; }
+.quiz .fb{ margin-top:0.7rem; font-size:0.9rem; min-height:1.3em; font-family:var(--sans); }
+.quiz .fb.correct{ color:var(--good); }
+.quiz .fb.wrong{ color:var(--bad); }
+.quiz .ex{ margin-top:0.3rem; font-size:0.87rem; color:var(--ink-soft); font-family:var(--serif); }
+.score{
+  position:sticky; bottom:0; margin-top:1.6rem; padding:0.7rem 1rem;
+  background:var(--accent-2); color:#fff; border-radius:4px;
+  font-family:var(--sans); font-size:0.92rem; text-align:center;
+}
+
+/* --- Sources / links / footnotes --- */
+.source{
+  margin:1.4rem 0; padding:1rem 1.2rem; background:var(--wash); border-radius:4px;
+  font-size:0.95rem;
+}
+.source .label{ font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); }
+.source p{ margin:0.5rem 0 0; }
+.source a{ border-bottom-color:var(--accent-2); }
+sup{ font-size:0.72em; color:var(--accent); }
+
+/* --- Prompts / tasks --- */
+.task{ margin:1.4rem 0; padding:1.1rem 1.2rem; background:var(--wash); border-left:3px solid var(--good); }
+.task .label{ font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--good); }
+.task ol{ margin:0.6rem 0 0; padding-left:1.2rem; }
+.task li{ margin-bottom:0.35rem; }
+.task textarea{
+  width:100%; min-height:88px; margin-top:0.8rem; font:inherit; font-family:var(--serif);
+  padding:0.7rem 0.8rem; border:1px solid var(--rule); border-radius:3px; background:var(--paper);
+  color:var(--ink); resize:vertical;
+}
+.task .hint{ font-size:0.85rem; color:var(--ink-faint); margin-top:0.4rem; }
+
+/* --- Footer --- */
+.footer{
+  margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+  color:var(--ink-faint); font-size:0.9rem;
+}
+.footer a{ color:var(--ink-faint); }
+.pager{ margin:2rem 0 0; display:flex; justify-content:space-between; font-family:var(--sans); font-size:0.9rem; }
+
+/* --- Print --- */
+@media print{
+  body{ font-size:11.5pt; padding:0; }
+  .pager, .task textarea{ display:none; }
+  .quiz button{ border:1px solid #aaa; }
+  a{ color:var(--ink); }
+  body *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+
+</style>>
+</head>
+<body>
+<main class="lesson">
+
+<header class="masthead">
+  <p class="kicker">Reference · 术语表</p>
+  <h1>销售与市场营销术语表</h1>
+  <p class="subtitle">本学习工作区的统一语言。所有课程、练习、学习记录都应遵循这里的说法。</p>
+</header>
+
+<p><strong>说明：</strong>术语表随手写会失去意义——这里的每一个词，都是在课程里<b>你已经能用对</b>之后才收录的。所以它会随着你的学习逐步长出来，而不是一开始就塞满。下方是第 1 课《商业思维全景图》建立起来的基础词汇。</p>
+
+<h2>底层框架</h2>
+
+<p><strong>营销 (Marketing)</strong>：<br>
+创造并引导市场对产品的<b>需求</b>，把"陌生人"变成"感兴趣的人"。包括广告、内容、品牌、促销等所有"吸引 + 说服"的动作。
+<br><em>避免</em>：推广、打广告、营销就是发传单</p>
+
+<p><strong>销售 (Sales)</strong>：<br>
+把已经<b>感兴趣</b>的人转化为<b>下单付款</b>的客户。包括需求挖掘、演示、报价、谈判、成交、跟单。
+<br><em>避免</em>：推销、卖东西、忽悠</p>
+
+<p><strong>价值循环 (Value Cycle)</strong>：<br>
+商业运转的基本闭环：<b>创造价值 → 吸引注意（营销）→ 转化为成交（销售）→ 交付留存 → 复购推荐 → 再创造价值</b>。营销在"注意"，销售在"成交"。
+<br><em>避免</em>：赚钱流程、生意模式</p>
+
+<p><strong>销售漏斗 (Sales Funnel)</strong>：<br>
+客户从「看见」到「下单」所经过的逐步收窄的过程，越往下人数越少。典型为：<b>关注 → 线索 → 商机 → 成交 → 复购</b>。
+<br><em>避免</em>：销售管道、转化通道</p>
+
+<h2>漏斗内常用词</h2>
+
+<p><strong>线索 (Lead)</strong>：<br>
+对你的产品表达了<b>初步兴趣</b>并留下联系方式的潜在客户，还没到可成交阶段。
+<br><em>避免</em>：潜在客户、名单、客源</p>
+
+<p><strong>商机 / 机会 (Opportunity)</strong>：<br>
+已进入销售跟进、有明确成交可能的客户，通常已确认需求和预算。
+<br><em>避免</em>：准客户、机会单</p>
+
+<p><strong>转化率 (Conversion Rate)</strong>：<br>
+某一环节的<b>产出的比例</b>，如"线索 → 成交"的转化率 = 成交数 ÷ 线索数。是衡量营销/销售效率的核心数字。
+<br><em>避免</em>：成功率、成交比</p>
+
+<h2>市场类型</h2>
+
+<p><strong>B2B（企业对企业）</strong>：<br>
+客户是<b>企业/组织</b>，决策人常不止一个，周期长、客单价高、更看重专业与 ROI。
+<br><em>避免</em>：对公、企业市场</p>
+
+<p><strong>B2C（企业对个人）</strong>：<br>
+客户是<b>个人消费者</b>，决策更快、更情绪化，更看重价格与便利。
+<br><em>避免</em>：零售、对私</p>
+
+<p class="footer">术语会随课程推进扩充。<a href="../lessons/0001-business-thinking-map.html">← 回到第 1 课</a></p>
+
+</main>
+</body>
+</html>

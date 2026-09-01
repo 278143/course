@@ -1,0 +1,410 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 1 课 · 商业思维全景图</title>
+<style>
+/* ============================================================
+   Sales & Marketing Teaching Workspace — Shared Stylesheet
+   Tufte-inspired: readable serif, generous margins, calm inking.
+   Linked by every lesson; print-friendly.
+   ============================================================ */
+
+:root{
+  --ink:#1a1a1a;
+  --ink-soft:#444;
+  --ink-faint:#6b6b6b;
+  --paper:#ffffff;
+  --wash:#faf7f2;         /* soft paper tint */
+  --rule:#e3ddd2;
+  --accent:#8a5a3b;       /* warm umber — "persuasion" */
+  --accent-2:#2f5d62;     /* deep teal — "logic" */
+  --good:#2e7d4f;
+  --bad:#a4382f;
+  --serif: Georgia, "Times New Roman", "Songti SC", "Noto Serif SC", serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  padding:2.4rem 1.2rem 4rem;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:1.075rem;
+  line-height:1.7;
+  text-rendering:optimizeLegibility;
+}
+
+/* Recipe: a lesson column */
+main, .lesson{
+  max-width:42rem;
+  margin:0 auto;
+}
+
+/* --- Typography --- */
+h1,h2,h3,h4{ font-family:var(--sans); line-height:1.25; color:var(--ink); }
+h1{
+  font-size:2.05rem; font-weight:600; letter-spacing:-0.01em;
+  margin:0 0 0.25rem;
+  text-wrap:balance;
+}
+h2{
+  font-size:1.35rem; font-weight:600; margin:2.4rem 0 0.7rem;
+  padding-top:0.4rem; border-top:1px solid var(--rule);
+  color:var(--accent-2);
+}
+h3{ font-size:1.12rem; font-weight:600; margin:1.6rem 0 0.5rem; color:var(--accent); }
+p{ margin:0 0 1rem; }
+a{ color:var(--accent-2); text-decoration:none; border-bottom:1px solid var(--rule); }
+a:hover{ border-bottom-color:var(--accent-2); }
+strong{ color:var(--ink); }
+em{ color:var(--ink-soft); }
+
+.mark{ background:linear-gradient(transparent 55%, #f4e6d6 55%); padding:0 0.15em; }
+.cn{ color:var(--ink-soft); }
+
+/* --- Lesson masthead --- */
+.masthead{
+  margin-bottom:2.2rem;
+  padding-bottom:1.4rem;
+  border-bottom:2px solid var(--accent);
+}
+.kicker{
+  font-family:var(--sans); font-size:0.8rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 0.6rem;
+  font-weight:600;
+}
+.subtitle{ margin:0; font-size:1.12rem; color:var(--ink-soft); font-style:italic; }
+.goal{
+  margin:1.4rem 0 0; padding:0.8rem 1.1rem;
+  background:var(--wash); border-left:3px solid var(--accent);
+  font-size:0.98rem;
+}
+.goal strong{ color:var(--accent); }
+
+/* --- Sections --- */
+.section-head{ display:flex; align-items:baseline; gap:0.6rem; }
+.tag{
+  font-family:var(--sans); font-size:0.7rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--paper); background:var(--accent-2);
+  padding:0.12rem 0.5rem; border-radius:2px; white-space:nowrap;
+}
+.tag.knowledge{ background:var(--accent); }
+.tag.skill{ background:var(--accent-2); }
+.tag.real{ background:var(--good); }
+
+/* --- Callouts & quotes --- */
+.callout{
+  margin:1.4rem 0; padding:1rem 1.2rem; position:relative;
+  background:var(--wash); border-radius:4px;
+  font-size:1rem;
+}
+.callout .label{
+  font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);
+  display:block; margin-bottom:0.4rem;
+}
+blockquote{
+  margin:1.4rem 0; padding:0.2rem 0 0.2rem 1.1rem; border-left:3px solid var(--rule);
+  color:var(--ink-soft); font-size:1.05rem; font-style:italic;
+}
+blockquote cite{ display:block; margin-top:0.4rem; font-style:normal; font-size:0.85rem; color:var(--ink-faint); }
+
+/* --- Diagram (value cycle / funnel) --- */
+.cycle{
+  display:flex; flex-wrap:wrap; gap:0.5rem; align-items:stretch;
+  justify-content:center; margin:1.5rem 0;
+}
+.cycle .node{
+  flex:1 1 110px; background:var(--wash); border:1px solid var(--rule);
+  border-top:3px solid var(--accent); border-radius:4px; padding:0.7rem 0.6rem;
+  text-align:center; font-family:var(--sans); font-size:0.92rem; line-height:1.35;
+}
+.cycle .node small{ display:block; font-size:0.74rem; color:var(--ink-faint); margin-top:0.25rem; }
+.arrow{ align-self:center; color:var(--accent); font-size:1.1rem; }
+
+.funnel{ margin:1.4rem 0; }
+.funnel .row{
+  display:flex; align-items:center; gap:0.8rem; margin-bottom:0.5rem;
+}
+.funnel .bar{
+  display:flex; flex-direction:column; justify-content:center; padding:0.5rem 0.9rem;
+  background:var(--accent-2); color:var(--paper); border-radius:3px;
+  font-family:var(--sans); font-size:0.9rem;
+}
+.funnel .bar.w1{ width:100%; } .funnel .bar.w2{ width:82%; } .funnel .bar.w3{ width:64%; }
+.funnel .bar.w4{ width:46%; } .funnel .bar.w5{ width:30%; }
+.funnel .meta{ font-family:var(--sans); font-size:0.82rem; color:var(--ink-faint); }
+.funnel .rate{ margin-left:auto; font-family:var(--sans); font-size:0.86rem; color:var(--ink-soft); white-space:nowrap; }
+
+/* --- Tables --- */
+table{ width:100%; border-collapse:collapse; margin:1.4rem 0; font-size:0.98rem; }
+th,td{ text-align:left; padding:0.5rem 0.7rem; border-bottom:1px solid var(--rule); vertical-align:top; }
+th{ font-family:var(--sans); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); }
+
+/* --- Quiz --- */
+.quiz{
+  margin:1rem 0; padding:1rem 1.1rem; border:1px solid var(--rule); border-radius:4px;
+  background:var(--paper);
+}
+.quiz .q{ font-family:var(--sans); font-weight:600; margin:0 0 0.7rem; font-size:0.98rem; }
+.quiz .opts{ display:flex; flex-direction:column; gap:0.45rem; }
+.quiz button{
+  text-align:left; font:inherit; font-family:var(--sans); font-size:0.95rem;
+  padding:0.55rem 0.8rem; border:1px solid var(--rule); border-radius:3px;
+  background:var(--paper); color:var(--ink); cursor:pointer; transition:all 0.12s ease;
+}
+.quiz button:hover:not(:disabled){ border-color:var(--accent-2); background:var(--wash); }
+.quiz button.correct{ background:var(--good); border-color:var(--good); color:#fff; }
+.quiz button.wrong{ background:var(--bad); border-color:var(--bad); color:#fff; }
+.quiz button:disabled{ cursor:default; opacity:0.9; }
+.quiz .fb{ margin-top:0.7rem; font-size:0.9rem; min-height:1.3em; font-family:var(--sans); }
+.quiz .fb.correct{ color:var(--good); }
+.quiz .fb.wrong{ color:var(--bad); }
+.quiz .ex{ margin-top:0.3rem; font-size:0.87rem; color:var(--ink-soft); font-family:var(--serif); }
+.score{
+  position:sticky; bottom:0; margin-top:1.6rem; padding:0.7rem 1rem;
+  background:var(--accent-2); color:#fff; border-radius:4px;
+  font-family:var(--sans); font-size:0.92rem; text-align:center;
+}
+
+/* --- Sources / links / footnotes --- */
+.source{
+  margin:1.4rem 0; padding:1rem 1.2rem; background:var(--wash); border-radius:4px;
+  font-size:0.95rem;
+}
+.source .label{ font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); }
+.source p{ margin:0.5rem 0 0; }
+.source a{ border-bottom-color:var(--accent-2); }
+sup{ font-size:0.72em; color:var(--accent); }
+
+/* --- Prompts / tasks --- */
+.task{ margin:1.4rem 0; padding:1.1rem 1.2rem; background:var(--wash); border-left:3px solid var(--good); }
+.task .label{ font-family:var(--sans); font-size:0.72rem; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--good); }
+.task ol{ margin:0.6rem 0 0; padding-left:1.2rem; }
+.task li{ margin-bottom:0.35rem; }
+.task textarea{
+  width:100%; min-height:88px; margin-top:0.8rem; font:inherit; font-family:var(--serif);
+  padding:0.7rem 0.8rem; border:1px solid var(--rule); border-radius:3px; background:var(--paper);
+  color:var(--ink); resize:vertical;
+}
+.task .hint{ font-size:0.85rem; color:var(--ink-faint); margin-top:0.4rem; }
+
+/* --- Footer --- */
+.footer{
+  margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+  color:var(--ink-faint); font-size:0.9rem;
+}
+.footer a{ color:var(--ink-faint); }
+.pager{ margin:2rem 0 0; display:flex; justify-content:space-between; font-family:var(--sans); font-size:0.9rem; }
+
+/* --- Print --- */
+@media print{
+  body{ font-size:11.5pt; padding:0; }
+  .pager, .task textarea{ display:none; }
+  .quiz button{ border:1px solid #aaa; }
+  a{ color:var(--ink); }
+  body *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+
+</style>>
+</head>
+<body>
+<main class="lesson">
+
+<header class="masthead">
+  <p class="kicker">Lesson 0001 · 起点</p>
+  <h1>商业思维全景图：一张地图看懂营销与销售</h1>
+  <p class="subtitle">先画地图，再学走路。这一课让你建立"商业坐标系"。</p>
+  <p class="goal"><strong>本课你能带走：</strong>用一句话说清<b>营销</b>和<b>销售</b>各自负责什么、它们在商业闭环里站在哪里，以及"漏斗"长什么样。</p>
+</header>
+
+<h2><span class="tag knowledge">知识</span> 商业在转一个圈</h2>
+
+<p>任何一门生意，都在转同一个圈。看懂这个圈，营销和销售的位置就一目了然：</p>
+
+<div class="cycle">
+  <div class="node">创造价值<small>产品/服务</small></div>
+  <div class="arrow">→</div>
+  <div class="node">吸引注意<small><b>营销</b>：让别人想要</small></div>
+  <div class="arrow">→</div>
+  <div class="node">转化为成交<small><b>销售</b>：推向下单</small></div>
+  <div class="arrow">→</div>
+  <div class="node">交付 + 留存<small>让客户满意</small></div>
+  <div class="arrow">→</div>
+  <div class="node">复购 · 推荐<small>口碑再循环</small></div>
+</div>
+
+<p>一句话记住：<span class="mark">营销负责"让人想要"，销售负责"让人下单"。</span></p>
+
+<div class="callout">
+  <span class="label">营销 vs 销售</span>
+  <p><b>营销（Marketing）</b>是"拉动"：它面向 <em>市场</em>，把陌生人变成感兴趣的人——广告、内容、品牌、活动。它回答"<b>别人为什么会注意到我</b>"。</p>
+  <p><b>销售（Sales）</b>是"推动"：它面向 <em>具体的客户</em>，把感兴趣的人变成下单的人——挖掘需求、演示、报价、谈判、成交、跟单。它回答"<b>为什么现在就该买</b>"。</p>
+</div>
+
+<p>营销在前，销售在后。营销做得越好，销售的手里的"线索"越热、越省力；但就算营销再好，销售不会跟进，订单依然走不动。两者共同组成赚钱的接力棒。</p>
+
+<h2><span class="tag knowledge">知识</span> 漏斗：客户是怎么变少的</h2>
+
+<p>从"看见"到"下单"，客户一路在流失。这个逐层收窄的过程叫<b>销售漏斗</b>：</p>
+
+<div class="funnel">
+  <div class="row"><div class="bar w1">关注 · 注意力</div><div class="meta">曝光</div><div class="rate">100%</div></div>
+  <div class="row"><div class="bar w2">线索 · Lead</div><div class="meta">留资/联系</div><div class="rate">~10%</div></div>
+  <div class="row"><div class="bar w3">商机 · 机会</div><div class="meta">有效跟进</div><div class="rate">~3%</div></div>
+  <div class="row"><div class="bar w4">成交 · 客户</div><div class="meta">付款</div><div class="rate">~1%</div></div>
+  <div class="row"><div class="bar w5">复购 · 推荐</div><div class="meta">留存</div><div class="rate">少而贵</div></div>
+</div>
+
+<p>每一层往下，人数都变少，这就是"漏斗"名字的来历。每一层的<b>转化率</b>（下一层 ÷ 本层）就是经营效率的地基：<span class="mark">营销决定漏斗口开多宽，销售决定漏斗往下漏多少。</span></p>
+<p class="cn">（百分比只是示意量级，不同行业差异巨大——关键是"越往下越少"这件事。）</p>
+
+<h2><span class="tag knowledge">知识</span> B2B 和 B2C：两种不同的漏斗</h2>
+
+<table>
+  <tr><th></th><th>B2B（对企业）</th><th>B2C（对个人）</th></tr>
+  <tr><td>买单的是</td><td>企业 / 组织</td><td>个人消费者</td></tr>
+  <tr><td>决策</td><td>多人、长周期、看重专业与 ROI</td><td>更快速、更情绪化、看重价格与便利</td></tr>
+  <tr><td>销售角色</td><td>顾问式、跟单周期长、关系重要</td><td>流程更轻、靠内容/渠道/口碑</td></tr>
+</table>
+
+<p class="cn">先记住一句话就好：<b>B2B 靠"赢信任"，B2C 靠"赢注意力"。</b>后面会分别深入。</p>
+
+<h2><span class="tag skill">练</span> 马上检验：测评</h2>
+
+<p>下面答 6 题，每题立刻给反馈，检验你有没有真正建立这张地图。</p>
+
+<div class="quiz" data-q="1. 投社交媒体广告属于哪个环节？" data-options='["营销","销售"]' data-answer="0" data-ex="营销负责让市场『知道并且想要』，投放广告是在制造和引导需求，属营销。"></div>
+<div class="quiz" data-q="2. 给客户上门做产品演示，属于哪个环节？" data-options='["营销","销售"]' data-answer="1" data-ex="演示是直接跟潜在客户互动、把兴趣推进到下单，属于销售的转化动作。"></div>
+<div class="quiz" data-q="3. 销售漏斗的「第一环」通常是？" data-options='["关注","线索","成交"]' data-answer="0" data-ex="先有人看见（关注），才可能留资（线索），最后才成交。漏斗从注意力开始。"></div>
+<div class="quiz" data-q="4. 与 B2C 相比，B2B 销售最大的特点是？" data-options='["周期更长","客单价低","即买即走"]' data-answer="0" data-ex="B2B 决策人多、审批长、周期长；客单价低、冲动购买才是 B2C 的特征。"></div>
+<div class="quiz" data-q="5. 市场营销的核心职责是？" data-options='["创造需求","草拟合同","回收货款"]' data-answer="0" data-ex="营销负责创造和引导需求，让客户『想要』；草拟合同、回收货款属于销售/交付环节。"></div>
+<div class="quiz" data-q="6. 下面哪一项最像「销售」的直接动作？" data-options='["打跟进电话","投放竞价广告","做用户调研"]' data-answer="0" data-ex="主动打跟进电话是推动成交；投放广告是营销获客，做用户调研是营销/产品洞察。"></div>
+
+<div class="task">
+  <span class="label">真实一步 · 动手</span>
+  <p>找 3 个你平时用的 App 或服务（比如外卖、打车、一款 SaaS 工具），分别判断：它是<b>营销驱动更强</b>，还是<b>销售驱动更强</b>？为什么？各写 1–2 句。</p>
+  <p class="hint">判断线索：如果它的获客主要靠广告/内容/口碑让很多人"主动来"，偏营销；如果主要靠销售一个个找客户、跟进、拿下，偏销售。B2B SaaS 多半偏销售，toC 社交/内容类多半偏营销。</p>
+  <textarea placeholder="写在这里……"></textarea>
+</div>
+
+<div class="callout">
+  <span class="label">你现在的水平</span>
+  <p>如果你能对上面 6 题全对、并给 3 个 App 说出理由，你就已经建立了这张商业地图。别小看它——往后学的一切（文案、谈判、品牌、投放）都会在这张地图上找位置。</p>
+</div>
+
+<h2><span class="tag real">推荐</span> 第一份权威材料</h2>
+
+<div class="source">
+  <span class="label">Primary Source</span>
+  <p>去 <a href="https://www.hubspot.com/academy">HubSpot Academy（免费）</a> 学它的 <em>Inbound Marketing</em> 课程——这是全球公认最适合零基础的系统入门，有免费证书，正好印证本课的地图。</p>
+  <p>想要更学术、更正式的，可选 <a href="https://www.coursera.org/learn/wharton-marketing">沃顿商学院《市场营销入门》(Introduction to Marketing)</a>。</p>
+</div>
+
+<div class="callout">
+  <span class="label">别忘了问我</span>
+  <p>有任何没懂的地方，随时回来问你的老师（也就是我）。比如："为什么有的公司营销很弱也能活？""B2B 的跟进到底要怎么跟进？"我都能针对你的基础展开。</p>
+</div>
+
+<p class="pager">
+  <span>（这是第一课）</span>
+  <a href="../reference/glossary.html">术语表 →</a>
+</p>
+
+<p class="footer">第 1 课 · 商业思维全景图 ｜ 下一课预告：我们把地图放大，学<b>说服性写作（文案）</b>——你目标里的第一块通用软实力。</p>
+
+</main>
+
+<script>
+
+/* quiz.js — reusable self-contained quiz widget.
+   Each .quiz element carries: data-q (question), data-options (JSON array),
+   data-answer (index), data-ex (explanation). Instant feedback + running score. */
+(function(){
+  var quizzes = Array.prototype.slice.call(document.querySelectorAll('.quiz'));
+  if(!quizzes.length) return;
+
+  var total = quizzes.length;
+  var done = 0, correct = 0;
+
+  function render(quiz){
+    var q = quiz.getAttribute('data-q');
+    var opts = JSON.parse(quiz.getAttribute('data-options'));
+    var answer = parseInt(quiz.getAttribute('data-answer'), 10);
+    var ex = quiz.getAttribute('data-ex') || '';
+
+    quiz.innerHTML = '';
+    var qEl = document.createElement('div');
+    qEl.className = 'q';
+    qEl.textContent = q;
+    quiz.appendChild(qEl);
+
+    var optsEl = document.createElement('div');
+    optsEl.className = 'opts';
+    var answered = false;
+
+    opts.forEach(function(label, i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      b.addEventListener('click', function(){
+        if(answered) return;
+        answered = true;
+        done += 1;
+
+        opts.forEach(function(_, j){
+          var btn = optsEl.children[j];
+          btn.disabled = true;
+          if(j === answer) btn.classList.add('correct');
+          else if(j === i) btn.classList.add('wrong');
+        });
+
+        var fb = document.createElement('div');
+        fb.className = 'fb';
+        if(i === answer){
+          correct += 1;
+          fb.textContent = '✓ 正确';
+          fb.classList.add('correct');
+        } else {
+          fb.textContent = '✗ 答错';
+          fb.classList.add('wrong');
+        }
+        quiz.appendChild(fb);
+
+        if(ex){
+          var exEl = document.createElement('div');
+          exEl.className = 'ex';
+          exEl.textContent = '『 ' + ex + ' 』';
+          quiz.appendChild(exEl);
+        }
+        updateScore();
+      });
+      optsEl.appendChild(b);
+    });
+    quiz.appendChild(optsEl);
+  }
+
+  function updateScore(){
+    var s = document.querySelector('.score');
+    if(!s){
+      s = document.createElement('div');
+      s.className = 'score';
+      quizzes[quizzes.length-1].insertAdjacentElement('afterend', s);
+    }
+    s.textContent = '本课测评：已答 ' + done + ' / ' + total + ' 题，答对 ' + correct + ' 题。';
+  }
+
+  quizzes.forEach(render);
+})();
+
+</script>
+</body>
+</html>
