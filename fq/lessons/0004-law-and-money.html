@@ -655,7 +655,7 @@ code, .num {
     <li class="later"><a href="0003-debt-response.html">3. 债务应对：还款表与边界（会计+法律·已完成）</a></li>
     <li class="now"><a href="0004-law-and-money.html">4. 法律与钱：合同·担保·劳动法·权益（法律）</a> ← <strong>本课</strong></li>
     <li class="later"><a href="0005-human-capital.html">5. 人力资本：劳动力市场与收入（市场）</a></li>
-    <li class="later">6. 市场如何运作：价格·波动·利率·通胀（市场） · 待上线</li>
+    <li class="later"><a href="0006-how-markets-work.html">6. 市场如何运作：价格·波动·利率·通胀（市场）</a></li>
     <li class="later">7. 投资品地图：货基·国债·指数基金·股票（投资） · 待上线</li>
     <li class="later">8. 资产配置与定投：第一笔钱（投资） · 待上线</li>
     <li class="later">9. 财务自由路径：存钱率·复利·FIRE（综合） · 待上线</li>
@@ -819,12 +819,12 @@ code, .num {
 
   var ITEMS = [
     { key: "term",   risk: 0, q: "金额、期限、用途、付款方式都白纸黑字写清楚了", tip: "钱和期限要写明，别只凭口头。金额大写、日期、付款节点，缺一不可。" },
-    { key: "ding",   risk: 0, q: "我清楚这是"定金"还是"订金"，两者不一样", tip: "定金有罚则（违约不退/对方双倍返还，上限为合同额 20%）；订金只是预付款、可退。" },
+    { key: "ding",   risk: 0, q: "我清楚这是“定金”还是“订金”，两者不一样", tip: "定金有罚则（违约不退/对方双倍返还，上限为合同额 20%）；订金只是预付款、可退。" },
     { key: "deposit",risk: 0, q: "押金多少、什么时候退、什么情况会扣，都写了", tip: "尤其租房：押金退还条件、扣款标准写清楚，退房时才有得讲。" },
     { key: "penalty",risk: 1, q: "违约金金额我接受（感觉过高可请求调低）", tip: "违约金过高（明显超过实际损失）可主张调低；先问清触发条件。" },
     { key: "probation",risk: 0, q: "试用期 ≤ 6 个月，且 ≤ 合同约定的合理期限", tip: "试用期与合同期限挂钩，最长 6 个月；试用期工资 ≥ 约定工资 80% 且 ≥ 当地最低工资。" },
     { key: "noncompete",risk: 1, q: "没有竞业限制，或有但约定了按月补偿", tip: "竞业限制最长 2 年、须按月给补偿；没给补偿可主张不受其约束。" },
-    { key: "guarantee",risk: 2, q: "没有让我担保 / 承担"连带责任"", tip: "最危险的一条：连带责任保证意味着债权人可直接找你要钱。宁可拒绝，也别在上面签字。" },
+    { key: "guarantee",risk: 2, q: "没有让我担保 / 承担“连带责任”", tip: "最危险的一条：连带责任保证意味着债权人可直接找你要钱。宁可拒绝，也别在上面签字。" },
     { key: "party",  risk: 0, q: "对方是正规主体（公司全称/资质），不全凭口头", tip: "签的是公司，就要公司全称+公章；跟个人签，要核身份证、写清身份。" },
     { key: "copy",   risk: 0, q: "我留了一份自己签过的（原件或照片）", tip: "保留一份你自己签字/盖章的文本，出纠纷时是证据。" }
   ];
@@ -852,7 +852,7 @@ code, .num {
 
     function update() {
       var uncheckedRed = 0, uncheckedAmber = 0;
-      container.querySelectorAll(".cc-row").forEach(function (row) {
+      container.querySelectorAll(".cc-row[data-key]").forEach(function (row) {
         var it = ITEMS.find(function (x) { return x.key === row.getAttribute("data-key"); });
         var checked = row.querySelector(".cc-check").checked;
         if (!checked) {
@@ -885,7 +885,6 @@ code, .num {
     document.querySelectorAll(".contract-check").forEach(render);
   });
 })();
-
 </script>
 <script>
 /* ============================================================
