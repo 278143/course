@@ -1,0 +1,607 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0006 · 解除与经济补偿</title>
+<style>
+/* ============================================================
+   lesson.css — 共享课程样式（Tufte 风格 · 中文排版）
+   所有 lessons/ 与 reference/ 页面都应链接本样式表。
+   ============================================================ */
+
+:root {
+  --ink:        #1c1a17;
+  --ink-soft:   #4a453c;
+  --paper:      #fbfaf5;
+  --paper-card: #ffffff;
+  --accent:     #8c3a2b;   /* 砖红：标题/强调 */
+  --accent-soft: #f3e5e0;
+  --gold:       #a67c2e;   /* 金色：提示 */
+  --muted:      #7a746a;
+  --rule:       #e2ddd0;
+  --bg-soft:    #f3f0e6;
+  --ok:         #2e7d4f;
+  --bad:        #b0301e;
+  --serif: "Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",Georgia,serif;
+  --sans:  "Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:  "JetBrains Mono","Consolas",monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 1.25rem 6rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+main, .page {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+/* ---------- 页头 ---------- */
+.lesson-head {
+  border-bottom: 2px solid var(--accent);
+  padding: 3rem 0 1.25rem;
+  margin-bottom: 2.25rem;
+}
+.lesson-head .meta {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+}
+.lesson-head h1 {
+  font-size: 1.9rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+}
+.lesson-head .time {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- 标题层级 ---------- */
+h2 {
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.9rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+  font-weight: 700;
+}
+h2 .secno { color: var(--accent); margin-right: 0.5rem; }
+h3 { font-size: 1.1rem; margin: 1.8rem 0 0.6rem; font-weight: 700; }
+
+/* ---------- 正文 ---------- */
+p { margin: 0.7rem 0; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* 引用/来源块 */
+blockquote {
+  margin: 1.2rem 0;
+  padding: 0.6rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  background: var(--bg-soft);
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+blockquote p { margin: 0.3rem 0; }
+blockquote .src {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+/* ---------- 列表 ---------- */
+ul, ol { padding-left: 1.5rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--accent); }
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  font-family: var(--sans);
+}
+th {
+  background: var(--bg-soft);
+  text-align: left;
+  font-weight: 700;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #faf8f1; }
+
+/* ---------- 提示框 ---------- */
+.callout {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.callout.tip    { background: #eef4ec; border: 1px solid #cfe0cc; }
+.callout.warn   { background: #fdf3e2; border: 1px solid #eed9ab; }
+.callout.key    { background: #f6eae6; border: 1px solid #e6c8be; }
+.callout .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.callout.tip  .tag { color: var(--ok); }
+.callout.warn .tag { color: var(--gold); }
+.callout.key  .tag { color: var(--accent); }
+
+/* ---------- 层级金字塔 ---------- */
+.pyramid { margin: 1.5rem auto; max-width: 26rem; }
+.pyramid .tier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3rem auto;
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+.tier.t1 { width: 34%;  background: #7a2438; padding: 0.55rem 0; }  /* 宪法 */
+.tier.t2 { width: 52%;  background: #a0452f; padding: 0.55rem 0; }  /* 法律 */
+.tier.t3 { width: 70%;  background: #c0743a; padding: 0.55rem 0; }  /* 行政法规 */
+.tier.t4 { width: 88%;  background: #b08d4e; padding: 0.55rem 0; }  /* 地方性法规 */
+.tier.t5 { width: 100%; background: #8a8a6d; padding: 0.55rem 0; }  /* 规章/其他 */
+.pyramid .tier small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.72rem;
+  opacity: 0.92;
+  margin-top: 0.1rem;
+}
+
+/* ---------- 测验（assets/quiz.js 渲染） ---------- */
+.quiz {
+  margin: 1.6rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper-card);
+  padding: 1.2rem 1.4rem;
+}
+.quiz .q {
+  margin: 1.3rem 0;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--rule);
+}
+.quiz .q:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.quiz .q-title { font-weight: 700; margin: 0 0 0.6rem; font-size: 1rem; }
+.quiz .q-opts { display: grid; gap: 0.45rem; }
+.quiz button.opt {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+.quiz button.opt:hover:not(:disabled) { border-color: var(--accent); background: #faf5f0; }
+.quiz button.opt.correct { background: #e3f0e6; border-color: var(--ok); }
+.quiz button.opt.wrong   { background: #fbe7e3; border-color: var(--bad); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .q-feedback { margin-top: 0.6rem; font-size: 0.92rem; font-family: var(--sans); display: none; }
+.quiz .q-feedback.show { display: block; }
+.quiz .q-feedback.good { color: var(--ok); }
+.quiz .q-feedback.bad  { color: var(--bad); }
+.quiz .q-feedback .why { color: var(--ink-soft); }
+.quiz .score {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7rem;
+}
+
+/* ---------- 实战任务 ---------- */
+.task {
+  margin: 1.6rem 0;
+  border: 2px dashed var(--gold);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  background: #fdf9ee;
+}
+.task .tag {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.task ol { margin: 0.4rem 0; }
+
+/* ---------- 页脚 ---------- */
+.lesson-foot {
+  margin-top: 3.5rem;
+  padding-top: 1.2rem;
+  border-top: 2px solid var(--accent);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.lesson-foot .links { margin: 0.4rem 0 1rem; }
+.lesson-foot .links a { margin-right: 1rem; }
+
+/* ---------- 术语表（reference/） ---------- */
+dl.glossary dt {
+  font-weight: 700;
+  font-family: var(--sans);
+  margin-top: 1rem;
+  font-size: 1.02rem;
+}
+dl.glossary dt .en { color: var(--muted); font-weight: 400; font-size: 0.85rem; margin-left: 0.4rem; }
+dl.glossary dd { margin: 0.25rem 0 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 12pt; padding: 0; }
+  .quiz button.opt { border: 1px solid #999; }
+  .lesson-head h1 { font-size: 1.6rem; }
+  a { color: var(--ink); text-decoration: none; }
+  .quiz .q-feedback { display: block; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; padding: 0 0.9rem 4rem; }
+  .lesson-head h1 { font-size: 1.55rem; }
+  .tier { font-size: 0.85rem !important; }
+}
+
+</style>
+</head>
+<body>
+<main>
+
+  <header class="lesson-head">
+    <p class="meta">课程 0006 · 阶段二 劳动法块 ②</p>
+    <h1>解除与经济补偿：被辞退、辞职、裁员，钱怎么算</h1>
+    <p class="time">⏱ 预计 30 分钟 · 前置：课程 0005 · 学会给"离开公司"算账</p>
+  </header>
+
+  <h2><span class="secno">1</span>先回顾：四题热身上期内容</h2>
+  <div class="quiz" data-questions="review-6"></div>
+  <script type="application/json" id="review-6">[
+    {
+      "q": "一年期劳动合同，试用期最长不得超过？",
+      "options": [
+        { "t": "两个月", "ok": true },
+        { "t": "一个月", "ok": false },
+        { "t": "三个月", "ok": false },
+        { "t": "六个月", "ok": false }
+      ],
+      "why": "《劳动合同法》第 19 条：一年以上不满三年的合同，试用期不得超过二个月。"
+    },
+    {
+      "q": "公司应当订无固定期限合同却不订，后果是？",
+      "options": [
+        { "t": "每月双倍工资", "ok": true },
+        { "t": "一次性罚款", "ok": false },
+        { "t": "没有任何后果", "ok": false },
+        { "t": "合同自动失效", "ok": false }
+      ],
+      "why": "第 82 条第 2 款：自应当订立之日起每月支付二倍工资——按月持续，直到改正；拖满一年还会被“视为”已订无固定期限合同（第 14 条第 3 款）。"
+    },
+    {
+      "q": "法定休假日加班，加班费至少是？",
+      "options": [
+        { "t": "三倍工资", "ok": true },
+        { "t": "一倍半工资", "ok": false },
+        { "t": "两倍工资", "ok": false },
+        { "t": "四倍工资", "ok": false }
+      ],
+      "why": "《劳动法》第 44 条：法定休假日安排工作的，支付不低于工资 300% 的报酬，不可用补休替代。"
+    },
+    {
+      "q": "下列哪项违约金约定合法？",
+      "options": [
+        { "t": "专项培训服务期", "ok": true },
+        { "t": "辞职赔偿违约金", "ok": false },
+        { "t": "入职押金违约金", "ok": false },
+        { "t": "扣押证件违约金", "ok": false }
+      ],
+      "why": "第 22、25 条：只有专项培训服务期和竞业限制两种可约定劳动者违约金；押金、扣押证件（第 9 条）均违法。"
+    }
+  ]</script>
+
+  <h2><span class="secno">2</span>解除的三种"出口"：谁走、为什么走、钱怎么算</h2>
+  <table>
+    <tr><th>怎么解除</th><th>法条</th><th>谁提出</th><th>经济补偿</th></tr>
+    <tr><td><strong>协商解除</strong></td><td>第 36 条</td><td>双方谈拢</td><td><strong>公司先提出</strong> → 有 N；<strong>你先提出</strong> → 没有</td></tr>
+    <tr><td><strong>员工辞职</strong>（预告）</td><td>第 37 条</td><td>提前 30 日书面通知（试用期提前 3 日）</td><td>没有（你主动走，公司没过错）</td></tr>
+    <tr><td><strong>员工被迫辞职</strong></td><td>第 38 条</td><td>公司有过错：拖欠工资、不缴社保、强迫劳动……</td><td><strong>有 N</strong>——公司逼你走，算它的责任</td></tr>
+    <tr><td><strong>公司辞退</strong>（过失性）</td><td>第 39 条</td><td>你有严重过错：严重违纪、严重失职、被追刑责……</td><td>没有（0）</td></tr>
+    <tr><td><strong>公司辞退</strong>（无过失性）</td><td>第 40 条</td><td>你没错但：医疗期满不能工作 / 不胜任经培训调岗仍不胜任 / 客观情况重大变化</td><td><strong>有 N</strong>（未提前 30 日通知再加 +1）</td></tr>
+    <tr><td><strong>经济性裁员</strong></td><td>第 41 条</td><td>公司经营困难、重整等（20 人以上或 10% 以上）</td><td><strong>有 N</strong></td></tr>
+  </table>
+  <div class="callout warn">
+    <span class="tag">第 42 条：保护罩</span>
+    <p>下列人员，公司<strong>不得</strong>依第 40、41 条辞退：<strong>女职工在孕期、产期、哺乳期（"三期"）；患病或非因工负伤在医疗期内；患职业病或因工负伤丧失/部分丧失劳动能力；连续工作满 15 年且距退休不足 5 年</strong>等。注意：保护罩挡不住第 39 条——你严重违纪，三期也不能免责。</p>
+  </div>
+  <p>口诀先行：<strong>你主动走（无过错）＝0；公司让你走（有补偿情形）＝N；没提前 30 天通知＝N+1；违法辞退＝2N。</strong>下面逐个拆。</p>
+
+  <h2><span class="secno">3</span>经济补偿 N：什么情形有、怎么算</h2>
+  <blockquote>
+    <p>第四十六条　有下列情形之一的，用人单位应当向劳动者支付经济补偿：（一）劳动者依照本法第三十八条规定解除劳动合同的；（二）用人单位依照本法第三十六条规定向劳动者提出解除劳动合同并与劳动者协商一致解除劳动合同的；（三）用人单位依照本法第四十条规定解除劳动合同的；（四）用人单位依照本法第四十一条第一款规定解除劳动合同的；……</p>
+    <p>第四十七条　经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。六个月以上不满一年的，按一年计算；不满六个月的，向劳动者支付半个月工资的经济补偿。……</p>
+    <span class="src">来源：《中华人民共和国劳动合同法（2012 修正）》（flk.npc.gov.cn）</span>
+  </blockquote>
+  <p><strong>有 N 的情形（记这张清单）</strong>：①公司提的协商解除；②你被迫辞职（38 条：欠薪、不缴社保等）；③无过失辞退（40 条）；④裁员（41 条）；⑤合同到期公司不续、或降条件续你不同意；⑥公司破产、吊销执照等终止。</p>
+  <p><strong>N 怎么算</strong>（第 47 条）——记住三档：</p>
+  <table>
+    <tr><th>工作年限</th><th>算几个月（N）</th></tr>
+    <tr><td>每满 1 年</td><td>1 个月工资</td></tr>
+    <tr><td>满 6 个月不满 1 年</td><td>按 1 年算 → 1 个月工资</td></tr>
+    <tr><td>不满 6 个月</td><td>半个月工资</td></tr>
+  </table>
+  <ul>
+    <li>"月工资"＝离职前 <strong>12 个月平均工资</strong>；</li>
+    <li><strong>封顶规则</strong>：月工资高于当地上年度职工月平均工资 <strong>3 倍</strong>的，按 3 倍算，且年限最高 <strong>12 年</strong>——普通打工人用不到，高薪高管才触发。</li>
+  </ul>
+
+  <h2><span class="secno">4</span>N、N+1、2N：三个数字一张表</h2>
+  <table>
+    <tr><th>符号</th><th>含义</th><th>什么时候</th></tr>
+    <tr><td><strong>0</strong></td><td>没补偿</td><td>你主动辞职（非 38 条情形）；39 条严重过错被辞</td></tr>
+    <tr><td><strong>N</strong></td><td>年限折合的月数</td><td>协商解除（公司提）、38 被迫解除、40 无过失辞退、41 裁员、合同到期公司不续</td></tr>
+    <tr><td><strong>N+1</strong></td><td>N ＋ 代通知金（1 个月）</td><td>仅限第 40 条，且公司<strong>没提前 30 日书面通知</strong>就让你走</td></tr>
+    <tr><td><strong>2N</strong></td><td>赔偿金＝经济补偿的 2 倍</td><td>公司<strong>违法</strong>解除/终止（48、87 条）——没有理由、理由不成立、违反 42 条硬辞等</td></tr>
+  </table>
+  <ul>
+    <li><strong>+1 只在第 40 条出现</strong>：裁员、协商解除都没有"+1"，只有"没提前 30 天通知"才补 1 个月代通知金；</li>
+    <li><strong>2N ≠（N+1）×2</strong>：违法解除直接 2N，不叠加代通知金——"N+1"是合法解除没走程序的补丁，"2N"是非法解除的惩罚，两者不混用；</li>
+    <li>被违法辞退，你可以选：①要求<strong>继续履行合同</strong>（回去上班）；②不回去 → 拿 <strong>2N</strong> 赔偿金（第 48 条）。</li>
+  </ul>
+  <div class="callout tip">
+    <span class="tag">算给你看</span>
+    <p>你工作 <strong>3 年 7 个月</strong>、月薪 8000：满 3 年＝3 个月；余 7 个月（≥6 个月）按 1 年算＝+1 个月 → <strong>N＝4</strong>。若公司按第 40 条辞退且当天让你走：经济补偿 4×8000＝32000 ＋ 代通知金 8000 ＝ <strong>40000</strong>。若公司无理由辞退：赔偿金 2N＝8×8000＝<strong>64000</strong>。</p>
+  </div>
+
+  <h2><span class="secno">5</span>离职手续：证明、档案、钱</h2>
+  <ul>
+    <li>公司必须在解除/终止时出具<strong>离职证明</strong>，并在 <strong>15 日内</strong>办理档案和社保关系转移（第 50 条）——不给证明影响你入职下家，可投诉；</li>
+    <li>工资结清＋经济补偿一般在<strong>办结工作交接时</strong>支付；</li>
+    <li>被辞退别急着签字：公司让你签"<strong>个人原因离职</strong>"的自愿书＝想赖掉 N——看清楚再签；</li>
+    <li>劳动维权的仲裁时效是 <strong>1 年</strong>（不是民法典的 3 年！）——离职后想讨薪、讨补偿，<strong>别拖过 1 年</strong>。劳动争议走"先仲裁后诉讼"，下一课（0007）专门讲。</li>
+  </ul>
+
+  <h2><span class="secno">6</span>实战任务</h2>
+  <div class="task">
+    <span class="tag">实战任务（今天就做）</span>
+    <ol>
+      <li>在 <strong>flk.npc.gov.cn</strong> 打开《劳动合同法》，读第 36、37、38、39、40、42、46、47 条——用一句话概括："哪些情形有经济补偿"＋"N 怎么算"（写下来）；</li>
+      <li>计算题：你在某公司工作 3 年 7 个月，月薪 8000（未超当地社平 3 倍）。公司依第 40 条辞退你，但当天让你走人没提前通知——① N 是几个月？② 经济补偿多少？③ 代通知金多少？④ 你总共拿多少？（提示：47 条三档算法 ＋ 40 条 +1）</li>
+      <li>判断题三连（每题说理由）：① 怀孕女职工在孕期，公司能以"不胜任工作"辞退她吗？② 员工严重违纪被辞退，能拿经济补偿吗？③ 公司连续拖欠工资，员工辞职并要求经济补偿，能成立吗？（提示：42、39、38＋46 条）</li>
+    </ol>
+  </div>
+
+  <h2><span class="secno">7</span>测验：检索练习</h2>
+  <div class="quiz" data-questions="quiz-6"></div>
+  <script type="application/json" id="quiz-6">[
+    {
+      "q": "经济补偿 N 的基本算法是？",
+      "options": [
+        { "t": "每满一年一个月工资", "ok": true },
+        { "t": "每满两年一个月工资", "ok": false },
+        { "t": "每满半年一个月工资", "ok": false },
+        { "t": "固定补三个月工资", "ok": false }
+      ],
+      "why": "第 47 条：每满一年支付一个月工资；满 6 个月不满 1 年按 1 年算；不满 6 个月给半个月。"
+    },
+    {
+      "q": "员工无过错主动辞职，有经济补偿吗？",
+      "options": [
+        { "t": "没有补偿", "ok": true },
+        { "t": "补半个月工资", "ok": false },
+        { "t": "补一个月工资", "ok": false },
+        { "t": "补 N 个月工资", "ok": false }
+      ],
+      "why": "主动辞职（第 37 条）且公司无过错＝0 补偿；例外是第 38 条被迫辞职（公司欠薪、不缴社保等）才有 N。"
+    },
+    {
+      "q": "“N+1”里的 +1 是什么？",
+      "options": [
+        { "t": "代通知金一个月工资", "ok": true },
+        { "t": "额外双倍工资", "ok": false },
+        { "t": "加班费补偿", "ok": false },
+        { "t": "工龄奖励金", "ok": false }
+      ],
+      "why": "第 40 条无过失辞退，未提前 30 日书面通知的，额外支付一个月工资（代通知金）；+1 只出现在第 40 条。"
+    },
+    {
+      "q": "公司违法解除劳动合同，赔偿金是经济补偿的？",
+      "options": [
+        { "t": "两倍", "ok": true },
+        { "t": "一倍", "ok": false },
+        { "t": "三倍", "ok": false },
+        { "t": "四倍", "ok": false }
+      ],
+      "why": "第 87 条：违法解除或终止，按第 47 条经济补偿标准的二倍支付赔偿金（2N）；也可要求继续履行（第 48 条）。"
+    },
+    {
+      "q": "女职工在孕期，公司能以“不胜任”辞退吗？",
+      "options": [
+        { "t": "不能辞退", "ok": true },
+        { "t": "可以辞退", "ok": false },
+        { "t": "补钱后可以辞退", "ok": false },
+        { "t": "协商一致可以辞退", "ok": false }
+      ],
+      "why": "第 42 条：孕期、产期、哺乳期女职工，公司不得依第 40、41 条解除；除非她自己有第 39 条严重过错。"
+    }
+  ]</script>
+  <script>
+/* ============================================================
+   quiz.js — 可复用测验组件（即时反馈 · 检索练习）
+   用法：
+     <div class="quiz" data-questions="quiz-1"></div>
+     <script type="application/json" id="quiz-1">[ …题目… ]<\/script>
+     <script src="../assets/quiz.js"><\/script>
+   题目 JSON 结构：
+     [{ "q": "题干", "options": [ {"t":"选项A","ok":true}, … ], "why": "答案解析" }]
+   选项建议等长（字数一致），避免通过格式泄露答案。
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function initQuiz(box) {
+    var dataId = box.getAttribute("data-questions");
+    var src = document.getElementById(dataId);
+    if (!src) { box.innerHTML = '<p class="q-feedback bad show">题目数据缺失（#' + dataId + '）</p>'; return; }
+    var questions;
+    try { questions = JSON.parse(src.textContent); }
+    catch (e) { box.innerHTML = '<p class="q-feedback bad show">题目 JSON 解析失败</p>'; return; }
+
+    var total = questions.length;
+    var answered = 0, correct = 0;
+
+    var wrap = document.createElement("div");
+    wrap.className = "q-wrap";
+
+    questions.forEach(function (item, i) {
+      var qBox = document.createElement("div");
+      qBox.className = "q";
+
+      var title = document.createElement("p");
+      title.className = "q-title";
+      title.textContent = (i + 1) + ". " + item.q;
+      qBox.appendChild(title);
+
+      var opts = document.createElement("div");
+      opts.className = "q-opts";
+      item.options.forEach(function (opt) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "opt";
+        b.textContent = opt.t;
+        b.addEventListener("click", function () {
+          if (qBox.classList.contains("done")) return;
+          qBox.classList.add("done");
+          answered++;
+          var fb = qBox.querySelector(".q-feedback");
+          if (opt.ok) {
+            correct++;
+            b.classList.add("correct");
+            fb.className = "q-feedback show good";
+            fb.innerHTML = "✔ 正确。" + (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          } else {
+            b.classList.add("wrong");
+            fb.className = "q-feedback show bad";
+            var right = item.options.filter(function (o) { return o.ok; });
+            var rightText = right.length ? right.map(function (o) { return o.t; }).join("、") : "（无）";
+            fb.innerHTML = "✘ 再想想。正确答案是：<strong>" + rightText + "</strong>。" +
+              (item.why ? '<span class="why"> ' + item.why + "</span>" : "");
+          }
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      qBox.appendChild(opts);
+
+      var fb = document.createElement("div");
+      fb.className = "q-feedback";
+      qBox.appendChild(fb);
+
+      wrap.appendChild(qBox);
+    });
+
+    var score = document.createElement("div");
+    score.className = "score";
+    score.textContent = "已完成 0 / " + total + " 题";
+    wrap.appendChild(score);
+
+    function updateScore() {
+      score.textContent = "已完成 " + answered + " / " + total + " 题 · 答对 " + correct + " 题";
+      if (answered === total) {
+        score.textContent += " · 正确率 " + Math.round((correct / total) * 100) + "%";
+        if (correct === total) score.textContent += " 🎉 全部答对！";
+      }
+    }
+
+    box.innerHTML = "";
+    box.appendChild(wrap);
+  }
+
+  function initAll() {
+    document.querySelectorAll(".quiz").forEach(initQuiz);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
+})();
+
+</script>
+
+  <h2><span class="secno">8</span>小结</h2>
+  <ul>
+    <li>解除三出口：协商（谁提谁决定补偿）、辞职（37 预告／38 被迫）、辞退（39 过错／40 无过失／41 裁员）；</li>
+    <li><strong>0 / N / N+1 / 2N</strong>：主动走＝0；该补情形＝N；40 条没提前 30 天通知＝N+1；违法辞退＝2N（可要求回去上班）；</li>
+    <li>N 算法：满 1 年＝1 个月，满 6 个月不满 1 年＝1 个月，不满 6 个月＝半个月；高薪按社平 3 倍封顶＋年限≤12 年；</li>
+    <li>第 42 条保护罩：三期、医疗期、职业病、临近退休 15 年老员工——不得依 40/41 辞退；</li>
+    <li>离职要拿<strong>离职证明</strong>（15 日内办档案社保转移）；劳动仲裁时效 <strong>1 年</strong>，别拖。</li>
+  </ul>
+
+  <div class="callout tip">
+    <span class="tag">课后阅读（权威原文）</span>
+    <p>① 《劳动合同法》第 36—50 条全文：<a href="https://flk.npc.gov.cn/" target="_blank" rel="noopener">国家法律法规数据库 flk.npc.gov.cn</a>（15 分钟）</p>
+    <p>② 延伸：<a href="https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202603/t20260319_4561923.html" target="_blank" rel="noopener">北京市政府 · 一文了解经济补偿"N+1""2N"</a> · <a href="https://yk.lncourt.gov.cn/article/detail/2024/07/id/8029262.shtml" target="_blank" rel="noopener">营口中院 · 经济补偿怎么算</a>（5 分钟）</p>
+  </div>
+
+  <div class="callout key">
+    <span class="tag">需要帮助？</span>
+    有任何不懂的地方，随时向你的 AI 老师提问。下一课（0007）：<strong>社保、工伤与劳动争议维权——仲裁怎么走、12333 怎么用</strong>，劳动法块收官。
+  </div>
+
+  <footer class="lesson-foot">
+    <div class="links">
+      上一课：<a href="0005-labor-contract-basics.html">0005 劳动合同怎么签才不吃亏</a> · 参考：<a href="../reference/glossary.html">法律术语表</a> · <a href="../reference/legal-map.html">法律体系速查图</a>
+    </div>
+    <p>课程 0006 · 解除与经济补偿 — 法条原文以国家法律法规数据库（flk.npc.gov.cn）为准。</p>
+  </footer>
+
+</main>
+</body>
+</html>

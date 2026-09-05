@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第 10 课：社会心理学——人如何被他人影响</title>
+<style>
+/* ============ 共享课程样式（所有课程统一引用） ============ */
+:root {
+  --paper: #fbfaf7;
+  --ink: #26241f;
+  --muted: #6b675e;
+  --line: #e2ddd2;
+  --accent: #8a5a2b;
+  --accent-soft: #f3ead9;
+  --good: #2e7d32;
+  --good-soft: #e8f2e8;
+  --bad: #b3261e;
+  --bad-soft: #f9e9e7;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, "Times New Roman", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serif); line-height: 1.75;
+}
+.wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+header.lesson-head { border-bottom: 1px solid var(--line); padding-bottom: 1.25rem; margin-bottom: 2rem; }
+.lesson-kicker { font-family: var(--sans); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .4rem; }
+h1 { font-size: 1.9rem; line-height: 1.3; margin: 0 0 .5rem; }
+.lesson-meta { font-family: var(--sans); font-size: .85rem; color: var(--muted); }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .8rem; }
+h2::before { content: "§ "; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 .5rem; }
+p { margin: .7rem 0; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(138,90,43,.35); }
+a:hover { border-bottom-color: var(--accent); }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .9rem 1.1rem; margin: 1.4rem 0; border-radius: 0 6px 6px 0; }
+.callout .callout-title { font-family: var(--sans); font-weight: 700; font-size: .8rem; letter-spacing: .1em; color: var(--accent); margin: 0 0 .3rem; text-transform: uppercase; }
+.callout p:last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--bad); background: var(--bad-soft); }
+.warn .callout-title { color: var(--bad); }
+.task { border-left-color: var(--good); background: var(--good-soft); }
+.task .callout-title { color: var(--good); }
+blockquote { margin: 1.2rem 0; padding: .2rem 0 .2rem 1.2rem; border-left: 3px solid var(--line); color: var(--muted); font-style: italic; }
+ol, ul { padding-left: 1.4rem; }
+li { margin: .35rem 0; }
+.small { font-size: .85rem; color: var(--muted); }
+.source { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.2rem; margin: 1.4rem 0; }
+.source h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+.source p:last-child { margin-bottom: 0; }
+/* ---------- 测验（配合 assets/quiz.js 使用） ---------- */
+.quiz { margin: 1.5rem 0; }
+.quiz-list { list-style: none; padding: 0; margin: 0; }
+.quiz-item { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; margin: 1rem 0; }
+.quiz-q { font-weight: 600; margin: 0 0 .7rem; }
+.quiz-opts { display: grid; gap: .5rem; }
+.quiz-opt { font-family: var(--sans); font-size: .95rem; text-align: left; padding: .55rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); cursor: pointer; transition: border-color .15s, background .15s; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-opt:disabled { cursor: default; opacity: 1; }
+.quiz-opt.correct { border-color: var(--good); background: var(--good-soft); font-weight: 700; }
+.quiz-opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.quiz-fb { margin: .7rem 0 0; font-size: .9rem; }
+.fb-good { color: var(--good); }
+.fb-bad { color: var(--bad); }
+.quiz-score { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: .8rem; }
+/* ---------- 表格 ---------- */
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.2rem 0; background: #fff; }
+th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--sans); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: none; }
+/* ---------- 打印 ---------- */
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .wrap { max-width: none; padding: 0; }
+  .quiz-opt { border: 1px solid #999; }
+  a { color: inherit; border-bottom: none; }
+}
+@media (max-width: 640px) { html { font-size: 16px; } .wrap { padding: 1.6rem 1rem 3rem; } }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="lesson-head">
+  <p class="lesson-kicker">Lesson 0010 · Social Psychology</p>
+  <h1>社会心理学——人如何被他人影响</h1>
+  <p class="lesson-meta">预计 20 分钟 · 阶段 2「理解自己与他人」第二课 · 承接第 9 课"特质 × 情境"与你的"妹妹案例"</p>
+</header>
+
+<div class="callout">
+  <p class="callout-title">与你的使命相连</p>
+  <p>第 9 课讲"你是怎样的人"，本课讲"<strong>你在人群里会怎样</strong>"：为什么你会给别人的行为贴标签、为什么你会跟大多数人走、为什么人越多越没人帮忙。理解这些，是"看懂身边的人"和"在群体里守住自己"的基础。<a href="https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology">[OpenStax Psychology 2e · 12.1]</a> 完整路线图见 <a href="../CURRICULUM.md">学习大纲 CURRICULUM.md</a>。</p>
+</div>
+
+<h2>归因：我们在给别人"编理由"</h2>
+<p>看到别人迟到，你第一反应是"他懒/他不靠谱"（性格）还是"他堵车了"（情境）？研究发现人有一个系统性偏差：</p>
+<ul>
+  <li><strong>基本归因错误</strong>：解释<strong>别人</strong>的行为时，过度归因于性格、低估情境——"他迟到 = 懒"，哪怕自己也常因堵车迟到。</li>
+  <li><strong>自利偏差</strong>：解释<strong>自己</strong>的行为时反过来——成功归自己（"我努力"），失败归环境（"题太难"）。</li>
+</ul>
+<p>把你上轮的例子套进来：妹妹"无理取闹"——这个标签本身就是一次归因（把她的行为归为"她的性格/不懂事"）。基本归因错误提醒你补问一句：<strong>她眼里的"理"是什么？她当时的情境是什么？</strong>归因方式的改变，常常直接改变你的情绪反应——这是第 8 课"重评"的社会版。</p>
+
+<h2>态度与说服：为什么广告/权威总能影响你</h2>
+<ul>
+  <li><strong>认知失调</strong>：态度与行为冲突时，人会调整态度来减轻不适。经典实验：让被试做无聊任务，却对外人说"很有趣"——拿高报酬的人内心不痛（"我是为了钱"），拿低报酬的人反而真的觉得任务有趣（"我总不会为一块钱撒谎吧？那它大概真有趣"）。<strong>行为会反过来塑造态度</strong>。</li>
+  <li><strong>两条说服路径</strong>：中心路径（认真看论证）与外周路径（看谁说的、说得多快、多少人信）。广告、网红、权威都用外周路径——因为你没精力事事中心路径。</li>
+</ul>
+
+<h2>从众与服从：群体的重量</h2>
+<ul>
+  <li><strong>Asch 从众实验</strong>：明明答案很明显，前面的人都故意说错，约 1/3 的被试也会跟着说错——<strong>为了被群体接纳，人可以否定自己的眼睛</strong>。</li>
+  <li><strong>Milgram 服从实验</strong>：被要求给"学习者"施加电击，虽有挣扎，仍有约 2/3 的人一路加到致命电压——因为"穿着白大褂的权威叫我继续"。</li>
+</ul>
+<div class="callout">
+  <p class="callout-title">用第 1 课的武器看经典实验</p>
+  <p>这两个实验震撼了整个学科，也带来了伦理争议（被试受到巨大心理压力）——正是第 2 课"知情同意/伦理审查"制度诞生的原因。今天的实验不再允许这么做，但它们揭示的<strong>现象</strong>被大量后续研究反复复制：群体的压力真实存在。</p>
+</div>
+
+<h2>群体里的你我：偏见与旁观者</h2>
+<ul>
+  <li><strong>社会认同与内群体偏爱</strong>：一旦把人分成"我们/他们"（哪怕只是随机分组），就会偏向自己人——这是偏见（第 9 课刻板印象）的温床。</li>
+  <li><strong>旁观者效应</strong>：紧急情况下，<strong>人越多，越没人出手</strong>——不是冷血，是"责任分散"：每个人都以为别人会管。研究还发现：单独一个人时，帮忙率反而最高。破解方法很简单：<strong>直接点名</strong>（"穿红衣服的那位，请打 120"）——把责任从"大家"落到"你"。</li>
+</ul>
+
+<h2>为什么这重要</h2>
+<ul>
+  <li>理解归因错误，你就不再急着给人贴标签（包括给妹妹贴"无理取闹"）。</li>
+  <li>知道从众与服从的力量，你才能在群里、在网上、在权威面前多问一句"我是真的这么想，还是大家这么想？"</li>
+  <li>知道旁观者效应，你就能在需要帮助时直接点名，在看到别人需要时做第一个行动的人。</li>
+</ul>
+
+<div class="quiz">
+<script type="application/json">
+[
+  {
+    "q": "「他迟到肯定是因为懒」——即使他自己也常因堵车迟到。这最符合：",
+    "options": ["基本归因错误：归因性格低估情境", "自利偏差：成功归于自己失败归环境", "认知失调：态度与行为不一致冲突", "旁观者效应：责任分散无人出手"],
+    "answer": 0,
+    "explain": "解释别人的行为时过度归因于性格、忽略情境=基本归因错误。给自己解释时反过来（自利偏差）。"
+  },
+  {
+    "q": "Asch 实验中约 1/3 的人跟着大家说出了明显错误的答案。这说明：",
+    "options": ["为了被群体接纳人会否定自己的判断", "人的眼睛在群体压力下会物理失真", "只有意志薄弱的人才会从众行为", "正确答案在实验中本来就是不确定"],
+    "answer": 0,
+    "explain": "线段长短明明一目了然，从众压力仍让约 1/3 被试跟随错误多数——被接纳的需要压过了感官证据。"
+  },
+  {
+    "q": "低报酬的被试替研究者「撒谎说任务有趣」后，反而真的觉得任务有趣。这是：",
+    "options": ["认知失调：行为反过头塑造态度", "自利偏差：把说谎归因于环境", "基本归因错误：高估任务价值", "旁观者效应：责任分散导致说谎"],
+    "answer": 0,
+    "explain": "报酬低不足以解释撒谎→「我总不会为一块钱撒谎吧→任务大概真有趣」——态度被自己的行为改写。"
+  },
+  {
+    "q": "有人晕倒时围观者越多越没人帮忙。破解它最有效的方法是：",
+    "options": ["直接点名某个人请他帮忙", "大声呼吁大家快来帮忙", "等围观的人先行动起来", "绕开人群自己去找保安"],
+    "answer": 0,
+    "explain": "旁观者效应=责任分散：点名把责任从「大家」落到「你」，求助成功率大幅上升。"
+  }
+]
+</script>
+</div>
+
+<div class="callout task">
+  <p class="callout-title">现实任务（三项全部完成）</p>
+  <ol>
+    <li><strong>归因改写</strong>：找一次你最近给别人贴的"性格标签"（"他就是……""她总是……"），用基本归因错误分析它；然后写一个<strong>考虑情境的版本</strong>（"他迟到可能因为……"）。妹妹事件可以做，也可以换一个。</li>
+    <li><strong>从众自省</strong>：回忆一次你"跟了大家"的经历（群里跟风、排队、大家都说 X 你就没反驳……），用 Asch 从众概念分析：当时的压力来自哪里？如果重来你会怎么做？</li>
+    <li><strong>旁观者效应现场练习</strong>：回忆一次"人很多但没人管"的场景（亲历或新闻），用责任分散解释；然后写下：如果你是第一个行动者，你会具体做什么？</li>
+  </ol>
+  <p>三项都要完成，写完发我，我们进入第 11 课：发展心理学。</p>
+</div>
+
+<div class="source">
+  <h3>📖 本课推荐的一手资源</h3>
+  <p><strong>教材对照：</strong><a href="https://openstax.org/books/psychology-2e/pages/12-1-what-is-social-psychology">OpenStax Psychology 2e 第 12 章「社会心理学」</a>（免费；12.1 什么是社会心理学、12.4 从众与服从、12.5 偏见）；或津巴多《心理学与生活》第 16 章「社会心理学」。</p>
+  <p><strong>延伸：</strong>Asch 与 Milgram 实验的原始影像可搜 "Asch conformity experiment" / "Milgram experiment footage"；旁观者效应经典案例是 Kitty Genovese 事件（搜 "bystander effect Genovese"）。</p>
+</div>
+
+<div class="callout">
+  <p class="callout-title">向老师提问</p>
+  <p>比如："认知失调是不是就是嘴硬？""我是不是也经常从众而不自知？""怎么判断一个行为是我的选择还是群体的压力？"——直接问我，特别是当你发现自己"跟着大家"的时候。</p>
+</div>
+
+<h2>相关链接</h2>
+<ul>
+  <li><a href="../CURRICULUM.md">学习大纲 CURRICULUM.md（你在哪、要去哪）</a></li>
+  <li><a href="0009-personality.html">第 9 课：人格（特质 × 情境）</a></li>
+  <li><a href="0008-motivation-and-emotion.html">第 8 课：动机与情绪（重评=归因的社会版）</a></li>
+  <li><a href="0001-psychology-as-science.html">第 1 课：心理学：从直觉到证据的科学（相关≠因果）</a></li>
+  <li><a href="0002-psychology-of-a-behavior.html">第 2 课：用科学解剖一个行为（伦理与知情同意）</a></li>
+  <li><a href="../reference/glossary.html">参考：心理学术语表（含第 10 课术语）</a></li>
+  <li><a href="../reference/psychology-field-map.html">参考：分支地图与研究方法</a></li>
+  <li><a href="../MISSION.md">学习使命 MISSION.md</a></li>
+</ul>
+
+</div>
+<script>
+/* ============ 共享测验组件 ============
+用法（在课程 HTML 中）：
+  <div class="quiz">
+    <script type="application/json">
+    [
+      { "q": "问题……", "options": ["A选项","B选项","C选项","D选项"], "answer": 0, "explain": "解析……" }
+    ]
+    <\/script>
+  </div>
+  <script src="../assets/quiz.js"><\/script>
+- answer 是正确选项的下标（从 0 开始）。
+- 选项建议等长，不给用户格式线索。
+- 每个 .quiz 容器独立计分。
+*/
+(function () {
+  "use strict";
+  function render(quizEl) {
+    var dataScript = quizEl.querySelector('script[type="application/json"]');
+    if (!dataScript) return;
+    var questions;
+    try { questions = JSON.parse(dataScript.textContent); } catch (e) { return; }
+    quizEl.innerHTML = "";
+    var ol = document.createElement("ol");
+    ol.className = "quiz-list";
+    var correctCount = 0;
+    var total = questions.length;
+    questions.forEach(function (item, qi) {
+      var li = document.createElement("li");
+      li.className = "quiz-item";
+      var q = document.createElement("p");
+      q.className = "quiz-q";
+      q.textContent = (qi + 1) + ". " + item.q;
+      li.appendChild(q);
+      var opts = document.createElement("div");
+      opts.className = "quiz-opts";
+      item.options.forEach(function (opt, oi) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "quiz-opt";
+        b.textContent = opt;
+        b.addEventListener("click", function () {
+          if (li.classList.contains("done")) return;
+          li.classList.add("done");
+          var btns = opts.querySelectorAll(".quiz-opt");
+          for (var i = 0; i < btns.length; i++) btns[i].disabled = true;
+          if (oi === item.answer) {
+            b.classList.add("correct");
+            correctCount++;
+          } else {
+            b.classList.add("wrong");
+            btns[item.answer].classList.add("correct");
+          }
+          var fb = document.createElement("p");
+          fb.className = "quiz-fb " + (oi === item.answer ? "fb-good" : "fb-bad");
+          fb.textContent = (oi === item.answer ? "✓ 正确。" : "✗ 不对——正确答案是「" + item.options[item.answer] + "」。") + item.explain;
+          li.appendChild(fb);
+          updateScore();
+        });
+        opts.appendChild(b);
+      });
+      li.appendChild(opts);
+      ol.appendChild(li);
+    });
+    quizEl.appendChild(ol);
+    var score = document.createElement("p");
+    score.className = "quiz-score";
+    quizEl.appendChild(score);
+    function updateScore() {
+      score.textContent = "得分：" + correctCount + " / " + total;
+      if (correctCount === total) {
+        score.textContent += " — 全部答对。合上页面，凭记忆把这几个要点写出来（间隔回忆，效果远好于重读）。";
+      } else {
+        score.textContent += " — 答错的题再读一遍解释，然后合上页面，凭记忆回忆一遍正确答案。";
+      }
+    }
+    updateScore();
+  }
+  var quizzes = document.querySelectorAll(".quiz");
+  for (var i = 0; i < quizzes.length; i++) render(quizzes[i]);
+})();
+
+</script>
+</body>
+</html>
